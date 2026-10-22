@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Yangi alifbo — macOS'dan öçiriş.
-#   curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash
+#   curl -fsSL https://yozgich.uz/uninstall.sh | bash
 set -euo pipefail
 
 LABEL="uz.yangialifbo.YangiAlifbo"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Yangi alifbo — macOS uçun fondagi dasturni örnatiş.
-#   curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash
+#   curl -fsSL https://yozgich.uz/install.sh | bash
 set -euo pipefail
 
 LABEL="uz.yangialifbo.YangiAlifbo"
@@ -133,7 +133,7 @@ Boşqa tugma kerak bölsa: "ö" ustida öng tugma → "Yoqiş/öçiriş tugmasi"
 
 Yozib köring:  o' → ö   g' → ğ   sh → ş   ch → ç   s'h → sʼh (Isʼhoq)
 
-Öçiriş:  curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash
+Öçiriş:  curl -fsSL https://yozgich.uz/uninstall.sh | bash
 MSG
 }
 

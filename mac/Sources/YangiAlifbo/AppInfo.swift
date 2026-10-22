@@ -2,7 +2,7 @@ import Foundation
 import AlifboCore
 
 enum AppInfo {
-    static let siteURL = URL(string: "https://behruz-baxodirov.github.io/yangi-alifbo/")!
+    static let siteURL = URL(string: "https://yozgich.uz/")!
     static let accessibilitySettings = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
 
     static var version: String {

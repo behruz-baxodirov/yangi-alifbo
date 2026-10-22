@@ -16,7 +16,7 @@ Yangi özbek lotin alifbosida (ЎРҚ-1184-son Qonun, 21.10.2026) odatdagidek yo
 Terminal'da:
 
 ```bash
-curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash
+curl -fsSL https://yozgich.uz/install.sh | bash
 ```
 
 > **Diqqat:** Releases'dagi `YangiAlifbo.zip` ni brauzer orqali yuklab, qöl bilan oçmang. Ilova Apple sertifikati bilan imzolanmagan (loyiha bepul), şuning uçun macOS uni *"YangiAlifbo.app is damaged and can't be opened"* deb bloklaydi. Yagona töğri yöl — yuqoridagi Terminal buyruği: u faylni özi yuklab, kerakli joyga qöyadi va klaviaturani yoqadi.
@@ -30,7 +30,7 @@ Dastur menyu-barda (**ö**) fonda işlaydi: til almaştiriş şart emas, istalga
 Öçiriş:
 
 ```bash
-curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash
+curl -fsSL https://yozgich.uz/uninstall.sh | bash
 ```
 
 ## Windows (beta)
