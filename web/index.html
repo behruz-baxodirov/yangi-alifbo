@@ -68,14 +68,15 @@
                 <code id="cmd">curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code>
                 <button type="button" class="btn" data-copy="cmd">Nusxa oliş</button>
               </div>
-              <p class="step-hint">Klaviatura özi yuklanadi va yoqiladi. Parol yoki ruxsat söralmaydi.</p>
+              <p class="step-hint">Dastur özi yuklanadi va menyu-barda işga tuşadi. Parol söralmaydi.</p>
             </div>
           </li>
           <li>
             <span class="step-n" aria-hidden="true">3</span>
             <div>
-              <h3 class="step-t">Yozib köring</h3>
-              <p><code>o'</code> yozsangiz <b>ö</b> çiqadi. Menyu-barda <b>ö</b> turgan bölsa, klaviatura yoqilgan. Boşqa klaviaturaga ötiş: <kbd>⌃ Control</kbd> + <kbd>Space</kbd> yoki <kbd>fn</kbd> (globus tugmasi).</p>
+              <h3 class="step-t">Ruxsat bering</h3>
+              <p>macOS söraydi: <b>Open System Settings</b> → Privacy &amp; Security → Accessibility → <b>Yangi alifbo</b> ni yoqing. Şundan keyin menyu-barda <b>ö</b> turadi.</p>
+              <p class="step-hint">Til almaştiriş şart emas: istalgan dasturda lotin klaviaturasida yozing, özi ögiriladi. Yoqiş va öçiriş: <kbd>⇧ Shift</kbd> ni ikki marta bosing yoki menyu-bardagi <b>ö</b> ni bosing (öçiq paytda <b>A</b>).</p>
             </div>
           </li>
         </ol>
@@ -188,20 +189,23 @@
     <h2 id="faq-sarlavha" class="sec-title">Savollar</h2>
     <details id="yoqilgan">
       <summary>Klaviatura yoqilganini qanday bilaman?</summary>
-      <p>Menyu-barda (ekranning yuqori öng burçagida) <b>ö</b> turgan bölsa, yoqilgan. ABC turgan bölsa, öşa yerdan “Yangi alifbo” ni tanlang yoki <kbd>⌃ Control</kbd> + <kbd>Space</kbd> bosing. Windowsʼda soat yonidagi ikonka holatni körsatadi, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> yoqib-öçiradi.</p>
+      <p>Menyu-barda (ekranning yuqori öng burçagida) <b>ö</b> turgan bölsa, yoqilgan; <b>A</b> turgan bölsa, öçiq. Almaştiriş: <kbd>⇧ Shift</kbd> ni ikki marta bosing yoki <b>ö</b> ni bosing. Boşqa tugma tanlaş: <b>ö</b> ustida öng tugma → “Yoqiş/öçiriş tugmasi”. <kbd>⌃ Control</kbd> + <kbd>Space</kbd> va <kbd>fn</kbd> endi faqat tilni almaştiradi.</p>
+      <p>Windowsʼda soat yonidagi ikonka holatni körsatadi, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> yoqib-öçiradi.</p>
     </details>
     <details>
       <summary>Inglizça yoki kod yozayotganimda nima qilaman?</summary>
-      <p>Klaviatura har qanday sözda o' va sh ni almaştiradi: <code>shop.uz</code> ham <code>şop.uz</code> bölib qoladi. Inglizça yozişdan oldin <kbd>⌃ Control</kbd> + <kbd>Space</kbd> bilan ABC ga ötib oling (Windowsʼda <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> bilan öçiring).</p>
+      <p>Klaviatura har qanday sözda o' va sh ni almaştiradi: <code>shop.uz</code> ham <code>şop.uz</code> bölib qoladi. Inglizça yozişdan oldin <kbd>⇧ Shift</kbd> ni ikki marta bosib öçirib qöying (menyu-barda <b>A</b> çiqadi). Rus klaviaturasida yozganingizga tegmaydi. Windowsʼda: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
     </details>
     <details>
       <summary>Ruxsat sörayaptimi? Matnimni körib turadimi?</summary>
-      <p>Yöq. Bu macOSʼning odatiy klaviaturasi (input source): Accessibility ruxsati kerak emas, heç narsa internetga yuborilmaydi. Konverter ham faqat brauzeringizda işlaydi.</p>
+      <p>Ha, bir marta: Accessibility ruxsati (tugmalarni körib, o' ni ö ga almaştiriş uçun). Rusça macOSʼda: “Конфиденциальность и безопасность → Универсальный доступ”. Matn heç qayerga yuborilmaydi, dastur internetga ulanmaydi.</p>
+      <p>Yangilangandan keyin macOS ruxsatni qayta söraşi mumkin, çunki dastur Apple sertifikati bilan imzolanmagan (loyiha bepul). Konverter ham faqat brauzeringizda işlaydi.</p>
     </details>
     <details id="mac-ochirish">
       <summary>Macʼdan qanday öçiraman?</summary>
       <p>Terminalʼda: <code>curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash</code></p>
       <p>GitHubʼdagi <code>.zip</code> faylni qöl bilan oçmang: ilova Apple sertifikatisiz, macOS uni “damaged” deb bloklaydi. Örnatişning yagona töğri yöli yuqoridagi Terminal buyruği.</p>
+      <p>Öçirgandan keyin System Settings → Privacy &amp; Security → Accessibility röyxatidan <b>Yangi alifbo</b> ni ham olib taşlaşingiz mumkin.</p>
     </details>
     <details id="windows">
       <summary>Windowsʼda işlaydimi?</summary>
