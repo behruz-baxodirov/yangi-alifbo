@@ -249,6 +249,7 @@ document.addEventListener("click", (e) => {
   else if (el.matches("[data-sample]")) track("konverter_namuna", { namuna: el.dataset.sample });
   else if (el.id === "share") track("havola_ulashish");
   else if (el.matches(".nav-founder")) track("asoschi_menyu");
+  else if (href.includes("taps.uz")) track("donat", { joy: el.closest("footer") ? "pastki" : el.closest(".panel") ? "yuklash" : "savollar" });
   else if (href.startsWith("http") && !href.includes("yozgich.uz")) {
     const where = el.closest("#asoschi") ? "asoschi" : el.closest("footer") ? "pastki" : "boshqa";
     track(href.includes("t.me/behruz_baxodirov") ? "aloqa_telegram" : "tashqi_havola", { havola: href, joy: where });
