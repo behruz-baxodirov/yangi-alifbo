@@ -1,5 +1,5 @@
 import { convert, detectScript } from "./converter.js";
-import { GLYPHS, PAIRS, PAIR_OF, layout } from "./glyphs.js";
+import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -28,20 +28,6 @@ for (let k = 0; k < 18; k++) {
   const a = k * 2.399963, r = 38.25;
   addAt("seed", 50 + r * Math.cos(a), 50 + r * Math.sin(a), `--r:${(k * 47) % 180}deg`);
 }
-
-// Qoidalar jadvalidagi yangi harflar ham çekiç nuqtalaridan.
-document.querySelectorAll("[data-glyph]").forEach((cell) => {
-  const rows = GLYPHS[cell.dataset.glyph];
-  const grid = document.createElement("span");
-  grid.className = "glyph-grid";
-  grid.style.gridTemplateColumns = `repeat(${rows[0].length}, 3px)`;
-  rows.forEach((row) => [...row].forEach((c) => {
-    const d = document.createElement("i");
-    if (c === "X") d.className = "on";
-    grid.appendChild(d);
-  }));
-  cell.appendChild(grid);
-});
 
 // Havola yopiq savolga olib borsa, uni oçib qöyamiz.
 function openTarget() {
