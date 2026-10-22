@@ -1,7 +1,12 @@
 public struct ComposerOptions: Equatable {
     /// Harf + apostrof + harf → tutuq belgisi ʼ (U+02BC).
     public var tutuq: Bool
-    public init(tutuq: Bool = true) { self.tutuq = tutuq }
+    /// false — öçiq: hamma tugma özgarişsiz ötadi.
+    public var enabled: Bool
+    public init(tutuq: Bool = true, enabled: Bool = true) {
+        self.tutuq = tutuq
+        self.enabled = enabled
+    }
 }
 
 public enum KeyInput: Equatable {
