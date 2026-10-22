@@ -81,6 +81,21 @@ final class ComposerTests: XCTestCase {
         XCTAssertEqual(c.handle(.char("h"), before: { "s" }), ComposerOutput(commit: "ʼ", consumed: false))
     }
 
+    func testDisabledPassesEverythingThrough() {
+        XCTAssertEqual(Typing.simulate("O'zbekiston shahar Is'hoq ma'no", options: .init(enabled: false)),
+                       "O'zbekiston shahar Is'hoq ma'no")
+        var c = Composer(options: .init(enabled: false))
+        XCTAssertEqual(c.handle(.char("o")), ComposerOutput(commit: "", consumed: false))
+        XCTAssertEqual(c.marked, "")
+    }
+
+    func testDisablingFlushesPendingOnNextKey() {
+        var c = Composer()
+        _ = c.handle(.char("s"))
+        c.options.enabled = false
+        XCTAssertEqual(c.handle(.char("h")), ComposerOutput(commit: "s", consumed: false))
+    }
+
     func testPendingApostropheFlushedAsAscii() {
         var c = Composer()
         _ = c.handle(.char("a"))

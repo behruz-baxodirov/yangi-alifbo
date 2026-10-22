@@ -1,7 +1,12 @@
 public struct ComposerOptions: Equatable {
     /// Harf + apostrof + harf → tutuq belgisi ʼ (U+02BC).
     public var tutuq: Bool
-    public init(tutuq: Bool = true) { self.tutuq = tutuq }
+    /// false: klaviatura "A" holatida, hamma tugma özgarişsiz ötadi.
+    public var enabled: Bool
+    public init(tutuq: Bool = true, enabled: Bool = true) {
+        self.tutuq = tutuq
+        self.enabled = enabled
+    }
 }
 
 public enum KeyInput: Equatable {
@@ -45,6 +50,9 @@ public struct Composer {
     public init(options: ComposerOptions = .init()) { self.options = options }
 
     public mutating func handle(_ input: KeyInput, before: () -> Character? = { nil }) -> ComposerOutput {
+        guard options.enabled else {
+            return ComposerOutput(commit: flush(), consumed: false)
+        }
         switch input {
         case .backspace:
             guard pending != nil else {

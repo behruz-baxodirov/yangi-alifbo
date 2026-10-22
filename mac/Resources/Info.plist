@@ -40,6 +40,67 @@
 	<true/>
 	<key>TISIntendedLanguage</key>
 	<string>uz</string>
+	<key>ComponentInputModeDict</key>
+	<dict>
+		<key>tsInputModeListKey</key>
+		<dict>
+			<key>uz.yangialifbo.inputmethod.YangiAlifbo.on</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>uz.yangialifbo.inputmethod.YangiAlifbo.on</string>
+				<key>TISIntendedLanguage</key>
+				<string>uz</string>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>icon.tiff</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>icon.tiff</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>icon.tiff</string>
+				<key>tsInputModeCharacterRepertoireKey</key>
+				<array>
+					<string>Latn</string>
+				</array>
+				<key>tsInputModeScriptKey</key>
+				<string>smRoman</string>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeDefaultStateKey</key>
+				<true/>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<true/>
+			</dict>
+			<key>uz.yangialifbo.inputmethod.YangiAlifbo.off</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>uz.yangialifbo.inputmethod.YangiAlifbo.off</string>
+				<key>TISIntendedLanguage</key>
+				<string>uz</string>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>icon-off.tiff</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>icon-off.tiff</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>icon-off.tiff</string>
+				<key>tsInputModeCharacterRepertoireKey</key>
+				<array>
+					<string>Latn</string>
+				</array>
+				<key>tsInputModeScriptKey</key>
+				<string>smRoman</string>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModeDefaultStateKey</key>
+				<true/>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>tsVisibleInputModeOrderedArrayKey</key>
+		<array>
+			<string>uz.yangialifbo.inputmethod.YangiAlifbo.on</string>
+			<string>uz.yangialifbo.inputmethod.YangiAlifbo.off</string>
+		</array>
+	</dict>
 	<key>TICapsLockLanguageSwitchCapable</key>
 	<true/>
 </dict>

@@ -15,9 +15,14 @@ running_pids() {
 }
 
 stop_running() {
-    local pid
+    local pid i
     for pid in $(running_pids "$1"); do
         kill "$pid" 2>/dev/null || true
+        # Eski jarayon to'liq öçmaguncha kutamiz: aks holda u keyinroq öçib, tizimni ABC'ga qaytaradi.
+        for i in $(seq 1 30); do
+            kill -0 "$pid" 2>/dev/null || break
+            sleep 0.1
+        done
     done
 }
 
