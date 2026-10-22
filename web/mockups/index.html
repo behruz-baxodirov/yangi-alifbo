@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yangi alifbo — 3 maket</title>
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; background: #ecebe7; color: #161616; font: 400 16px/1.5 system-ui, sans-serif; }
+  header { padding: 28px 32px 8px; }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  header p { margin: 0; color: #555; }
+  .option { padding: 24px 32px 36px; border-bottom: 1px solid #d6d4cd; }
+  .option h2 { margin: 0 0 4px; font-size: 22px; }
+  .option p { margin: 0 0 16px; color: #555; max-width: 70ch; }
+  .frames { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  .desk { width: 960px; height: 600px; overflow: hidden; border-radius: 10px; box-shadow: 0 10px 30px -12px rgb(0 0 0 / .35); background: #fff; }
+  .desk iframe { width: 1440px; height: 900px; border: 0; transform: scale(.6667); transform-origin: 0 0; }
+  .phone { width: 300px; height: 600px; overflow: hidden; border-radius: 28px; border: 8px solid #161616; background: #fff; }
+  .phone iframe { width: 390px; height: 780px; border: 0; transform: scale(.7282); transform-origin: 0 0; }
+  .label { font-size: 13px; color: #777; margin: 6px 0 0; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sayt uçun 3 maket</h1>
+  <p>Har biri ishlaydi: matn maydoniga yozib köring. Chapda kompyuter, öngda telefon körinişi. To'liq oçiş uçun nomini bosing.</p>
+</header>
+<section class="option">
+  <h2><a href="non.html">A. Non va çekiç</a></h2>
+  <p>Harflar non markaziga çekiç nuqtalari bilan bosiladi; o' dagi tutuq ö ning ikki nuqtasiga köçadi. Tandir qobiği rangi, sedana qorasi.</p>
+  <div class="frames">
+    <div><div class="desk"><iframe src="non.html" title="Non va çekiç, kompyuter"></iframe></div><p class="label">Kompyuter · 1440 px</p></div>
+    <div><div class="phone"><iframe src="non.html" title="Non va çekiç, telefon"></iframe></div><p class="label">Telefon · 390 px</p></div>
+  </div>
+</section>
+<section class="option">
+  <h2><a href="koshin.html">B. Bannoiy koşin</a></h2>
+  <p>Yangi harflar peştoq ravoğida firuza va oq sirli koşinlardan terilgan. Kobalt maydon, g'işt çok.</p>
+  <div class="frames">
+    <div><div class="desk"><iframe src="koshin.html" title="Bannoiy koşin, kompyuter"></iframe></div><p class="label">Kompyuter · 1440 px</p></div>
+    <div><div class="phone"><iframe src="koshin.html" title="Bannoiy koşin, telefon"></iframe></div><p class="label">Telefon · 390 px</p></div>
+  </div>
+</section>
+<section class="option">
+  <h2><a href="tablo.html">C. Vokzal tablosi</a></h2>
+  <p>Split-flap tablo: eski sözlar yangi yozuvga şaqillab aylanadi, oxirgi qator sizniki. O'rnatiş buyruği "1-platforma".</p>
+  <div class="frames">
+    <div><div class="desk"><iframe src="tablo.html" title="Vokzal tablosi, kompyuter"></iframe></div><p class="label">Kompyuter · 1440 px</p></div>
+    <div><div class="phone"><iframe src="tablo.html" title="Vokzal tablosi, telefon"></iframe></div><p class="label">Telefon · 390 px</p></div>
+  </div>
+</section>
+</body>
+</html>

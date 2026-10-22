@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yangi alifbo — Bannoiy koşin (maket)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cobalt: #1c3f95;
+    --cobalt-deep: #12285f;
+    --turq: #1aa6b7;
+    --turq-light: #62cbd6;
+    --brick: #b5734a;
+    --glaze: #f4f1ea;
+    --ink: #0d1733;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cobalt); color: var(--glaze); font: 400 17px/1.55 Onest, system-ui, sans-serif; }
+  ::selection { background: var(--turq); color: var(--ink); }
+  a { color: inherit; text-underline-offset: .2em; }
+  :focus-visible { outline: 3px solid var(--turq-light); outline-offset: 3px; }
+
+  .bar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 22px 24px; }
+  .logo { font: 800 20px/1 Unbounded; text-decoration: none; letter-spacing: -.01em; }
+  .bar nav { display: flex; gap: 22px; font-weight: 500; }
+  .bar nav a { text-decoration: none; opacity: .85; }
+  .bar nav a:hover { opacity: 1; text-decoration: underline; }
+
+  /* Peştoq: g'işt çokli koşin maydoni */
+  .portal {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 56px; align-items: end;
+  }
+  .arch {
+    position: relative; background: var(--brick); padding: 14px; border-radius: 220px 220px 6px 6px;
+    box-shadow: inset 0 0 0 6px #9a5d39;
+  }
+  .arch-in {
+    border-radius: 206px 206px 2px 2px; background: var(--cobalt-deep); padding: 70px 44px 26px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 28px;
+  }
+  .tileword { display: grid; gap: 2px; aspect-ratio: 5 / 9; }
+  .t { border-radius: 1px; background: transparent; }
+  .t.on { background: linear-gradient(145deg, var(--turq-light), var(--turq) 55%, #13899a); box-shadow: inset 0 1px 0 rgb(255 255 255 / .35); }
+  .t.on.w { background: linear-gradient(145deg, #fffdf6, var(--glaze) 60%, #d9d3c6); }
+  .arch-cap { grid-column: 1 / -1; text-align: center; font: 600 14px/1 Unbounded; letter-spacing: .14em; color: var(--turq-light); margin-top: 10px; }
+
+  h1 { font: 800 clamp(38px, 5vw, 66px)/1.02 Unbounded; letter-spacing: -.03em; margin: 0 0 18px; text-wrap: balance; }
+  .lede { font-size: 19px; max-width: 36ch; margin: 0 0 26px; color: #dfe6f7; }
+  .lede b { color: #fff; }
+
+  .install { border: 2px solid var(--turq); border-radius: 4px; padding: 16px; background: rgb(13 23 51 / .5); }
+  .install p { margin: 0 0 10px; font-size: 15px; color: #c8d3ee; }
+  .cmd { display: flex; gap: 8px; }
+  .cmd code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; font: 500 14px/1.4 ui-monospace, Menlo, monospace; background: var(--ink); padding: 12px; border-radius: 2px; }
+  button { font: 700 15px/1 Onest; border: 0; border-radius: 2px; padding: 0 18px; cursor: pointer; background: var(--turq); color: var(--ink); }
+  button:hover { background: var(--turq-light); }
+  .keys { margin-top: 10px; font-size: 14px; color: #c8d3ee; }
+  kbd { font: 600 13px Onest; border: 1px solid #4f6cb5; border-radius: 3px; padding: 1px 7px; color: #fff; }
+  .phone-note { display: none; }
+
+  .band { margin-top: 56px; background: var(--glaze); color: var(--ink); }
+  .band-in { max-width: 1200px; margin: 0 auto; padding: 44px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .band label { font: 600 18px/1.2 Unbounded; display: block; margin-bottom: 12px; }
+  textarea { width: 100%; min-height: 110px; resize: vertical; font: 500 18px/1.5 Onest; color: var(--ink); background: #fff; border: 2px solid var(--cobalt); border-radius: 2px; padding: 12px; }
+  .out { font: 700 24px/1.4 Onest; color: var(--cobalt); margin: 34px 0 0; overflow-wrap: anywhere; }
+  .rules { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; padding: 0; list-style: none; }
+  .rules li { border: 2px solid var(--cobalt); padding: 6px 12px; font-weight: 700; }
+  footer { max-width: 1200px; margin: 0 auto; padding: 22px 24px; font-size: 15px; color: #c8d3ee; }
+
+  @media (max-width: 820px) {
+    .bar nav { display: none; }
+    .portal { grid-template-columns: minmax(0, 1fr); }
+    .arch { order: -1; max-width: 360px; justify-self: center; width: 100%; }
+    .band { margin-top: 32px; }
+    .band-in { grid-template-columns: 1fr; padding-top: 28px; }
+    .out { margin-top: 0; }
+    .phone-note { display: block; margin-top: 10px; }
+    /* Telefonda konverter yuqoriga */
+    body { display: flex; flex-direction: column; }
+    .band { order: 1; margin-top: 0; }
+    .portal { order: 2; padding-top: 28px; }
+    footer { order: 3; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="#">yangi alifbo</a>
+  <nav><a href="#ornatish">Örnatiş</a><a href="#konverter">Konverter</a><a href="https://github.com/behruz-baxodirov/yangi-alifbo">GitHub</a></nav>
+</header>
+
+<main class="portal">
+  <div class="arch" aria-hidden="true">
+    <div class="arch-in" id="arch"><div class="arch-cap">YANGI ALIFBO · 2026</div></div>
+  </div>
+  <div>
+    <h1>Odatdagidek yozing. Yangi harf özi çiqadi.</h1>
+    <p class="lede"><b>o'</b> yozsangiz <b>ö</b>, <b>sh</b> yozsangiz <b>ş</b>. Mac uçun bepul klaviatura, hamma uçun onlayn konverter.</p>
+    <section class="install" id="ornatish" aria-label="Mac'ga örnatiş">
+      <p>Mac'da Terminal'ni oçib, şu buyruqni joylang:</p>
+      <div class="cmd"><code id="cmd">curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code><button type="button" data-copy="cmd">Nusxa</button></div>
+      <div class="keys">Yoqiş va öçiriş: <kbd>🌐 Fn</kbd> yoki <kbd>⌃</kbd> + <kbd>Space</kbd></div>
+      <p class="phone-note">Telefondan kirdingizmi? Havolani saqlang va Mac'da oçing.</p>
+    </section>
+  </div>
+</main>
+
+<section class="band" id="konverter">
+  <div class="band-in">
+    <div>
+      <label for="in">Eski yozuvdagi matn</label>
+      <textarea id="in" spellcheck="false">O'zbekiston shaharlari: Toshkent, Samarqand, G'ijduvon.</textarea>
+      <ul class="rules"><li>o' → ö</li><li>g' → ğ</li><li>sh → ş</li><li>ch → ç</li><li>s'h → sʼh</li></ul>
+    </div>
+    <p class="out" id="out" aria-live="polite"></p>
+  </div>
+</section>
+<footer>Muallif: <a href="https://instagram.com/behruz_si">@behruz_si</a> · Bepul va oçiq kod · Maket</footer>
+
+<script type="module">
+  import { convert } from "../converter.js";
+  import { GLYPHS } from "./glyphs.js";
+
+  const input = document.getElementById("in");
+  const out = document.getElementById("out");
+  const render = () => (out.textContent = convert(input.value));
+  input.addEventListener("input", render);
+  render();
+
+  document.querySelectorAll("[data-copy]").forEach((b) =>
+    b.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent);
+      b.textContent = "Olindi ✓";
+      setTimeout(() => (b.textContent = "Nusxa"), 1600);
+    }),
+  );
+
+  // Bannoiy terma: har bir harf 5×9 koşin katagi, diakritik belgilar oq sirda.
+  const arch = document.getElementById("arch");
+  const cap = arch.firstElementChild;
+  for (const letter of ["Ö", "Ğ", "Ş", "Ç"]) {
+    const word = document.createElement("div");
+    word.className = "tileword";
+    word.style.gridTemplateColumns = "repeat(5, 1fr)";
+    GLYPHS[letter].forEach((row, y) =>
+      [...row].forEach((c) => {
+        const t = document.createElement("i");
+        t.className = "t" + (c === "X" ? " on" : "") + (c === "X" && (y < 2 || y > 6) ? " w" : "");
+        word.appendChild(t);
+      }),
+    );
+    arch.insertBefore(word, cap);
+  }
+</script>
+</body>
+</html>
