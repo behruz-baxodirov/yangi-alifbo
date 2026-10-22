@@ -131,3 +131,13 @@ Telefon klaviaturalari (iOS/Android ilova). Apple Developer ID bilan notarizatsi
   ko'rinadi.
 - Hosting: `github.com/behruz-baxodirov/yangi-alifbo` (ochiq repo) va GitHub Pages.
   Push qilishdan oldin sizdan so'rayman.
+
+## 10. Özgariş (2026-10-22): input source → fondagi menyu-bar dasturi
+
+Egasi sinab kördi: input source faqat tanlangan payt işlaydi, ⌃Space uni boşqa tilga almaştiradi, Telegram'da tanlov yöqolib qoldi. Qaror (egasining sözi): "fonda doim işlaydigan menyu-bar dasturini qur. Accessibility ruxsati mayli."
+
+- macOS: `YangiAlifbo.app` (LSUIElement, bundle id `uz.yangialifbo.YangiAlifbo`), `~/Applications` ga örnatiladi, LaunchAgent bilan tizimga kirganda işga tuşadi.
+- CGEventTap (Accessibility ruxsati) tugmalarni köradi; `AlifboCore.Rewriter` "öçir + yoz" qarorini beradi: `o` dan keyin `'` → `{BS}ö`, `s`+`h` → `{BS}ş`, harf+`'`+harf → `{BS}ʼ`+harf. Qoidalar va `core/fixtures/cases.json` özgarmaydi.
+- Yoqiş/öçiriş: menyu-bardagi `ö` (öçiq paytda `A`) belgisini bosiş. Parol maydonlarida macOS tapni özi öçiradi.
+- install.sh eski input source'ni öçiradi (aks holda ikki marta ögiriladi).
+- Narxi: Accessibility ruxsati; imzosiz dastur yangilanganda ruxsatni qayta beriş kerak bölişi mumkin.

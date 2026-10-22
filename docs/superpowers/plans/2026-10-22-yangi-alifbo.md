@@ -107,3 +107,22 @@ Semantics: `consumed == false` means the host lets the app handle the key after 
 - Create `README.md` (Uzbek, new alphabet; install/uninstall; rules; build from source).
 - E2E (with owner's yes): run install.sh from local zip, switch input source, type fixture sentences in TextEdit, verify output; uninstall works.
 - Publish (with owner's yes): `gh repo create`, push, release with zip, enable Pages for `web/`.
+
+### Task 8: Always-on menu-bar app (spec §10)
+
+**Interfaces (Produces):**
+```swift
+public enum RewriteAction: Equatable { case pass; case replace(deleteBefore: Int, insert: String) }
+public struct Rewriter {
+  public init(options: ComposerOptions = .init())
+  public var options: ComposerOptions
+  public mutating func handle(_ input: KeyInput) -> RewriteAction   // .replace swallows the key
+  public mutating func reset()
+}
+public enum RewriteTyping { public static func simulate(_ text: String, options: ComposerOptions = .init()) -> String }
+```
+- [ ] RED: `RewriterTests` (fixtures through `RewriteTyping.simulate`; disabled passes; backspace/other reset context; tutuq replace deletes the apostrophe).
+- [ ] GREEN: implement `Rewriter`.
+- [ ] App: `YangiAlifbo` executable becomes an LSUIElement app: NSStatusItem ("ö"/"A"), AXIsProcessTrustedWithOptions prompt, CGEventTap (keyDown, flagsChanged, mouse down), synthetic events tagged via eventSourceUserData and ignored, tap re-enabled on timeout.
+- [ ] install.sh: uninstall old IME if present, install to ~/Applications, LaunchAgent `uz.yangialifbo.YangiAlifbo.plist`, start app; uninstall.sh reverses. install-stop test still passes.
+- [ ] Owner grants Accessibility and tests in Telegram + Chrome; then release v2.0.0.
