@@ -21,7 +21,11 @@ curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash
 
 > **Diqqat:** Releases'dagi `YangiAlifbo.zip` ni brauzer orqali yuklab, qöl bilan oçmang. Ilova Apple sertifikati bilan imzolanmagan (loyiha bepul), şuning uçun macOS uni *"YangiAlifbo.app is damaged and can't be opened"* deb bloklaydi. Yagona töğri yöl — yuqoridagi Terminal buyruği: u faylni özi yuklab, kerakli joyga qöyadi va klaviaturani yoqadi.
 
-Yoqiş va öçiriş: **🌐 (Fn)** yoki **⌃ Control + Space**. Klaviatura macOS'ning odatiy input source'i: hech qanday ruxsat söramaydi va hamma dasturda işlaydi.
+Dastur menyu-barda (**ö**) fonda işlaydi: til almaştiriş şart emas, istalgan dasturda lotin klaviaturasida yozganingiz özi ögiriladi (rus klaviaturasiga tegmaydi).
+
+- **Birinçi işga tuşganda** macOS Accessibility ruxsatini söraydi: System Settings → Privacy & Security → Accessibility → **Yangi alifbo**ni yoqing. Yangilangandan keyin ham qayta söraşi mumkin (dastur Apple sertifikati bilan imzolanmagan).
+- **Yoqiş/öçiriş:** ⇧ Shift'ni ikki marta tez bosing yoki menyu-bardagi **ö** ni bosing (öçiq paytda **A**). Ekranda qisqa xabar çiqadi.
+- **Boşqa tugma:** **ö** ustida öng tugma → *Yoqiş/öçiriş tugmasi* → Shift / Option / Control ikki marta, ⌃ Space, ⌘ ⇧ Space yoki faqat belgi.
 
 Öçiriş:
 
