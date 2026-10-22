@@ -235,3 +235,38 @@ function alignDotRows() {
 }
 addEventListener("resize", alignDotRows);
 alignDotRows();
+
+// Statistika: nimani bosişdi, qaysi bölimgaça yetib borişdi (index.html'dagi track).
+const track = (name, params) => window.track?.(name, params);
+
+document.addEventListener("click", (e) => {
+  const el = e.target.closest("a, button");
+  if (!el) return;
+  const href = el.getAttribute("href") ?? "";
+  if (href.endsWith(".exe")) track("windows_yuklash");
+  else if (el.matches('[data-copy="cmd"]')) track("mac_buyruq");
+  else if (el.matches('[data-copy="out"]')) track("konverter_nusxa");
+  else if (el.matches("[data-sample]")) track("konverter_namuna", { namuna: el.dataset.sample });
+  else if (el.id === "share") track("havola_ulashish");
+  else if (el.matches(".nav-founder")) track("asoschi_menyu");
+  else if (href.startsWith("http") && !href.includes("yozgich.uz")) {
+    const where = el.closest("#asoschi") ? "asoschi" : el.closest("footer") ? "pastki" : "boshqa";
+    track(href.includes("t.me/behruz_baxodirov") ? "aloqa_telegram" : "tashqi_havola", { havola: href, joy: where });
+  }
+});
+
+input.addEventListener("input", () => track("konverter_yozdi"), { once: true });
+
+document.querySelectorAll(".faq details").forEach((d) => {
+  d.addEventListener("toggle", () => d.open && track("savol_ochildi", { savol: d.id }));
+});
+
+// Bölim ekran örtasiga yetsa, bir marta sanaladi.
+const seen = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    track(`kordi_${entry.target.id}`);
+    seen.unobserve(entry.target);
+  });
+}, { rootMargin: "0px 0px -50% 0px" });
+["konverter", "qoidalar", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
