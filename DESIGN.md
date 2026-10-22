@@ -1,5 +1,5 @@
 ---
-name: Yangi alifbo
+name: Yozgiç
 description: Type the new Uzbek alphabet with old habits; letters stamped into a non with a çekiç.
 colors:
   crust: "#cf8a33"
@@ -208,7 +208,7 @@ components:
     padding: "56px clamp(16px, 4vw, 40px) 64px"
 ---
 
-# Design System: Yangi alifbo
+# Design System: Yozgiç
 
 ## Overview
 

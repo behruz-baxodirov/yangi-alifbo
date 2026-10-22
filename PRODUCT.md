@@ -16,7 +16,7 @@ Ordinary Uzbek people reached through the owner's Instagram (@behruz_si): mostly
 
 ## Product Purpose
 
-"Yangi alifbo" lets people type the new alphabet with old habits: `o'`→`ö`, `g'`→`ğ`, `sh`→`ş`, `ch`→`ç`, `s'h`→`sʼh`, tutuq `ʼ`. Two parts: a free macOS input source (one-line Terminal install) and an online converter (old Latin or Cyrillic → new alphabet). Success: a visitor installs on Mac in about a minute, or converts text on the phone in seconds.
+"Yozgiç" lets people type the new alphabet with old habits: `o'`→`ö`, `g'`→`ğ`, `sh`→`ş`, `ch`→`ç`, `s'h`→`sʼh`, tutuq `ʼ`. Two parts: a free macOS input source (one-line Terminal install) and an online converter (old Latin or Cyrillic → new alphabet). Success: a visitor installs on Mac in about a minute, or converts text on the phone in seconds.
 
 ## Positioning
 
@@ -35,7 +35,7 @@ Visitors arrive from an Instagram post or bio link, often mid-scroll on a phone.
 
 ## Brand Commitments
 
-- Name: "Yangi alifbo".
+- Name: "Yozgiç" (domain yozgich.uz, chosen 2026-10-22). The macOS app and its Accessibility entry are still named "Yangi alifbo".
 - Author credit: Instagram @behruz_si.
 - Register chosen by the owner: national-modern ("milliy-zamonaviy") — Uzbek graphic traditions in a contemporary rendering, not old-fashioned.
 

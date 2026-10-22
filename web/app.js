@@ -212,7 +212,7 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
 // Telefonda havolani ulaşiş
 const share = document.getElementById("share");
 share?.addEventListener("click", async () => {
-  const data = { title: "Yangi alifbo", text: "o' → ö, sh → ş: yangi alifboda odatdagidek yozing", url: location.href.split("#")[0] };
+  const data = { title: "Yozgiç", text: "o' → ö, sh → ş: yangi alifboda odatdagidek yozing", url: location.href.split("#")[0] };
   if (navigator.share) {
     try { await navigator.share(data); } catch { /* foydalanuvçi bekor qildi */ }
     return;
