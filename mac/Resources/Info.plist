@@ -7,40 +7,26 @@
 	<key>CFBundleExecutable</key>
 	<string>YangiAlifbo</string>
 	<key>CFBundleIdentifier</key>
-	<string>uz.yangialifbo.inputmethod.YangiAlifbo</string>
+	<string>uz.yangialifbo.YangiAlifbo</string>
 	<key>CFBundleName</key>
 	<string>Yangi alifbo</string>
 	<key>CFBundleDisplayName</key>
 	<string>Yangi alifbo</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>12.0</string>
-	<key>LSBackgroundOnly</key>
-	<true/>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>InputMethodConnectionName</key>
-	<string>YangiAlifbo_Connection</string>
-	<key>InputMethodServerControllerClass</key>
-	<string>YangiAlifboInputController</string>
-	<key>tsInputMethodCharacterRepertoireKey</key>
-	<array>
-		<string>Latn</string>
-	</array>
-	<key>tsInputMethodIconFileKey</key>
-	<string>icon.tiff</string>
-	<key>TISIconIsTemplate</key>
-	<true/>
-	<key>TISIntendedLanguage</key>
-	<string>uz</string>
-	<key>TICapsLockLanguageSwitchCapable</key>
-	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Bepul va oçiq kod — @behruz_si</string>
 </dict>
 </plist>

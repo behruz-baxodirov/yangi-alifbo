@@ -11,13 +11,12 @@ ARCHS=(--arch arm64 --arch x86_64)
 swift build --package-path "$MAC" -c release "${ARCHS[@]}" --product YangiAlifbo
 BIN_DIR="$(swift build --package-path "$MAC" -c release "${ARCHS[@]}" --show-bin-path)"
 
-[ -f "$MAC/Resources/icon.tiff" ] || swift "$MAC/scripts/make-icon.swift" "$MAC/Resources/icon.tiff"
 
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN_DIR/YangiAlifbo" "$APP/Contents/MacOS/YangiAlifbo"
 cp "$MAC/Resources/Info.plist" "$APP/Contents/Info.plist"
-cp "$MAC/Resources/icon.tiff" "$APP/Contents/Resources/icon.tiff"
+cp "$MAC/Resources/AppIcon.icns" "$APP/Contents/Resources/AppIcon.icns"
 codesign --force --sign - --timestamp=none "$APP"
 
 rm -f "$DIST/YangiAlifbo.zip"

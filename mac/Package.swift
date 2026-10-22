@@ -9,7 +9,7 @@ let package = Package(
         .executableTarget(
             name: "YangiAlifbo",
             dependencies: ["AlifboCore"],
-            linkerSettings: [.linkedFramework("InputMethodKit"), .linkedFramework("Carbon")]
+            linkerSettings: [.linkedFramework("Cocoa"), .linkedFramework("ApplicationServices")]
         ),
         .testTarget(name: "AlifboCoreTests", dependencies: ["AlifboCore"]),
     ]
