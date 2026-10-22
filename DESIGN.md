@@ -17,9 +17,9 @@ colors:
 typography:
   display:
     fontFamily: "Doto, monospace"
-    fontSize: "clamp(38px, 4.6vw, 64px)"
+    fontSize: "clamp(30px, 2.9vw, 42px)"
     fontWeight: 900
-    lineHeight: 1.02
+    lineHeight: 1.08
     letterSpacing: "-0.01em"
   display-close:
     fontFamily: "Doto, monospace"
@@ -28,12 +28,17 @@ typography:
     lineHeight: 1
   headline:
     fontFamily: "Doto, monospace"
-    fontSize: "clamp(34px, 4vw, 48px)"
+    fontSize: "clamp(28px, 2.6vw, 36px)"
     fontWeight: 900
     lineHeight: 1
   headline-sm:
     fontFamily: "Doto, monospace"
-    fontSize: "34px"
+    fontSize: "32px"
+    fontWeight: 900
+    lineHeight: 1
+  numeral:
+    fontFamily: "Doto, monospace"
+    fontSize: "18px"
     fontWeight: 900
     lineHeight: 1
   logo:
@@ -44,19 +49,19 @@ typography:
     letterSpacing: "0.01em"
   lede:
     fontFamily: "Onest, system-ui, sans-serif"
-    fontSize: "20px"
+    fontSize: "18px"
     fontWeight: 400
     lineHeight: 1.55
   title:
     fontFamily: "Onest, system-ui, sans-serif"
-    fontSize: "18px"
+    fontSize: "17px"
     fontWeight: 700
-    lineHeight: 1.2
+    lineHeight: 1.3
   output:
     fontFamily: "Onest, system-ui, sans-serif"
-    fontSize: "24px"
-    fontWeight: 700
-    lineHeight: 1.4
+    fontSize: "18px"
+    fontWeight: 600
+    lineHeight: 1.6
   body:
     fontFamily: "Onest, system-ui, sans-serif"
     fontSize: "17px"
@@ -66,6 +71,11 @@ typography:
     fontFamily: "Onest, system-ui, sans-serif"
     fontSize: "15px"
     fontWeight: 700
+    lineHeight: 1
+  tag:
+    fontFamily: "Onest, system-ui, sans-serif"
+    fontSize: "13px"
+    fontWeight: 600
     lineHeight: 1
   caption:
     fontFamily: "Onest, system-ui, sans-serif"
@@ -79,9 +89,10 @@ spacing:
   cell: "12px"
   gutter: "clamp(16px, 4vw, 40px)"
   max: "1180px"
-  slab: "20px"
-  panel: "24px"
+  slab: "22px"
+  panel: "28px"
   column: "48px"
+  hero-column: "56px"
   section: "72px"
 components:
   button-primary:
@@ -94,44 +105,95 @@ components:
   button-primary-hover:
     backgroundColor: "{colors.crust-hi}"
     textColor: "{colors.char}"
+  button-primary-done:
+    backgroundColor: "{colors.char}"
+    textColor: "{colors.crust}"
   button-big:
     backgroundColor: "{colors.crust}"
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
     padding: "0 22px"
     height: "48px"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.char}"
+  button-ink:
+    backgroundColor: "{colors.char}"
+    textColor: "{colors.flour}"
     typography: "{typography.label}"
     rounded: "{rounded.corner}"
     padding: "0 18px"
     height: "44px"
-  button-ghost-hover:
+  button-ink-hover:
+    backgroundColor: "{colors.slab-well}"
+    textColor: "{colors.flour}"
+  link-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.char}"
+    padding: "0 10px"
+    height: "44px"
+  chip:
+    backgroundColor: "transparent"
+    textColor: "{colors.char}"
+    rounded: "{rounded.corner}"
+    padding: "0 14px"
+    height: "40px"
+  chip-pressed:
     backgroundColor: "{colors.char}"
     textColor: "{colors.flour}"
+  tag:
+    backgroundColor: "rgb(23 17 13 / .08)"
+    textColor: "{colors.char}"
+    typography: "{typography.tag}"
+    rounded: "{rounded.corner}"
+    padding: "5px 8px"
+  tag-hot:
+    backgroundColor: "{colors.char}"
+    textColor: "{colors.flour}"
+    typography: "{typography.tag}"
+    rounded: "{rounded.corner}"
+    padding: "5px 8px"
   slab:
     backgroundColor: "{colors.char}"
     textColor: "{colors.flour}"
     rounded: "{rounded.corner}"
-    padding: "{spacing.slab}"
-    width: "540px"
+    padding: "8px 22px 20px"
+    width: "600px"
+  tab:
+    backgroundColor: "transparent"
+    textColor: "{colors.slab-ink}"
+    rounded: "{rounded.corner}"
+    height: "46px"
+  tab-hover:
+    backgroundColor: "{colors.slab-well}"
+    textColor: "{colors.flour}"
+  tab-selected:
+    backgroundColor: "{colors.crust}"
+    textColor: "{colors.char}"
+  step-numeral:
+    backgroundColor: "{colors.crust}"
+    textColor: "{colors.char}"
+    typography: "{typography.numeral}"
+    rounded: "{rounded.corner}"
+    size: "30px"
   command-well:
     backgroundColor: "{colors.slab-well}"
     textColor: "{colors.flour}"
     rounded: "{rounded.corner}"
-    padding: "12px 14px"
+    padding: "11px 13px"
   converter-panel:
     backgroundColor: "{colors.flour}"
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
     padding: "{spacing.panel}"
-  text-field:
+  pane-in:
     backgroundColor: "{colors.flour}"
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
-    padding: "12px 14px"
-    height: "104px"
+    height: "260px"
+  pane-out:
+    backgroundColor: "{colors.dough}"
+    textColor: "{colors.char}"
+    typography: "{typography.output}"
+    rounded: "{rounded.corner}"
+    height: "260px"
   key-cap:
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
@@ -139,7 +201,7 @@ components:
   non:
     backgroundColor: "{colors.dough}"
     rounded: "{rounded.non}"
-    width: "520px"
+    width: "460px"
   closing-band:
     backgroundColor: "{colors.flour}"
     textColor: "{colors.char}"
@@ -154,49 +216,49 @@ components:
 
 Letters are stamped into the centre of an Uzbek non with a çekiç, the bread stamp whose pins punch rings of dots into the dough. The whole system is made of that one material: dots. The ground is baked-crust amber with a faint 12px çekiç grid, headings are set in a dot-matrix face, the new letters are drawn on a 5×10 dot grid, dividers are rows of dots, and the hero non shows the apostrophe of o' turning into the two dots of ö as the dots migrate. National-modern register: an Uzbek graphic object rendered flat and contemporary, never ornamental or antique.
 
-Density is calm and large. One drenched amber ground carries everything; three surfaces sit on it by tone alone: black action slabs, flour working fields, and the dough of the non. There are no shadows, no pills, no gradients that shade. Everything is flat and stamped.
+Density is calm and large. One drenched amber ground carries everything; the surfaces sit on it by tone alone: black action slabs, flour working fields, and dough, which belongs to the non and to the converter's result. There are no shadows, no pills, no gradients that shade. Everything is flat and stamped.
 
 The site speaks the alphabet it sells. Every line of copy is written in the new alphabet (ö ğ ş ç, tutuq ʼ), and old spellings appear only as the input side of an example.
 
 **Key Characteristics:**
 - Drenched crust-amber ground with a 12px çekiç dot grid.
 - Dot-matrix display (Doto 900) over a plain humanist body (Onest).
-- Flat surfaces separated by tone: char slab, flour field, dough non.
+- Flat surfaces separated by tone: char slab, flour field, dough non and dough result.
 - 3px corners on every rectangle; round silhouettes only in the non and its dots.
-- Dots as the single decorative device: glyphs, dividers, the FAQ toggle, the stamp.
+- Dots as the single decorative device: glyphs, dividers, numerals, the converter arrow, the FAQ toggle, the stamp.
 - One motion: dots migrating with an exponential ease-out.
 
 ## Colors
 
-A baked palette: one drenched crust amber, nigella-black ink, a flour white for working fields, and a single clay red held back for emphasis on flour.
+A baked palette: one drenched crust amber, nigella-black ink, a flour white for working fields, and a single clay red held back for marking change inside the working fields.
 
 ### Primary
-- **Baked Crust** (crust): the drenched page ground, the browser theme colour, and the fill of primary buttons on the black slab. **Crust Highlight** (crust-hi) is its hover step only.
+- **Baked Crust** (crust): the drenched page ground, the browser theme colour, the fill of primary buttons, the selected download tab and the step-numeral squares on the black slab. **Crust Highlight** (crust-hi) is its hover step only.
 
 ### Secondary
-- **Tandir Clay** (clay): emphasis on flour only, currently the closing-band links and the text caret inside the converter.
+- **Tandir Clay** (clay): emphasis inside working fields only: the changed letters in the converter output, the text caret, and the closing-band links.
 
 ### Tertiary (the non)
-- **Dough** (dough): the non's centre, where the letter is stamped.
+- **Dough** (dough): the non's centre, where the letter is stamped, and the converter's output pane, where the converted text is the stamped result.
 - **Rim** (rim) and **Rim Edge** (rim-edge): the crust ring of the non, drawn as hard bands.
 - **Çekiç Pip** (pip): the punched rings of pin marks in the dough.
 
 ### Neutral
-- **Nigella Char** (char): all ink on crust, flour and dough; the action slab; the stamp dots; focus rings; selection.
-- **Char Soft** (char-soft): secondary reading text on crust (lede, table headers, example column).
-- **Flour** (flour): working fields (converter panel, text field) and the closing band; text on the char slab.
-- **Slab Ink** (slab-ink): body copy inside the char slab, one step quieter than flour.
-- **Slab Well** (slab-well): the recessed command field inside the slab that holds the install line.
+- **Nigella Char** (char): all ink on crust, flour and dough; the action slab; the ink button and pressed chip; the stamp dots; focus rings; selection. Translucent char tints (8% under script tags, 10% under inline code) are the only other fills.
+- **Char Soft** (char-soft): secondary reading text on crust and flour (lede, table headers, example column, converter subline, counts, empty-state hint).
+- **Flour** (flour): working fields (converter panel, input pane) and the closing band; text on the char slab.
+- **Slab Ink** (slab-ink): body copy and unselected tabs inside the char slab, one step quieter than flour; at 35% it draws the slab's light dot rows.
+- **Slab Well** (slab-well): the recessed command field inside the slab, the tab hover, and the ink button's hover.
 
 ### Named Rules
-**The Clay On Flour Rule.** Clay is used only on flour. On crust it measures 2.4:1 and fails even large text, so clay never touches the amber ground, the slab or the non.
+**The Clay In The Field Rule.** Clay is used only on flour (6.4:1) and on the dough of the converter's output pane (4.6:1, always with a 700-weight letter and a dotted underline so change is never shown by colour alone). On crust it measures 2.4:1 and fails even large text, so clay never touches the amber ground, the slab or the non.
 
-**The Flour Is For Work Rule.** Flour appears only inside working fields (converter, text field) and the closing band. Ordinary content sections sit directly on crust.
+**The Flour Is For Work Rule.** Flour appears only inside working fields (converter panel, input pane) and the closing band. Ordinary content sections sit directly on crust.
 
 ## Typography
 
 **Display Font:** Doto 900 (with monospace)
-**Body Font:** Onest 400 / 500 / 700 (with system-ui, sans-serif)
+**Body Font:** Onest 400 / 500 / 600 / 700, one variable file covering 400–700 (with system-ui, sans-serif)
 **Label/Mono Font:** ui-monospace, Menlo for code and for the old-spelling input column
 
 Both families are self-hosted (OFL) from `web/fonts/`, latin and latin-ext subsets, `font-display: swap`.
@@ -204,19 +266,23 @@ Both families are self-hosted (OFL) from `web/fonts/`, latin and latin-ext subse
 **Character:** A dot-matrix display that looks punched by the çekiç, paired with a plain, open grotesque that reads well on a low-end phone. Doto names things; Onest explains them.
 
 ### Hierarchy
-- **Display** (900, clamp(38px, 4.6vw, 64px), 1.02, balanced wrap): the hero headline. Phone: clamp(32px, 9vw, 44px).
-- **Display Close** (900, clamp(40px, 6vw, 72px), 1): the closing band's statement.
-- **Headline** (900, clamp(34px, 4vw, 48px), 1): section titles.
-- **Headline Small** (900, 34px, 1; 28px on phone): the converter panel title.
+- **Display** (900, clamp(30px, 2.9vw, 42px), 1.08, balanced wrap): the hero headline. Phone: clamp(30px, 8.6vw, 42px).
+- **Display Close** (900, clamp(40px, 6vw, 72px), 1): the closing band's statement in the footer.
+- **Headline** (900, clamp(28px, 2.6vw, 36px), 1): section titles.
+- **Headline Small** (900, 32px, 1; 26px on phone): the converter title.
+- **Numeral** (900, 18px): Doto step numbers on crust squares.
 - **Logo** (900, 26px, lowercase): the wordmark in the top bar.
-- **Lede** (400, 20px; 18px on phone, max 36ch, char-soft with char bold): the one-line explanation under the headline.
-- **Title** (700, 18px, 1.2): action-slab titles.
-- **Output** (700, 24px; 21px on phone): the converter's live result.
-- **Body** (400, 17px, 1.55; paragraphs 60–68ch): everything else. FAQ questions at 700, 19px. Rule table at 18px.
-- **Label** (700, 15px, 1): buttons and the non's pair label; 16px on the big button.
-- **Caption** (500–400, 14–15px): table headers, slab notes and slab body.
+- **Lede** (400, 18px; 17px on phone, max 46ch, char-soft with char bold): the explanation under the headline.
+- **Title** (700, 17px, 1.3): download step titles.
+- **Output** (600, 18px, 1.6): the converter's live result, matched to the input field's size.
+- **Body** (400, 17px, 1.55; paragraphs 60–68ch): everything else. FAQ questions at 700, 19px. Rule table at 18px. Converter field 500 18px/1.6.
+- **Label** (700, 15px, 1): buttons and the non's pair label; 16px on the big button and the download tabs. Chips and link buttons at 600 15px.
+- **Tag** (600, 13px): script and changed-count tags in the pane bars.
+- **Caption** (400–500, 13.5–15px): table headers, slab body (15px), step hints (14px), meta lines and counts (13.5px).
 
 ### Named Rules
+**The Hero Leads Rule.** The h1 is the largest heading above the footer at every width: Display (42px max) over Headline (36px max) over Headline Small (32px). Only the footer's Display Close may be larger.
+
 **The Doto Has No Full Stop Rule.** Doto draws "." like a plus sign, so display lines never end with a period. Line breaks do the work punctuation would.
 
 **The Ğ Stays Out Of Doto Rule.** Doto's Ğ is weak, so ğ is never set in Doto display. Write display lines that avoid it; where ğ must appear large, draw it from the 5×10 dot glyph grid instead.
@@ -227,47 +293,64 @@ Both families are self-hosted (OFL) from `web/fonts/`, latin and latin-ext subse
 
 A centred column capped at 1180px with a fluid gutter of clamp(16px, 4vw, 40px). Sections breathe on a 72px bottom rhythm (48px on phone); two-column groups use a 48px column gap.
 
-The hero is a two-column grid (1fr : 1.05fr): headline, lede and action slab stack on the left, the non (up to 520px) fills the right, and the converter panel spans the full width below. The rules section pairs the dot-glyph table with notes (1.1fr : 1fr); the FAQ is a single column capped at 820px.
+The hero is a two-column grid (1.12fr : 0.88fr, 56px gap; 32px below 980px): headline, lede and the download slab stack on the left, the non (up to 460px; 380px below 980px) sits centred on the right, and the converter panel spans the full width below, 56px down. The rules section pairs the dot-glyph table with notes (1.1fr : 1fr); the FAQ is a single column capped at 820px.
 
-Breakpoints: at 860px everything collapses to one column, the nav hides, the non shrinks to 340px; at 420px the command and its copy button stack and the button goes full width.
+Breakpoints: at 980px the hero gap and the non tighten; at 860px everything collapses to one column, the nav hides, the non shrinks to 320px, the converter panes stack with the arrow turned downward, and on phones the sample chips become one scrolling row that fades at its right edge; at 420px the command and its copy button stack, buttons go full width, and the output footer wraps.
 
-**The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Mac (the default, also the no-JS state): the install slab leads. Windows: the beta download slab replaces it. Phone: headline, then the converter, then the non (max 260px), the lede, and a share-the-link slab. Never show an install command as the first action on a phone.
+The direction contract's first viewport named a ~64px headline and a ~520px non; the build landed at 42px and 460px so the hero leads without crowding the slab. The build is the system.
 
-**The Çekiç Grid Rule.** The body carries a 12px dot grid (1.4px dots at 15% char). Every dot row (rule-table rows, FAQ items) is painted once per row as a 12px-period strip of 1.6px dots at 55% char along the row's bottom edge, and its phase is shifted in script so the dots land on the body's 12px grid. Never draw dot rows per cell, and never let a row's dots drift off the ground grid.
+**The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Desktop: one download slab whose macOS | Windows tab is pre-selected for the device (macOS is the default and the no-JS state). Phone: headline, then the converter, then the non (max 240px), the lede, and the slab last, opening with a share-the-link notice above the tabs. Never show an install command as the first action on a phone.
+
+**The Çekiç Grid Rule.** The body carries a 12px dot grid (1.4px dots at 15% char). Every dot row on crust (rule-table rows, FAQ items) is painted once per row as a 12px-period strip of 1.6px dots at 55% char along the row's bottom edge, and its phase is shifted in script so the dots land on the body's 12px grid. Rows inside a surface that covers the ground (pane bars on flour and dough, the slab's light rows) keep the 12px period and start at the surface's edge. Never draw dot rows per cell, and never let a row on crust drift off the ground grid.
 
 ## Elevation & Depth
 
-Flat. There is no box-shadow anywhere in the system. Depth is tonal: the crust ground, the char slab and the flour field are distinct planes by colour alone, and the command well sits one tone into the slab. Buttons acknowledge a press by moving 1px down, not by casting a shadow.
+Flat. There is no box-shadow anywhere in the system. Depth is tonal: the crust ground, the char slab and the flour field are distinct planes by colour alone, the command well and tab hover sit one tone into the slab, and the output pane steps from flour to dough. Buttons acknowledge a press by moving 1px down, not by casting a shadow.
 
 **The Stamped Not Lifted Rule.** Nothing floats. Surfaces are stamped into the ground or laid on it; no drop shadows, no glows, no blur.
 
 ## Shapes
 
-**The Three Pixel Rule.** Every rectangle (slabs, panels, buttons, fields, key caps, inline code) has a 3px corner. No pills, no larger radii, no square-cut exceptions.
+**The Three Pixel Rule.** Every rectangle (slabs, panels, panes, buttons, tabs, chips, tags, step numerals, fields, key caps, inline code) uses the one corner token (3px). No pills, no larger radii, no square-cut exceptions.
 
-**The Only Round Thing Rule.** The non is the only round surface. Circles otherwise appear only as its material: stamp dots, glyph dots, pips, nigella seeds, and the dots of the ground grid and dot rows.
+**The Only Round Thing Rule.** The non is the only round surface. Circles otherwise appear only as its material: stamp dots, glyph dots, pips, nigella seeds, the dots of the converter arrow, and the dots of the ground grid and dot rows.
 
-The 1.5px key-cap stroke and the 2px field and ghost-button strokes are the only borders; dividers are dot rows, never lines.
+Strokes are few and fixed: 1.5px currentColor on key caps and the beta tag, 2px char on converter panes and chips. Dividers are dot rows, never lines: dark rows on crust, flour and dough; light slab-ink rows inside the slab.
 
 ## Components
 
 ### Buttons
 Short, firm, and flat.
 - **Shape:** gently cornered (3px), minimum 44px tall (48px for the big variant).
-- **Primary:** crust on the char slab with char label text. Hover steps to crust-hi; active nudges down 1px; focus ring uses crust so it shows on black.
-- **Ghost:** transparent with a 2px char stroke on flour; hover fills char with flour text.
-- **Copy feedback:** the label swaps to "Olindi" for 1.8s, or to a device-specific manual-copy hint if the clipboard is refused.
+- **Primary:** crust with char label text, on the black slab. Hover steps to crust-hi; active nudges down 1px; focus ring uses crust so it shows on black.
+- **Ink:** char with flour text, on flour (the converter's copy button). Hover steps to slab-well; focus ring in char.
+- **Link button:** underlined char text with no fill, for quiet actions such as Tozalaş in the input bar (32px tall inside a pane bar, 44px elsewhere).
+- **Copy feedback:** the label swaps to "Nusxa olindi" and the button inverts to char with crust text for 1.8s, or shows a device-specific manual-copy hint if the clipboard is refused.
 
-### Action Slab
+### Chips
+- **Style:** transparent with a 2px char stroke, 3px corners, 40px tall, Onest 600 15px; used for the converter's sample texts.
+- **State:** hover and pressed (aria-pressed) fill char with flour text. On phones they scroll as a single row.
+
+### Tags
+- **Script tag:** char text on an 8% char tint, Onest 600 13px, 3px corners; names the detected script.
+- **Hot tag:** char fill with flour text; carries the live changed-letter count.
+- **Beta tag:** 11px uppercase with a 1.5px currentColor stroke, inside the Windows tab only; it marks release status and is not a general label style.
+
+### Download Slab
 The black plate that holds the one action for this device.
-- **Style:** char background, flour title, slab-ink body copy, 20px padding (18px on phone), max 540px, 3px corners.
+- **Style:** char background, max 600px (full width on phone), 3px corners, panel padding 8px 22px 20px (6px 16px 18px on phone).
+- **Tabs:** an ARIA tablist (macOS | Windows), two equal 46px tabs in a 6px inset; unselected slab-ink, hover slab-well, selected crust with char text. Arrow keys, Home and End move between tabs.
+- **Steps:** an ordered list of three, each a 30px crust square with a Doto numeral beside a 17px step title, 15px slab-ink body and an optional 14px hint; steps are separated by light dot rows.
 - **Command well:** the install line in a slab-well field, monospace 14px, wrapping anywhere, with the copy button beside it.
-- **Variants:** Mac (install command), Windows (beta download), phone (share link). Exactly one shows.
+- **Meta line:** 13.5px slab-ink requirements and links under a light dot row.
+- **Phone notice:** a share-the-link paragraph and button above the tabs, closed by a light dot row; shown only on phones.
 
-### Converter Panel
-- **Style:** flour panel, 24px padding (18px on phone), 3px corners; input left, live output right; one column on phone.
-- **Field:** flour textarea with a 2px char stroke, Onest 500 18px, 104px minimum height, vertical resize; focus is the global 3px char outline offset 2px.
-- **Output:** Output type, live-announced, with a ghost copy button beneath.
+### Converter
+- **Panel:** flour, 28px padding (18px on phone), 3px corners; Headline Small title with a char-soft subline, then a sample-chip row.
+- **Panes:** input on flour, output on dough, each with a 2px char stroke and a 260px minimum height, joined by a dot-built arrow (turned down when stacked). The input pane's focus ring wraps the whole pane.
+- **Pane bar:** label at 700 15px, a tag at the end, a dot-row bottom edge.
+- **Output:** Output type; changed letters in clay at 700 with a 2px dotted underline; an empty pane reads "Natija şu yerda çiqadi" in char-soft.
+- **Footer:** a character count under the input; under the output, a tutuq checkbox switch (20px box, 44px hit area, char accent) and the ink copy button.
 
 ### Key Caps
 Inline keys drawn with a 1.5px currentColor stroke, 3px corners, Onest 500; they inherit flour on the slab and char on crust.
@@ -276,7 +359,7 @@ Inline keys drawn with a 1.5px currentColor stroke, 3px corners, Onest 500; they
 The new letters in the rules table are drawn, not typeset: a 5×10 grid of 3px dots with 1.5px gaps. Rows 0–1 hold the mark (umlaut dots, breve), row 2 is the gap, rows 3–7 are the letter body, rows 8–9 are the cedilla. The apostrophe is a 2-column glyph on the same 10 rows. The real character sits beside it for screen readers.
 
 ### FAQ Item
-A disclosure on crust with a dot-row bottom edge. The question is Onest 700 19px; the toggle is a plus/minus built from 1.6px dots, never an icon glyph. Linking to an item's id opens it.
+A disclosure on crust with a dot-row bottom edge. The item is a flow-root block so an open answer's margin stays inside it and clears the dot row. The question is Onest 700 19px; the toggle is a plus/minus built from 1.6px dots, never an icon glyph. Linking to an item's id opens it.
 
 ### Non (Signature)
 The hero object.
@@ -293,11 +376,13 @@ A full-bleed flour band with the Display Close statement and clay links for auth
 
 ### Do:
 - **Do** write all site copy in the new alphabet (ö ğ ş ç, tutuq ʼ) and check it mechanically by running the visible text through the product's own converter (`web/converter.js`); the only strings it may change are old-spelling examples, code, quoted English UI text and the Cyrillic law code.
-- **Do** keep clay (#9c3b22) on flour only.
+- **Do** keep clay (#9c3b22) on flour and on the dough output pane only, and pair it with weight and a dotted underline when it marks change.
+- **Do** keep the h1 the largest heading above the footer.
 - **Do** draw any new large letter from the 5×10 dot grid (mark, gap, letter, cedilla).
-- **Do** paint dot rows once per row and phase-align them to the body's 12px grid.
-- **Do** order the first screen by device: Mac install, Windows beta, phone converter first.
-- **Do** use 3px corners on every rectangle.
+- **Do** paint dot rows once per row and phase-align rows on crust to the body's 12px grid.
+- **Do** order the first screen by device: the download tab pre-selected for Mac or Windows, the converter first on a phone.
+- **Do** write shortcuts as key caps and keep them true: the Mac keyboard is always on and is switched like any keyboard with ⌃ Control + Space or fn (globe); Windows toggles with Ctrl + Alt + Space.
+- **Do** use the 3px corner token on every rectangle.
 - **Do** keep motion to dot migration with an exponential ease-out, and turn it off under reduced motion.
 
 ### Don't:
@@ -308,4 +393,5 @@ A full-bleed flour band with the Display Close statement and clay links for auth
 - **Don't** round anything except the non and its dots; no pills.
 - **Don't** shade the non or anything else: no gradients that model light, no insets, no drop shadows.
 - **Don't** use icon glyphs; build marks from dots.
+- **Don't** describe the Mac keyboard as switched on and off with a dedicated toggle.
 - **Don't** lead a phone visitor with an install command.

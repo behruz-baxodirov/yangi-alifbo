@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yangi alifbo · ö ğ ş ç ni odatdagidek yozing</title>
-<meta name="description" content="Bepul Mac klaviaturasi va onlayn konverter: o' yozsangiz ö, sh yozsangiz ş böladi. Yangi özbek lotin alifbosi (ЎРҚ-1184, 2026).">
+<meta name="description" content="Mac va Windows uçun bepul klaviatura va onlayn konverter: o' yozsangiz ö, sh yozsangiz ş böladi. Yangi özbek lotin alifbosi (ЎРҚ-1184, 2026).">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yangi alifbo · odatdagidek yozing, yangi harf özi çiqadi">
-<meta property="og:description" content="o' → ö, g' → ğ, sh → ş, ch → ç. Mac uçun bepul klaviatura, telefonda onlayn konverter.">
+<meta property="og:description" content="o' → ö, g' → ğ, sh → ş, ch → ç. Mac va Windows uçun bepul klaviatura, telefonda onlayn konverter.">
 <meta property="og:url" content="https://behruz-baxodirov.github.io/yangi-alifbo/">
 <meta property="og:locale" content="uz_UZ">
 <meta name="theme-color" content="#cf8a33">
@@ -16,9 +16,11 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a class="skip" href="#yuklab-olish">Yuklab olişga ötiş</a>
 <header class="bar">
   <a class="logo" href="./" aria-label="Yangi alifbo, bosh sahifa">yangi alifbo</a>
   <nav aria-label="Bölimlar">
+    <a href="#yuklab-olish">Yuklab oliş</a>
     <a href="#konverter">Konverter</a>
     <a href="#qoidalar">Qoidalar</a>
     <a href="#savollar">Savollar</a>
@@ -28,51 +30,135 @@
 
 <main>
   <section class="hero" aria-labelledby="sarlavha">
-    <h1 id="sarlavha" class="hero-head">Odatdagidek yozing,<br>yangi harf özi çiqadi</h1>
-    <p class="hero-lede"><b>o'</b> yozsangiz <b>ö</b>, <b>sh</b> yozsangiz <b>ş</b> böladi. Mac uçun bepul klaviatura va hamma uçun onlayn konverter.</p>
+    <h1 id="sarlavha" class="hero-head">Odatdagidek yozing,<br class="br-wide"> yangi harf özi çiqadi</h1>
+    <p class="hero-lede"><b>o'</b> yozsangiz <b>ö</b>, <b>sh</b> yozsangiz <b>ş</b> böladi. Mac va Windows uçun bepul klaviatura, hamma uçun onlayn konverter.</p>
 
     <div class="non" aria-hidden="true">
       <div class="non-center" id="non-center"><div class="stamp" id="stamp"></div></div>
       <div class="non-pair" id="pair">o' → ö</div>
     </div>
 
-    <div class="hero-act" id="ornatish">
-      <section class="slab slab-mac" aria-labelledby="mac-sarlavha">
-        <h2 id="mac-sarlavha" class="slab-title">Macʼga örnatiş</h2>
-        <p>Terminalʼni oçing va şu buyruqni joylang:</p>
-        <div class="cmd">
-          <code id="cmd">curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code>
-          <button type="button" class="btn" data-copy="cmd">Nusxa oliş</button>
-        </div>
-        <p class="slab-note">Yoqiş va öçiriş: <kbd>⌃ Control</kbd> + <kbd>Space</kbd> yoki <kbd>fn</kbd> (globus tugmasi). Menyu-barda <b>ö</b> belgisi çiqsa, yoqilgan.</p>
-        <p class="slab-alt">Windowsʼdami? <a href="#windows">Beta versiya</a></p>
-      </section>
+    <section class="dl" id="yuklab-olish" aria-labelledby="dl-title">
+      <h2 id="dl-title" class="sr-only">Yuklab oliş va örnatiş</h2>
 
-      <section class="slab slab-win" id="windows-top" aria-labelledby="win-sarlavha">
-        <h2 id="win-sarlavha" class="slab-title">Windows uçun (beta)</h2>
-        <p>Yuklab oling va işga tuşiring. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
-        <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe yuklab oliş</a>
-        <p class="slab-note">Windows “Unknown publisher” deb ogohlantiradi: <b>More info → Run anyway</b>. Dastur bepul, şuning uçun imzosiz.</p>
-        <p class="slab-alt">Macʼdami? <a href="#mac-pastda">Örnatiş buyruği</a></p>
-      </section>
-
-      <section class="slab slab-phone" aria-labelledby="tel-sarlavha">
-        <h2 id="tel-sarlavha" class="slab-title">Klaviatura kompyuter uçun</h2>
-        <p>Mac va Windowsʼga örnatiladi. Havolani saqlab qöying va kompyuterda oçing.</p>
-        <button type="button" class="btn btn-big" id="share">Havolani ulaşiş</button>
-        <p class="slab-note">Telefonda hozirçalik konverterdan foydalaning: matnni yozing, nusxa oling.</p>
-      </section>
-    </div>
-
-    <section class="try" id="konverter" aria-labelledby="try-sarlavha">
-      <h2 id="try-sarlavha" class="try-title">Sinab köring</h2>
-      <div class="field">
-        <label for="in" class="try-label">Eski lotin yoki kirill yozuvida yozing:</label>
-        <textarea id="in" rows="3" spellcheck="false" autocomplete="off">Ko'chada choy ichdik, Is'hoq aka.</textarea>
+      <div class="dl-phone">
+        <p><b>Klaviatura kompyuter uçun.</b> Havolani saqlab qöying va Mac yoki Windowsʼda oçing. Telefonda pastdagi konverterdan foydalaning.</p>
+        <button type="button" class="btn" id="share">Havolani ulaşiş</button>
       </div>
-      <div class="out-row">
-        <p class="out" id="out" aria-live="polite"></p>
-        <button type="button" class="btn btn-ghost" data-copy="out">Nusxa oliş</button>
+
+      <div class="tabs" role="tablist" aria-label="Kompyuteringiz">
+        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">macOS</button>
+        <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">Windows <span class="beta">beta</span></button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" tabindex="0">
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div>
+              <h3 class="step-t">Terminalʼni oçing</h3>
+              <p><kbd>⌘</kbd> + <kbd>Space</kbd> bosing, “Terminal” deb yozing va <kbd>Enter</kbd>.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div>
+              <h3 class="step-t">Buyruqni joylang va <kbd>Enter</kbd> bosing</h3>
+              <div class="cmd">
+                <code id="cmd">curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code>
+                <button type="button" class="btn" data-copy="cmd">Nusxa oliş</button>
+              </div>
+              <p class="step-hint">Klaviatura özi yuklanadi va yoqiladi. Parol yoki ruxsat söralmaydi.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div>
+              <h3 class="step-t">Yozib köring</h3>
+              <p><code>o'</code> yozsangiz <b>ö</b> çiqadi. Menyu-barda <b>ö</b> turgan bölsa, klaviatura yoqilgan. Boşqa klaviaturaga ötiş: <kbd>⌃ Control</kbd> + <kbd>Space</kbd> yoki <kbd>fn</kbd> (globus tugmasi).</p>
+            </div>
+          </li>
+        </ol>
+        <p class="dl-meta">macOS 12 va yangisi · Apple Silicon va Intel · <a href="#mac-ochirish">Öçiriş</a></p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" tabindex="0" hidden>
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div>
+              <h3 class="step-t">Faylni yuklab oling</h3>
+              <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">Yuklab oliş (beta)</a>
+              <p class="step-hint">YangiAlifbo-windows-beta.exe · 1,3 MB. Brauzer ogohlantirsa, “Keep” (Saqlab qoliş) ni tanlang.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div>
+              <h3 class="step-t">Işga tuşiring</h3>
+              <p>Kök oyna çiqadi: “Windows protected your PC” (rusça: “Система Windows защитила ваш компьютер”). <b>More info → Run anyway</b> (<b>Подробнее → Выполнить в любом случае</b>) ni bosing. Dastur bepul, şuning uçun imzosiz.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div>
+              <h3 class="step-t">Yozib köring</h3>
+              <p>Soat yonida ikonka paydo böladi. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="dl-meta">64-bit Windows · Beta: avtomatik test Notepadʼda ötgan · <a href="#windows">Öçiriş</a> · <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">Xato haqida yozing</a></p>
+      </div>
+    </section>
+
+    <section class="try" id="konverter" aria-labelledby="try-title">
+      <div class="try-head">
+        <h2 id="try-title" class="try-title">Konverter</h2>
+        <p class="try-sub">Eski lotin yoki kirill matnini yozing yoki joylang. Natija şu zahoti tayyor, matn heç qayerga yuborilmaydi.</p>
+      </div>
+
+      <div class="try-tools">
+        <span class="tools-label" id="samples-label">Namuna:</span>
+        <div class="chips" role="group" aria-labelledby="samples-label">
+          <button type="button" class="chip" data-sample="latin">Lotin matn</button>
+          <button type="button" class="chip" data-sample="cyrillic">Kirill matn</button>
+          <button type="button" class="chip" data-sample="post">Telegram xabari</button>
+        </div>
+      </div>
+
+      <div class="panes">
+        <div class="pane pane-in">
+          <div class="pane-bar">
+            <label for="in" class="pane-label">Eski yozuv</label>
+            <span class="pane-bar-end">
+              <span class="tag" id="script">Lotin</span>
+              <button type="button" class="link-btn" id="clear">Tozalaş</button>
+            </span>
+          </div>
+          <textarea id="in" rows="3" spellcheck="false" autocomplete="off" aria-describedby="count">Ko'chada choy ichdik, Is'hoq aka. Shahardagi o'g'il bolalar g'olib chiqdi!</textarea>
+          <div class="pane-foot pane-foot-in">
+            <span id="count" class="muted">0 belgi</span>
+          </div>
+        </div>
+
+        <div class="pane-arrow" aria-hidden="true">
+          <svg viewBox="0 0 30 22"><g fill="#17110d"><circle cx="3" cy="11" r="2.2"/><circle cx="9" cy="11" r="2.2"/><circle cx="15" cy="11" r="2.2"/><circle cx="21" cy="11" r="2.2"/><circle cx="27" cy="11" r="2.2"/><circle cx="21" cy="5" r="2.2"/><circle cx="21" cy="17" r="2.2"/><circle cx="15" cy="2.5" r="2"/><circle cx="15" cy="19.5" r="2"/></g></svg>
+        </div>
+
+        <div class="pane pane-out">
+          <div class="pane-bar">
+            <span class="pane-label" id="out-label">Yangi alifbo</span>
+            <span class="tag tag-hot" id="changed" aria-live="polite">0 ta harf özgardi</span>
+          </div>
+          <div class="out" id="out" role="region" aria-labelledby="out-label"></div>
+          <div class="pane-foot">
+            <label class="switch">
+              <input type="checkbox" id="tutuq" checked>
+              <span>Tutuq belgisi <b>ʼ</b></span>
+            </label>
+            <button type="button" class="btn btn-ink" data-copy="out">Nusxa oliş</button>
+          </div>
+        </div>
       </div>
     </section>
   </section>
@@ -100,27 +186,27 @@
 
   <section class="faq" id="savollar" aria-labelledby="faq-sarlavha">
     <h2 id="faq-sarlavha" class="sec-title">Savollar</h2>
-    <details>
+    <details id="yoqilgan">
       <summary>Klaviatura yoqilganini qanday bilaman?</summary>
-      <p>Menyu-barda (ekranning yuqori öng burçagida) <b>ö</b> belgisi turadi. ABC turgan bölsa, oddiy klaviatura yoqilgan. <kbd>⌃ Control</kbd> + <kbd>Space</kbd> ikkalasini almaştiradi.</p>
+      <p>Menyu-barda (ekranning yuqori öng burçagida) <b>ö</b> turgan bölsa, yoqilgan. ABC turgan bölsa, öşa yerdan “Yangi alifbo” ni tanlang yoki <kbd>⌃ Control</kbd> + <kbd>Space</kbd> bosing. Windowsʼda soat yonidagi ikonka holatni körsatadi, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> yoqib-öçiradi.</p>
     </details>
     <details>
       <summary>Inglizça yoki kod yozayotganimda nima qilaman?</summary>
-      <p>Klaviatura har qanday sözda o' va sh ni almaştiradi: <code>shop.uz</code> ham <code>şop.uz</code> bölib qoladi. Inglizça yozişdan oldin <kbd>⌃ Control</kbd> + <kbd>Space</kbd> bilan ABC ga ötib oling.</p>
+      <p>Klaviatura har qanday sözda o' va sh ni almaştiradi: <code>shop.uz</code> ham <code>şop.uz</code> bölib qoladi. Inglizça yozişdan oldin <kbd>⌃ Control</kbd> + <kbd>Space</kbd> bilan ABC ga ötib oling (Windowsʼda <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> bilan öçiring).</p>
     </details>
     <details>
       <summary>Ruxsat sörayaptimi? Matnimni körib turadimi?</summary>
       <p>Yöq. Bu macOSʼning odatiy klaviaturasi (input source): Accessibility ruxsati kerak emas, heç narsa internetga yuborilmaydi. Konverter ham faqat brauzeringizda işlaydi.</p>
     </details>
-    <details id="mac-pastda">
-      <summary>Macʼga qanday örnataman yoki öçiraman?</summary>
-      <p>Örnatiş: <code>curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code></p>
-      <p>Öçiriş: <code>curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash</code></p>
-      <p>macOS 12 va undan yangisi, Apple Silicon va Intel.</p>
+    <details id="mac-ochirish">
+      <summary>Macʼdan qanday öçiraman?</summary>
+      <p>Terminalʼda: <code>curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash</code></p>
+      <p>GitHubʼdagi <code>.zip</code> faylni qöl bilan oçmang: ilova Apple sertifikatisiz, macOS uni “damaged” deb bloklaydi. Örnatişning yagona töğri yöli yuqoridagi Terminal buyruği.</p>
     </details>
     <details id="windows">
       <summary>Windowsʼda işlaydimi?</summary>
-      <p>Beta versiya bor: <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a>. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. Avtomatik test Notepadʼda ötgan, lekin haqiqiy kompyuterlarda hali kam sinalgan; xato topsangiz GitHubʼda yozing.</p>
+      <p>Ha, beta versiya: <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a>. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. Avtomatik test Notepadʼda ötgan, lekin haqiqiy kompyuterlarda hali kam sinalgan; xato topsangiz GitHubʼda yozing.</p>
+      <p>Öçiriş: soat yonidagi ikonkani öng tugma bilan bosib “Çiqiş” ni tanlang, keyin faylni öçiring. Avtomatik işga tuşişga qöşgan bölsangiz, <code>shell:startup</code> papkasidagi yorliqni ham öçiring.</p>
     </details>
     <details>
       <summary>Telefonda qanday yozaman?</summary>

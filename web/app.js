@@ -1,7 +1,7 @@
-import { convert } from "./converter.js";
+import { convert, detectScript } from "./converter.js";
 import { GLYPHS, PAIRS, PAIR_OF, layout } from "./glyphs.js";
 
-// Qurilma: Mac'da örnatiş, Windows'da beta, telefonda konverter birinçi.
+// Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
 const touch = navigator.maxTouchPoints > 1;
 const device = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && touch)
@@ -45,7 +45,8 @@ document.querySelectorAll("[data-glyph]").forEach((cell) => {
 
 // Havola yopiq savolga olib borsa, uni oçib qöyamiz.
 function openTarget() {
-  const target = location.hash && document.querySelector(location.hash);
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id && document.getElementById(id);
   if (target instanceof HTMLDetailsElement) target.open = true;
 }
 addEventListener("hashchange", openTarget);
@@ -99,29 +100,112 @@ function restamp(text) {
   setTimeout(() => showPair(pair, true), reduceMotion ? 0 : 450);
 }
 
+// Yuklab oliş tablari: ARIA tablist, strelkalar bilan boşqariladi.
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function selectTab(tab, focus = false) {
+  tabs.forEach((t) => {
+    const on = t === tab;
+    t.setAttribute("aria-selected", String(on));
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  });
+  if (focus) tab.focus();
+}
+tabs.forEach((tab, i) => {
+  tab.addEventListener("click", () => selectTab(tab));
+  tab.addEventListener("keydown", (e) => {
+    const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    selectTab(tabs[(next + tabs.length) % tabs.length], true);
+  });
+});
+selectTab(document.getElementById(device === "windows" ? "tab-win" : "tab-mac"));
+
 // Konverter
 const input = document.getElementById("in");
 const output = document.getElementById("out");
+const tutuq = document.getElementById("tutuq");
+const count = document.getElementById("count");
+const changed = document.getElementById("changed");
+const scriptTag = document.getElementById("script");
+const NEW_LETTERS = /[öğşçÖĞŞÇʼ]/u;
+const SCRIPT_NAMES = { latin: "Lotin", cyrillic: "Kirill", mixed: "Aralaş" };
+const SAMPLES = {
+  latin: "O'zbekiston go'zal yurt. Toshkentning choyxonalari mashhur, odamlari mehmondo'st. Ma'naviyat bizning g'ururimiz.",
+  cyrillic: "Ўзбекистон гўзал юрт. Тошкентнинг чойхоналари машҳур, одамлари меҳмондўст. Исҳоқ ака эртага келади.",
+  post: "Assalomu alaykum! Bugun soat 18:00 da Chorsu yonidagi choyxonada uchrashamiz. Kechikmang, osh mendan. To'y haqida ham gaplashib olamiz.",
+};
+
 function render(fromUser) {
-  const text = convert(input.value);
-  output.textContent = text;
-  if (fromUser) restamp(text);
+  const opts = { tutuq: tutuq.checked };
+  const parts = input.value.split(/(\s+)/);
+  const frag = document.createDocumentFragment();
+  let marks = 0;
+  let plain = "";
+  for (const part of parts) {
+    const out = convert(part, opts);
+    plain += out;
+    if (out === part || !NEW_LETTERS.test(out)) {
+      frag.append(out);
+      continue;
+    }
+    // Faqat yangi harflar ajratiladi; qolgani oddiy matn bölib qoladi.
+    for (const ch of out) {
+      if (NEW_LETTERS.test(ch)) {
+        const m = document.createElement("mark");
+        m.textContent = ch;
+        frag.append(m);
+        if (ch !== "ʼ") marks++; // tutuq belgi, harf emas
+      } else {
+        frag.append(ch);
+      }
+    }
+  }
+  output.replaceChildren(frag);
+
+  const script = detectScript(input.value);
+  scriptTag.textContent = input.value.trim() ? SCRIPT_NAMES[script] : "Boş";
+  count.textContent = `${[...input.value].length} belgi`;
+  changed.textContent = script === "cyrillic" && input.value.trim()
+    ? "Kirilldan ögirildi"
+    : `${marks} ta harf özgardi`;
+  if (fromUser) restamp(plain);
 }
 input.addEventListener("input", () => render(true));
+tutuq.addEventListener("change", () => render(false));
 render(false);
 
-// Nusxa olish tugmalari
+document.querySelectorAll("[data-sample]").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    input.value = SAMPLES[chip.dataset.sample];
+    document.querySelectorAll("[data-sample]").forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+    render(true);
+  });
+});
+document.getElementById("clear").addEventListener("click", () => {
+  input.value = "";
+  document.querySelectorAll("[data-sample]").forEach((c) => c.removeAttribute("aria-pressed"));
+  render(false);
+  input.focus();
+});
+
+// Nusxa oliş tugmalari
 document.querySelectorAll("[data-copy]").forEach((button) => {
   const label = button.textContent;
   button.addEventListener("click", async () => {
     const text = document.getElementById(button.dataset.copy).textContent;
     try {
       await navigator.clipboard.writeText(text);
-      button.textContent = "Olindi";
+      button.textContent = "Nusxa olindi";
+      button.dataset.state = "done";
     } catch {
       button.textContent = { mac: "Belgilab, ⌘C bosing", windows: "Belgilab, Ctrl+C bosing", phone: "Bosib turib nusxa oling" }[device];
     }
-    setTimeout(() => (button.textContent = label), 1800);
+    setTimeout(() => {
+      button.textContent = label;
+      delete button.dataset.state;
+    }, 1800);
   });
 });
 
