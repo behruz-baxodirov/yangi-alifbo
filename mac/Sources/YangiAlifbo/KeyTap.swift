@@ -83,10 +83,32 @@ final class KeyTap {
         case .pass:
             return Unmanaged.passUnretained(event)
         case .replace(let count, let text):
-            log.debug("replace delete=\(count, privacy: .public) insertLength=\(text.count, privacy: .public)")
-            post(deleting: count, inserting: text)
+            let selection = Self.focusedSelectionLength()
+            let backspaces = RewriteAction.backspaceCount(deleteBefore: count, selectionLength: selection)
+            log.debug("replace delete=\(count, privacy: .public) selection=\(selection ?? -1, privacy: .public) backspaces=\(backspaces, privacy: .public)")
+            post(deleting: backspaces, inserting: text)
             return nil
         }
+    }
+
+    /// Fokusdagi maydonda belgilangan matn uzunligi (Accessibility orqali; bilinmasa nil).
+    /// Manzil qatori kabi joylar yozilayotgan sözning davomini belgilab taklif qiladi.
+    /// Tizim bo'yiça (system-wide) so'rov Chrome'da işlamaydi, şuning uçun oldingi ilovadan so'raymiz.
+    private static func focusedSelectionLength() -> Int? {
+        guard let app = NSWorkspace.shared.frontmostApplication else { return nil }
+        let appElement = AXUIElementCreateApplication(app.processIdentifier)
+        AXUIElementSetMessagingTimeout(appElement, 0.05)
+        var focused: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(appElement, kAXFocusedUIElementAttribute as CFString, &focused) == .success,
+              let focused, CFGetTypeID(focused) == AXUIElementGetTypeID() else { return nil }
+        let element = focused as! AXUIElement
+        AXUIElementSetMessagingTimeout(element, 0.05)
+        var value: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(element, kAXSelectedTextRangeAttribute as CFString, &value) == .success,
+              let value, CFGetTypeID(value) == AXValueGetTypeID() else { return nil }
+        var range = CFRange()
+        guard AXValueGetValue(value as! AXValue, .cfRange, &range) else { return nil }
+        return range.length
     }
 
     private static func modifiers(_ flags: CGEventFlags) -> Modifiers {

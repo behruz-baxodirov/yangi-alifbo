@@ -5,6 +5,16 @@ public enum RewriteAction: Equatable {
     case replace(deleteBefore: Int, insert: String)
 }
 
+extension RewriteAction {
+    /// `.replace` uçun nečta Backspace yuboriladi.
+    /// `selectionLength` — maydonda belgilangan matn uzunligi (bilinmasa nil).
+    /// Belgilangan matn bölsa (masalan, manzil qatorining taklifi), birinçi Backspace
+    /// faqat uni öçiradi, şuning uçun bitta qöşimça Backspace kerak.
+    public static func backspaceCount(deleteBefore: Int, selectionLength: Int?) -> Int {
+        deleteBefore + ((selectionLength ?? 0) > 0 ? 1 : 0)
+    }
+}
+
 public struct Rewriter {
     public var options: ComposerOptions
     /// Hujjatdagi oxirgi ikki belgi (biz bilgan qadar). Bo'sh — kontekst nomalum.

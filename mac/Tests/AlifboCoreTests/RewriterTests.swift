@@ -28,6 +28,17 @@ final class RewriterTests: XCTestCase {
         XCTAssertEqual(r.handle(.char("n")), .replace(deleteBefore: 1, insert: "ʼn"))
     }
 
+    // Manzil qatori "yozgic" ga "yozgich.uz" taklif qilib "h.uz" ni belgilaydi:
+    // birinçi Backspace belgilangan taklifni öçiradi, "c" uçun yana bittasi kerak.
+    func testSelectedSuggestionNeedsOneMoreBackspace() {
+        XCTAssertEqual(RewriteAction.backspaceCount(deleteBefore: 1, selectionLength: 4), 2)
+    }
+
+    func testNoSelectionKeepsBackspaceCount() {
+        XCTAssertEqual(RewriteAction.backspaceCount(deleteBefore: 1, selectionLength: 0), 1)
+        XCTAssertEqual(RewriteAction.backspaceCount(deleteBefore: 1, selectionLength: nil), 1)
+    }
+
     func testDisabledPassesEverything() {
         XCTAssertEqual(RewriteTyping.simulate("o'zbek shahar", options: .init(enabled: false)), "o'zbek shahar")
     }
