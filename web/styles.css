@@ -1,0 +1,210 @@
+:root {
+  --crust: #cf8a33;
+  --crust-hi: #e19a42;
+  --rim: #a85d1b;
+  --rim-edge: #7d4210;
+  --dough: #f0cf97;
+  --pip: #6b3510;
+  --char: #17110d;
+  --char-soft: #3d220c;
+  --clay: #9c3b22;
+  --flour: #fbf6ec;
+  --slab-ink: #e9d6b4;
+  --cell: 12px;
+  --corner: 3px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --max: 1180px;
+  --dot-row: radial-gradient(circle, rgb(23 17 13 / .55) 1.6px, transparent 2px) left bottom / var(--cell) 6px repeat-x;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 16px; accent-color: var(--char); }
+body {
+  margin: 0;
+  background-color: var(--crust);
+  background-image: radial-gradient(rgb(23 17 13 / .15) 1.4px, transparent 1.6px);
+  background-size: var(--cell) var(--cell);
+  color: var(--char);
+  font: 400 17px/1.55 Onest, system-ui, sans-serif;
+  caret-color: var(--clay);
+}
+::selection { background: var(--char); color: var(--flour); }
+a { color: inherit; text-decoration-thickness: 1.5px; text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: 2.5px; }
+:focus-visible { outline: 3px solid var(--char); outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
+b { font-weight: 700; }
+code, kbd { font-family: ui-monospace, Menlo, monospace; font-size: .88em; }
+kbd {
+  display: inline-block; padding: 0 6px; border: 1.5px solid currentColor; border-radius: var(--corner);
+  font-family: Onest, system-ui, sans-serif; font-weight: 500; font-size: .85em; line-height: 1.5; white-space: nowrap;
+}
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Yuqori qator */
+.bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  max-width: var(--max); margin: 0 auto; padding: 18px var(--gutter);
+}
+.logo { font: 900 26px/1 Doto, monospace; text-decoration: none; letter-spacing: .01em; }
+.bar nav { display: flex; gap: 22px; font-weight: 500; }
+.bar nav a { text-decoration: none; }
+.bar nav a:hover { text-decoration: underline; }
+
+/* Birinçi ekran */
+.hero {
+  max-width: var(--max); margin: 0 auto; padding: 12px var(--gutter) 72px;
+  display: grid; column-gap: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-areas:
+    "head non"
+    "lede non"
+    "act  non"
+    "try  try";
+  align-items: start;
+}
+.hero-head { grid-area: head; font: 900 clamp(38px, 4.6vw, 64px)/1.02 Doto, monospace; letter-spacing: -.01em; margin: 24px 0 18px; text-wrap: balance; }
+.hero-lede { grid-area: lede; font-size: 20px; max-width: 36ch; margin: 0 0 26px; color: var(--char-soft); }
+.hero-lede b { color: var(--char); }
+.hero-act { grid-area: act; }
+.non { grid-area: non; }
+.try { grid-area: try; }
+
+/* Non: tekis qobiq halqa, markazda çekiç halqalari va sedana; harf tekis nuqtalardan */
+.non {
+  position: relative; aspect-ratio: 1; width: 100%; max-width: 520px; justify-self: center; align-self: center;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, var(--dough) 0 86%, var(--rim-edge) 86% 88.5%, var(--rim) 88.5% 97%, var(--rim-edge) 97% 100%, transparent 100%);
+}
+.non-center { position: absolute; inset: 0; }
+.pip, .seed { position: absolute; border-radius: 50%; translate: -50% -50%; }
+.pip { width: 1.3%; aspect-ratio: 1; background: var(--pip); }
+.seed { width: .9%; aspect-ratio: 1 / 1.8; background: var(--char); rotate: var(--r, 0deg); }
+.stamp { position: absolute; left: 50%; top: 46%; width: 48%; aspect-ratio: 13 / 10; translate: -50% -50%; }
+.dot {
+  position: absolute; width: 6.2%; aspect-ratio: 1; border-radius: 50%; background: var(--char);
+  transition: left .9s cubic-bezier(.16, 1, .3, 1), top .9s cubic-bezier(.16, 1, .3, 1), opacity .5s;
+}
+.non-pair {
+  position: absolute; left: 50%; top: 71%; translate: -50% 0;
+  font: 700 15px/1 Onest; letter-spacing: .04em; color: var(--char); white-space: nowrap;
+}
+
+/* Harakat plitalari (qora) */
+.slab { background: var(--char); color: var(--flour); border-radius: var(--corner); padding: 20px; max-width: 540px; }
+.slab p { margin: 0 0 12px; color: var(--slab-ink); font-size: 15px; }
+.slab .slab-note, .slab .slab-alt { margin: 12px 0 0; font-size: 14px; }
+.slab a { color: var(--flour); }
+.slab a.btn { color: var(--char); }
+.slab b { color: var(--flour); }
+.slab-title { font: 700 18px/1.2 Onest; margin: 0 0 6px; color: var(--flour); }
+.cmd { display: flex; gap: 10px; align-items: stretch; }
+.cmd code {
+  flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.45;
+  background: #2a2019; color: var(--flour); padding: 12px 14px; border-radius: var(--corner);
+}
+.btn {
+  font: 700 15px/1 Onest; border: 0; border-radius: var(--corner); padding: 0 18px; min-height: 44px; cursor: pointer;
+  background: var(--crust); color: var(--char); text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  transition: background-color .15s, transform .15s cubic-bezier(.16, 1, .3, 1);
+}
+.btn:hover { background: var(--crust-hi); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline-color: var(--crust); }
+.btn-big { padding: 0 22px; min-height: 48px; font-size: 16px; }
+.btn-ghost { background: transparent; color: var(--char); border: 2px solid var(--char); }
+.btn-ghost:hover { background: var(--char); color: var(--flour); }
+.btn-ghost:focus-visible { outline-color: var(--char); }
+
+/* Qurilmaga qarab qaysi plita körinadi */
+.slab-win, .slab-phone { display: none; }
+[data-device="windows"] .slab-mac, [data-device="phone"] .slab-mac { display: none; }
+[data-device="windows"] .slab-win { display: block; }
+[data-device="phone"] .slab-phone { display: block; }
+
+/* Konverter */
+.try {
+  margin-top: 48px; background: var(--flour); color: var(--char); border-radius: var(--corner); padding: 24px;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 32px; align-items: start;
+}
+.try-title { grid-column: 1 / -1; font: 900 34px/1 Doto, monospace; margin: 0 0 14px; }
+.try-label { display: block; font-weight: 700; margin-bottom: 8px; }
+.try textarea {
+  width: 100%; min-height: 104px; resize: vertical; font: 500 18px/1.5 Onest; color: var(--char);
+  background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); padding: 12px 14px;
+}
+.try textarea:focus-visible { outline-offset: 2px; }
+.out-row { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 34px; }
+.out { font: 700 24px/1.4 Onest; margin: 0; min-height: 1.4em; overflow-wrap: anywhere; color: var(--char); }
+
+/* Bölimlar */
+.sec-title { font: 900 clamp(34px, 4vw, 48px)/1 Doto, monospace; margin: 0 0 24px; }
+.rules, .faq { max-width: var(--max); margin: 0 auto; padding: 24px var(--gutter) 72px; }
+.rules { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; align-items: start; }
+.rules .sec-title { grid-column: 1 / -1; }
+.rule-table { width: 100%; border-collapse: collapse; font-size: 18px; }
+.rule-table th { text-align: left; font-size: 14px; font-weight: 500; color: var(--char-soft); padding: 0 0 12px; }
+.rule-table tr { background: var(--dot-row); background-position-x: var(--phase, 0px); }
+.rule-table td { padding: 0; height: 72px; vertical-align: middle; }
+.rule-table td:nth-child(1) { font-family: ui-monospace, Menlo, monospace; }
+.rule-table td:nth-child(3) { color: var(--char-soft); }
+.glyph { display: inline-flex; gap: 3px; align-items: flex-start; }
+.glyph-grid { display: grid; gap: 1.5px; }
+.glyph-grid i { width: 3px; height: 3px; border-radius: 50%; }
+.glyph-grid i.on { background: var(--char); }
+.rule-notes p { margin: 0 0 14px; max-width: 60ch; }
+.rule-notes code, .faq code { background: rgb(23 17 13 / .1); padding: 1px 5px; border-radius: var(--corner); overflow-wrap: anywhere; }
+
+/* Savollar */
+.faq details { max-width: 820px; background: var(--dot-row); background-position-x: var(--phase, 0px); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 16px 44px 16px 0; font-weight: 700; font-size: 19px; position: relative;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { /* nuqtalardan qöşuv / ayiruv belgisi */
+  content: ""; position: absolute; right: 6px; top: 50%; width: 14px; height: 14px; translate: 0 -50%;
+  background:
+    radial-gradient(circle, var(--char) 1.6px, transparent 2px) 0 50% / 5px 5px repeat-x,
+    radial-gradient(circle, var(--char) 1.6px, transparent 2px) 50% 0 / 5px 5px repeat-y;
+}
+.faq details[open] summary::after { background: radial-gradient(circle, var(--char) 1.6px, transparent 2px) 0 50% / 5px 5px repeat-x; }
+.faq details p { margin: 0 0 16px; max-width: 68ch; }
+
+/* Yakun */
+.close { background: var(--flour); color: var(--char); padding: 56px var(--gutter) 64px; }
+.close > * { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
+.close-big { font: 900 clamp(40px, 6vw, 72px)/1 Doto, monospace; margin-top: 0; margin-bottom: 20px; }
+.close a { color: var(--clay); font-weight: 700; }
+
+/* Planşet va telefon */
+@media (max-width: 860px) {
+  .bar nav { display: none; }
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "head" "non" "lede" "act" "try";
+    padding-bottom: 48px;
+  }
+  [data-device="phone"] .hero { grid-template-areas: "head" "try" "non" "lede" "act"; }
+  [data-device="phone"] .try { margin: 0 0 28px; }
+  [data-device="phone"] .non { max-width: 260px; }
+  .hero-head { font-size: clamp(32px, 9vw, 44px); margin-top: 8px; }
+  .hero-lede { font-size: 18px; margin-top: 22px; }
+  .non { max-width: 340px; }
+  .try { grid-template-columns: minmax(0, 1fr); padding: 18px; margin-top: 32px; }
+  .try-title { font-size: 28px; margin-bottom: 10px; }
+  .out-row { padding-top: 14px; }
+  .out { font-size: 21px; }
+  .rules { grid-template-columns: minmax(0, 1fr); }
+  .rule-table { margin-bottom: 24px; }
+  .slab { padding: 18px; }
+}
+@media (max-width: 420px) {
+  .cmd { flex-direction: column; }
+  .cmd .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot, .btn { transition: none; }
+}

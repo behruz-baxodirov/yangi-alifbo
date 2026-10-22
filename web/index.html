@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="uz" data-device="mac">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yangi alifbo · ö ğ ş ç ni odatdagidek yozing</title>
+<meta name="description" content="Bepul Mac klaviaturasi va onlayn konverter: o' yozsangiz ö, sh yozsangiz ş böladi. Yangi özbek lotin alifbosi (ЎРҚ-1184, 2026).">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yangi alifbo · odatdagidek yozing, yangi harf özi çiqadi">
+<meta property="og:description" content="o' → ö, g' → ğ, sh → ş, ch → ç. Mac uçun bepul klaviatura, telefonda onlayn konverter.">
+<meta property="og:url" content="https://behruz-baxodirov.github.io/yangi-alifbo/">
+<meta property="og:locale" content="uz_UZ">
+<meta name="theme-color" content="#cf8a33">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="./" aria-label="Yangi alifbo, bosh sahifa">yangi alifbo</a>
+  <nav aria-label="Bölimlar">
+    <a href="#konverter">Konverter</a>
+    <a href="#qoidalar">Qoidalar</a>
+    <a href="#savollar">Savollar</a>
+    <a href="https://github.com/behruz-baxodirov/yangi-alifbo">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="sarlavha">
+    <h1 id="sarlavha" class="hero-head">Odatdagidek yozing,<br>yangi harf özi çiqadi</h1>
+    <p class="hero-lede"><b>o'</b> yozsangiz <b>ö</b>, <b>sh</b> yozsangiz <b>ş</b> böladi. Mac uçun bepul klaviatura va hamma uçun onlayn konverter.</p>
+
+    <div class="non" aria-hidden="true">
+      <div class="non-center" id="non-center"><div class="stamp" id="stamp"></div></div>
+      <div class="non-pair" id="pair">o' → ö</div>
+    </div>
+
+    <div class="hero-act" id="ornatish">
+      <section class="slab slab-mac" aria-labelledby="mac-sarlavha">
+        <h2 id="mac-sarlavha" class="slab-title">Macʼga örnatiş</h2>
+        <p>Terminalʼni oçing va şu buyruqni joylang:</p>
+        <div class="cmd">
+          <code id="cmd">curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code>
+          <button type="button" class="btn" data-copy="cmd">Nusxa oliş</button>
+        </div>
+        <p class="slab-note">Yoqiş va öçiriş: <kbd>⌃ Control</kbd> + <kbd>Space</kbd> yoki <kbd>fn</kbd> (globus tugmasi). Menyu-barda <b>ö</b> belgisi çiqsa, yoqilgan.</p>
+        <p class="slab-alt">Windowsʼdami? <a href="#windows">Beta versiya</a></p>
+      </section>
+
+      <section class="slab slab-win" id="windows-top" aria-labelledby="win-sarlavha">
+        <h2 id="win-sarlavha" class="slab-title">Windows uçun (beta)</h2>
+        <p>Yuklab oling va işga tuşiring. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+        <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe yuklab oliş</a>
+        <p class="slab-note">Windows “Unknown publisher” deb ogohlantiradi: <b>More info → Run anyway</b>. Dastur bepul, şuning uçun imzosiz.</p>
+        <p class="slab-alt">Macʼdami? <a href="#mac-pastda">Örnatiş buyruği</a></p>
+      </section>
+
+      <section class="slab slab-phone" aria-labelledby="tel-sarlavha">
+        <h2 id="tel-sarlavha" class="slab-title">Klaviatura kompyuter uçun</h2>
+        <p>Mac va Windowsʼga örnatiladi. Havolani saqlab qöying va kompyuterda oçing.</p>
+        <button type="button" class="btn btn-big" id="share">Havolani ulaşiş</button>
+        <p class="slab-note">Telefonda hozirçalik konverterdan foydalaning: matnni yozing, nusxa oling.</p>
+      </section>
+    </div>
+
+    <section class="try" id="konverter" aria-labelledby="try-sarlavha">
+      <h2 id="try-sarlavha" class="try-title">Sinab köring</h2>
+      <div class="field">
+        <label for="in" class="try-label">Eski lotin yoki kirill yozuvida yozing:</label>
+        <textarea id="in" rows="3" spellcheck="false" autocomplete="off">Ko'chada choy ichdik, Is'hoq aka.</textarea>
+      </div>
+      <div class="out-row">
+        <p class="out" id="out" aria-live="polite"></p>
+        <button type="button" class="btn btn-ghost" data-copy="out">Nusxa oliş</button>
+      </div>
+    </section>
+  </section>
+
+  <section class="rules" id="qoidalar" aria-labelledby="qoida-sarlavha">
+    <h2 id="qoida-sarlavha" class="sec-title">Qoidalar</h2>
+    <table class="rule-table">
+      <caption class="sr-only">Eski yozuv va yangi alifbo</caption>
+      <thead><tr><th scope="col">Yozasiz</th><th scope="col">Çiqadi</th><th scope="col">Misol</th></tr></thead>
+      <tbody>
+        <tr><td>o'</td><td><span class="sr-only">ö</span><span class="glyph" data-glyph="Ö" aria-hidden="true"></span></td><td>o'zbek → özbek</td></tr>
+        <tr><td>g'</td><td><span class="sr-only">ğ</span><span class="glyph" data-glyph="Ğ" aria-hidden="true"></span></td><td>tog' → toğ</td></tr>
+        <tr><td>sh</td><td><span class="sr-only">ş</span><span class="glyph" data-glyph="Ş" aria-hidden="true"></span></td><td>shahar → şahar</td></tr>
+        <tr><td>ch</td><td><span class="sr-only">ç</span><span class="glyph" data-glyph="Ç" aria-hidden="true"></span></td><td>choy → çoy</td></tr>
+        <tr><td>s'h</td><td><b>sʼh</b></td><td>Is'hoq → Isʼhoq</td></tr>
+        <tr><td>ma'no</td><td><b>maʼno</b></td><td>tutuq belgisi ʼ</td></tr>
+      </tbody>
+    </table>
+    <div class="rule-notes">
+      <p><b>"sh" har doim ham ş emas.</b> Isʼhoq, asʼhob, musʼhaf kabi sözlarda s va h alohida öqiladi. Ularni hozirgidek tutuq bilan yozing: <code>s'h</code>. Natija <b>sʼh</b> böladi.</p>
+      <p><b>ng özgarmaydi:</b> tong, keng oldingidek yoziladi.</p>
+      <p>Qoidalar ЎРҚ-1184-son Qonunga (21.10.2026, kuçga kiriş sanasi 22.04.2027) asoslangan. Rasmiy imlo qoidalari hali eʼlon qilinmagan; bu loyiha davlat loyihasi emas.</p>
+    </div>
+  </section>
+
+  <section class="faq" id="savollar" aria-labelledby="faq-sarlavha">
+    <h2 id="faq-sarlavha" class="sec-title">Savollar</h2>
+    <details>
+      <summary>Klaviatura yoqilganini qanday bilaman?</summary>
+      <p>Menyu-barda (ekranning yuqori öng burçagida) <b>ö</b> belgisi turadi. ABC turgan bölsa, oddiy klaviatura yoqilgan. <kbd>⌃ Control</kbd> + <kbd>Space</kbd> ikkalasini almaştiradi.</p>
+    </details>
+    <details>
+      <summary>Inglizça yoki kod yozayotganimda nima qilaman?</summary>
+      <p>Klaviatura har qanday sözda o' va sh ni almaştiradi: <code>shop.uz</code> ham <code>şop.uz</code> bölib qoladi. Inglizça yozişdan oldin <kbd>⌃ Control</kbd> + <kbd>Space</kbd> bilan ABC ga ötib oling.</p>
+    </details>
+    <details>
+      <summary>Ruxsat sörayaptimi? Matnimni körib turadimi?</summary>
+      <p>Yöq. Bu macOSʼning odatiy klaviaturasi (input source): Accessibility ruxsati kerak emas, heç narsa internetga yuborilmaydi. Konverter ham faqat brauzeringizda işlaydi.</p>
+    </details>
+    <details id="mac-pastda">
+      <summary>Macʼga qanday örnataman yoki öçiraman?</summary>
+      <p>Örnatiş: <code>curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash</code></p>
+      <p>Öçiriş: <code>curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/uninstall.sh | bash</code></p>
+      <p>macOS 12 va undan yangisi, Apple Silicon va Intel.</p>
+    </details>
+    <details id="windows">
+      <summary>Windowsʼda işlaydimi?</summary>
+      <p>Beta versiya bor: <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a>. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. Avtomatik test Notepadʼda ötgan, lekin haqiqiy kompyuterlarda hali kam sinalgan; xato topsangiz GitHubʼda yozing.</p>
+    </details>
+    <details>
+      <summary>Telefonda qanday yozaman?</summary>
+      <p>iPhone va Android klaviaturasida harfni bosib turing: <b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç. Turk klaviaturasini qöşmang: unda <b>i</b> ning boş harfi <b>İ</b> (nuqtali) bölib qoladi, özbekçada esa <b>I</b> kerak.</p>
+    </details>
+  </section>
+</main>
+
+<footer class="close">
+  <p class="close-big">Bepul<br>va oçiq kod</p>
+  <p>Muallif: <a href="https://instagram.com/behruz_si">@behruz_si</a> · <a href="https://github.com/behruz-baxodirov/yangi-alifbo">GitHub</a> · Xato topsangiz, <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">şu yerda yozing</a>.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
