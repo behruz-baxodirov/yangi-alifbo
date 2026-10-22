@@ -180,13 +180,25 @@ document.getElementById("clear").addEventListener("click", () => {
 document.querySelectorAll("[data-copy]").forEach((button) => {
   const label = button.textContent;
   button.addEventListener("click", async () => {
-    const text = document.getElementById(button.dataset.copy).textContent;
+    const source = document.getElementById(button.dataset.copy);
+    let copied = false;
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(source.textContent);
+      copied = true;
+    } catch {
+      // Ruxsat bölmasa: matnni özimiz belgilaymiz va eski usulda nusxa olamiz.
+      const range = document.createRange();
+      range.selectNodeContents(source);
+      getSelection().removeAllRanges();
+      getSelection().addRange(range);
+      try { copied = document.execCommand("copy"); } catch { copied = false; }
+      if (copied) getSelection().removeAllRanges();
+    }
+    if (copied) {
       button.textContent = "Nusxa olindi";
       button.dataset.state = "done";
-    } catch {
-      button.textContent = { mac: "Belgilab, ⌘C bosing", windows: "Belgilab, Ctrl+C bosing", phone: "Bosib turib nusxa oling" }[device];
+    } else {
+      button.textContent = { mac: "Belgilandi, ⌘C bosing", windows: "Belgilandi, Ctrl+C bosing", phone: "Bosib turib nusxa oling" }[device];
     }
     setTimeout(() => {
       button.textContent = label;
@@ -194,6 +206,9 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
     }, 1800);
   });
 });
+
+// Buyruqning özini bosganda ham nusxa olinadi.
+document.getElementById("cmd").addEventListener("click", () => document.querySelector('[data-copy="cmd"]').click());
 
 // Telefonda havolani ulaşiş
 const share = document.getElementById("share");

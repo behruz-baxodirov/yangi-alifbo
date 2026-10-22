@@ -12,19 +12,22 @@
 <meta property="og:locale" content="uz_UZ">
 <meta name="theme-color" content="#cf8a33">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
-<link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="fonts/fonts.css?v=3">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 <a class="skip" href="#yuklab-olish">Yuklab olişga ötiş</a>
 <header class="bar">
-  <a class="logo" href="./" aria-label="Yozgiç, bosh sahifa">yozgiç</a>
+  <a class="logo" href="./" aria-label="Yozgiç, boş sahifa">
+    <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#17110d"/><circle cx="16" cy="16" r="12.5" fill="#f0cf97"/><g fill="#17110d"><circle cx="13" cy="9" r="1.7"/><circle cx="19" cy="9" r="1.7"/><circle cx="13" cy="14" r="1.7"/><circle cx="16" cy="14" r="1.7"/><circle cx="19" cy="14" r="1.7"/><circle cx="10.5" cy="17.5" r="1.7"/><circle cx="21.5" cy="17.5" r="1.7"/><circle cx="10.5" cy="21" r="1.7"/><circle cx="21.5" cy="21" r="1.7"/><circle cx="13" cy="24.5" r="1.7"/><circle cx="16" cy="24.5" r="1.7"/><circle cx="19" cy="24.5" r="1.7"/></g></svg>
+    <span>yozgiç</span>
+  </a>
   <nav aria-label="Bölimlar">
     <a href="#yuklab-olish">Yuklab oliş</a>
     <a href="#konverter">Konverter</a>
     <a href="#qoidalar">Qoidalar</a>
     <a href="#savollar">Savollar</a>
-    <a href="https://github.com/behruz-baxodirov/yangi-alifbo">GitHub</a>
+    <a href="#asoschi">Asosçi</a>
   </nav>
 </header>
 
@@ -47,8 +50,14 @@
       </div>
 
       <div class="tabs" role="tablist" aria-label="Kompyuteringiz">
-        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">macOS</button>
-        <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">Windows <span class="beta">beta</span></button>
+        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          macOS
+        </button>
+        <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+          Windows <span class="beta">beta</span>
+        </button>
       </div>
 
       <div class="panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" tabindex="0">
@@ -56,27 +65,27 @@
           <li>
             <span class="step-n" aria-hidden="true">1</span>
             <div>
-              <h3 class="step-t">Terminalʼni oçing</h3>
-              <p><kbd>⌘</kbd> + <kbd>Space</kbd> bosing, “Terminal” deb yozing va <kbd>Enter</kbd>.</p>
+              <h3 class="step-t">Buyruqni nusxa oling</h3>
+              <div class="cmd">
+                <code id="cmd">curl -fsSL https://yozgich.uz/install.sh | bash</code>
+                <button type="button" class="btn" data-copy="cmd">Nusxa oliş</button>
+              </div>
             </div>
           </li>
           <li>
             <span class="step-n" aria-hidden="true">2</span>
             <div>
-              <h3 class="step-t">Buyruqni joylang va <kbd>Enter</kbd> bosing</h3>
-              <div class="cmd">
-                <code id="cmd">curl -fsSL https://yozgich.uz/install.sh | bash</code>
-                <button type="button" class="btn" data-copy="cmd">Nusxa oliş</button>
-              </div>
-              <p class="step-hint">Dastur özi yuklanadi va menyu-barda işga tuşadi. Parol söralmaydi.</p>
+              <h3 class="step-t">Terminalʼga joylang</h3>
+              <p><kbd>⌘</kbd> + <kbd>Space</kbd> bosib “Terminal” deb yozing va <kbd>Enter</kbd>. Oçilgan oynada <kbd>⌘</kbd> + <kbd>V</kbd>, keyin <kbd>Enter</kbd>.</p>
+              <p class="step-hint">Dastur özi yuklanadi va işga tuşadi. Parol söralmaydi.</p>
             </div>
           </li>
           <li>
             <span class="step-n" aria-hidden="true">3</span>
             <div>
               <h3 class="step-t">Ruxsat bering</h3>
-              <p>macOS söraydi: <b>Open System Settings</b> → Privacy &amp; Security → Accessibility → <b>Yangi alifbo</b> ni yoqing. Şundan keyin menyu-barda <b>ö</b> turadi.</p>
-              <p class="step-hint">Til almaştiriş şart emas: istalgan dasturda lotin klaviaturasida yozing, özi ögiriladi. Yoqiş va öçiriş: <kbd>⇧ Shift</kbd> ni ikki marta bosing yoki menyu-bardagi <b>ö</b> ni bosing (öçiq paytda <b>A</b>).</p>
+              <p>macOS söraydi: <b>Open System Settings</b> → Accessibility → <b>Yangi alifbo</b> (Yozgiç dasturi) ni yoqing. Tayyor: menyu-barda <b>ö</b> turadi.</p>
+              <p class="step-hint">Istalgan dasturda odatdagidek yozing, harf özi ögiriladi. Yoqiş va öçiriş: <kbd>⇧ Shift</kbd> ni ikki marta bosing.</p>
             </div>
           </li>
         </ol>
@@ -89,15 +98,19 @@
             <span class="step-n" aria-hidden="true">1</span>
             <div>
               <h3 class="step-t">Faylni yuklab oling</h3>
-              <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">Yuklab oliş (beta)</a>
+              <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe" download>
+                <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+                Windows uçun yuklab oliş
+              </a>
               <p class="step-hint">YangiAlifbo-windows-beta.exe · 1,3 MB. Brauzer ogohlantirsa, “Keep” (Saqlab qoliş) ni tanlang.</p>
             </div>
           </li>
           <li>
             <span class="step-n" aria-hidden="true">2</span>
             <div>
-              <h3 class="step-t">Işga tuşiring</h3>
-              <p>Kök oyna çiqadi: “Windows protected your PC” (rusça: “Система Windows защитила ваш компьютер”). <b>More info → Run anyway</b> (<b>Подробнее → Выполнить в любом случае</b>) ni bosing. Dastur bepul, şuning uçun imzosiz.</p>
+              <h3 class="step-t">Faylni oçing</h3>
+              <p>Kök oyna çiqsa (“Windows protected your PC”), <b>More info</b> → <b>Run anyway</b> ni bosing. Rusça: <b>Подробнее</b> → <b>Выполнить в любом случае</b>.</p>
+              <p class="step-hint">Dastur bepul, şuning uçun pullik imzosi yöq. Bu xavfli degani emas.</p>
             </div>
           </li>
           <li>
@@ -148,7 +161,7 @@
 
         <div class="pane pane-out">
           <div class="pane-bar">
-            <span class="pane-label" id="out-label">Yangi alifbo</span>
+            <span class="pane-label" id="out-label">Yangi yozuv</span>
             <span class="tag tag-hot" id="changed" aria-live="polite">0 ta harf özgardi</span>
           </div>
           <div class="out" id="out" role="region" aria-labelledby="out-label"></div>
@@ -217,13 +230,48 @@
       <p>iPhone va Android klaviaturasida harfni bosib turing: <b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç. Turk klaviaturasini qöşmang: unda <b>i</b> ning boş harfi <b>İ</b> (nuqtali) bölib qoladi, özbekçada esa <b>I</b> kerak.</p>
     </details>
   </section>
+
+  <section class="founder" id="asoschi" aria-labelledby="asoschi-sarlavha">
+    <div class="founder-card">
+      <div class="founder-photo">
+        <img src="img/asoschi.webp" width="320" height="320" alt="Behruz Baxodirov" loading="lazy" decoding="async">
+      </div>
+      <div class="founder-body">
+        <p class="founder-kicker">Asosçi</p>
+        <h2 id="asoschi-sarlavha" class="founder-name">Behruz Baxodirov</h2>
+        <p class="founder-lede">Yozgiçni men yaratdim va bepul tarqatyapman. Asosiy işim: AI bilan biznes va odamlarning vaqtini tejaş.</p>
+        <ul class="services">
+          <li><b>AI avtomatlaştiriş</b><span>Takroriy işlarni AI yordamçiga topşiriş: xabarlar, kontent, hisobotlar.</span></li>
+          <li><b>Sayt va dastur</b><span>Yozgiç kabi sayt, Telegram bot va dasturlar yasayman.</span></li>
+          <li><b>AI kurs va maslahat</b><span>AIʼdan işda foydalanişni örgataman va maslahat beraman.</span></li>
+        </ul>
+        <div class="founder-cta">
+          <a class="btn btn-big" href="https://t.me/behruz_baxodirov">
+            <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 3.6 18.6 19.3c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 12.9 1.1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.5 2.4c.9-.3 1.7.2 1.4 1.2z"/></svg>
+            Telegramʼda yozing
+          </a>
+          <span class="founder-handle">@behruz_baxodirov</span>
+        </div>
+        <ul class="socials" aria-label="Ijtimoiy tarmoqlar">
+          <li><a href="https://t.me/baxodirov_ai">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 3.6 18.6 19.3c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 12.9 1.1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.5 2.4c.9-.3 1.7.2 1.4 1.2z"/></svg>
+            <span><b>Telegram kanal</b>@baxodirov_ai</span>
+          </a></li>
+          <li><a href="https://instagram.com/behruz_si">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+            <span><b>Instagram</b>@behruz_si</span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="close">
-  <p class="close-big">Bepul<br>va oçiq kod</p>
-  <p>Muallif (Instagram): <a href="https://instagram.com/behruz_si">@behruz_si</a> · Telegram kanal: <a href="https://t.me/baxodirov_ai">@baxodirov_ai</a> · Aloqa uçun: <a href="https://t.me/behruz_baxodirov">@behruz_baxodirov</a> (Telegram)</p>
+  <p class="close-big">Bepul,<br>hamma uçun</p>
+  <p class="close-links"><a href="https://instagram.com/behruz_si">Instagram</a> · <a href="https://t.me/baxodirov_ai">Telegram kanal</a> · <a href="https://t.me/behruz_baxodirov">Aloqa</a></p>
 </footer>
 
-<script type="module" src="app.js"></script>
+<script type="module" src="app.js?v=3"></script>
 </body>
 </html>

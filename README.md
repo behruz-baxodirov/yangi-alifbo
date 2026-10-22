@@ -41,7 +41,7 @@ curl -fsSL https://yozgich.uz/uninstall.sh | bash
 
 - `core/fixtures/cases.json` — klaviatura va konverter uçun umumiy test holatlari.
 - `mac/` — Swift package: `AlifboCore` (holat mashinasi) va `YangiAlifbo` (InputMethodKit ilovasi).
-- `web/` — konverter (`converter.js`), örnatiş skriptlari, sayt maketlari (`web/mockups/`).
+- `web/` — konverter (`converter.js`), örnatiş skriptlari; sayt maketlari `.impeccable/mockups/` da.
 - `windows/` — AutoHotkey v2 versiyasi.
 
 ## Yiğiş va test

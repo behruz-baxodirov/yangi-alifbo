@@ -369,8 +369,21 @@ The hero object.
 
 **The Flat Non Rule.** The non is flat: crust rim and rim-edge bands, dough centre, punched pip rings, nigella seeds, the letter in char dots. No shading gradients, no insets, no drop shadows, no texture photography.
 
+### Founder (Asosçi)
+A char slab after the FAQ that credits the author and offers his services.
+- **Photo:** a round portrait framed as a non rim (rim-edge, rim, rim-edge bands), 300px max (220px on phone). Source: the owner's photo, sharpened in ChatGPT and cropped to the face, `web/img/asoschi.webp` (640×640).
+- **Text:** a crust uppercase kicker, the name in Headline Doto (flour), a slab-ink lede.
+- **Services:** three slab-well cards (auto-fit, 190px minimum), each a crust dot, a flour title and a slab-ink line.
+- **Actions:** one big primary button to Telegram contact, then a light dot row and two social links (Telegram channel, Instagram) with crust icons.
+
+### Platform and social marks
+The owner asked for real, recognisable marks, so the Apple logo and the Windows four-pane logo sit in the download tabs and the Windows download button, and the Telegram plane and Instagram camera sit in the founder slab. They are flat single-colour `currentColor` SVGs. This is the only exception to "no icon glyphs"; nothing else gets an icon.
+
+### Logo
+The wordmark "yozgiç" in Logo type, preceded by a 30px mark: a char disc with a dough centre holding the ö dot glyph (the favicon's drawing).
+
 ### Closing Band
-A full-bleed flour band with the Display Close statement and clay links for author, GitHub and issues.
+A full-bleed flour band with the Display Close statement ("Bepul, hamma uçun") and clay links to Instagram, the Telegram channel and Telegram contact.
 
 ## Do's and Don'ts
 
@@ -392,6 +405,6 @@ A full-bleed flour band with the Display Close statement and clay links for auth
 - **Don't** put clay on crust, the slab or the non; it fails at 2.4:1.
 - **Don't** round anything except the non and its dots; no pills.
 - **Don't** shade the non or anything else: no gradients that model light, no insets, no drop shadows.
-- **Don't** use icon glyphs; build marks from dots.
+- **Don't** use icon glyphs; build marks from dots. The only exceptions are the platform and social marks above.
 - **Don't** describe the Mac keyboard as switched on and off with a dedicated toggle.
 - **Don't** lead a phone visitor with an install command.
