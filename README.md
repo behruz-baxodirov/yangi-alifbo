@@ -19,6 +19,8 @@ Terminal'da:
 curl -fsSL https://behruz-baxodirov.github.io/yangi-alifbo/install.sh | bash
 ```
 
+> **Diqqat:** Releases'dagi `YangiAlifbo.zip` ni brauzer orqali yuklab, qöl bilan oçmang. Ilova Apple sertifikati bilan imzolanmagan (loyiha bepul), şuning uçun macOS uni *"YangiAlifbo.app is damaged and can't be opened"* deb bloklaydi. Yagona töğri yöl — yuqoridagi Terminal buyruği: u faylni özi yuklab, kerakli joyga qöyadi va klaviaturani yoqadi.
+
 Yoqiş va öçiriş: **🌐 (Fn)** yoki **⌃ Control + Space**. Klaviatura macOS'ning odatiy input source'i: hech qanday ruxsat söramaydi va hamma dasturda işlaydi.
 
 Öçiriş:
