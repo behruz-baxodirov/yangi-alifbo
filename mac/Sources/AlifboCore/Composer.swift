@@ -77,29 +77,33 @@ public struct Composer {
                 return converted(letter)
             }
             let flushed: String
+            let flushedLetter: Bool
             if Alphabet.apostrophes.contains(p) {
                 // Harf + apostrof + harf → tutuq; aks holda apostrof o'zicha qoladi.
                 flushed = ch.isLetter ? String(Alphabet.tutuq) : String(p)
-                lastWasLetter = false
+                flushedLetter = false
             } else {
                 flushed = String(p)
-                lastWasLetter = true
+                flushedLetter = true
             }
+            lastWasLetter = flushedLetter
             setPending(nil)
-            var out = startFresh(ch, before: before)
+            var out = startFresh(ch, before: before, flushedLetter: flushedLetter)
             out.commit = flushed + out.commit
             return out
         }
         return startFresh(ch, before: before)
     }
 
-    private mutating func startFresh(_ ch: Character, before: () -> Character?) -> ComposerOutput {
+    private mutating func startFresh(_ ch: Character, before: () -> Character?, flushedLetter: Bool? = nil) -> ComposerOutput {
         if Alphabet.withApostrophe[ch] != nil || Alphabet.withH[ch] != nil {
             setPending(ch)
             return ComposerOutput(commit: "", consumed: true)
         }
         if Alphabet.apostrophes.contains(ch), options.tutuq {
-            let afterLetter = lastWasLetter ?? (before()?.isLetter ?? false)
+            // Hozirgina yozib yuborilgan belgini client hali körmaydi; aks holda client'ning matni
+            // (sichqoncha bilan ko'chgan kursor) kuzatilgan holatdan ustun.
+            let afterLetter = flushedLetter ?? before()?.isLetter ?? lastWasLetter ?? false
             if afterLetter {
                 setPending(ch)
                 return ComposerOutput(commit: "", consumed: true)

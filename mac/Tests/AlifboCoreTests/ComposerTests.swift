@@ -64,6 +64,23 @@ final class ComposerTests: XCTestCase {
         XCTAssertEqual(d.handle(.char("'"), before: { " " }), ComposerOutput(commit: "", consumed: false))
     }
 
+    func testClientContextWinsOverTrackedState() {
+        // "salom", keyin sichqoncha bilan bo'sh joyga bosildi (IM hech narsa bilmaydi).
+        var c = Composer()
+        for ch in "salom" { _ = c.handle(.char(ch)) }
+        _ = c.flush()
+        for ch in "sal" { _ = c.handle(.char(ch)) }
+        XCTAssertEqual(c.handle(.char("'"), before: { " " }), ComposerOutput(commit: "", consumed: false))
+    }
+
+    func testFlushedPendingLetterCountsEvenIfClientSaysSpace() {
+        // " s'h": client "s" ni hali ko'rmaydi (u marked text), lekin tutuq qo'yilishi kerak.
+        var c = Composer()
+        _ = c.handle(.char("s"), before: { " " })
+        XCTAssertEqual(c.handle(.char("'"), before: { " " }), ComposerOutput(commit: "s", consumed: true))
+        XCTAssertEqual(c.handle(.char("h"), before: { "s" }), ComposerOutput(commit: "ʼ", consumed: false))
+    }
+
     func testPendingApostropheFlushedAsAscii() {
         var c = Composer()
         _ = c.handle(.char("a"))

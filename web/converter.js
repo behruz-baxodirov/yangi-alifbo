@@ -6,7 +6,13 @@ const TUTUQ = "ʼ";
 // Kirill ъ dan kelgan tutuq lotin qoidalariga aralashmasligi uçun vaqtinçalik belgi.
 const HOLD = "";
 
-const PROTECTED = /(https?:\/\/\S+|www\.\S+|[\w.+-]+@[\w-]+(?:\.[\w-]+)+|@\w+)/u;
+// Havolalar, email, @handle va oddiy domenlar (t.me/..., kun.uz) ögirilmaydi.
+const TLD = "uz|me|com|ru|org|net|io|asia|info|app|dev|tv|co|ai|gov|edu|kz|tj|kg|tm|tr";
+const PROTECTED = new RegExp(
+  "(https?:\\/\\/\\S+|www\\.\\S+|[\\w.+-]+@[\\w-]+(?:\\.[\\w-]+)+|@[\\w.]*\\w" +
+    `|(?<![\\p{L}\\d@.-])(?:[\\w-]+\\.)+(?:${TLD})(?:\\/\\S*)?(?![\\p{L}\\d]))`,
+  "iu",
+);
 
 const WITH_APOS = { o: "ö", O: "Ö", g: "ğ", G: "Ğ" };
 const WITH_H = { s: "ş", S: "Ş", c: "ç", C: "Ç" };

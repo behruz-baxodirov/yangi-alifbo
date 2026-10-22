@@ -9,7 +9,8 @@ final class InputController: IMKInputController {
     private let notFound = NSRange(location: NSNotFound, length: 0)
 
     override func recognizedEvents(_ sender: Any!) -> Int {
-        Int(NSEvent.EventTypeMask.keyDown.rawValue)
+        let mask: NSEvent.EventTypeMask = [.keyDown, .leftMouseDown, .rightMouseDown, .otherMouseDown]
+        return Int(mask.rawValue)
     }
 
     override func activateServer(_ sender: Any!) {
@@ -25,7 +26,13 @@ final class InputController: IMKInputController {
     }
 
     override func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
-        guard let event, event.type == .keyDown, let client = sender as? IMKTextInput else { return false }
+        guard let event, let client = sender as? IMKTextInput else { return false }
+        if event.type != .keyDown {
+            // Sichqoncha bosildi: kutilayotgan harf joyida yozib qolinadi, kontekst unutiladi.
+            commitComposition(sender)
+            return false
+        }
+        composer.options = Settings.options
         let output = composer.handle(KeyMapper.input(for: event), before: { Self.characterBeforeCursor(client) })
         if !output.commit.isEmpty {
             client.insertText(output.commit, replacementRange: notFound)
@@ -38,7 +45,10 @@ final class InputController: IMKInputController {
     override func commitComposition(_ sender: Any!) {
         let text = composer.flush()
         guard let client = sender as? IMKTextInput else { return }
-        if !text.isEmpty {
+        // Client marked text'ni özi tasdiqlab bölgan bo'lsa, harfni ikkinçi marta yozmaymiz.
+        let marked = client.markedRange()
+        let clientStillMarks = marked.location != NSNotFound && marked.length > 0
+        if !text.isEmpty && (clientStillMarks || !showsMarked) {
             client.insertText(text, replacementRange: notFound)
             showsMarked = false
         }

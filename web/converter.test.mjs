@@ -53,6 +53,11 @@ test("urls, emails and handles are left alone", () => {
   assert.equal(convert("info@shosh.uz yozing"), "info@shosh.uz yozing");
   assert.equal(convert("@shoh_channel kanali"), "@shoh_channel kanali");
   assert.equal(convert("www.choyxona.uz da choy"), "www.choyxona.uz da çoy");
+  assert.equal(convert("t.me/shoh_channel ga obuna"), "t.me/shoh_channel ga obuna");
+  assert.equal(convert("championat.asia saytida"), "championat.asia saytida");
+  assert.equal(convert("HTTPS://Shop.uz/Chegirma"), "HTTPS://Shop.uz/Chegirma");
+  assert.equal(convert("@Shoh.Channel kanali"), "@Shoh.Channel kanali");
+  assert.equal(convert("Choshgohda shaharga."), "Çoşgohda şaharga.");
 });
 
 test("common apostrophe-less exceptions are fixed", () => {
