@@ -18,6 +18,10 @@ enum Registration {
             let result = TISEnableInputSource(source)
             if result != noErr { fputs("TISEnableInputSource xatosi: \(result)\n", stderr) }
         }
+        // Örnatilgan zahoti yoqilgan bölsin: menyu-barda "ö" körinadi.
+        if let source = list.first, TISSelectInputSource(source) != noErr {
+            fputs("Yangi alifbo'ni menyu-bardan tanlang.\n", stderr)
+        }
         return true
     }
 

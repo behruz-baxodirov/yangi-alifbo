@@ -1,6 +1,9 @@
 import Cocoa
 import InputMethodKit
 import AlifboCore
+import os
+
+let log = Logger(subsystem: "uz.yangialifbo", category: "ime")
 
 @objc(YangiAlifboInputController)
 final class InputController: IMKInputController {
@@ -13,8 +16,14 @@ final class InputController: IMKInputController {
         return Int(mask.rawValue)
     }
 
+    override init!(server: IMKServer!, delegate: Any!, client inputClient: Any!) {
+        super.init(server: server, delegate: delegate, client: inputClient)
+        log.notice("controller init client=\(String(describing: inputClient), privacy: .public)")
+    }
+
     override func activateServer(_ sender: Any!) {
         super.activateServer(sender)
+        log.debug("activateServer")
         composer.options = Settings.options
         _ = composer.flush()
         showsMarked = false
@@ -26,6 +35,7 @@ final class InputController: IMKInputController {
     }
 
     override func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
+        log.debug("handle type=\(event?.type.rawValue ?? 0, privacy: .public) clientOK=\(sender is IMKTextInput, privacy: .public)")
         guard let event, let client = sender as? IMKTextInput else { return false }
         if event.type != .keyDown {
             // Sichqoncha bosildi: kutilayotgan harf joyida yozib qolinadi, kontekst unutiladi.

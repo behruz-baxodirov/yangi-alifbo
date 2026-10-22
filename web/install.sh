@@ -55,8 +55,9 @@ main() {
     echo "✓ Yangi alifbo örnatildi (versiya: $version)."
     cat <<'MSG'
 
-Yoqiş va öçiriş:  🌐 (Fn) yoki  ⌃ Control + Space
-Menyu-barda "ö" belgisi çiqsa — klaviatura yoqilgan.
+Klaviatura hozir yoqildi: menyu-barda "ö" belgisi turibdi.
+Almaştiriş:  ⌃ Control + Space yoki 🌐 (Fn) — ABC va Yangi alifbo orasida.
+Qaysi biri yoqilganini menyu-bardagi belgi körsatadi; kerak bölsa öşa yerdan tanlang.
 
 Yozib köring:  o' → ö   g' → ğ   sh → ş   ch → ç   s'h → sʼh (Isʼhoq)
 

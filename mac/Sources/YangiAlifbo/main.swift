@@ -14,6 +14,8 @@ if arguments.contains("--uninstall") {
     exit(Registration.uninstall() ? 0 : 1)
 }
 
+import os
+Logger(subsystem: "uz.yangialifbo", category: "ime").notice("server start \(AppInfo.connectionName, privacy: .public) \(Bundle.main.bundleIdentifier ?? "nil", privacy: .public)")
 let server = IMKServer(name: AppInfo.connectionName, bundleIdentifier: Bundle.main.bundleIdentifier)
 withExtendedLifetime(server) {
     NSApplication.shared.run()
