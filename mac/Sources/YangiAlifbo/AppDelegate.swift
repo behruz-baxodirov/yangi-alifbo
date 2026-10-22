@@ -1,8 +1,10 @@
 import Cocoa
 import ApplicationServices
+import AlifboCore
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private let keyTap = KeyTap()
+    private let hud = ToggleHUD()
     private var statusItem: NSStatusItem!
     private var permissionTimer: Timer?
 
@@ -12,8 +14,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             button.target = self
             button.action = #selector(statusClicked(_:))
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
-            button.toolTip = "Yangi alifbo — bosing: yoqiş/öçiriş, öng tugma: menyu"
         }
+        keyTap.onToggle = { [weak self] in self?.toggleEnabled(nil) }
         startWhenTrusted(prompt: true)
         refresh()
     }
@@ -25,6 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             permissionTimer?.invalidate()
             permissionTimer = nil
             refresh()
+            welcomeIfNeeded()
             return
         }
         guard permissionTimer == nil else { return }
@@ -47,6 +50,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .font: NSFont.systemFont(ofSize: 15, weight: .bold),
         ])
         button.appearsDisabled = hasPermission && !Settings.enabled
+        button.toolTip = hasPermission
+            ? "Yangi alifbo — \(Settings.enabled ? "yoqilgan" : "öçiq"). Yoqiş/öçiriş: \(Settings.shortcut.label) yoki belgini bosing."
+            : "Yangi alifbo — Accessibility ruxsati kerak"
+    }
+
+    private func welcomeIfNeeded() {
+        guard !Settings.welcomed else { return }
+        Settings.welcomed = true
+        hud.show(symbol: "ö", title: "Yangi alifbo işlayapti",
+                 subtitle: "Öçiriş: \(Settings.shortcut.label) yoki menyu-bardagi ö", seconds: 4)
     }
 
     @objc private func statusClicked(_ sender: Any?) {
@@ -65,9 +78,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             menu.addItem(item("⚠︎ Ruxsat kerak: Accessibility'da \"Yangi alifbo\"ni yoqing…", #selector(openAccessibility(_:))))
             menu.addItem(.separator())
         }
-        let enabled = item("Yoqilgan (belgini bosing)", #selector(toggleEnabled(_:)))
+        let enabled = item("Yoqilgan", #selector(toggleEnabled(_:)))
         enabled.state = Settings.enabled ? .on : .off
         menu.addItem(enabled)
+        let shortcutItem = NSMenuItem(title: "Yoqiş/öçiriş tugmasi", action: nil, keyEquivalent: "")
+        let shortcuts = NSMenu()
+        for shortcut in ToggleShortcut.allCases {
+            let choice = item(shortcut.label, #selector(chooseShortcut(_:)))
+            choice.representedObject = shortcut.rawValue
+            choice.state = Settings.shortcut == shortcut ? .on : .off
+            shortcuts.addItem(choice)
+        }
+        shortcutItem.submenu = shortcuts
+        menu.addItem(shortcutItem)
         let tutuq = item("Tutuq belgisi ʼ (maʼno)", #selector(toggleTutuq(_:)))
         tutuq.state = Settings.tutuq ? .on : .off
         menu.addItem(tutuq)
@@ -92,6 +115,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Settings.enabled.toggle()
         keyTap.updateOptions()
         refresh()
+        if Settings.enabled {
+            hud.show(symbol: "ö", title: "Yangi alifbo yoqildi")
+        } else {
+            hud.show(symbol: "A", title: "Yangi alifbo öçirildi")
+        }
+    }
+
+    @objc private func chooseShortcut(_ sender: NSMenuItem) {
+        guard let raw = sender.representedObject as? String, let shortcut = ToggleShortcut(rawValue: raw) else { return }
+        Settings.shortcut = shortcut
+        keyTap.updateOptions()
+        refresh()
+        hud.show(symbol: "⌨︎", title: "Yoqiş/öçiriş tugmasi", subtitle: shortcut.label, seconds: 2)
     }
 
     @objc private func toggleTutuq(_ sender: Any?) {

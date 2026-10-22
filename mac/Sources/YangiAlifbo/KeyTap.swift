@@ -14,6 +14,9 @@ final class KeyTap {
 
     private var tap: CFMachPort?
     private var rewriter = Rewriter(options: Settings.options)
+    private var matcher = ShortcutMatcher(Settings.shortcut)
+    /// Tanlangan yoqiş/öçiriş tugmasi bosilganda çaqiriladi.
+    var onToggle: (() -> Void)?
     private let source = CGEventSource(stateID: .privateState)
 
     var isRunning: Bool { tap.map { CGEvent.tapIsEnabled(tap: $0) } ?? false }
@@ -21,11 +24,12 @@ final class KeyTap {
     func updateOptions() {
         rewriter.options = Settings.options
         rewriter.reset()
+        matcher = ShortcutMatcher(Settings.shortcut)
     }
 
     func start() -> Bool {
         guard tap == nil else { return true }
-        let types: [CGEventType] = [.keyDown, .leftMouseDown, .rightMouseDown, .otherMouseDown]
+        let types: [CGEventType] = [.keyDown, .flagsChanged, .leftMouseDown, .rightMouseDown, .otherMouseDown]
         let mask = types.reduce(CGEventMask(0)) { $0 | (1 << $1.rawValue) }
         let callback: CGEventTapCallBack = { _, type, event, info in
             let me = Unmanaged<KeyTap>.fromOpaque(info!).takeUnretainedValue()
@@ -54,6 +58,12 @@ final class KeyTap {
             return Unmanaged.passUnretained(event)
         case .keyDown:
             break
+        case .flagsChanged:
+            if matcher.flagsChanged(Self.modifiers(event.flags), at: Self.seconds(event)) {
+                rewriter.reset()
+                onToggle?()
+            }
+            return Unmanaged.passUnretained(event)
         default:
             // Sichqoncha: kursor köçgan bölişi mumkin.
             rewriter.reset()
@@ -61,6 +71,12 @@ final class KeyTap {
         }
         if event.getIntegerValueField(.eventSourceUserData) == Self.marker {
             return Unmanaged.passUnretained(event)
+        }
+        let code = UInt16(event.getIntegerValueField(.keyboardEventKeycode))
+        if matcher.keyDown(code: code, modifiers: Self.modifiers(event.flags), at: Self.seconds(event)) {
+            rewriter.reset()
+            onToggle?()
+            return nil
         }
         guard let nsEvent = NSEvent(cgEvent: event) else { return Unmanaged.passUnretained(event) }
         switch rewriter.handle(KeyMapper.input(for: nsEvent)) {
@@ -72,6 +88,17 @@ final class KeyTap {
             return nil
         }
     }
+
+    private static func modifiers(_ flags: CGEventFlags) -> Modifiers {
+        var m: Modifiers = []
+        if flags.contains(.maskShift) { m.insert(.shift) }
+        if flags.contains(.maskAlternate) { m.insert(.option) }
+        if flags.contains(.maskControl) { m.insert(.control) }
+        if flags.contains(.maskCommand) { m.insert(.command) }
+        return m
+    }
+
+    private static func seconds(_ event: CGEvent) -> Double { Double(event.timestamp) / 1_000_000_000 }
 
     private func post(deleting count: Int, inserting text: String) {
         for _ in 0..<count {

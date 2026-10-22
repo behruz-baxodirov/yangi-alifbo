@@ -101,6 +101,9 @@ main() {
         launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
     fi
 
+    local updating=0
+    [ -d "$app" ] && updating=1
+
     echo "→ Örnatilmoqda: $app"
     stop_running "$app"
     mkdir -p "$dest"
@@ -109,6 +112,8 @@ main() {
     xattr -dr com.apple.quarantine "$app" 2>/dev/null || true
 
     if [ "${YA_SKIP_REGISTER:-0}" != "1" ]; then
+        # Imzosiz dastur yangilanganda eski ruxsat amal qilmaydi: uni tozalaymiz, macOS qayta söraydi.
+        [ "$updating" = 1 ] && tccutil reset Accessibility "$LABEL" >/dev/null 2>&1 || true
         write_launch_agent "$app"
     fi
 
@@ -123,7 +128,8 @@ Bitta qadam qoldi — ruxsat beriş:
   "Open System Settings" → Privacy & Security → Accessibility → "Yangi alifbo"ni yoqing.
 
 Şundan keyin menyu-barda "ö" turadi va istalgan dasturda yozganingiz özi ögiriladi.
-Yoqiş/öçiriş: menyu-bardagi "ö" ni bosing ("A" — öçiq). Til almaştiriş şart emas.
+Yoqiş/öçiriş: ⇧ Shift'ni ikki marta bosing yoki menyu-bardagi "ö" ni bosing ("A" — öçiq).
+Boşqa tugma kerak bölsa: "ö" ustida öng tugma → "Yoqiş/öçiriş tugmasi".
 
 Yozib köring:  o' → ö   g' → ğ   sh → ş   ch → ç   s'h → sʼh (Isʼhoq)
 
