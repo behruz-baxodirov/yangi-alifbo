@@ -21,7 +21,7 @@ bilan yoqadi va Telegram, Chrome, Notes, Word'da yangi alifboda xatosiz yozadi.
 | sh | ş | shahar → şahar |
 | ch | ç | chiroq → çiroq |
 | s'h (alohida tovush) | sʼh | Is'hoq → Isʼhoq, as'hob → asʼhob |
-| harf + ' (tutuq) | harf + ʼ (U+02BC) | ma'no → maʼno |
+| harf + ' + harf (tutuq) | harf + ʼ + harf (U+02BC) | ma'no → maʼno |
 | ng | o'zgarmaydi | tong → tong |
 
 Katta harf: birinchi harf belgilaydi: `Sh`/`SH` → `Ş`, `sH` → `ş`, `O'` → `Ö`.
@@ -62,7 +62,7 @@ o'z joyida qoladi.
 - `s/c` dan keyin `h` kelsa `ş/ç` yoziladi.
 - `s` dan keyin apostrof kelsa `sʼ` yoziladi. Shuning uchun `s'h` → `sʼh` bo'ladi, buning
   uchun alohida qoida kerak emas.
-- Boshqa harfdan keyin apostrof kelsa `ʼ` yoziladi (menyuda o'chirish mumkin).
+- Harfdan keyin kelgan apostrof ham bir lahza kutib turadi: undan keyin harf kelsa `ʼ` bo'ladi, aks holda `'` o'zicha qoladi. Shunda qo'shtirnoq buzilmaydi (menyuda o'chirish mumkin).
   Bo'shliq yoki raqamdan keyin `'` o'zicha qoladi (qo'shtirnoq uchun).
 - Boshqa har qanday tugmada pending yozib yuboriladi va tugma odatdagidek ishlaydi.
   Bu Enter, Tab, strelka, ⌘/⌃/⌥ kombinatsiyalari, sichqoncha bosish, oyna

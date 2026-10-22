@@ -1,0 +1,337 @@
+[
+ {
+  "in": "o'zbek",
+  "out": "özbek",
+  "note": "o' → ö"
+ },
+ {
+  "in": "O'zbekiston",
+  "out": "Özbekiston",
+  "note": "capital O'"
+ },
+ {
+  "in": "O'ZBEKISTON",
+  "out": "ÖZBEKISTON",
+  "note": "all caps"
+ },
+ {
+  "in": "g'oya",
+  "out": "ğoya",
+  "note": "g' → ğ"
+ },
+ {
+  "in": "tog'",
+  "out": "toğ",
+  "note": "g' at word end"
+ },
+ {
+  "in": "G'alaba",
+  "out": "Ğalaba",
+  "note": "capital G'"
+ },
+ {
+  "in": "shahar",
+  "out": "şahar",
+  "note": "sh → ş"
+ },
+ {
+  "in": "Shahar",
+  "out": "Şahar",
+  "note": "Sh → Ş"
+ },
+ {
+  "in": "SHAHAR",
+  "out": "ŞAHAR",
+  "note": "SH → Ş"
+ },
+ {
+  "in": "chiroq",
+  "out": "çiroq",
+  "note": "ch → ç"
+ },
+ {
+  "in": "Chiroq",
+  "out": "Çiroq",
+  "note": "Ch → Ç"
+ },
+ {
+  "in": "CHIROQ",
+  "out": "ÇIROQ",
+  "note": "CH → Ç"
+ },
+ {
+  "in": "ishchi",
+  "out": "işçi",
+  "note": "sh + ch adjacent"
+ },
+ {
+  "in": "mashhur",
+  "out": "maşhur",
+  "note": "ş + h"
+ },
+ {
+  "in": "o'g'il",
+  "out": "öğil",
+  "note": "ö + ğ adjacent"
+ },
+ {
+  "in": "O'G'IL",
+  "out": "ÖĞIL",
+  "note": "caps adjacent"
+ },
+ {
+  "in": "Is'hoq",
+  "out": "Isʼhoq",
+  "note": "s'h stays separate"
+ },
+ {
+  "in": "as'hob",
+  "out": "asʼhob",
+  "note": "s'h"
+ },
+ {
+  "in": "mus'haf",
+  "out": "musʼhaf",
+  "note": "s'h"
+ },
+ {
+  "in": "is'hol",
+  "out": "isʼhol",
+  "note": "s'h"
+ },
+ {
+  "in": "mas'ul",
+  "out": "masʼul",
+  "note": "s + tutuq + vowel"
+ },
+ {
+  "in": "ma'no",
+  "out": "maʼno",
+  "note": "tutuq"
+ },
+ {
+  "in": "san'at",
+  "out": "sanʼat",
+  "note": "tutuq"
+ },
+ {
+  "in": "ta'lim",
+  "out": "taʼlim",
+  "note": "tutuq"
+ },
+ {
+  "in": "Qur'on",
+  "out": "Qurʼon",
+  "note": "tutuq"
+ },
+ {
+  "in": "ma'lumot",
+  "out": "maʼlumot",
+  "note": "tutuq"
+ },
+ {
+  "in": "e'lon",
+  "out": "eʼlon",
+  "note": "tutuq"
+ },
+ {
+  "in": "MA'NO",
+  "out": "MAʼNO",
+  "note": "tutuq in caps"
+ },
+ {
+  "in": "ma`no",
+  "out": "maʼno",
+  "note": "backtick as tutuq"
+ },
+ {
+  "in": "tong",
+  "out": "tong",
+  "note": "ng untouched"
+ },
+ {
+  "in": "keng",
+  "out": "keng",
+  "note": "ng untouched"
+ },
+ {
+  "in": "o`zbek",
+  "out": "özbek",
+  "note": "backtick"
+ },
+ {
+  "in": "o‘zbek",
+  "out": "özbek",
+  "note": "U+2018"
+ },
+ {
+  "in": "o’zbek",
+  "out": "özbek",
+  "note": "U+2019"
+ },
+ {
+  "in": "oʻzbek",
+  "out": "özbek",
+  "note": "U+02BB"
+ },
+ {
+  "in": "oʼzbek",
+  "out": "özbek",
+  "note": "U+02BC"
+ },
+ {
+  "in": "o´zbek",
+  "out": "özbek",
+  "note": "U+00B4"
+ },
+ {
+  "in": "g‘alla",
+  "out": "ğalla",
+  "note": "g + U+2018"
+ },
+ {
+  "in": "'salom'",
+  "out": "'salom'",
+  "note": "quotes stay ASCII"
+ },
+ {
+  "in": "5'",
+  "out": "5'",
+  "note": "after digit"
+ },
+ {
+  "in": "so 'x",
+  "out": "so 'x",
+  "note": "apostrophe after space"
+ },
+ {
+  "in": "ma''no",
+  "out": "ma''no",
+  "note": "double apostrophe is not tutuq"
+ },
+ {
+  "in": "bo'",
+  "out": "bö",
+  "note": "o' at end of text"
+ },
+ {
+  "in": "Toshkent",
+  "out": "Toşkent",
+  "note": "sh mid-word"
+ },
+ {
+  "in": "choshgoh",
+  "out": "çoşgoh",
+  "note": "several"
+ },
+ {
+  "in": "shoshilinch",
+  "out": "şoşilinç",
+  "note": "several"
+ },
+ {
+  "in": "kech",
+  "out": "keç",
+  "note": "ch at end"
+ },
+ {
+  "in": "massa",
+  "out": "massa",
+  "note": "double s"
+ },
+ {
+  "in": "salom dunyo",
+  "out": "salom dunyo",
+  "note": "nothing to change"
+ },
+ {
+  "in": "1-sinf, 2-sinf.",
+  "out": "1-sinf, 2-sinf.",
+  "note": "digits and punctuation"
+ },
+ {
+  "in": "bo",
+  "out": "bo",
+  "note": "trailing o"
+ },
+ {
+  "in": "so",
+  "out": "so",
+  "note": "trailing s pending flushed"
+ },
+ {
+  "in": "c",
+  "out": "c",
+  "note": "lone c"
+ },
+ {
+  "in": "O'zim",
+  "out": "Özim",
+  "note": "sentence start"
+ },
+ {
+  "in": "ko'cha",
+  "out": "köça",
+  "note": "ö + ç"
+ },
+ {
+  "in": "g'isht",
+  "out": "ğişt",
+  "note": "ğ + ş"
+ },
+ {
+  "in": "o'qituvchi",
+  "out": "öqituvçi",
+  "note": "ö + ç"
+ },
+ {
+  "in": "Sho'rva",
+  "out": "Şörva",
+  "note": "Ş + ö"
+ },
+ {
+  "in": "cho'l",
+  "out": "çöl",
+  "note": "ç + ö"
+ },
+ {
+  "in": "Men o'zbekman",
+  "out": "Men özbekman",
+  "note": "two words"
+ },
+ {
+  "in": "o'\nsh",
+  "out": "ö\nş",
+  "note": "newline between"
+ },
+ {
+  "in": "Yangi alifboga o'tganimizdan keyingi birinchi postim",
+  "out": "Yangi alifboga ötganimizdan keyingi birinçi postim",
+  "note": "from the post"
+ },
+ {
+  "in": "Buni yozish uchun umuman qiynalganim yo'q",
+  "out": "Buni yoziş uçun umuman qiynalganim yöq",
+  "note": "from the post"
+ },
+ {
+  "in": "qancha vaqt ketarkin?",
+  "out": "qança vaqt ketarkin?",
+  "note": "from the post"
+ },
+ {
+  "in": "Ma'lumot uchun: tel. 99",
+  "out": "Maʼlumot uçun: tel. 99",
+  "note": "mixed"
+ },
+ {
+  "in": "O'zbekiston Respublikasi Prezidenti",
+  "out": "Özbekiston Respublikasi Prezidenti",
+  "note": "phrase"
+ },
+ {
+  "in": "sHahar",
+  "out": "şahar",
+  "note": "first letter decides case"
+ }
+]
