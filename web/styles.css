@@ -262,7 +262,12 @@ kbd {
 .founder-kicker { margin: 0 0 10px; font: 700 13px/1 Onest; letter-spacing: .12em; text-transform: uppercase; color: var(--crust); }
 .founder-name { margin: 0 0 14px; font: 900 clamp(28px, 2.6vw, 36px)/1 Doto, monospace; color: var(--flour); }
 .founder-lede { margin: 0 0 20px; max-width: 52ch; font-size: 17px; }
-.services { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.founder-body { container-type: inline-size; }
+/* Kartalar: keng joyda uçtasi bir qatorda, tor joyda bir ustunda (2+1 bölib qolmasin). */
+.services { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+@container (min-width: 600px) {
+  .services { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+}
 .services li { background: var(--slab-well); border-radius: var(--corner); padding: 14px 16px 16px; font-size: 14.5px; line-height: 1.45; }
 .services b { display: block; margin-bottom: 6px; color: var(--flour); font-size: 16px; }
 .services b::before { content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 9px 2px 0; vertical-align: middle; border-radius: 50%; background: var(--crust); }
@@ -323,7 +328,6 @@ kbd {
   .founder { padding-bottom: 48px; }
   .founder-card { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px 18px; }
   .founder-photo { width: min(220px, 70%); }
-  .services { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .founder-cta .btn { flex: 1 1 auto; }
   .rule-table { margin-bottom: 24px; }
 }
