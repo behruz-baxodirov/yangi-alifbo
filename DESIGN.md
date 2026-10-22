@@ -379,6 +379,9 @@ A char slab after the FAQ that credits the author and offers his services.
 ### Platform and social marks
 The owner asked for real, recognisable marks, so the Apple logo and the Windows four-pane logo sit in the download tabs and the Windows download button, and the Telegram plane and Instagram camera sit in the founder slab. They are flat single-colour `currentColor` SVGs. This is the only exception to "no icon glyphs"; nothing else gets an icon.
 
+### Founder chip (header)
+A char capsule at the end of the top bar (shown on phones too): a 36px round photo, then a crust uppercase "Asosçi" over the name in flour. Fully rounded at the owner's request; the one exception to the Three Pixel Rule. No motion; hover steps to slab-well. Under 370px the name hides.
+
 ### Logo
 The wordmark "yozgiç" in Logo type, preceded by a 30px mark: a char disc with a dough centre holding the ö dot glyph (the favicon's drawing).
 
