@@ -2,7 +2,6 @@ import Cocoa
 import InputMethodKit
 import AlifboCore
 import os
-import Carbon
 
 let log = Logger(subsystem: "uz.yangialifbo", category: "ime")
 
@@ -10,12 +9,10 @@ let log = Logger(subsystem: "uz.yangialifbo", category: "ime")
 final class InputController: IMKInputController {
     private var composer = Composer(options: Settings.options)
     private var showsMarked = false
-    private var doubleShift = DoubleShiftDetector()
-    private let shiftKeyCodes: Set<UInt16> = [56, 60]
     private let notFound = NSRange(location: NSNotFound, length: 0)
 
     override func recognizedEvents(_ sender: Any!) -> Int {
-        let mask: NSEvent.EventTypeMask = [.keyDown, .flagsChanged, .leftMouseDown, .rightMouseDown, .otherMouseDown]
+        let mask: NSEvent.EventTypeMask = [.keyDown, .leftMouseDown, .rightMouseDown, .otherMouseDown]
         return Int(mask.rawValue)
     }
 
@@ -40,16 +37,6 @@ final class InputController: IMKInputController {
     override func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
         log.debug("handle type=\(event?.type.rawValue ?? 0, privacy: .public) clientOK=\(sender is IMKTextInput, privacy: .public)")
         guard let event, let client = sender as? IMKTextInput else { return false }
-        if event.type == .flagsChanged {
-            if shiftKeyCodes.contains(event.keyCode) {
-                let down = event.modifierFlags.contains(.shift)
-                if doubleShift.shift(down: down, at: event.timestamp) { toggleEnabled(client) }
-            } else {
-                doubleShift.otherKey()
-            }
-            return false
-        }
-        doubleShift.otherKey()
         if event.type != .keyDown {
             // Sichqoncha bosildi: kutilayotgan harf joyida yozib qolinadi, kontekst unutiladi.
             commitComposition(sender)
@@ -78,34 +65,8 @@ final class InputController: IMKInputController {
         updateMarkedText(client)
     }
 
-    /// Foydalanuvçi menyu-bardan ö yoki A holatini tanlaganda.
-    override func setValue(_ value: Any!, forTag tag: Int, client sender: Any!) {
-        guard tag == kTextServiceInputModePropertyTag, let mode = value as? String else {
-            super.setValue(value, forTag: tag, client: sender)
-            return
-        }
-        let enabled = mode != AppInfo.modeOff
-        guard enabled != Settings.enabled else { return }
-        setEnabled(enabled, client: sender as? IMKTextInput, selectMode: false)
-    }
-
-    private func toggleEnabled(_ client: IMKTextInput) {
-        setEnabled(!Settings.enabled, client: client, selectMode: true)
-    }
-
-    private func setEnabled(_ enabled: Bool, client: IMKTextInput?, selectMode: Bool) {
-        if let client { commitComposition(client) }
-        Settings.enabled = enabled
-        composer.options = Settings.options
-        if selectMode { client?.selectMode(Settings.modeID) }
-        log.notice("enabled=\(enabled, privacy: .public)")
-    }
-
     override func menu() -> NSMenu! {
         let menu = NSMenu()
-        let toggle = NSMenuItem(title: "Yangi alifbo yoqilgan  (⇧ Shift ikki marta)", action: #selector(toggleFromMenu(_:)), keyEquivalent: "")
-        toggle.state = Settings.enabled ? .on : .off
-        menu.addItem(toggle)
         let tutuq = NSMenuItem(title: "Tutuq belgisi ʼ (maʼno)", action: #selector(toggleTutuq(_:)), keyEquivalent: "")
         tutuq.state = Settings.tutuq ? .on : .off
         menu.addItem(tutuq)
@@ -115,10 +76,6 @@ final class InputController: IMKInputController {
         version.isEnabled = false
         menu.addItem(version)
         return menu
-    }
-
-    @objc private func toggleFromMenu(_ sender: Any?) {
-        setEnabled(!Settings.enabled, client: client(), selectMode: true)
     }
 
     @objc private func toggleTutuq(_ sender: Any?) {
