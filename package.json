@@ -1,0 +1,6 @@
+{
+  "name": "yangi-alifbo-web",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test web/converter.test.mjs" }
+}
