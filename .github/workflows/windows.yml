@@ -1,0 +1,46 @@
+name: windows-beta
+
+on:
+  push:
+    paths: ["windows/**", ".github/workflows/windows.yml"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install AutoHotkey v2
+        run: choco install autohotkey -y --no-progress
+
+      - name: Download Ahk2Exe
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo AutoHotkey/Ahk2Exe --pattern "*.zip" --dir ahk2exe
+          Expand-Archive (Get-ChildItem ahk2exe\*.zip | Select-Object -First 1).FullName -DestinationPath ahk2exe
+
+      - name: Compile YangiAlifbo.exe
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist | Out-Null
+          $base = "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
+          Start-Process -Wait -FilePath ahk2exe\Ahk2Exe.exe -ArgumentList "/in", "windows\YangiAlifbo.ahk", "/out", "dist\YangiAlifbo.exe", "/base", "`"$base`""
+          if (-not (Test-Path dist\YangiAlifbo.exe)) { throw "compile failed" }
+
+      - name: Smoke test in Notepad
+        shell: pwsh
+        run: |
+          Start-Process dist\YangiAlifbo.exe
+          Start-Sleep -Seconds 2
+          $ahk = "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
+          $p = Start-Process -Wait -PassThru -FilePath $ahk -ArgumentList "/ErrorStdOut", "windows\test\smoke.ahk" -RedirectStandardOutput smoke.log
+          Get-Content smoke.log -Encoding UTF8
+          if ($p.ExitCode -ne 0) { throw "smoke test failed" }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: YangiAlifbo-windows-beta
+          path: dist/YangiAlifbo.exe
