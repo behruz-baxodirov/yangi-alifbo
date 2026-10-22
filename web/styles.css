@@ -221,7 +221,12 @@ kbd {
 
 /* Bölimlar */
 .sec-title { font: 900 clamp(28px, 2.6vw, 36px)/1 Doto, monospace; margin: 0 0 24px; }
-.rules, .faq { max-width: var(--max); margin: 0 auto; padding: 24px var(--gutter) 72px; }
+.rules, .faq { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
+/* Bölimlar orasidagi yirik nuqta çiziq: har bölim alohida blok bölib körinadi. */
+.sec-rule {
+  width: min(calc(100% - 2 * var(--gutter)), calc(var(--max) - 2 * var(--gutter))); height: 10px; margin: 0 auto 56px;
+  background: radial-gradient(circle, var(--char) 3.2px, transparent 3.7px) var(--phase, 0px) center / var(--cell) 10px repeat-x;
+}
 .rules { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; align-items: start; }
 .rules .sec-title { grid-column: 1 / -1; }
 .rule-table { width: 100%; border-collapse: collapse; font-size: 18px; }
@@ -249,7 +254,7 @@ kbd {
 .faq details p { margin: 0 0 16px; max-width: 68ch; }
 
 /* Asoschi */
-.founder { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
+.founder { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 88px; }
 .founder-card {
   display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 48px; align-items: center;
   background: var(--char); color: var(--slab-ink); border-radius: var(--corner); padding: 40px;
@@ -273,7 +278,10 @@ kbd {
 .services b::before { content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 9px 2px 0; vertical-align: middle; border-radius: 50%; background: var(--crust); }
 .founder-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 20px; }
 .founder-cta .btn { margin: 0; }
-.founder-handle { font-size: 14px; }
+.founder-cta-label { color: var(--flour); font-weight: 700; font-size: 16px; }
+.services-title { margin: 0 0 10px; font: 700 13px/1 Onest; letter-spacing: .12em; text-transform: uppercase; color: var(--slab-ink); }
+.services span { display: block; }
+.services a { color: var(--flour); }
 .socials { list-style: none; margin: 0; padding: 18px 0 0; display: flex; flex-wrap: wrap; gap: 10px 28px; background: var(--dot-row-light); }
 .socials a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--slab-ink); text-decoration: none; font-size: 14px; }
 .socials a:hover b { text-decoration: underline; }
@@ -287,7 +295,7 @@ kbd {
 .close > * { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
 .close-big { font: 900 clamp(40px, 6vw, 72px)/1 Doto, monospace; margin-top: 0; margin-bottom: 20px; }
 .close a { color: var(--clay); font-weight: 700; }
-.close-links { margin: 0; }
+.close-links { margin-top: 0; margin-bottom: 0; }
 
 /* Planşet va telefon */
 @media (max-width: 980px) {
@@ -325,7 +333,8 @@ kbd {
   .pane-arrow svg { rotate: 90deg; }
   .pane-foot .btn { flex: 1; max-width: 200px; }
   .rules { grid-template-columns: minmax(0, 1fr); }
-  .founder { padding-bottom: 48px; }
+  .founder { padding-bottom: 56px; }
+  .sec-rule { margin-bottom: 40px; }
   .founder-card { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px 18px; }
   .founder-photo { width: min(220px, 70%); }
   .founder-cta .btn { flex: 1 1 auto; }

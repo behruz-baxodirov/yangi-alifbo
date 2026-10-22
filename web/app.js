@@ -228,7 +228,7 @@ share?.addEventListener("click", async () => {
 
 // Nuqta çiziqlarini sahifaning 12px çekiç töriga tekislaymiz.
 function alignDotRows() {
-  document.querySelectorAll(".rule-table, .faq").forEach((el) => {
+  document.querySelectorAll(".rule-table, .faq, .sec-rule").forEach((el) => {
     const left = el.getBoundingClientRect().left + scrollX;
     el.style.setProperty("--phase", `${(12 - (left % 12)) % 12}px`);
   });
