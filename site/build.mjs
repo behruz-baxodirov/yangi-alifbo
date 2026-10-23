@@ -28,7 +28,8 @@ const keepMarked = (fn) => (text) => text.split(/⟦([^⟧]*)⟧/).map((part, i)
 const plain = (html) => html.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
 // FAQPage savollari qölda yozilmaydi: har versiyaning körinadigan <details> bloklaridan yiğiladi.
-function syncFaq(head, main) {
+// Tili va @id si ham şu versiyaniki (kirill savollar "uz-Cyrl", /kr/ manzilida).
+function syncFaq(head, main, lang, pageUrl) {
   if (!head.includes('"FAQPage"')) return head;
   const entities = [...main.matchAll(/<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(([, q, a]) => ({
     "@type": "Question",
@@ -37,7 +38,12 @@ function syncFaq(head, main) {
   }));
   return head.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (all, open, json, close) => {
     const ld = JSON.parse(json);
-    for (const node of ld["@graph"] ?? [ld]) if (node["@type"] === "FAQPage") node.mainEntity = entities;
+    for (const node of ld["@graph"] ?? [ld]) {
+      if (node["@type"] !== "FAQPage") continue;
+      node["@id"] = `${pageUrl}#${node["@id"]?.split("#")[1] ?? "savollar"}`;
+      node.inLanguage = lang;
+      node.mainEntity = entities;
+    }
     return open + JSON.stringify(ld, null, 1) + close;
   });
 }
@@ -193,11 +199,12 @@ export async function renderSite({ siteDir, extraPages = [] }) {
       } else {
         const fn = keepMarked(CONVERT[t.til]);
         const loc = (html) => localizeHtml(keepOnly(html, t.til), fn);
-        page = { path, title: fn(uz.meta.title), description: fn(uz.meta.description), head: loc(uz.head), main: loc(uz.main), script: uz.meta.script };
+        // title_kr kabi kalit bölsa, şu versiyaning sarlavhasi (yangi alifboda yoziladi, ögiriladi).
+        page = { path, title: fn(uz.meta[`title_${t.til}`] ?? uz.meta.title), description: fn(uz.meta.description), head: loc(uz.head), main: loc(uz.main), script: uz.meta.script };
         header = loc(partials.uz.header);
         footer = loc(partials.uz.footer);
       }
-      page.head = syncFaq(page.head, page.main);
+      page.head = syncFaq(page.head, page.main, t.lang, url(t.prefix, path));
       if (uz.meta.article) page.head += articleLd(page, uz.meta, t);
       files.set(outPath(t.prefix, path), renderPage({ layout, header, footer, page, t }));
       locs.push({ loc: url(t.prefix, path), updated });
