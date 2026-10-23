@@ -210,9 +210,9 @@ document.getElementById("clear").addEventListener("click", () => {
         const { ex, note } = RULE_TEXT[id];
         return li(`<b data-lotin>${esc(ex)}</b>${note ? `: ${note}` : ""}`);
       }),
-      ...r.lookalikes.map((l) => li(`<b>${l.bad}</b> özbekça harf emas. Töğrisi <b>${l.good}</b> (${l.note}).`, "bad")),
+      ...r.lookalikes.map((l) => li(`<b data-lotin>${l.bad}</b> özbekça harf emas. Töğrisi <b data-lotin>${l.good}</b> (${l.note}).`, "bad")),
       r.ok ? li("Bu söz yangi alifboda töğri yozilgan.") : "",
-      r.ng ? li("ng özgarmaydi.") : "",
+      r.ng ? li("<span data-lotin>ng</span> özgarmaydi.") : "",
     ].join("");
     if (!tracked) { track("soz_tekshirildi"); tracked = true; }
   };

@@ -17,7 +17,7 @@ export function mountTest(section, track = () => {}) {
   prog.innerHTML = "<i></i>".repeat(TOTAL);
   const dots = [...prog.children];
 
-  let index = 0, score = 0, started = false, imageUrl = "";
+  let index = 0, score = 0, started = false;
 
   function showQuestion(focus) {
     const item = QUESTIONS[index];
@@ -29,7 +29,8 @@ export function mountTest(section, track = () => {}) {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "opt";
-      b.textContent = text;
+      // Variant imlo misoli: kirill rejimida ham lotinda qoladi, "Töğri" belgisi esa ögiriladi.
+      b.innerHTML = `<span class="opt-text" data-lotin lang="uz">${esc(text)}</span>`;
       if (text === item.options[0]) b.dataset.ok = "";
       b.addEventListener("click", (e) => answer(b, e.detail === 0));
       return b;
@@ -49,7 +50,7 @@ export function mountTest(section, track = () => {}) {
     if (!ok) button.classList.add("wrong");
     if (ok) score++;
     dots[index].classList.add(ok ? "ok" : "no");
-    live.textContent = ok ? "Töğri" : `Xato. Töğri javob: ${right.firstChild.textContent}`;
+    live.innerHTML = ok ? "Töğri" : `Xato. Töğri javob: <span data-lotin lang="uz">${esc(right.querySelector(".opt-text").textContent)}</span>`;
     why.innerHTML = withExamples(QUESTIONS[index].why);
     why.hidden = false;
     next.textContent = index === TOTAL - 1 ? "Natijani körsatiş" : "Keyingi savol";
@@ -67,7 +68,9 @@ export function mountTest(section, track = () => {}) {
     $("score").textContent = score;
     $("grade").textContent = `${grade(score)} Döstlaringiz ham sinab körsin.`;
     live.textContent = `Natija: ${TOTAL} dan ${score}`;
+    if (e.detail === 0) result.focus();
     track("test_tugadi", { ball: score });
+    prepareStory();
   });
 
   $("restart").addEventListener("click", (e) => {
@@ -82,24 +85,41 @@ export function mountTest(section, track = () => {}) {
     track("test_qayta");
   });
 
+  // Rasm natija çiqişi bilan tayyorlanadi: iOS ulaşiş oynasi bosişning özida çaqirilişi kerak,
+  // uzoq çiziş kutilsa, brauzer bosişni "eskirgan" deb ulaşişni rad etadi.
+  let story = null; // { score, file, url }
+  function prepareStory() {
+    const forScore = score;
+    storyBlob(forScore).then((blob) => {
+      if (!blob || forScore !== score) return;
+      if (story) URL.revokeObjectURL(story.url);
+      story = { score: forScore, file: new File([blob], "yozgich-test.png", { type: "image/png" }), url: URL.createObjectURL(blob) };
+    }).catch(() => {});
+  }
+  // Instagram va Facebook ilova brauzerida yuklab oliş sahifani rasm bilan almaştirib yuboradi.
+  const inApp = /Instagram|FBAN|FBAV/.test(navigator.userAgent);
+
   $("story").addEventListener("click", async () => {
     err.hidden = true;
-    const blob = await storyBlob(score).catch(() => null);
-    if (!blob) { err.hidden = false; return; }
-    if (imageUrl) URL.revokeObjectURL(imageUrl);
-    imageUrl = URL.createObjectURL(blob);
-    img.src = imageUrl;
-    preview.hidden = false;
-    const file = new File([blob], "yozgich-test.png", { type: "image/png" });
-    if (navigator.canShare?.({ files: [file] })) {
-      try {
-        await navigator.share({ files: [file] });
-        track("story_ulashildi", { usul: "share" });
-      } catch { /* foydalanuvçi bekor qildi */ }
-      return;
+    if (!story || story.score !== score) {
+      const blob = await storyBlob(score).catch(() => null);
+      if (!blob) { err.hidden = false; return; }
+      story = { score, file: new File([blob], "yozgich-test.png", { type: "image/png" }), url: URL.createObjectURL(blob) };
     }
+    img.src = story.url;
+    preview.hidden = false;
+    if (navigator.canShare?.({ files: [story.file] })) {
+      try {
+        await navigator.share({ files: [story.file] });
+        track("story_ulashildi", { usul: "share" });
+        return;
+      } catch (error) {
+        if (error?.name === "AbortError") return; // foydalanuvçi bekor qildi
+      }
+    }
+    if (inApp) return; // rasm körinib turibdi: bosib turib saqlaş mumkin
     const a = document.createElement("a");
-    a.href = imageUrl;
+    a.href = story.url;
     a.download = "yozgich-test.png";
     a.click();
     track("story_ulashildi", { usul: "yuklab" });

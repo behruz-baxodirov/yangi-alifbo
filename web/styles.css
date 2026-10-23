@@ -437,6 +437,12 @@ html[data-yozuv="kirill"] :is(.hero-head, .sec-title, .try-title, .founder-name,
 .donate p { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.45; }
 .close a.btn { color: var(--flour); margin-top: 0; }
 
+/* Menyu tor oynada sığmaydi: 1040px gaça faqat logo, yozuv tugmasi va asosçi */
+@media (max-width: 1040px) {
+  .bar nav { display: none; }
+  .script-btn { margin-left: auto; }
+}
+
 /* Planşet va telefon */
 @media (max-width: 980px) {
   .hero { column-gap: 32px; }
