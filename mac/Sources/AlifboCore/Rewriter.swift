@@ -25,6 +25,19 @@ extension Alphabet {
     }
 }
 
+extension Alphabet {
+    /// Kursor atrofidagi 3 ta UTF-16 birlik (Accessibility'dan): öçadigan belgining çapidagi, özi va
+    /// kursordan keyingi. Har biri alohida belgi bölmasa (emoji yarmi, NFD birikuvçi belgi) birikmaydi,
+    /// aks holda ikkinçi Backspace foydalanuvçi tegmagan belgini öçirib yuboradi.
+    public static func joinedLetter(aroundCursor units: [UInt16]) -> Character? {
+        let text = String(decoding: units, as: UTF16.self)
+        // Yolğiz surrogate U+FFFD ga almaşadi: asl birliklar bilan bir xil bölişi kerak.
+        guard units.count == 3, Array(text.utf16) == units, text.count == 3 else { return nil }
+        let chars = Array(text)
+        return joinedLetter(before: chars[0], after: chars[2])
+    }
+}
+
 public struct Rewriter {
     public var options: ComposerOptions
     /// Hujjatdagi oxirgi ikki belgi (biz bilgan qadar). Bo'sh — kontekst nomalum.

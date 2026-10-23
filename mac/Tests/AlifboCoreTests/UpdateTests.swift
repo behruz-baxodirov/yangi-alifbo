@@ -24,6 +24,18 @@ final class UpdateTests: XCTestCase {
         XCTAssertNil(UpdateCheck.version(fromLocation: "https://github.com/behruz-baxodirov/yangi-alifbo/releases"))
     }
 
+    // Teg öqilmagan javob (429, 5xx) topilgan yangilanişni öçirmaydi.
+    func testUnreadableAnswerKeepsSavedUpdate() {
+        XCTAssertEqual(UpdateCheck.available(latest: nil, current: "2.0.3", saved: "2.0.4"), "2.0.4")
+        XCTAssertNil(UpdateCheck.available(latest: nil, current: "2.0.3", saved: nil))
+    }
+
+    func testReadableAnswerReplacesSavedUpdate() {
+        XCTAssertEqual(UpdateCheck.available(latest: AppVersion("v2.0.5"), current: "2.0.3", saved: "2.0.4"), "2.0.5")
+        // Reliz qaytarib olingan: oxirgisi joriy bilan teng.
+        XCTAssertNil(UpdateCheck.available(latest: AppVersion("v2.0.3"), current: "2.0.3", saved: "2.0.4"))
+    }
+
     func testIsDue() {
         let now = Date(timeIntervalSince1970: 1_000_000)
         XCTAssertTrue(UpdateCheck.isDue(last: nil, now: now))

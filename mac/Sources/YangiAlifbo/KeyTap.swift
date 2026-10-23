@@ -94,7 +94,7 @@ final class KeyTap {
                 return Unmanaged.passUnretained(event)
             }
             // "cbh" da b öçirilsa (kursor b dan keyin): c va h birikib ç böladi.
-            if let letter = Alphabet.joinedLetter(before: around.before, after: around.after) {
+            if let units = around.units, let letter = Alphabet.joinedLetter(aroundCursor: units) {
                 log.debug("join \(String(letter), privacy: .public)")
                 rewriter.reset()
                 post(deleting: 2, forwardDeleting: 1, inserting: String(letter), via: proxy)
@@ -121,23 +121,18 @@ final class KeyTap {
         frontmost { element in Self.selectedRange(element)?.length }
     }
 
-    /// Backspace oldidan kursor atrofi: öçadigan belgining çapidagi va kursordan keyingi belgi.
+    /// Backspace oldidan kursor atrofi: [öçadiganning çapidagi, öçadigan, kursordan keyingi] UTF-16 birliklari.
     private struct CursorContext {
         var selectionLength: Int
-        var before: Character?
-        var after: Character?
+        var units: [UInt16]?
     }
 
     private func frontmostCursorContext() -> CursorContext? {
         frontmost { element in
             guard let range = Self.selectedRange(element) else { return nil }
             var context = CursorContext(selectionLength: range.length)
-            guard range.length == 0, range.location >= 2,
-                  let units = Self.text(element, CFRange(location: range.location - 2, length: 3)),
-                  units.count == 3 else { return context }
-            // UTF-16 birliklari: surrogate (emoji yarmi) harf emas, birikmaydi.
-            context.before = Unicode.Scalar(units[0]).map(Character.init)
-            context.after = Unicode.Scalar(units[2]).map(Character.init)
+            guard range.length == 0, range.location >= 2 else { return context }
+            context.units = Self.text(element, CFRange(location: range.location - 2, length: 3))
             return context
         }
     }

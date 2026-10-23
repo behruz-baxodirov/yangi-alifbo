@@ -55,10 +55,10 @@ final class Updater: NSObject, URLSessionTaskDelegate {
         checking = false
         guard case .latest(let latest) = result else { return }
         Settings.lastUpdateCheck = Date()
-        let newer = latest.flatMap { UpdateCheck.newer(latest: $0.description, than: AppInfo.version) }
         updateLog.notice("update check: latest=\(latest?.description ?? "?", privacy: .public)")
-        guard newer?.description != Settings.availableVersion else { return }
-        Settings.availableVersion = newer?.description
+        let available = UpdateCheck.available(latest: latest, current: AppInfo.version, saved: Settings.availableVersion)
+        guard available != Settings.availableVersion else { return }
+        Settings.availableVersion = available
         onChange?()
     }
 

@@ -93,6 +93,24 @@ final class RewriterTests: XCTestCase {
         XCTAssertEqual(Alphabet.joinedLetter(before: "G", after: "’"), "Ğ")
     }
 
+    // Kursor atrofidagi 3 ta UTF-16 birlik: [öçadiganning çapidagi, öçadigan, kursordan keyingi].
+    func testJoinAroundCursorUnits() {
+        XCTAssertEqual(Alphabet.joinedLetter(aroundCursor: Array("cbh".utf16)), "ç")
+        XCTAssertEqual(Alphabet.joinedLetter(aroundCursor: Array("ox'".utf16)), "ö")
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: Array("abh".utf16)))
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: Array("ch".utf16)))
+    }
+
+    // NFD "ş" = s + U+0327: birinçi birlik "s" bölsa ham, u öçadigan belgidan oldingi harf emas.
+    func testCombiningMarkDoesNotJoin() {
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: [0x73, 0x0327, 0x68]))
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: [0x63, 0x62, 0x0327]))
+    }
+
+    func testEmojiHalvesDoNotJoin() {
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: [0x63, 0xD83D, 0x68]))
+    }
+
     func testNothingJoinsWithoutPair() {
         XCTAssertNil(Alphabet.joinedLetter(before: "a", after: "h"))
         XCTAssertNil(Alphabet.joinedLetter(before: "c", after: "b"))

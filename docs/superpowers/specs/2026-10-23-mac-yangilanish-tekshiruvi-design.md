@@ -79,9 +79,10 @@ o'rniga saytda aniq nima yuborilishi yoziladi (6-bo'lim).
 
 - "Ruxsat sörayaptimi?" (ko'rinadigan `<p>` va JSON-LD bir xil, `seo.test.mjs`):
   `dastur internetga ulanmaydi` o'rniga
-  `Matn heç qayerga yuborilmaydi. Dastur faqat kuniga bir marta GitHubʼdan yangi
-  versiya raqamini tekşiradi (matn ham, sozlamalar ham yuborilmaydi); menyudagi
-  "Yangilanişni özi tekşirsin" belgisini olib taşlasangiz, internetga umuman çiqmaydi.`
+  `Matn heç qayerga yuborilmaydi. Dastur kuniga köpi bilan bir marta GitHubʼdan yangi
+  versiya raqamini tekşiradi: GitHub faqat IP manzilingiz va dastur versiyasini köradi,
+  matn ham, sozlamalar ham yuborilmaydi. Menyudagi “Yangilanişni özi tekşirsin” belgisini
+  olib taşlasangiz, internetga umuman çiqmaydi.` (yakuniy ko'rib chiqishdan keyin aniqlandi)
 - `#yangilash`: 2.0.3 dan boshlab menyuda `Yangi versiya bor` chiqishi yoziladi.
 - Barcha yangi matn `web/converter.js` dan o'tkaziladi.
 

@@ -50,6 +50,13 @@ public enum UpdateCheck {
         return AppVersion(String(parts[parts.count - 1]))
     }
 
+    /// Javobdan keyin saqlanadigan yangi versiya. Teg öqilmagan javob (429, 5xx, boşqa sahifa)
+    /// avval topilganini öçirmaydi.
+    public static func available(latest: AppVersion?, current: String, saved: String?) -> String? {
+        guard let latest else { return saved }
+        return newer(latest: latest.description, than: current)?.description
+    }
+
     /// Oxirgi reliz joriydan yangi bölsa, uning versiyasi.
     public static func newer(latest: String, than current: String) -> AppVersion? {
         guard let latest = AppVersion(latest), let current = AppVersion(current), latest > current else { return nil }
