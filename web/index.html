@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#cf8a33">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="fonts/fonts.css?v=10">
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=12">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -122,7 +122,7 @@
      "name": "ö, ğ, ş, ç harflarini qanday yozaman?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Kompyuterda Yozgiç klaviaturasini örnating: o' yozsangiz ö, g' yozsangiz ğ, sh yozsangiz ş, ch yozsangiz ç çiqadi. Yangi tugmalarni yodlaş şart emas. Telefonda harfni bosib turing: o → ö, g → ğ, s → ş, c → ç."
+      "text": "Kompyuterda Yozgiç klaviaturasini örnating: o' yozsangiz ö, g' yozsangiz ğ, sh yozsangiz ş, ch yozsangiz ç çiqadi. Yangi tugmalarni yodlaş şart emas. Telefonda ozarbayjonça klaviaturani qöşing yoki harfni bosib turing: o → ö, g → ğ, s → ş, c → ç. Batafsil: Telefonda yoziş."
      }
     },
     {
@@ -167,6 +167,14 @@
     },
     {
      "@type": "Question",
+     "name": "Yangi versiyani qanday olaman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sayt va konverter özi yangilanadi: sahifani oçsangiz, eng yangisi çiqadi. Mac klaviaturasini yangilaş uçun Terminalʼga örnatiş buyruğini qayta joylang: curl -fsSL https://yozgich.uz/install.sh | bash. Dastur eskisining ustidan yangilanadi, keyin macOS Accessibility ruxsatini bir marta qayta söraydi. Windowsʼda soat yonidagi ikonkadan “Çiqiş” ni tanlang, yangi YangiAlifbo-windows-beta.exe faylni yuklab oling va oçing."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Windowsʼda işlaydimi?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -186,7 +194,7 @@
      "name": "Telefonda qanday yozaman?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Telefon klaviaturasida harfni bosib turing: o → ö, g → ğ, s → ş, c → ç (iPhoneʼda iOS 17 dan boşlab). Batafsil, rasmlari bilan: Telefonda yoziş. Turk klaviaturasini qöşmang: unda i ning boş harfi İ (nuqtali) bölib qoladi, özbekçada esa I kerak."
+      "text": "Eng qulayi: telefonga ozarbayjonça klaviaturani qöşing, unda ö ğ ş ç alohida tugmada. Katta I uçun Shift + ı ni bosing: i ning katta harfi İ (nuqtali), özbekçada esa I kerak. Klaviaturani almaştirmasdan ham böladi: harfni bosib turing, o → ö, g → ğ, s → ş, c → ç (iPhoneʼda iOS 17 dan boşlab). Turk klaviaturasi sözlarni turkçaga tuzatib yuboradi. Batafsil, rasmlari bilan: Telefonda yoziş."
      }
     }
    ]
@@ -407,6 +415,25 @@
       </div>
 
       <div class="panel guide" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios" tabindex="0">
+        <h3 class="guide-h">1-usul: ozarbayjonça klaviatura <span class="tag tag-hot">Tavsiya</span></h3>
+        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> alohida tugmada turadi, bosib turiş şart emas. Bir marta qöşasiz, keyin <kbd>🌐</kbd> tugmasi bilan almaştirasiz.</p>
+        <ol class="steps">
+          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Sozlamalarni oçing</h4><p><b lang="en">Settings</b> → <b lang="en">General</b> → <b lang="en">Keyboard</b>. Ruşça: <b lang="ru">Настройки</b> → <b lang="ru">Основные</b> → <b lang="ru">Клавиатура</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Yangi klaviatura qöşing</h4><p><b lang="en">Keyboards</b> → <b lang="en">Add New Keyboard…</b> Ruşça: <b lang="ru">Клавиатуры</b> → <b lang="ru">Новые клавиатуры</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Ozarbayjonçani tanlang</h4><p>Röyxatdan <b lang="en">Azerbaijani</b> (<b lang="ru">Азербайджанская</b>) ni bosing.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Yozayotganda almaştiring</h4><p><kbd>🌐</kbd> tugmasini bosing: ekranda <b lang="az">Azərbaycan</b> klaviaturasi çiqadi.</p><p class="step-hint">Bu klaviaturada avtomatik tuzatiş yöq, şuning uçun özbekça sözlaringizni “töğrilab” buzmaydi.</p></div></li>
+        </ol>
+        <div class="guide-note">
+          <p class="guide-note-t">Katta <b data-lotin>I</b> uçun <b data-lotin>ı</b> tugmasi</p>
+          <p>Bu klaviaturada ikkita <span data-lotin>i</span> bor: <b data-lotin>i</b> va <b data-lotin>ı</b> (nuqtasiz). Katta harfda <b data-lotin>i</b> tugmasi <b data-lotin>İ</b> (nuqtali) beradi, u özbekçada yöq.</p>
+          <ul class="ikeys" aria-hidden="true">
+            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">kiçik <span data-lotin>i</span></span></li>
+            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">katta <span data-lotin>I</span></span></li>
+            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">kerak emas</span></li>
+          </ul>
+          <p>Gap boşida klaviatura özi <b data-lotin>İ</b> qöyib yuborişi mumkin: tekşirib qöying. <b data-lotin>ə</b> harfi özbekçada yöq. Tutuq <b data-lotin>ʼ</b> uçun oddiy <b data-lotin>'</b> yozing.</p>
+        </div>
+        <h3 class="guide-h guide-h2">2-usul: klaviaturani almaştirmasdan</h3>
         <p class="guide-lede">Harfni <b>bosib turing</b>, menyu oçiladi. Barmoqni töğri harfga surib qöyib yuboring.</p>
         <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>o</span><span class="pop" aria-hidden="true" data-lotin><span>ô</span><span class="pick">ö</span><span>ò</span><span>ő</span></span><p class="pop-cap"><b data-lotin>ö</b>: tepasida ikki nuqta</p></div>
         <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>g</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ğ</span><span>ġ</span></span><p class="pop-cap"><b data-lotin>ğ</b>: tepasida qayiqça, nuqta emas</p></div>
@@ -416,6 +443,25 @@
       </div>
 
       <div class="panel guide" role="tabpanel" id="panel-and" aria-labelledby="tab-and" tabindex="0" hidden>
+        <h3 class="guide-h">1-usul: ozarbayjonça klaviatura <span class="tag tag-hot">Tavsiya</span></h3>
+        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> alohida tugmada turadi, bosib turiş şart emas. Quyidagi qadamlar <b lang="en">Gboard</b> uçun, menyu nomlari telefonga qarab biroz farq qilişi mumkin.</p>
+        <ol class="steps">
+          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Gboard sozlamalarini oçing</h4><p>Klaviatura oçiq turganda <kbd>⚙</kbd> belgisini bosing. Yoki: <b lang="en">Settings</b> → <b lang="en">System</b> → <b lang="en">Languages &amp; input</b> → <b lang="en">On-screen keyboard</b> → <b lang="en">Gboard</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Til qöşing</h4><p><b lang="en">Languages</b> → <b lang="en">Add keyboard</b>. Ruşça: <b lang="ru">Языки</b> → <b lang="ru">Добавить клавиатуру</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Ozarbayjonçani tanlang</h4><p><b lang="az">Azərbaycan</b> (<b lang="en">Azerbaijani</b>) → <b lang="en">Done</b> (<b lang="ru">Готово</b>).</p></div></li>
+          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Yozayotganda almaştiring</h4><p><kbd>🌐</kbd> tugmasini bosing yoki boşliq tugmasini bosib turing.</p><p class="step-hint">Samsung klaviaturasida: sozlamalar → tillar → <b lang="az">Azərbaycan</b> ni qöşing.</p></div></li>
+        </ol>
+        <div class="guide-note">
+          <p class="guide-note-t">Katta <b data-lotin>I</b> uçun <b data-lotin>ı</b> tugmasi</p>
+          <p>Bu klaviaturada ikkita <span data-lotin>i</span> bor: <b data-lotin>i</b> va <b data-lotin>ı</b> (nuqtasiz). Katta harfda <b data-lotin>i</b> tugmasi <b data-lotin>İ</b> (nuqtali) beradi, u özbekçada yöq.</p>
+          <ul class="ikeys" aria-hidden="true">
+            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">kiçik <span data-lotin>i</span></span></li>
+            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">katta <span data-lotin>I</span></span></li>
+            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">kerak emas</span></li>
+          </ul>
+          <p>Gap boşida klaviatura özi <b data-lotin>İ</b> qöyib yuborişi mumkin: tekşirib qöying. <b data-lotin>ə</b> harfi özbekçada yöq. Tutuq <b data-lotin>ʼ</b> uçun oddiy <b data-lotin>'</b> yozing.</p>
+        </div>
+        <h3 class="guide-h guide-h2">2-usul: klaviaturani almaştirmasdan</h3>
         <p class="guide-lede">Klaviaturalar har xil (Gboard, Samsung va boşqalar). Harfni <b>bosib turing</b>: <span data-lotin>o, g, s, c</span>. Menyuda bölsa, töğrisini tanlang.</p>
         <table class="look">
           <caption class="sr-only">Töğri harf va unga öxşaş boşqa harflar</caption>
@@ -430,7 +476,7 @@
         <p class="guide-meta">Menyuda yöq bölsa, odatdagidek <b data-lotin>o'</b>, <b data-lotin>g'</b>, <b data-lotin>sh</b>, <b data-lotin>ch</b> deb yozing va matnni <a href="#konverter">konverterdan</a> ötkazing.</p>
       </div>
 
-      <p class="guide-warn"><b>Turk klaviaturasini qöşmang:</b> unda <b data-lotin>i</b> ning boş harfi <b data-lotin>İ</b> (nuqtali) böladi, özbekçada <b data-lotin>I</b> kerak.</p>
+      <p class="guide-warn"><b>Turk klaviaturasi emas, ozarbayjonça:</b> iPhoneʼda turkça klaviatura sözlarni turkçaga tuzatib yuboradi, ozarbayjonçada avtomatik tuzatiş yöq.</p>
     </div>
   </section>
 
@@ -524,7 +570,7 @@
     </details>
     <details id="harflar">
       <summary><span data-lotin>ö, ğ, ş, ç</span> harflarini qanday yozaman?</summary>
-      <p>Kompyuterda Yozgiç klaviaturasini örnating: <b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b>, <b data-lotin>g'</b> yozsangiz <b data-lotin>ğ</b>, <b data-lotin>sh</b> yozsangiz <b data-lotin>ş</b>, <b data-lotin>ch</b> yozsangiz <b data-lotin>ç</b> çiqadi. Yangi tugmalarni yodlaş şart emas. Telefonda harfni bosib turing: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>.</p>
+      <p>Kompyuterda Yozgiç klaviaturasini örnating: <b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b>, <b data-lotin>g'</b> yozsangiz <b data-lotin>ğ</b>, <b data-lotin>sh</b> yozsangiz <b data-lotin>ş</b>, <b data-lotin>ch</b> yozsangiz <b data-lotin>ç</b> çiqadi. Yangi tugmalarni yodlaş şart emas. Telefonda ozarbayjonça klaviaturani qöşing yoki harfni bosib turing: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Batafsil: <a href="#telefonda">Telefonda yoziş</a>.</p>
     </details>
     <details id="kirill">
       <summary>Kirill yoki eski lotin matnini yangi alifboga qanday ögiraman?</summary>
@@ -550,6 +596,11 @@
       <p>GitHubʼdagi <code>.zip</code> faylni qöl bilan oçmang: ilova Apple sertifikatisiz, macOS uni <span lang="en">“damaged”</span> deb bloklaydi. Örnatişning yagona töğri yöli yuqoridagi Terminal buyruği.</p>
       <p>Öçirgandan keyin System Settings → Privacy &amp; Security → Accessibility röyxatidan <b data-lotin>Yangi alifbo</b> ni ham olib taşlaşingiz mumkin.</p>
     </details>
+    <details id="yangilash">
+      <summary>Yangi versiyani qanday olaman?</summary>
+      <p>Sayt va konverter özi yangilanadi: sahifani oçsangiz, eng yangisi çiqadi. Mac klaviaturasini yangilaş uçun Terminalʼga örnatiş buyruğini qayta joylang: <code>curl -fsSL https://yozgich.uz/install.sh | bash</code>. Dastur eskisining ustidan yangilanadi, keyin macOS Accessibility ruxsatini bir marta qayta söraydi.</p>
+      <p>Windowsʼda soat yonidagi ikonkadan “Çiqiş” ni tanlang, yangi <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a> faylni yuklab oling va oçing.</p>
+    </details>
     <details id="windows">
       <summary>Windowsʼda işlaydimi?</summary>
       <p>Ha, beta versiya: <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a>. Yoqiş va öçiriş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. Avtomatik test Notepadʼda ötgan, lekin haqiqiy kompyuterlarda hali kam sinalgan; xato topsangiz GitHubʼda yozing.</p>
@@ -561,7 +612,7 @@
     </details>
     <details>
       <summary>Telefonda qanday yozaman?</summary>
-      <p>Telefon klaviaturasida harfni bosib turing: <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (iPhoneʼda iOS 17 dan boşlab). Batafsil, rasmlari bilan: <a href="#telefonda">Telefonda yoziş</a>. Turk klaviaturasini qöşmang: unda <b data-lotin>i</b> ning boş harfi <b data-lotin>İ</b> (nuqtali) bölib qoladi, özbekçada esa <b data-lotin>I</b> kerak.</p>
+      <p>Eng qulayi: telefonga ozarbayjonça klaviaturani qöşing, unda <span data-lotin>ö ğ ş ç</span> alohida tugmada. Katta <b data-lotin>I</b> uçun Shift + <b data-lotin>ı</b> ni bosing: <b data-lotin>i</b> ning katta harfi <b data-lotin>İ</b> (nuqtali), özbekçada esa <b data-lotin>I</b> kerak. Klaviaturani almaştirmasdan ham böladi: harfni bosib turing, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (iPhoneʼda iOS 17 dan boşlab). Turk klaviaturasi sözlarni turkçaga tuzatib yuboradi. Batafsil, rasmlari bilan: <a href="#telefonda">Telefonda yoziş</a>.</p>
     </details>
   </section>
 
