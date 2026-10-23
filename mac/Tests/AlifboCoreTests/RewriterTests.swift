@@ -50,6 +50,75 @@ final class RewriterTests: XCTestCase {
         XCTAssertEqual(r.handle(.char("'")), .pass)
     }
 
+    // c, b (adaşib), ⌫, h → ç: Backspace faqat oxirgi harfni unutadi.
+    func testBackspaceKeepsLetterBeforeDeletedOne() {
+        var r = Rewriter()
+        _ = r.handle(.char("c"))
+        _ = r.handle(.char("b"))
+        XCTAssertEqual(r.handle(.backspace), .pass)
+        XCTAssertEqual(r.handle(.char("h")), .replace(deleteBefore: 1, insert: "ç"))
+    }
+
+    func testBackspaceAfterApostropheTypo() {
+        var r = Rewriter()
+        _ = r.handle(.char("o"))
+        _ = r.handle(.char("x"))
+        _ = r.handle(.backspace)
+        XCTAssertEqual(r.handle(.char("'")), .replace(deleteBefore: 1, insert: "ö"))
+    }
+
+    // Belgilangan matn öçirilsa, qaysi harf qolgani noma'lum: hammasi unutiladi.
+    func testDeletingSelectionForgetsContext() {
+        var r = Rewriter()
+        _ = r.handle(.char("c"))
+        r.deletedSelection()
+        XCTAssertEqual(r.handle(.char("h")), .pass)
+    }
+
+    func testDisabledBackspaceForgetsContext() {
+        var r = Rewriter(options: .init(enabled: false))
+        _ = r.handle(.char("c"))
+        _ = r.handle(.char("b"))
+        _ = r.handle(.backspace)
+        r.options.enabled = true
+        XCTAssertEqual(r.handle(.char("h")), .pass)
+    }
+
+    // cbh → kursor b dan keyin → ⌫: c va h birikadi.
+    func testJoinedLetterAroundDeletedCharacter() {
+        XCTAssertEqual(Alphabet.joinedLetter(before: "c", after: "h"), "ç")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "S", after: "H"), "Ş")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "s", after: "H"), "ş")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "o", after: "'"), "ö")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "G", after: "’"), "Ğ")
+    }
+
+    // Kursor atrofidagi 3 ta UTF-16 birlik: [öçadiganning çapidagi, öçadigan, kursordan keyingi].
+    func testJoinAroundCursorUnits() {
+        XCTAssertEqual(Alphabet.joinedLetter(aroundCursor: Array("cbh".utf16)), "ç")
+        XCTAssertEqual(Alphabet.joinedLetter(aroundCursor: Array("ox'".utf16)), "ö")
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: Array("abh".utf16)))
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: Array("ch".utf16)))
+    }
+
+    // NFD "ş" = s + U+0327: birinçi birlik "s" bölsa ham, u öçadigan belgidan oldingi harf emas.
+    func testCombiningMarkDoesNotJoin() {
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: [0x73, 0x0327, 0x68]))
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: [0x63, 0x62, 0x0327]))
+    }
+
+    func testEmojiHalvesDoNotJoin() {
+        XCTAssertNil(Alphabet.joinedLetter(aroundCursor: [0x63, 0xD83D, 0x68]))
+    }
+
+    func testNothingJoinsWithoutPair() {
+        XCTAssertNil(Alphabet.joinedLetter(before: "a", after: "h"))
+        XCTAssertNil(Alphabet.joinedLetter(before: "c", after: "b"))
+        XCTAssertNil(Alphabet.joinedLetter(before: "c", after: "'"))
+        XCTAssertNil(Alphabet.joinedLetter(before: nil, after: "h"))
+        XCTAssertNil(Alphabet.joinedLetter(before: "c", after: nil))
+    }
+
     func testOtherKeyForgetsContext() {
         var r = Rewriter()
         _ = r.handle(.char("s"))

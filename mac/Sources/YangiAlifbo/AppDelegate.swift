@@ -5,6 +5,7 @@ import AlifboCore
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private let keyTap = KeyTap()
     private let hud = ToggleHUD()
+    private let updater = Updater()
     private var statusItem: NSStatusItem!
     private var permissionTimer: Timer?
 
@@ -17,7 +18,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         keyTap.onToggle = { [weak self] in self?.toggleEnabled(nil) }
         startWhenTrusted(prompt: true)
+        updater.onChange = { [weak self] in self?.updateChanged() }
+        updater.start()
         refresh()
+    }
+
+    private func updateChanged() {
+        refresh()
+        guard let version = updater.available, Settings.announcedVersion != version else { return }
+        Settings.announcedVersion = version
+        hud.show(symbol: "↑", title: "Yangi versiya bor: \(version)",
+                 subtitle: "ö ustida öng tugma → yangilaş", seconds: 5)
     }
 
     /// Accessibility ruxsati berilguncha kutadi, keyin tugma kuzatuvçisini yoqadi.
@@ -44,7 +55,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if !hasPermission {
             title = "ö⚠︎"
         } else {
-            title = Settings.enabled ? "ö" : "A"
+            title = (Settings.enabled ? "ö" : "A") + (updater.available == nil ? "" : "↑")
         }
         button.attributedTitle = NSAttributedString(string: title, attributes: [
             .font: NSFont.systemFont(ofSize: 15, weight: .bold),
@@ -78,6 +89,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             menu.addItem(item("⚠︎ Ruxsat kerak: Accessibility'da \"Yangi alifbo\"ni yoqing…", #selector(openAccessibility(_:))))
             menu.addItem(.separator())
         }
+        if let version = updater.available {
+            menu.addItem(item("Yangi versiya bor (\(version)) — yangilaş…", #selector(offerUpdate(_:))))
+            menu.addItem(.separator())
+        }
         let enabled = item("Yoqilgan", #selector(toggleEnabled(_:)))
         enabled.state = Settings.enabled ? .on : .off
         menu.addItem(enabled)
@@ -96,6 +111,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(tutuq)
         menu.addItem(.separator())
         menu.addItem(item("Yordam va yangilanişlar…", #selector(openSite(_:))))
+        let autoCheck = item("Yangilanişni özi tekşirsin", #selector(toggleAutoUpdate(_:)))
+        autoCheck.state = Settings.autoUpdateCheck ? .on : .off
+        menu.addItem(autoCheck)
         let version = NSMenuItem(title: "Yangi alifbo \(AppInfo.version)", action: nil, keyEquivalent: "")
         version.isEnabled = false
         menu.addItem(version)
@@ -133,6 +151,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func toggleTutuq(_ sender: Any?) {
         Settings.tutuq.toggle()
         keyTap.updateOptions()
+    }
+
+    @objc private func offerUpdate(_ sender: Any?) {
+        updater.offerUpdate()
+    }
+
+    @objc private func toggleAutoUpdate(_ sender: Any?) {
+        Settings.autoUpdateCheck.toggle()
+        updater.checkIfDue()
     }
 
     @objc private func openAccessibility(_ sender: Any?) {

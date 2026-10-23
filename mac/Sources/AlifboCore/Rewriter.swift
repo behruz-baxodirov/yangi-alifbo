@@ -15,6 +15,29 @@ extension RewriteAction {
     }
 }
 
+extension Alphabet {
+    /// Örtadagi belgi öçirilganda qöşnilar birikadimi: c|b|h → ç, o|x|' → ö.
+    public static func joinedLetter(before: Character?, after: Character?) -> Character? {
+        guard let before, let after else { return nil }
+        if after == "h" || after == "H" { return withH[before] }
+        if apostrophes.contains(after) { return withApostrophe[before] }
+        return nil
+    }
+}
+
+extension Alphabet {
+    /// Kursor atrofidagi 3 ta UTF-16 birlik (Accessibility'dan): öçadigan belgining çapidagi, özi va
+    /// kursordan keyingi. Har biri alohida belgi bölmasa (emoji yarmi, NFD birikuvçi belgi) birikmaydi,
+    /// aks holda ikkinçi Backspace foydalanuvçi tegmagan belgini öçirib yuboradi.
+    public static func joinedLetter(aroundCursor units: [UInt16]) -> Character? {
+        let text = String(decoding: units, as: UTF16.self)
+        // Yolğiz surrogate U+FFFD ga almaşadi: asl birliklar bilan bir xil bölişi kerak.
+        guard units.count == 3, Array(text.utf16) == units, text.count == 3 else { return nil }
+        let chars = Array(text)
+        return joinedLetter(before: chars[0], after: chars[2])
+    }
+}
+
 public struct Rewriter {
     public var options: ComposerOptions
     /// Hujjatdagi oxirgi ikki belgi (biz bilgan qadar). Bo'sh — kontekst nomalum.
@@ -23,6 +46,11 @@ public struct Rewriter {
     public init(options: ComposerOptions = .init()) { self.options = options }
 
     public mutating func handle(_ input: KeyInput) -> RewriteAction {
+        if options.enabled, input == .backspace {
+            // Faqat oxirgi belgi öçadi: "c b ⌫ h" → ç.
+            if !recent.isEmpty { recent.removeLast() }
+            return .pass
+        }
         guard options.enabled, case .char(let ch) = input else {
             reset()
             return .pass
@@ -43,6 +71,9 @@ public struct Rewriter {
     }
 
     public mutating func reset() { recent.removeAll() }
+
+    /// Backspace belgilangan matnni öçirdi: kursor oldida nima qolgani noma'lum.
+    public mutating func deletedSelection() { reset() }
 
     private mutating func replaced(_ count: Int, with chars: [Character]) -> RewriteAction {
         recent.removeLast(min(count, recent.count))

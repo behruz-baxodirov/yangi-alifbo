@@ -470,6 +470,8 @@ html[data-yozuv="kirill"] :is(.hero-head, .sec-title, .try-title, .founder-name,
 .close-big { font: 900 clamp(40px, 6vw, 72px)/1 Doto, monospace; margin-top: 0; margin-bottom: 20px; }
 .close a { color: var(--clay); font-weight: 700; }
 .close-links { margin-top: 0; margin-bottom: 0; }
+.close-alt { margin-top: 32px; font-size: 14px; line-height: 1.5; color: var(--char-soft); }
+.close-alt p { margin: 0 0 6px; }
 .donate { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-bottom: 28px; }
 .donate p { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.45; }
 .close a.btn { color: var(--flour); margin-top: 0; }
