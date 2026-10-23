@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
-import { tr } from "./i18n.js";
+import { tr, placeIn } from "./i18n.js";
 import { RU } from "./i18n-ru.js";
 import { QUESTIONS, grade } from "./test-savollar.js";
 import { RULE_TEXT, explain } from "./soz.js";
@@ -61,4 +61,11 @@ test("Russian quiz texts keep the «…» examples", () => {
     const ex = (s) => [...s.matchAll(/«([^»]*)»/g)].map((m) => m[1]).sort();
     assert.deepEqual(ex(RU[q.q]), ex(q.q), q.q);
   }
+});
+
+test("switching version keeps the query and the hash", () => {
+  assert.equal(placeIn("/ru/ism/", "?n=%C4%9Eulom", ""), "/ru/ism/?n=%C4%9Eulom");
+  assert.equal(placeIn("/kr/", "", "#konverter"), "/kr/#konverter");
+  assert.equal(placeIn("/eski/ism/?old=1#x", "?n=a", "#b"), "/eski/ism/?n=a#b");
+  assert.equal(placeIn("/soz/", "", ""), "/soz/");
 });

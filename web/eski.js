@@ -1,10 +1,10 @@
 // Yangi lotin → eski lotin: /eski/ sahifalari va eski yozuv rejimi uçun. kirill.js ning juftigi.
-import { KEEP, PROTECTED } from "./kirill.js";
+import { KEEP, PROTECTED, isBrand } from "./kirill.js";
 
 const OLD = { ö: "oʻ", ğ: "gʻ", ş: "sh", ç: "ch" };
 
 function convertWord(word) {
-  if (KEEP.has(word) || !/[öğşçÖĞŞÇ]/u.test(word)) return word;
+  if (KEEP.has(word) || isBrand(word) || !/[öğşçÖĞŞÇ]/u.test(word)) return word;
   const allCaps = word === word.toUpperCase() && [...word].filter((c) => /\p{L}/u.test(c)).length > 1;
   return word.replace(/[öğşçÖĞŞÇ]/gu, (ch) => {
     const old = OLD[ch.toLowerCase()];

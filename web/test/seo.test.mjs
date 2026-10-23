@@ -128,6 +128,7 @@ test("old-Latin pages have no new letters outside examples", () => {
     const body = html.slice(html.indexOf("<body"));
     let hit = "";
     localizeHtml(body, (s) => {
+      if (!hit && /Yozgich\p{Ll}/u.test(s)) hit = s.trim().slice(0, 40); // brend qöşimça bilan ham özgarmaydi
       const text = s.replaceAll("Yozgiç", ""); // brend nomi har versiyada bir xil
       if (!hit && /[öğşçÖĞŞÇ]/.test(text)) hit = text.trim().slice(0, 40);
       return s;

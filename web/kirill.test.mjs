@@ -55,3 +55,7 @@ test("site words survive a round trip through the converter", () => {
   }
   assert.deepEqual(failures, []);
 });
+
+test("the brand keeps its spelling with a suffix", () => {
+  assert.equal(toCyrillic("Yozgiçni Yozgiçda şahar"), "Yozgiçni Yozgiçda шаҳар");
+});

@@ -25,8 +25,12 @@ const UZ_LETTER = /^[a-zöğşçʼ]$/i;
 
 const isUpper = (ch) => ch !== ch.toLowerCase();
 
+// Brend qöşimça olsa ham (Yozgiçni, Yozgiçda) öz yozuvida qoladi.
+const BRANDS = ["Yozgiç"];
+export const isBrand = (word) => BRANDS.some((b) => word.startsWith(b) && /^\p{Ll}*$/u.test(word.slice(b.length)));
+
 function isKept(word) {
-  if (KEEP.has(word)) return true;
+  if (KEEP.has(word) || isBrand(word)) return true;
   if ([...word].some((ch) => !UZ_LETTER.test(ch) || /[cw]/i.test(ch))) return true;
   if (/^[A-Z]{2,4}$/.test(word)) return true;
   return /^.\S*\p{Lu}/u.test(word) && word !== word.toUpperCase();

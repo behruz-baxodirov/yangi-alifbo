@@ -15,6 +15,10 @@ test("tutuq, names and links stay as they are", () => {
   assert.equal(toOldLatin("Yozgiç https://yozgich.uz/ş a@b.uz"), "Yozgiç https://yozgich.uz/ş a@b.uz");
 });
 
+test("the brand keeps its spelling with a suffix", () => {
+  assert.equal(toOldLatin("Yozgiçni Yozgiçda Yozgiçga şahar"), "Yozgiçni Yozgiçda Yozgiçga shahar");
+});
+
 test("home page words survive a round trip through the converter", () => {
   const html = readFileSync(new URL("./index.html", import.meta.url), "utf8")
     .replace(/<head>[\s\S]*?<\/head>/, "")

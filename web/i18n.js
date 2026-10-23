@@ -21,3 +21,8 @@ export function tr(version, uz, params = {}, full = false) {
 
 export const t = (uz, params) => tr(til, uz, params);
 export const tx = (uz, params) => tr(til, uz, params, true);
+
+/** Boşqa versiyaga ötganda sahifadagi joy saqlanadi: ?n=… va #konverter yangi havolaga köçadi. */
+export function placeIn(href, search, hash) {
+  return href.split(/[?#]/)[0] + search + hash;
+}
