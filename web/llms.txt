@@ -1,0 +1,22 @@
+# Yozgiç
+
+> Yozgiç (yozgich.uz) yangi özbek lotin alifbosi uçun bepul klaviatura va onlayn konverter. Odatdagidek yozasiz, yangi harf özi çiqadi: o' → ö, g' → ğ, sh → ş, ch → ç, s'h → sʼh, tutuq ʼ. Mac va Windows (beta) uçun. Konverter kirill va eski lotin matnini brauzerning özida ögiradi, matn heç qayerga yuborilmaydi.
+>
+> English: Yozgiç is a free macOS/Windows keyboard and in-browser converter for the new Uzbek Latin alphabet (law ЎРҚ-1184, signed 21 October 2026, in force 22 April 2027). It is not a government project; official spelling rules have not been published yet.
+
+Qidiruvda: yangi alifbo, yangi alifbo klaviatura, yangi o'zbek alifbosi, yangi alifbo konvertor, янги алифбо.
+
+## Asosiy
+
+- [Yuklab oliş va örnatiş](https://yozgich.uz/#yuklab-olish): Macʼda Terminalʼga bitta buyruq (`curl -fsSL https://yozgich.uz/install.sh | bash`), Windowsʼda beta .exe fayl.
+- [Konverter](https://yozgich.uz/#konverter): kirill yoki eski lotin matn → yangi alifbo.
+- [Qoidalar](https://yozgich.uz/#qoidalar): qaysi harf nimaga almaşadi, misollar bilan.
+- [Savollar](https://yozgich.uz/#savollar): yangi alifbo qaçon kuçga kiradi, ö ğ ş ç ni qanday yozaş, ruxsatlar, öçiriş.
+
+## Faktlar
+
+- Qonun: ЎРҚ-1184-son, 2026-yil 21-oktyabrda imzolangan, 2027-yil 22-aprelda kuçga kiradi.
+- Özgargan harflar: o' → ö, g' → ğ, sh → ş, ch → ç; söz içidagi tutuq ʼ (maʼno); ng özgarmaydi.
+- Isʼhoq, asʼhob kabi sözlarda s va h alohida öqiladi: s'h yozilsa sʼh çiqadi.
+- Narxi: bepul. Manba kodi: https://github.com/behruz-baxodirov/yangi-alifbo
+- Asosçi: Behruz Baxodirov (Instagram @behruz_si).
