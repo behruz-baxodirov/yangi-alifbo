@@ -8,7 +8,7 @@ import { toCyrillic } from "../web/kirill.js";
 import { toOldLatin } from "../web/eski.js";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "14";
+export const ASSET_V = "15";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -16,6 +16,28 @@ export const TILLAR = [
   { til: "ru", prefix: "ru/", lang: "ru", hreflang: "ru" },
 ];
 const CONVERT = { yangi: (s) => s, eski: toOldLatin, kr: toCyrillic };
+const NOMI = { yangi: "Yangi", eski: "Eski", kr: "Кирилл", ru: "Рус" };
+
+// ⟦…⟧ içi (masalan, «o' → ö» misoli) hamma versiyada özgarmaydi, qavslar olib taşlanadi.
+const keepMarked = (fn) => (text) => text.split(/⟦([^⟧]*)⟧/).map((part, i) => (i % 2 ? part : fn(part))).join("");
+
+// Teglarni olib taşlab, Google körgandek oddiy matn (web/test/seo.test.mjs dagi plain bilan bir xil).
+const plain = (html) => html.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+
+// FAQPage savollari qölda yozilmaydi: har versiyaning körinadigan <details> bloklaridan yiğiladi.
+function syncFaq(head, main) {
+  if (!head.includes('"FAQPage"')) return head;
+  const entities = [...main.matchAll(/<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(([, q, a]) => ({
+    "@type": "Question",
+    name: plain(q),
+    acceptedAnswer: { "@type": "Answer", text: [...a.matchAll(/<p>([\s\S]*?)<\/p>/g)].map(([, x]) => plain(x)).join(" ") },
+  }));
+  return head.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/, (all, open, json, close) => {
+    const ld = JSON.parse(json);
+    for (const node of ld["@graph"] ?? [ld]) if (node["@type"] === "FAQPage") node.mainEntity = entities;
+    return open + JSON.stringify(ld, null, 1) + close;
+  });
+}
 const NOTE = "<!doctype html>\n<!-- Bu faylni site/build.mjs yasagan. site/ dagi manbani tahrirlang. -->\n";
 
 function walk(dir) {
@@ -77,6 +99,7 @@ function renderPage({ layout, header, footer, page, t }) {
     hrefs[`href:${x.til}`] = `/${x.prefix}${path.slice(1)}`;
     hrefs[`current:${x.til}`] = x.til === t.til ? ' aria-current="page"' : "";
   }
+  hrefs.tilnomi = NOMI[t.til];
   const html = fill(layout, {
     lang: t.lang,
     til: t.til,
@@ -90,6 +113,8 @@ function renderPage({ layout, header, footer, page, t }) {
     footer,
     script: page.script ? `<script type="module" src="/${page.script}?v=${ASSET_V}"></script>` : "",
     v: ASSET_V,
+    oglocale: t.til === "ru" ? "ru_RU" : "uz_UZ",
+    skip: t.til === "ru" ? "Перейти к содержанию" : CONVERT[t.til]("Asosiy qismga ötiş"),
   });
   return NOTE + prefixLinks(html, t.prefix);
 }
@@ -125,14 +150,17 @@ export async function renderSite({ siteDir, extraPages = [] }) {
       let page, header, footer;
       if (t.til === "ru") {
         page = { path, title: ru.meta.title, description: ru.meta.description, head: ru.head, main: ru.main, script: ru.meta.script ?? uz.meta.script };
-        ({ header, footer } = partials.ru);
+        header = keepOnly(partials.ru.header, "ru");
+        footer = keepOnly(partials.ru.footer, "ru");
+        page.main = keepOnly(page.main, "ru");
       } else {
-        const fn = CONVERT[t.til];
+        const fn = keepMarked(CONVERT[t.til]);
         const loc = (html) => localizeHtml(keepOnly(html, t.til), fn);
         page = { path, title: fn(uz.meta.title), description: fn(uz.meta.description), head: loc(uz.head), main: loc(uz.main), script: uz.meta.script };
         header = loc(partials.uz.header);
         footer = loc(partials.uz.footer);
       }
+      page.head = syncFaq(page.head, page.main);
       files.set(outPath(t.prefix, path), renderPage({ layout, header, footer, page, t }));
       locs.push({ loc: url(t.prefix, path), updated });
     }

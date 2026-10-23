@@ -1,0 +1,506 @@
+<!--meta
+{"title": "Клавиатура и конвертер нового узбекского алфавита · Yozgiç", "description": "Бесплатная клавиатура нового узбекского алфавита для Mac и Windows: набираете o' — получается ö, sh — ş. Онлайн-конвертер переводит кириллицу и старую латиницу.", "path": "/", "script": "app.js", "updated": "2026-10-24"}
+-->
+<!--head--><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://yozgich.uz/#sayt",
+   "url": "https://yozgich.uz/",
+   "name": "Yozgiç",
+   "alternateName": [
+    "Yozgich",
+    "Yangi alifbo klaviaturasi"
+   ],
+   "inLanguage": "ru"
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://yozgich.uz/#klaviatura",
+   "name": "Yozgiç",
+   "alternateName": [
+    "Yozgich",
+    "Yangi alifbo klaviaturasi"
+   ],
+   "description": "Бесплатная клавиатура нового узбекского алфавита: набираете o' — получается ö, g' — ğ, sh — ş, ch — ç. Работает в любой программе.",
+   "applicationCategory": "UtilitiesApplication",
+   "operatingSystem": "macOS 12+, Windows (64-bit, beta)",
+   "url": "https://yozgich.uz/",
+   "downloadUrl": "https://yozgich.uz/#yuklab-olish",
+   "inLanguage": "uz",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "UZS"
+   },
+   "author": {
+    "@id": "https://yozgich.uz/#asoschi"
+   },
+   "keywords": "yangi alifbo, yangi alifbo klaviatura, yangi o'zbek alifbosi, o'zbek yangi alifbo klaviaturasi, yangi lotin alifbo, yangi alifbo konvertor, kirill lotin konvertor, янги алифбо, янги алифбо клавиатура, янги ўзбек алифбоси"
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://yozgich.uz/#konverter",
+   "name": "Yangi alifbo konverteri",
+   "url": "https://yozgich.uz/#konverter",
+   "description": "Переводит текст с кириллицы и старой латиницы на новый узбекский алфавит. Текст не покидает браузер.",
+   "applicationCategory": "UtilitiesApplication",
+   "operatingSystem": "Brauzer",
+   "browserRequirements": "JavaScript",
+   "inLanguage": "uz",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "UZS"
+   },
+   "author": {
+    "@id": "https://yozgich.uz/#asoschi"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://yozgich.uz/#asoschi",
+   "name": "Behruz Baxodirov",
+   "url": "https://yozgich.uz/#asoschi",
+   "image": "https://yozgich.uz/img/asoschi.webp",
+   "sameAs": [
+    "https://instagram.com/behruz_si",
+    "https://t.me/baxodirov_ai"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://yozgich.uz/#savollar",
+   "inLanguage": "uz",
+   "mainEntity": []
+  }
+ ]
+}</script><!--/head-->
+<section class="hero" aria-labelledby="sarlavha">
+    <h1 id="sarlavha" class="hero-head">Пишите как привыкли,<br class="br-wide"> новая буква появится сама</h1>
+    <p class="hero-lede">Набираете <b data-lotin>o'</b> — получается <b data-lotin>ö</b>, набираете <b data-lotin>sh</b> — получается <b data-lotin>ş</b>. Бесплатная клавиатура нового узбекского алфавита для Mac и Windows и онлайн-конвертер для всех.</p>
+
+    <div class="non" aria-hidden="true">
+      <div class="non-center" id="non-center"><div class="stamp" id="stamp"></div></div>
+      <div class="non-pair" id="pair" data-lotin>o' → ö</div>
+    </div>
+
+    <section class="dl" id="yuklab-olish" aria-labelledby="dl-title">
+      <h2 id="dl-title" class="sr-only">Скачать и установить</h2>
+
+      <div class="dl-phone">
+        <p><b>Клавиатура — для компьютера.</b> Сохраните ссылку и откройте её на Mac или Windows. На телефоне пользуйтесь конвертером ниже.</p>
+        <button type="button" class="btn" id="share">Поделиться ссылкой</button>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Ваш компьютер">
+        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          macOS
+        </button>
+        <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+          Windows <span class="beta">beta</span>
+        </button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" tabindex="0">
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div>
+              <h3 class="step-t">Скопируйте команду</h3>
+              <div class="cmd">
+                <code id="cmd">curl -fsSL https://yozgich.uz/install.sh | bash</code>
+                <button type="button" class="btn" data-copy="cmd">Копировать</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div>
+              <h3 class="step-t">Вставьте в Терминал</h3>
+              <p>Нажмите <kbd>⌘</kbd> + <kbd>Space</kbd>, введите «Terminal» и нажмите <kbd>Enter</kbd>. В открывшемся окне — <kbd>⌘</kbd> + <kbd>V</kbd>, затем <kbd>Enter</kbd>.</p>
+              <p class="step-hint">Программа сама скачается и запустится. Пароль не нужен.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div>
+              <h3 class="step-t">Дайте разрешение</h3>
+              <p>macOS спросит: <b>Open System Settings</b> → Accessibility → включите <b data-lotin>Yangi alifbo</b> (это программа Yozgiç). Готово: в строке меню появится <b data-lotin>ö</b>.</p>
+              <p class="step-hint">Пишите как обычно в любой программе — буква заменится сама. Включить и выключить: дважды нажмите <kbd>⇧ Shift</kbd>.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="sinov" data-os="mac">
+          <label class="sinov-label" for="sinov-mac">Работает? Попробуйте набрать здесь</label>
+          <input class="sinov-field" id="sinov-mac" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
+          <div class="sinov-row">
+            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
+            <p class="sinov-status" aria-live="polite">Если Yozgiç включён, <b data-lotin>o'</b> само превратится в <b data-lotin>ö</b>.</p>
+          </div>
+        </div>
+        <p class="dl-thanks">Если Yozgiç пригодился, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">поддержите проект</a>.</p>
+        <p class="dl-meta">macOS 12 и новее · Apple Silicon и Intel · <a href="#mac-ochirish">Удаление</a></p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" tabindex="0" hidden>
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div>
+              <h3 class="step-t">Скачайте файл</h3>
+              <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe" download>
+                <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+                Скачать для Windows
+              </a>
+              <p class="step-hint">YangiAlifbo-windows-beta.exe · 1,3 МБ. Если браузер предупредит, выберите «Keep» («Сохранить»).</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div>
+              <h3 class="step-t">Откройте файл</h3>
+              <p>Если появится синее окно (<span lang="en">«Windows protected your PC»</span>), нажмите <b>Подробнее</b> → <b>Выполнить в любом случае</b> (в английской Windows: <b>More info</b> → <b>Run anyway</b>).</p>
+              <p class="step-hint">Программа бесплатная, поэтому у неё нет платной подписи. Это не значит, что она опасна.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div>
+              <h3 class="step-t">Попробуйте</h3>
+              <p>Рядом с часами появится значок. Включить и выключить: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="sinov" data-os="win">
+          <label class="sinov-label" for="sinov-win">Работает? Попробуйте набрать здесь</label>
+          <input class="sinov-field" id="sinov-win" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
+          <div class="sinov-row">
+            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
+            <p class="sinov-status" aria-live="polite">Если Yozgiç включён, <b data-lotin>o'</b> само превратится в <b data-lotin>ö</b>.</p>
+          </div>
+        </div>
+        <p class="dl-thanks">Если Yozgiç пригодился, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">поддержите проект</a>.</p>
+        <p class="dl-meta">64-битная Windows · Бета: автотест в Блокноте пройден · <a href="#windows">Удаление</a> · <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">Сообщить об ошибке</a></p>
+      </div>
+    </section>
+
+    <section class="try" id="konverter" aria-labelledby="try-title">
+      <div class="try-head">
+        <h2 id="try-title" class="try-title">Конвертер</h2>
+        <p class="try-sub">Напишите или вставьте текст на старой латинице или кириллице — он сразу переведётся на новый алфавит. Текст никуда не отправляется.</p>
+      </div>
+
+      <div class="try-tools">
+        <span class="tools-label" id="samples-label">Пример:</span>
+        <div class="chips" role="group" aria-labelledby="samples-label">
+          <button type="button" class="chip" data-sample="latin">Латиница</button>
+          <button type="button" class="chip" data-sample="cyrillic">Кириллица</button>
+          <button type="button" class="chip" data-sample="post">Пост в Telegram</button>
+        </div>
+      </div>
+
+      <div class="panes">
+        <div class="pane pane-in">
+          <div class="pane-bar">
+            <label for="in" class="pane-label">Старое письмо</label>
+            <span class="pane-bar-end">
+              <span class="tag" id="script">Латиница</span>
+              <button type="button" class="link-btn" id="clear">Очистить</button>
+            </span>
+          </div>
+          <textarea id="in" rows="3" spellcheck="false" autocomplete="off" aria-describedby="count">Ko'chada choy ichdik, Is'hoq aka. Shahardagi o'g'il bolalar g'olib chiqdi!</textarea>
+          <div class="pane-foot pane-foot-in">
+            <span id="count" class="muted">0 знаков</span>
+          </div>
+        </div>
+
+        <div class="pane-arrow" aria-hidden="true">
+          <svg viewBox="0 0 30 22"><g fill="#17110d"><circle cx="3" cy="11" r="2.2"/><circle cx="9" cy="11" r="2.2"/><circle cx="15" cy="11" r="2.2"/><circle cx="21" cy="11" r="2.2"/><circle cx="27" cy="11" r="2.2"/><circle cx="21" cy="5" r="2.2"/><circle cx="21" cy="17" r="2.2"/><circle cx="15" cy="2.5" r="2"/><circle cx="15" cy="19.5" r="2"/></g></svg>
+        </div>
+
+        <div class="pane pane-out">
+          <div class="pane-bar">
+            <span class="pane-label" id="out-label">Новый алфавит</span>
+            <span class="tag tag-hot" id="changed" aria-live="polite">Изменено букв: 0</span>
+          </div>
+          <div class="out" id="out" role="region" aria-labelledby="out-label"></div>
+          <div class="pane-foot">
+            <label class="switch">
+              <input type="checkbox" id="tutuq" checked>
+              <span>Тутук <b data-lotin>ʼ</b></span>
+            </label>
+            <button type="button" class="btn btn-ink" data-copy="out">Копировать</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="phone" id="telefonda" aria-labelledby="tel-sarlavha">
+    <h2 id="tel-sarlavha" class="sec-title">Как писать на телефоне</h2>
+    <div class="dl phone-slab">
+      <div class="tabs" role="tablist" aria-label="Ваш телефон">
+        <button type="button" class="tab" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          iPhone
+        </button>
+        <button type="button" class="tab" role="tab" id="tab-and" aria-controls="panel-and" aria-selected="false" tabindex="-1">Android</button>
+      </div>
+
+      <div class="panel guide" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios" tabindex="0">
+        <h3 class="guide-h">Способ 1: азербайджанская клавиатура <span class="tag tag-hot">Советуем</span></h3>
+        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> — на отдельных клавишах, удерживать ничего не нужно. Добавляете один раз, потом переключаете кнопкой <kbd>🌐</kbd>.</p>
+        <ol class="steps">
+          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Откройте настройки</h4><p><b lang="ru">Настройки</b> → <b lang="ru">Основные</b> → <b lang="ru">Клавиатура</b> (на английском: <b lang="en">Settings</b> → <b lang="en">General</b> → <b lang="en">Keyboard</b>).</p></div></li>
+          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Добавьте клавиатуру</h4><p><b lang="ru">Клавиатуры</b> → <b lang="ru">Новые клавиатуры</b> (<b lang="en">Keyboards</b> → <b lang="en">Add New Keyboard…</b>).</p></div></li>
+          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Выберите азербайджанскую</h4><p>Нажмите в списке <b lang="ru">Азербайджанская</b> (<b lang="en">Azerbaijani</b>).</p></div></li>
+          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Переключайтесь при наборе</h4><p>Нажмите <kbd>🌐</kbd> — на экране появится клавиатура <b lang="az">Azərbaycan</b>.</p><p class="step-hint">В ней нет автоисправления, поэтому она не «исправит» ваши узбекские слова.</p></div></li>
+        </ol>
+        <div class="guide-note">
+          <p class="guide-note-t">Для заглавной <b data-lotin>I</b> — клавиша <b data-lotin>ı</b></p>
+          <p>На этой клавиатуре две <span data-lotin>i</span>: <b data-lotin>i</b> и <b data-lotin>ı</b> (без точки). Заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском такой буквы нет.</p>
+          <ul class="ikeys" aria-hidden="true">
+            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">строчная <span data-lotin>i</span></span></li>
+            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">заглавная <span data-lotin>I</span></span></li>
+            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">не нужна</span></li>
+          </ul>
+          <p>В начале предложения клавиатура может сама поставить <b data-lotin>İ</b> — проверяйте. Буквы <b data-lotin>ə</b> в узбекском нет. Для тутука <b data-lotin>ʼ</b> пишите обычный <b data-lotin>'</b>.</p>
+        </div>
+        <h3 class="guide-h guide-h2">Способ 2: без смены клавиатуры</h3>
+        <p class="guide-lede"><b>Удерживайте</b> букву — откроется меню. Проведите пальцем к нужной букве и отпустите.</p>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>o</span><span class="pop" aria-hidden="true" data-lotin><span>ô</span><span class="pick">ö</span><span>ò</span><span>ő</span></span><p class="pop-cap"><b data-lotin>ö</b>: две точки сверху</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>g</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ğ</span><span>ġ</span></span><p class="pop-cap"><b data-lotin>ğ</b>: «галочка-лодочка» сверху, не точка</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>s</span><span class="pop" aria-hidden="true" data-lotin><span>ś</span><span>š</span><span class="pick">ş</span><span>ș</span></span><p class="pop-cap"><b data-lotin>ş</b>: крючок снизу. <b>ș</b> (с запятой) — другая буква</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>c</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ç</span><span>ć</span><span>č</span></span><p class="pop-cap"><b data-lotin>ç</b>: крючок снизу</p></div>
+        <p class="guide-meta"><b data-lotin>ğ</b> и <b data-lotin>ş</b> есть в iOS 17 и новее. Если их нет в меню, обновите iOS или воспользуйтесь <a href="#konverter">конвертером</a>. Для тутука <b data-lotin>ʼ</b> пишите обычный <b data-lotin>'</b> — конвертер исправит.</p>
+      </div>
+
+      <div class="panel guide" role="tabpanel" id="panel-and" aria-labelledby="tab-and" tabindex="0" hidden>
+        <h3 class="guide-h">Способ 1: азербайджанская клавиатура <span class="tag tag-hot">Советуем</span></h3>
+        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> — на отдельных клавишах, удерживать ничего не нужно. Шаги ниже — для <b lang="en">Gboard</b>; названия пунктов на разных телефонах немного отличаются.</p>
+        <ol class="steps">
+          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Откройте настройки Gboard</h4><p>Когда клавиатура открыта, нажмите <kbd>⚙</kbd>. Или: <b lang="ru">Настройки</b> → <b lang="ru">Система</b> → <b lang="ru">Язык и ввод</b> → <b lang="ru">Экранная клавиатура</b> → <b lang="en">Gboard</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Добавьте язык</h4><p><b lang="ru">Языки</b> → <b lang="ru">Добавить клавиатуру</b> (<b lang="en">Languages</b> → <b lang="en">Add keyboard</b>).</p></div></li>
+          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Выберите азербайджанский</h4><p><b lang="az">Azərbaycan</b> (<b lang="en">Azerbaijani</b>) → <b lang="ru">Готово</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Переключайтесь при наборе</h4><p>Нажмите <kbd>🌐</kbd> или удерживайте пробел.</p><p class="step-hint">На клавиатуре Samsung: настройки → языки → добавьте <b lang="az">Azərbaycan</b>.</p></div></li>
+        </ol>
+        <div class="guide-note">
+          <p class="guide-note-t">Для заглавной <b data-lotin>I</b> — клавиша <b data-lotin>ı</b></p>
+          <p>На этой клавиатуре две <span data-lotin>i</span>: <b data-lotin>i</b> и <b data-lotin>ı</b> (без точки). Заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском такой буквы нет.</p>
+          <ul class="ikeys" aria-hidden="true">
+            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">строчная <span data-lotin>i</span></span></li>
+            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">заглавная <span data-lotin>I</span></span></li>
+            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">не нужна</span></li>
+          </ul>
+          <p>В начале предложения клавиатура может сама поставить <b data-lotin>İ</b> — проверяйте. Буквы <b data-lotin>ə</b> в узбекском нет. Для тутука <b data-lotin>ʼ</b> пишите обычный <b data-lotin>'</b>.</p>
+        </div>
+        <h3 class="guide-h guide-h2">Способ 2: без смены клавиатуры</h3>
+        <p class="guide-lede">Клавиатуры бывают разные (Gboard, Samsung и другие). <b>Удерживайте</b> букву: <span data-lotin>o, g, s, c</span>. Если в меню есть нужная — выберите её.</p>
+        <table class="look">
+          <caption class="sr-only">Правильная буква и похожие на неё другие буквы</caption>
+          <thead><tr><th scope="col">Правильная</th><th scope="col">Похожие, но другие</th></tr></thead>
+          <tbody data-lotin>
+            <tr><td><span class="pick">ö</span></td><td><span>ő</span><span>ô</span><span>ò</span></td></tr>
+            <tr><td><span class="pick">ğ</span></td><td><span>ġ</span><span>ǧ</span></td></tr>
+            <tr><td><span class="pick">ş</span></td><td><span>ș</span><span>š</span><span>ś</span></td></tr>
+            <tr><td><span class="pick">ç</span></td><td><span>č</span><span>ć</span></td></tr>
+          </tbody>
+        </table>
+        <p class="guide-meta">Если в меню их нет, пишите как привыкли — <b data-lotin>o'</b>, <b data-lotin>g'</b>, <b data-lotin>sh</b>, <b data-lotin>ch</b> — и пропустите текст через <a href="#konverter">конвертер</a>.</p>
+      </div>
+
+      <p class="guide-warn"><b>Не турецкая, а азербайджанская:</b> на iPhone турецкая клавиатура исправляет слова на турецкий лад, а в азербайджанской автоисправления нет.</p>
+    </div>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="rules" id="qoidalar" aria-labelledby="qoida-sarlavha">
+    <h2 id="qoida-sarlavha" class="sec-title">Правила</h2>
+    <div class="count" id="sanoq" hidden>
+      <p class="count-head"><span class="count-n" id="kun">181</span> <span class="count-u">дн.</span></p>
+      <p class="count-t" id="sanoq-matn">осталось до вступления в силу Закона <b>ЎРҚ-1184</b> (22.04.2027). Каждая точка — один день.</p>
+      <div class="days" id="kunlar" aria-hidden="true"></div>
+      <div class="days-cap" aria-hidden="true"><span>21.10.2026 подписан</span><span>22.04.2027</span></div>
+    </div>
+    <div class="check" id="soz-tekshir" hidden>
+      <label class="check-label" for="soz">Как пишется это слово?</label>
+      <input class="check-field" id="soz" type="text" placeholder="Например: Is'hoq" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="check-out" id="soz-natija" aria-live="polite" hidden>
+        <div class="check-top">
+          <div class="check-word" id="soz-word" data-lotin></div>
+          <button type="button" class="btn btn-ink" data-copy="soz-word">Копировать</button>
+        </div>
+        <ul class="check-why" id="soz-why"></ul>
+      </div>
+    </div>
+    <table class="rule-table">
+      <caption class="sr-only">Старое письмо и новый алфавит</caption>
+      <thead><tr><th scope="col">Набираете</th><th scope="col">Получается</th><th scope="col">Пример</th></tr></thead>
+      <tbody>
+        <tr data-rule="o"><td data-lotin>o'</td><td data-lotin><b data-lotin>ö</b></td><td data-lotin>o'zbek → özbek</td></tr>
+        <tr data-rule="g"><td data-lotin>g'</td><td data-lotin><b data-lotin>ğ</b></td><td data-lotin>tog' → toğ</td></tr>
+        <tr data-rule="sh"><td data-lotin>sh</td><td data-lotin><b data-lotin>ş</b></td><td data-lotin>shahar → şahar</td></tr>
+        <tr data-rule="ch"><td data-lotin>ch</td><td data-lotin><b data-lotin>ç</b></td><td data-lotin>choy → çoy</td></tr>
+        <tr data-rule="sh2"><td data-lotin>s'h</td><td data-lotin><b data-lotin>sʼh</b></td><td data-lotin>Is'hoq → Isʼhoq</td></tr>
+        <tr data-rule="tutuq"><td data-lotin>ma'no</td><td data-lotin><b data-lotin>maʼno</b></td><td>тутук ʼ</td></tr>
+      </tbody>
+    </table>
+    <div class="rule-notes">
+      <p><b>«<span data-lotin>sh</span>» — не всегда <span data-lotin>ş</span>.</b> В словах вроде <span data-lotin>Isʼhoq, asʼhob, musʼhaf</span> s и h читаются раздельно. Пишите их, как сейчас, с тутуком: <code>s'h</code>. Получится <b data-lotin>sʼh</b>.</p>
+      <p><b><span data-lotin>ng</span> не меняется:</b> <span data-lotin>tong, keng</span> пишутся как раньше.</p>
+      <p>Правила основаны на Законе ЎРҚ-1184 (21.10.2026, вступает в силу 22.04.2027). Официальные правила орфографии ещё не опубликованы; это не государственный проект.</p>
+    </div>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="quiz-sec" id="test" aria-labelledby="test-sarlavha" hidden>
+    <div class="quiz">
+      <div class="quiz-top">
+        <h2 id="test-sarlavha" class="quiz-title">Тест</h2>
+        <div class="prog" id="prog" role="img" aria-label="Вопрос 1 из 10"></div>
+      </div>
+      <div id="quiz-q">
+        <p class="q-n" id="q-n">1 / 10</p>
+        <p class="q" id="q"></p>
+        <div class="opts" id="opts"></div>
+        <p class="why" id="why" hidden></p>
+        <button type="button" class="btn btn-ink quiz-next" id="next" hidden>Следующий вопрос</button>
+      </div>
+      <div class="quiz-result" id="result" tabindex="-1" hidden>
+        <p class="score"><span class="score-n" id="score">0</span><span class="score-of">/10</span></p>
+        <p class="grade" id="grade"></p>
+        <div class="result-acts">
+          <button type="button" class="btn btn-ink" id="story">В сторис</button>
+          <button type="button" class="btn btn-ghost" id="restart">Начать заново</button>
+        </div>
+        <p class="story-err" id="story-err" hidden>Не удалось создать картинку. Попробуйте ещё раз.</p>
+        <figure class="story-prev" id="story-prev" hidden>
+          <img id="story-img" alt="Картинка с результатом теста" width="1080" height="1920">
+          <figcaption>Удерживайте картинку, чтобы сохранить</figcaption>
+        </figure>
+      </div>
+      <p class="sr-only" id="quiz-live" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <div class="sec-rule" id="test-rule" aria-hidden="true" hidden></div>
+
+  <section class="faq" id="savollar" aria-labelledby="faq-sarlavha">
+    <h2 id="faq-sarlavha" class="sec-title">Вопросы</h2>
+    <details id="nima-ozgardi">
+      <summary>Что изменилось в новом алфавите?</summary>
+      <p>Четыре буквы получили новые знаки: <b data-lotin>o'</b> → <b data-lotin>ö</b>, <b data-lotin>g'</b> → <b data-lotin>ğ</b>, <b data-lotin>sh</b> → <b data-lotin>ş</b>, <b data-lotin>ch</b> → <b data-lotin>ç</b>. Тутук внутри слова пишется знаком <b data-lotin>ʼ</b>: <span data-lotin>maʼno, eʼlon</span>. <b data-lotin>ng</b> не меняется. Например, «<span data-lotin>o'zbek tili</span>» теперь пишется «<span data-lotin>özbek tili</span>».</p>
+    </details>
+    <details id="qonun">
+      <summary>Когда новый алфавит вступает в силу?</summary>
+      <p>Закон ЎРҚ-1184 подписан 21 октября 2026 года и вступает в силу 22 апреля 2027 года. Официальные правила орфографии ещё не опубликованы. Yozgiç — не государственный проект: правила основаны на Законе и сообщениях прессы.</p>
+    </details>
+    <details id="ornatish">
+      <summary>Как установить клавиатуру нового алфавита?</summary>
+      <p>На Mac вставьте одну команду в Терминал — программа сама скачается и запустится. На Windows скачайте и откройте бета-файл. Обе версии бесплатны. Шаги: <a href="#yuklab-olish">скачать и установить</a>.</p>
+    </details>
+    <details id="harflar">
+      <summary>Как набирать буквы <span data-lotin>ö, ğ, ş, ç</span>?</summary>
+      <p>Установите на компьютер клавиатуру Yozgiç: набираете <b data-lotin>o'</b> — получается <b data-lotin>ö</b>, <b data-lotin>g'</b> — <b data-lotin>ğ</b>, <b data-lotin>sh</b> — <b data-lotin>ş</b>, <b data-lotin>ch</b> — <b data-lotin>ç</b>. Запоминать новые клавиши не нужно. На телефоне добавьте азербайджанскую клавиатуру или удерживайте букву: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Подробнее: <a href="#telefonda">как писать на телефоне</a>.</p>
+    </details>
+    <details id="kirill">
+      <summary>Как перевести текст с кириллицы или старой латиницы на новый алфавит?</summary>
+      <p>Вставьте текст в <a href="#konverter">конвертер</a>: и кириллица (<span lang="uz-Cyrl">Янги алифбо</span>), и старая латиница (<span data-lotin>o'zbek</span>) сразу переводятся на новый алфавит (<span data-lotin>özbek</span>). Текст никуда не отправляется, всё работает в вашем браузере.</p>
+    </details>
+    <details id="yoqilgan">
+      <summary>Как понять, что клавиатура включена?</summary>
+      <p>Если в строке меню (правый верхний угол экрана) стоит <b data-lotin>ö</b> — включена; если <b data-lotin>A</b> — выключена. Переключить: дважды нажмите <kbd>⇧ Shift</kbd> или нажмите на <b data-lotin>ö</b>. Выбрать другую клавишу: правый клик по <b data-lotin>ö</b> → «<span data-lotin>Yoqiş/öçiriş tugmasi</span>». <kbd>⌃ Control</kbd> + <kbd>Space</kbd> и <kbd>fn</kbd> теперь только меняют язык.</p>
+      <p>В Windows состояние показывает значок рядом с часами, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> включает и выключает.</p>
+    </details>
+    <details>
+      <summary>Что делать, когда пишу по-английски или пишу код?</summary>
+      <p>Клавиатура заменяет <span data-lotin>o'</span> и <span data-lotin>sh</span> в любом слове: <code>shop.uz</code> превратится в <code>şop.uz</code>. Перед английским текстом выключите её двойным нажатием <kbd>⇧ Shift</kbd> (в строке меню появится <b data-lotin>A</b>). Текст на русской раскладке она не трогает. В Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+    </details>
+    <details>
+      <summary>Программа просит разрешение? Она видит мой текст?</summary>
+      <p>Да, один раз: разрешение Accessibility (чтобы видеть нажатия и заменять <span data-lotin>o'</span> на <span data-lotin>ö</span>). В русской macOS: «Конфиденциальность и безопасность → Универсальный доступ». Текст никуда не отправляется. Не чаще раза в день программа проверяет на GitHub номер новой версии: GitHub видит только ваш IP-адрес и версию программы, ни текст, ни настройки не передаются. Если снять в меню галочку «<span data-lotin>Yangilanişni özi tekşirsin</span>», программа вообще не выходит в интернет.</p>
+      <p>После обновления macOS может снова спросить разрешение, потому что программа не подписана сертификатом Apple (проект бесплатный). Конвертер тоже работает только в вашем браузере.</p>
+    </details>
+    <details id="mac-ochirish">
+      <summary>Как удалить с Mac?</summary>
+      <p>В Терминале: <code>curl -fsSL https://yozgich.uz/uninstall.sh | bash</code></p>
+      <p>Не открывайте вручную <code>.zip</code>-файл с GitHub: приложение без сертификата Apple, и macOS заблокирует его как <span lang="en">«damaged»</span>. Единственный правильный способ установки — команда в Терминале выше.</p>
+      <p>После удаления можно убрать <b data-lotin>Yangi alifbo</b> и из списка System Settings → Privacy &amp; Security → Accessibility.</p>
+    </details>
+    <details id="yangilash">
+      <summary>Как получить новую версию?</summary>
+      <p>Сайт и конвертер обновляются сами: откройте страницу — и у вас последняя версия. Чтобы обновить клавиатуру на Mac, снова вставьте команду установки в Терминал: <code>curl -fsSL https://yozgich.uz/install.sh | bash</code>. Программа обновится поверх старой, после чего macOS один раз снова спросит разрешение Accessibility.</p>
+      <p>Начиная с 2.0.3 программа на Mac сама сообщает о новой версии: в строке меню появляется <b data-lotin>ö↑</b>; кликните правой кнопкой по <span data-lotin>ö</span> и выберите «<span data-lotin>Yangi versiya bor</span>» — откроется Терминал и сам запустит эту команду.</p>
+      <p>В Windows выберите «<span data-lotin>Çiqiş</span>» в значке рядом с часами, скачайте новый <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a> и откройте его.</p>
+    </details>
+    <details id="windows">
+      <summary>Работает ли на Windows?</summary>
+      <p>Да, бета-версия: <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a>. Включить и выключить: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. Автотест в Блокноте пройден, но на реальных компьютерах её проверяли пока мало; нашли ошибку — напишите на GitHub.</p>
+      <p>Удаление: кликните правой кнопкой по значку рядом с часами, выберите «<span data-lotin>Çiqiş</span>» и удалите файл. Если добавляли в автозапуск, удалите и ярлык в папке <code>shell:startup</code>.</p>
+    </details>
+    <details id="bepul">
+      <summary>Yozgiç бесплатный? Как помочь проекту?</summary>
+      <p>Да, и клавиатура, и конвертер бесплатны и останутся бесплатными. Хотите помочь — поделитесь Yozgiç с друзьями или <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">задонатьте любую сумму</a>. Нашли ошибку — <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">напишите на GitHub</a>.</p>
+    </details>
+    <details>
+      <summary>Как писать на телефоне?</summary>
+      <p>Удобнее всего добавить азербайджанскую клавиатуру: в ней <span data-lotin>ö ğ ş ç</span> на отдельных клавишах. Для заглавной <b data-lotin>I</b> нажимайте Shift + <b data-lotin>ı</b>: заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском нужна <b data-lotin>I</b>. Можно и без смены клавиатуры: удерживайте букву, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (на iPhone — начиная с iOS 17). Турецкая клавиатура исправляет слова на турецкий лад. Подробнее, с картинками: <a href="#telefonda">как писать на телефоне</a>.</p>
+    </details>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="founder" id="asoschi" aria-labelledby="asoschi-sarlavha">
+    <div class="founder-card">
+      <div class="founder-photo">
+        <img src="/img/asoschi.webp" width="320" height="320" alt="Behruz Baxodirov" loading="lazy" decoding="async">
+      </div>
+      <div class="founder-body">
+        <p class="founder-kicker">Основатель</p>
+        <h2 id="asoschi-sarlavha" class="founder-name">Behruz Baxodirov</h2>
+        <p class="founder-lede">Я основатель Yozgiç. Моя цель — облегчить людям работу и помочь перейти на новый алфавит без мучений.</p>
+        <p class="services-title">Наши услуги</p>
+        <ul class="services">
+          <li>
+            <b>Автоматизация с ИИ</b>
+            <span>ИИ-помощник отвечает на повторяющиеся вопросы клиентов. Вы экономите время.</span>
+          </li>
+          <li>
+            <b>Сайты и программы</b>
+            <span>Делаем сайты, Telegram-ботов и программы. Наши работы: <a href="https://bolalar-teatri.uz" target="_blank" rel="noopener">bolalar-teatri.uz</a>, Yozgiç.</span>
+          </li>
+          <li>
+            <b>Курсы и консультации по ИИ</b>
+            <span>Учим применять ChatGPT, Claude и другие ИИ-инструменты в вашей работе.</span>
+          </li>
+        </ul>
+        <div class="founder-cta">
+          <span class="founder-cta-label">Связь:</span>
+          <a class="btn btn-big" href="https://t.me/behruz_baxodirov" target="_blank" rel="noopener">
+            <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 3.6 18.6 19.3c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 12.9 1.1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.5 2.4c.9-.3 1.7.2 1.4 1.2z"/></svg>
+            Написать в Telegram
+          </a>
+        </div>
+        <ul class="socials" aria-label="Соцсети">
+          <li><a href="https://t.me/baxodirov_ai" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 3.6 18.6 19.3c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 12.9 1.1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.5 2.4c.9-.3 1.7.2 1.4 1.2z"/></svg>
+            <span><b>Telegram-канал</b>@baxodirov_ai</span>
+          </a></li>
+          <li><a href="https://instagram.com/behruz_si" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+            <span><b>Instagram</b>@behruz_si</span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>

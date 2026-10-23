@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { cpSync, mkdtempSync, rmSync } from "node:fs";
+import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,7 +14,7 @@ const page = (p) => {
 };
 
 test("four versions of every page", () => {
-  for (const p of ["index.html", "mashq/index.html"]) {
+  for (const p of ["index.html", "mashq/index.html", "savol/index.html"]) {
     for (const { prefix } of TILLAR) page(prefix + p);
   }
 });
@@ -82,8 +82,8 @@ test("generated files start with doctype and the generator note", () => {
 test("sitemap lists each page once per version with its updated date", () => {
   const sitemap = page("sitemap.xml");
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  assert.equal(locs.length, 8);
-  assert.equal(new Set(locs).size, 8);
+  assert.equal(locs.length, 12);
+  assert.equal(new Set(locs).size, 12);
   assert.match(sitemap, /<loc>https:\/\/yozgich\.uz\/eski\/mashq\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
 });
 
@@ -101,4 +101,41 @@ test("a page without a Russian twin fails the build", async () => {
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("text inside ⟦⟧ is kept as is and the brackets are dropped", () => {
+  assert.match(page("savol/index.html"), /<meta name="description" content="Yozing: o' → ö">/);
+  assert.match(page("eski/savol/index.html"), /<meta name="description" content="Yozing: o' → ö">/);
+  assert.match(page("kr/savol/index.html"), /"description": "o' ёзсангиз ö бўлади"/);
+  assert.doesNotMatch(page("savol/index.html"), /⟦|⟧/);
+});
+
+test("FAQPage JSON-LD is built from the visible questions of each version", () => {
+  const faq = (html) => JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])["@graph"].find((n) => n["@type"] === "FAQPage").mainEntity;
+  assert.deepEqual(faq(page("eski/savol/index.html")), [{ "@type": "Question", name: "Shahar qanday yoziladi?", acceptedAnswer: { "@type": "Answer", text: "Mana: ş bilan. Ikkinchi qism." } }]);
+  assert.equal(faq(page("ru/savol/index.html"))[0].name, "Как писать?");
+});
+
+test("current version name in the header", () => {
+  assert.match(page("kr/index.html"), /<b data-lotin>Кирилл<\/b>/);
+  assert.match(page("index.html"), /<b data-lotin>Yangi<\/b>/);
+});
+
+test("no placeholder is left unfilled", () => {
+  for (const [p, html] of files) assert.doesNotMatch(html, /\{\{[\w:-]+\}\}/, p);
+});
+
+test("web/ matches a fresh build of site/", async () => {
+  const site = fileURLToPath(new URL(".", import.meta.url));
+  const web = fileURLToPath(new URL("../web/", import.meta.url));
+  const fresh = await renderSite({ siteDir: site });
+  const stale = [...fresh].filter(([p, html]) => !existsSync(join(web, p)) || readFileSync(join(web, p), "utf8") !== html).map(([p]) => p);
+  assert.deepEqual(stale, [], "npm run build ni işlating");
+});
+
+test("examples keep their script in every version", () => {
+  const web = (p) => readFileSync(fileURLToPath(new URL(`../web/${p}`, import.meta.url)), "utf8");
+  assert.match(web("eski/index.html"), /<span data-lotin>özbek<\/span>/);
+  assert.match(web("kr/index.html"), /<span data-lotin>o'zbek<\/span>/);
+  assert.match(web("kr/index.html"), /<b data-lotin>ö<\/b>/);
 });

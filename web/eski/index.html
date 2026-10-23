@@ -1,0 +1,715 @@
+<!doctype html>
+<!-- Bu faylni site/build.mjs yasagan. site/ dagi manbani tahrirlang. -->
+<html lang="uz" data-til="eski" data-device="mac">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yangi alifbo klaviaturasi va konverter · Yozgiç</title>
+<meta name="description" content="Yangi oʻzbek alifbosi klaviaturasi Mac va Windows uchun bepul: o' yozsangiz ö, sh yozsangiz ş. Onlayn konverter kirill va eski lotin matnini oʻgiradi.">
+<link rel="canonical" href="https://yozgich.uz/eski/">
+<link rel="alternate" hreflang="uz" href="https://yozgich.uz/">
+<link rel="alternate" hreflang="uz-Cyrl" href="https://yozgich.uz/kr/">
+<link rel="alternate" hreflang="ru" href="https://yozgich.uz/ru/">
+<link rel="alternate" hreflang="x-default" href="https://yozgich.uz/">
+<meta name="yandex-verification" content="29e6ae18a3b357e0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Yozgiç">
+<meta property="og:title" content="Yangi alifbo klaviaturasi va konverter · Yozgiç">
+<meta property="og:description" content="Yangi oʻzbek alifbosi klaviaturasi Mac va Windows uchun bepul: o' yozsangiz ö, sh yozsangiz ş. Onlayn konverter kirill va eski lotin matnini oʻgiradi.">
+<meta property="og:url" content="https://yozgich.uz/eski/">
+<meta property="og:locale" content="uz_UZ">
+<meta name="theme-color" content="#cf8a33">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="/fonts/fonts.css?v=10">
+<link rel="stylesheet" href="/styles.css?v=15">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://yozgich.uz/#sayt",
+   "url": "https://yozgich.uz/",
+   "name": "Yozgiç",
+   "alternateName": [
+    "Yozgich",
+    "Yangi alifbo klaviaturasi"
+   ],
+   "inLanguage": "uz"
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://yozgich.uz/#klaviatura",
+   "name": "Yozgiç",
+   "alternateName": [
+    "Yozgich",
+    "Yangi alifbo klaviaturasi"
+   ],
+   "description": "Yangi oʻzbek alifbosi uchun bepul klaviatura: o' yozsangiz ö, g' yozsangiz ğ, sh yozsangiz ş, ch yozsangiz ç boʻladi. Istalgan dasturda ishlaydi.",
+   "applicationCategory": "UtilitiesApplication",
+   "operatingSystem": "macOS 12+, Windows (64-bit, beta)",
+   "url": "https://yozgich.uz/",
+   "downloadUrl": "https://yozgich.uz/#yuklab-olish",
+   "inLanguage": "uz",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "UZS"
+   },
+   "author": {
+    "@id": "https://yozgich.uz/#asoschi"
+   },
+   "keywords": "yangi alifbo, yangi alifbo klaviatura, yangi o'zbek alifbosi, o'zbek yangi alifbo klaviaturasi, yangi lotin alifbo, yangi alifbo konvertor, kirill lotin konvertor, янги алифбо, янги алифбо клавиатура, янги ўзбек алифбоси"
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://yozgich.uz/#konverter",
+   "name": "Yangi alifbo konverteri",
+   "url": "https://yozgich.uz/#konverter",
+   "description": "Kirill va eski lotin matnini yangi oʻzbek alifbosiga oʻgiradi. Matn brauzerdan chiqmaydi.",
+   "applicationCategory": "UtilitiesApplication",
+   "operatingSystem": "Brauzer",
+   "browserRequirements": "JavaScript",
+   "inLanguage": "uz",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "UZS"
+   },
+   "author": {
+    "@id": "https://yozgich.uz/#asoschi"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://yozgich.uz/#asoschi",
+   "name": "Behruz Baxodirov",
+   "url": "https://yozgich.uz/#asoschi",
+   "image": "https://yozgich.uz/img/asoschi.webp",
+   "sameAs": [
+    "https://instagram.com/behruz_si",
+    "https://t.me/baxodirov_ai"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://yozgich.uz/#savollar",
+   "inLanguage": "uz",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Yangi alifboda nima oʻzgardi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Toʻrt harf yangi belgi oldi: o' → ö, g' → ğ, sh → ş, ch → ç. Soʻz ichidagi tutuq ʼ belgisi bilan yoziladi: maʼno, eʼlon. ng oʻzgarmaydi. Masalan, “o'zbek tili” endi “özbek tili” deb yoziladi."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Yangi alifbo qachon kuchga kiradi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ЎРҚ-1184-son Qonun 2026-yil 21-oktyabrda imzolangan va 2027-yil 22-aprelda kuchga kiradi. Rasmiy imlo qoidalari hali eʼlon qilinmagan. Yozgiç davlat loyihasi emas: qoidalar Qonunga va matbuotdagi xabarlarga asoslangan."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Yangi alifbo klaviaturasini qanday oʻrnataman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Macʼda Terminalʼga bitta buyruqni joylang, dastur oʻzi yuklanadi va ishga tushadi. Windowsʼda beta faylni yuklab oching. Ikkalasi ham bepul. Qadamlar: yuklab olish va oʻrnatish."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ö, ğ, ş, ç harflarini qanday yozaman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Kompyuterda Yozgiç klaviaturasini oʻrnating: o' yozsangiz ö, g' yozsangiz ğ, sh yozsangiz ş, ch yozsangiz ç chiqadi. Yangi tugmalarni yodlash shart emas. Telefonda ozarbayjoncha klaviaturani qoʻshing yoki harfni bosib turing: o → ö, g → ğ, s → ş, c → ç. Batafsil: Telefonda yozish."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Kirill yoki eski lotin matnini yangi alifboga qanday oʻgiraman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Matnni konverterga joylang: kirill (Янги алифбо) ham, eski lotin (o'zbek) ham yangi alifboga (özbek) shu zahoti oʻgiriladi. Matn hech qayerga yuborilmaydi, hammasi brauzeringizda ishlaydi."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Klaviatura yoqilganini qanday bilaman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Menyu-barda (ekranning yuqori oʻng burchagida) ö turgan boʻlsa, yoqilgan; A turgan boʻlsa, oʻchiq. Almashtirish: ⇧ Shift ni ikki marta bosing yoki ö ni bosing. Boshqa tugma tanlash: ö ustida oʻng tugma → “Yoqish/oʻchirish tugmasi”. ⌃ Control + Space va fn endi faqat tilni almashtiradi. Windowsʼda soat yonidagi ikonka holatni koʻrsatadi, Ctrl + Alt + Space yoqib-oʻchiradi."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Inglizcha yoki kod yozayotganimda nima qilaman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Klaviatura har qanday soʻzda o' va sh ni almashtiradi: shop.uz ham şop.uz boʻlib qoladi. Inglizcha yozishdan oldin ⇧ Shift ni ikki marta bosib oʻchirib qoʻying (menyu-barda A chiqadi). Rus klaviaturasida yozganingizga tegmaydi. Windowsʼda: Ctrl + Alt + Space."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Ruxsat soʻrayaptimi? Matnimni koʻrib turadimi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ha, bir marta: Accessibility ruxsati (tugmalarni koʻrib, o' ni ö ga almashtirish uchun). Ruscha macOSʼda: “Конфиденциальность и безопасность → Универсальный доступ”. Matn hech qayerga yuborilmaydi. Dastur kuniga koʻpi bilan bir marta GitHubʼdan yangi versiya raqamini tekshiradi: GitHub faqat IP manzilingiz va dastur versiyasini koʻradi, matn ham, sozlamalar ham yuborilmaydi. Menyudagi “Yangilanishni oʻzi tekshirsin” belgisini olib tashlasangiz, internetga umuman chiqmaydi. Yangilangandan keyin macOS ruxsatni qayta soʻrashi mumkin, chunki dastur Apple sertifikati bilan imzolanmagan (loyiha bepul). Konverter ham faqat brauzeringizda ishlaydi."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Macʼdan qanday oʻchiraman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Terminalʼda: curl -fsSL https://yozgich.uz/uninstall.sh | bash GitHubʼdagi .zip faylni qoʻl bilan ochmang: ilova Apple sertifikatisiz, macOS uni “damaged” deb bloklaydi. Oʻrnatishning yagona toʻgʻri yoʻli yuqoridagi Terminal buyrugʻi. Oʻchirgandan keyin System Settings → Privacy & Security → Accessibility roʻyxatidan Yangi alifbo ni ham olib tashlashingiz mumkin."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Yangi versiyani qanday olaman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sayt va konverter oʻzi yangilanadi: sahifani ochsangiz, eng yangisi chiqadi. Mac klaviaturasini yangilash uchun Terminalʼga oʻrnatish buyrugʻini qayta joylang: curl -fsSL https://yozgich.uz/install.sh | bash. Dastur eskisining ustidan yangilanadi, keyin macOS Accessibility ruxsatini bir marta qayta soʻraydi. 2.0.3 dan boshlab Mac dasturi yangi versiya chiqqanini oʻzi aytadi: menyu-barda ö↑ koʻrinadi, ö ustida oʻng tugma bilan “Yangi versiya bor” ni bossangiz, Terminal ochilib shu buyruq oʻzi ishga tushadi. Windowsʼda soat yonidagi ikonkadan “Chiqish” ni tanlang, yangi YangiAlifbo-windows-beta.exe faylni yuklab oling va oching."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Windowsʼda ishlaydimi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ha, beta versiya: YangiAlifbo-windows-beta.exe. Yoqish va oʻchirish: Ctrl + Alt + Space. Avtomatik test Notepadʼda oʻtgan, lekin haqiqiy kompyuterlarda hali kam sinalgan; xato topsangiz GitHubʼda yozing. Oʻchirish: soat yonidagi ikonkani oʻng tugma bilan bosib “Chiqish” ni tanlang, keyin faylni oʻchiring. Avtomatik ishga tushishga qoʻshgan boʻlsangiz, shell:startup papkasidagi yorliqni ham oʻchiring."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Yozgiç bepulmi? Qanday yordam bersam boʻladi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ha, klaviatura ham, konverter ham bepul va bepul qoladi. Yordam bermoqchi boʻlsangiz, Yozgichni doʻstlaringizga ulashing yoki istalgan miqdorda donat qiling. Xato topsangiz, GitHubʼda yozing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Telefonda qanday yozaman?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Eng qulayi: telefonga ozarbayjoncha klaviaturani qoʻshing, unda ö ğ ş ç alohida tugmada. Katta I uchun Shift + ı ni bosing: i ning katta harfi İ (nuqtali), oʻzbekchada esa I kerak. Klaviaturani almashtirmasdan ham boʻladi: harfni bosib turing, o → ö, g → ğ, s → ş, c → ç (iPhoneʼda iOS 17 dan boshlab). Turk klaviaturasi soʻzlarni turkchaga tuzatib yuboradi. Batafsil, rasmlari bilan: Telefonda yozish."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<script>
+// Statistika: Yandex Metrika va Google Analytics faqat yozgich.uz'da yuklanadi.
+// track(nom, parametrlar) ikkalasiga ham voqea yuboradi; lokalda konsolga yozadi.
+(function () {
+  var YM = 113739057, GA = "G-RCNYLJNZZV";
+  if (location.hostname !== "yozgich.uz") {
+    window.track = function (name, params) { console.debug("track", name, Object.assign({ til: document.documentElement.dataset.til }, params)); };
+    return;
+  }
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  ym(YM, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+
+  var g = document.createElement("script");
+  g.async = true;
+  g.src = "https://www.googletagmanager.com/gtag/js?id=" + GA;
+  document.head.appendChild(g);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", GA);
+
+  window.track = function (name, params) {
+    params = Object.assign({ til: document.documentElement.dataset.til }, params);
+    ym(YM, "reachGoal", name, params);
+    gtag("event", name, params);
+  };
+})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Asosiy qismga oʻtish</a>
+<header class="bar">
+  <a class="logo" href="/eski/" aria-label="Yozgiç, bosh sahifa">
+    <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#17110d"/><circle cx="16" cy="16" r="12.5" fill="#f0cf97"/><g fill="#17110d"><circle cx="13" cy="9" r="1.7"/><circle cx="19" cy="9" r="1.7"/><circle cx="13" cy="14" r="1.7"/><circle cx="16" cy="14" r="1.7"/><circle cx="19" cy="14" r="1.7"/><circle cx="10.5" cy="17.5" r="1.7"/><circle cx="21.5" cy="17.5" r="1.7"/><circle cx="10.5" cy="21" r="1.7"/><circle cx="21.5" cy="21" r="1.7"/><circle cx="13" cy="24.5" r="1.7"/><circle cx="16" cy="24.5" r="1.7"/><circle cx="19" cy="24.5" r="1.7"/></g></svg>
+    <span data-lotin>yozgiç</span>
+  </a>
+  <nav aria-label="Boʻlimlar">
+    <a href="/eski/#yuklab-olish">Yuklab olish</a>
+    <a href="/eski/#konverter">Konverter</a>
+    <a href="/eski/#qoidalar">Qoidalar</a>
+    <a href="/eski/#test">Test</a>
+    <a href="/eski/#savollar">Savollar</a>
+  </nav>
+  <nav class="tillar" aria-label="Til" data-lotin>
+    <a data-til="yangi" href="/">Yangi</a>
+    <a data-til="eski" href="/eski/" aria-current="page">Eski</a>
+    <a data-til="kr" href="/kr/" lang="uz-Cyrl">Кирилл</a>
+    <a data-til="ru" href="/ru/" lang="ru">Рус</a>
+  </nav>
+  <details class="tillar-m" data-lotin>
+    <summary aria-label="Til">Eski</summary>
+    <div>
+      <a data-til="yangi" href="/">Yangi</a>
+      <a data-til="eski" href="/eski/" aria-current="page">Eski</a>
+      <a data-til="kr" href="/kr/" lang="uz-Cyrl">Кирилл</a>
+      <a data-til="ru" href="/ru/" lang="ru">Рус</a>
+    </div>
+  </details>
+  <a class="nav-founder" href="/eski/#asoschi">
+    <span class="nf-photo"><img src="/img/asoschi.webp" width="32" height="32" alt=""></span>
+    <span class="nf-text"><small>Asoschi</small><span class="nf-name">Behruz Baxodirov</span></span>
+  </a>
+</header>
+
+
+<main id="main">
+<section class="hero" aria-labelledby="sarlavha">
+    <h1 id="sarlavha" class="hero-head">Odatdagidek yozing,<br class="br-wide"> yangi harf oʻzi chiqadi</h1>
+    <p class="hero-lede"><b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b>, <b data-lotin>sh</b> yozsangiz <b data-lotin>ş</b> boʻladi. Mac va Windows uchun bepul yangi alifbo klaviaturasi, hamma uchun onlayn konverter.</p>
+
+    <div class="non" aria-hidden="true">
+      <div class="non-center" id="non-center"><div class="stamp" id="stamp"></div></div>
+      <div class="non-pair" id="pair" data-lotin>o' → ö</div>
+    </div>
+
+    <section class="dl" id="yuklab-olish" aria-labelledby="dl-title">
+      <h2 id="dl-title" class="sr-only">Yuklab olish va oʻrnatish</h2>
+
+      <div class="dl-phone">
+        <p><b>Klaviatura kompyuter uchun.</b> Havolani saqlab qoʻying va Mac yoki Windowsʼda oching. Telefonda pastdagi konverterdan foydalaning.</p>
+        <button type="button" class="btn" id="share">Havolani ulashish</button>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Kompyuteringiz">
+        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          macOS
+        </button>
+        <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+          Windows <span class="beta">beta</span>
+        </button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" tabindex="0">
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div>
+              <h3 class="step-t">Buyruqni nusxa oling</h3>
+              <div class="cmd">
+                <code id="cmd">curl -fsSL https://yozgich.uz/install.sh | bash</code>
+                <button type="button" class="btn" data-copy="cmd">Nusxa olish</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div>
+              <h3 class="step-t">Terminalʼga joylang</h3>
+              <p><kbd>⌘</kbd> + <kbd>Space</kbd> bosib “Terminal” deb yozing va <kbd>Enter</kbd>. Ochilgan oynada <kbd>⌘</kbd> + <kbd>V</kbd>, keyin <kbd>Enter</kbd>.</p>
+              <p class="step-hint">Dastur oʻzi yuklanadi va ishga tushadi. Parol soʻralmaydi.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div>
+              <h3 class="step-t">Ruxsat bering</h3>
+              <p>macOS soʻraydi: <b>Open System Settings</b> → Accessibility → <b data-lotin>Yangi alifbo</b> (Yozgiç dasturi) ni yoqing. Tayyor: menyu-barda <b data-lotin>ö</b> turadi.</p>
+              <p class="step-hint">Istalgan dasturda odatdagidek yozing, harf oʻzi oʻgiriladi. Yoqish va oʻchirish: <kbd>⇧ Shift</kbd> ni ikki marta bosing.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="sinov" data-os="mac">
+          <label class="sinov-label" for="sinov-mac">Ishladimi? Shu yerga yozib koʻring</label>
+          <input class="sinov-field" id="sinov-mac" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
+          <div class="sinov-row">
+            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
+            <p class="sinov-status" aria-live="polite">Yozgiç yoqiq boʻlsa, <b data-lotin>o'</b> oʻzi <b data-lotin>ö</b> ga aylanadi.</p>
+          </div>
+        </div>
+        <p class="dl-thanks">Yozgiç foydali boʻlsa, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">loyihani qoʻllab-quvvatlang</a>.</p>
+        <p class="dl-meta">macOS 12 va yangisi · Apple Silicon va Intel · <a href="#mac-ochirish">Oʻchirish</a></p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" tabindex="0" hidden>
+        <ol class="steps">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div>
+              <h3 class="step-t">Faylni yuklab oling</h3>
+              <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe" download>
+                <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+                Windows uchun yuklab olish
+              </a>
+              <p class="step-hint">YangiAlifbo-windows-beta.exe · 1,3 MB. Brauzer ogohlantirsa, “Keep” (Saqlab qolish) ni tanlang.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div>
+              <h3 class="step-t">Faylni oching</h3>
+              <p>Koʻk oyna chiqsa (<span lang="en">“Windows protected your PC”</span>), <b>More info</b> → <b>Run anyway</b> ni bosing. Ruscha: <b>Подробнее</b> → <b>Выполнить в любом случае</b>.</p>
+              <p class="step-hint">Dastur bepul, shuning uchun pullik imzosi yoʻq. Bu xavfli degani emas.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div>
+              <h3 class="step-t">Yozib koʻring</h3>
+              <p>Soat yonida ikonka paydo boʻladi. Yoqish va oʻchirish: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="sinov" data-os="win">
+          <label class="sinov-label" for="sinov-win">Ishladimi? Shu yerga yozib koʻring</label>
+          <input class="sinov-field" id="sinov-win" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
+          <div class="sinov-row">
+            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
+            <p class="sinov-status" aria-live="polite">Yozgiç yoqiq boʻlsa, <b data-lotin>o'</b> oʻzi <b data-lotin>ö</b> ga aylanadi.</p>
+          </div>
+        </div>
+        <p class="dl-thanks">Yozgiç foydali boʻlsa, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">loyihani qoʻllab-quvvatlang</a>.</p>
+        <p class="dl-meta">64-bit Windows · Beta: avtomatik test Notepadʼda oʻtgan · <a href="#windows">Oʻchirish</a> · <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">Xato haqida yozing</a></p>
+      </div>
+    </section>
+
+    <section class="try" id="konverter" aria-labelledby="try-title">
+      <div class="try-head">
+        <h2 id="try-title" class="try-title">Konverter</h2>
+        <p class="try-sub">Eski lotin yoki kirill matnini yozing yoki joylang, u shu zahoti yangi alifboga oʻgiriladi. Matn hech qayerga yuborilmaydi.</p>
+      </div>
+
+      <div class="try-tools">
+        <span class="tools-label" id="samples-label">Namuna:</span>
+        <div class="chips" role="group" aria-labelledby="samples-label">
+          <button type="button" class="chip" data-sample="latin">Lotin matn</button>
+          <button type="button" class="chip" data-sample="cyrillic">Kirill matn</button>
+          <button type="button" class="chip" data-sample="post">Telegram xabari</button>
+        </div>
+      </div>
+
+      <div class="panes">
+        <div class="pane pane-in">
+          <div class="pane-bar">
+            <label for="in" class="pane-label">Eski yozuv</label>
+            <span class="pane-bar-end">
+              <span class="tag" id="script">Lotin</span>
+              <button type="button" class="link-btn" id="clear">Tozalash</button>
+            </span>
+          </div>
+          <textarea id="in" rows="3" spellcheck="false" autocomplete="off" aria-describedby="count">Ko'chada choy ichdik, Is'hoq aka. Shahardagi o'g'il bolalar g'olib chiqdi!</textarea>
+          <div class="pane-foot pane-foot-in">
+            <span id="count" class="muted">0 belgi</span>
+          </div>
+        </div>
+
+        <div class="pane-arrow" aria-hidden="true">
+          <svg viewBox="0 0 30 22"><g fill="#17110d"><circle cx="3" cy="11" r="2.2"/><circle cx="9" cy="11" r="2.2"/><circle cx="15" cy="11" r="2.2"/><circle cx="21" cy="11" r="2.2"/><circle cx="27" cy="11" r="2.2"/><circle cx="21" cy="5" r="2.2"/><circle cx="21" cy="17" r="2.2"/><circle cx="15" cy="2.5" r="2"/><circle cx="15" cy="19.5" r="2"/></g></svg>
+        </div>
+
+        <div class="pane pane-out">
+          <div class="pane-bar">
+            <span class="pane-label" id="out-label">Yangi yozuv</span>
+            <span class="tag tag-hot" id="changed" aria-live="polite">0 ta harf oʻzgardi</span>
+          </div>
+          <div class="out" id="out" role="region" aria-labelledby="out-label"></div>
+          <div class="pane-foot">
+            <label class="switch">
+              <input type="checkbox" id="tutuq" checked>
+              <span>Tutuq belgisi <b data-lotin>ʼ</b></span>
+            </label>
+            <button type="button" class="btn btn-ink" data-copy="out">Nusxa olish</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="phone" id="telefonda" aria-labelledby="tel-sarlavha">
+    <h2 id="tel-sarlavha" class="sec-title">Telefonda yozish</h2>
+    <div class="dl phone-slab">
+      <div class="tabs" role="tablist" aria-label="Telefoningiz">
+        <button type="button" class="tab" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          iPhone
+        </button>
+        <button type="button" class="tab" role="tab" id="tab-and" aria-controls="panel-and" aria-selected="false" tabindex="-1">Android</button>
+      </div>
+
+      <div class="panel guide" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios" tabindex="0">
+        <h3 class="guide-h">1-usul: ozarbayjoncha klaviatura <span class="tag tag-hot">Tavsiya</span></h3>
+        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> alohida tugmada turadi, bosib turish shart emas. Bir marta qoʻshasiz, keyin <kbd>🌐</kbd> tugmasi bilan almashtirasiz.</p>
+        <ol class="steps">
+          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Sozlamalarni oching</h4><p><b lang="en">Settings</b> → <b lang="en">General</b> → <b lang="en">Keyboard</b>. Rushcha: <b lang="ru">Настройки</b> → <b lang="ru">Основные</b> → <b lang="ru">Клавиатура</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Yangi klaviatura qoʻshing</h4><p><b lang="en">Keyboards</b> → <b lang="en">Add New Keyboard…</b> Rushcha: <b lang="ru">Клавиатуры</b> → <b lang="ru">Новые клавиатуры</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Ozarbayjonchani tanlang</h4><p>Roʻyxatdan <b lang="en">Azerbaijani</b> (<b lang="ru">Азербайджанская</b>) ni bosing.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Yozayotganda almashtiring</h4><p><kbd>🌐</kbd> tugmasini bosing: ekranda <b lang="az">Azərbaycan</b> klaviaturasi chiqadi.</p><p class="step-hint">Bu klaviaturada avtomatik tuzatish yoʻq, shuning uchun oʻzbekcha soʻzlaringizni “toʻgʻrilab” buzmaydi.</p></div></li>
+        </ol>
+        <div class="guide-note">
+          <p class="guide-note-t">Katta <b data-lotin>I</b> uchun <b data-lotin>ı</b> tugmasi</p>
+          <p>Bu klaviaturada ikkita <span data-lotin>i</span> bor: <b data-lotin>i</b> va <b data-lotin>ı</b> (nuqtasiz). Katta harfda <b data-lotin>i</b> tugmasi <b data-lotin>İ</b> (nuqtali) beradi, u oʻzbekchada yoʻq.</p>
+          <ul class="ikeys" aria-hidden="true">
+            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">kichik <span data-lotin>i</span></span></li>
+            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">katta <span data-lotin>I</span></span></li>
+            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">kerak emas</span></li>
+          </ul>
+          <p>Gap boshida klaviatura oʻzi <b data-lotin>İ</b> qoʻyib yuborishi mumkin: tekshirib qoʻying. <b data-lotin>ə</b> harfi oʻzbekchada yoʻq. Tutuq <b data-lotin>ʼ</b> uchun oddiy <b data-lotin>'</b> yozing.</p>
+        </div>
+        <h3 class="guide-h guide-h2">2-usul: klaviaturani almashtirmasdan</h3>
+        <p class="guide-lede">Harfni <b>bosib turing</b>, menyu ochiladi. Barmoqni toʻgʻri harfga surib qoʻyib yuboring.</p>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>o</span><span class="pop" aria-hidden="true" data-lotin><span>ô</span><span class="pick">ö</span><span>ò</span><span>ő</span></span><p class="pop-cap"><b data-lotin>ö</b>: tepasida ikki nuqta</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>g</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ğ</span><span>ġ</span></span><p class="pop-cap"><b data-lotin>ğ</b>: tepasida qayiqcha, nuqta emas</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>s</span><span class="pop" aria-hidden="true" data-lotin><span>ś</span><span>š</span><span class="pick">ş</span><span>ș</span></span><p class="pop-cap"><b data-lotin>ş</b>: ostida ilmoq. <b>ș</b> (vergul) boshqa harf</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>c</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ç</span><span>ć</span><span>č</span></span><p class="pop-cap"><b data-lotin>ç</b>: ostida ilmoq</p></div>
+        <p class="guide-meta"><b data-lotin>ğ</b> va <b data-lotin>ş</b> iOS 17 va yangisida bor. Menyuda yoʻq boʻlsa, iOSʼni yangilang yoki <a href="#konverter">konverterdan</a> foydalaning. Tutuq <b data-lotin>ʼ</b> uchun oddiy <b data-lotin>'</b> yozing, konverter uni toʻgʻrilaydi.</p>
+      </div>
+
+      <div class="panel guide" role="tabpanel" id="panel-and" aria-labelledby="tab-and" tabindex="0" hidden>
+        <h3 class="guide-h">1-usul: ozarbayjoncha klaviatura <span class="tag tag-hot">Tavsiya</span></h3>
+        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> alohida tugmada turadi, bosib turish shart emas. Quyidagi qadamlar <b lang="en">Gboard</b> uchun, menyu nomlari telefonga qarab biroz farq qilishi mumkin.</p>
+        <ol class="steps">
+          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Gboard sozlamalarini oching</h4><p>Klaviatura ochiq turganda <kbd>⚙</kbd> belgisini bosing. Yoki: <b lang="en">Settings</b> → <b lang="en">System</b> → <b lang="en">Languages &amp; input</b> → <b lang="en">On-screen keyboard</b> → <b lang="en">Gboard</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Til qoʻshing</h4><p><b lang="en">Languages</b> → <b lang="en">Add keyboard</b>. Rushcha: <b lang="ru">Языки</b> → <b lang="ru">Добавить клавиатуру</b>.</p></div></li>
+          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Ozarbayjonchani tanlang</h4><p><b lang="az">Azərbaycan</b> (<b lang="en">Azerbaijani</b>) → <b lang="en">Done</b> (<b lang="ru">Готово</b>).</p></div></li>
+          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Yozayotganda almashtiring</h4><p><kbd>🌐</kbd> tugmasini bosing yoki boshliq tugmasini bosib turing.</p><p class="step-hint">Samsung klaviaturasida: sozlamalar → tillar → <b lang="az">Azərbaycan</b> ni qoʻshing.</p></div></li>
+        </ol>
+        <div class="guide-note">
+          <p class="guide-note-t">Katta <b data-lotin>I</b> uchun <b data-lotin>ı</b> tugmasi</p>
+          <p>Bu klaviaturada ikkita <span data-lotin>i</span> bor: <b data-lotin>i</b> va <b data-lotin>ı</b> (nuqtasiz). Katta harfda <b data-lotin>i</b> tugmasi <b data-lotin>İ</b> (nuqtali) beradi, u oʻzbekchada yoʻq.</p>
+          <ul class="ikeys" aria-hidden="true">
+            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">kichik <span data-lotin>i</span></span></li>
+            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">katta <span data-lotin>I</span></span></li>
+            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">kerak emas</span></li>
+          </ul>
+          <p>Gap boshida klaviatura oʻzi <b data-lotin>İ</b> qoʻyib yuborishi mumkin: tekshirib qoʻying. <b data-lotin>ə</b> harfi oʻzbekchada yoʻq. Tutuq <b data-lotin>ʼ</b> uchun oddiy <b data-lotin>'</b> yozing.</p>
+        </div>
+        <h3 class="guide-h guide-h2">2-usul: klaviaturani almashtirmasdan</h3>
+        <p class="guide-lede">Klaviaturalar har xil (Gboard, Samsung va boshqalar). Harfni <b>bosib turing</b>: <span data-lotin>o, g, s, c</span>. Menyuda boʻlsa, toʻgʻrisini tanlang.</p>
+        <table class="look">
+          <caption class="sr-only">Toʻgʻri harf va unga oʻxshash boshqa harflar</caption>
+          <thead><tr><th scope="col">Toʻgʻri</th><th scope="col">Oʻxshash, lekin boshqa</th></tr></thead>
+          <tbody data-lotin>
+            <tr><td><span class="pick">ö</span></td><td><span>ő</span><span>ô</span><span>ò</span></td></tr>
+            <tr><td><span class="pick">ğ</span></td><td><span>ġ</span><span>ǧ</span></td></tr>
+            <tr><td><span class="pick">ş</span></td><td><span>ș</span><span>š</span><span>ś</span></td></tr>
+            <tr><td><span class="pick">ç</span></td><td><span>č</span><span>ć</span></td></tr>
+          </tbody>
+        </table>
+        <p class="guide-meta">Menyuda yoʻq boʻlsa, odatdagidek <b data-lotin>o'</b>, <b data-lotin>g'</b>, <b data-lotin>sh</b>, <b data-lotin>ch</b> deb yozing va matnni <a href="#konverter">konverterdan</a> oʻtkazing.</p>
+      </div>
+
+      <p class="guide-warn"><b>Turk klaviaturasi emas, ozarbayjoncha:</b> iPhoneʼda turkcha klaviatura soʻzlarni turkchaga tuzatib yuboradi, ozarbayjonchada avtomatik tuzatish yoʻq.</p>
+    </div>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="rules" id="qoidalar" aria-labelledby="qoida-sarlavha">
+    <h2 id="qoida-sarlavha" class="sec-title">Qoidalar</h2>
+    <div class="count" id="sanoq" hidden>
+      <p class="count-head"><span class="count-n" id="kun">181</span> <span class="count-u">kun</span></p>
+      <p class="count-t" id="sanoq-matn"><b>ЎРҚ-1184</b>-son Qonun kuchga kirishiga qoldi (22.04.2027). Har nuqta bir kun.</p>
+      <div class="days" id="kunlar" aria-hidden="true"></div>
+      <div class="days-cap" aria-hidden="true"><span>21.10.2026 imzolandi</span><span>22.04.2027</span></div>
+    </div>
+    <div class="check" id="soz-tekshir" hidden>
+      <label class="check-label" for="soz">Bu soʻz qanday yoziladi?</label>
+      <input class="check-field" id="soz" type="text" placeholder="Masalan: Is'hoq" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="check-out" id="soz-natija" aria-live="polite" hidden>
+        <div class="check-top">
+          <div class="check-word" id="soz-word" data-lotin></div>
+          <button type="button" class="btn btn-ink" data-copy="soz-word">Nusxa olish</button>
+        </div>
+        <ul class="check-why" id="soz-why"></ul>
+      </div>
+    </div>
+    <table class="rule-table">
+      <caption class="sr-only">Eski yozuv va yangi alifbo</caption>
+      <thead><tr><th scope="col">Yozasiz</th><th scope="col">Chiqadi</th><th scope="col">Misol</th></tr></thead>
+      <tbody>
+        <tr data-rule="o"><td data-lotin>o'</td><td data-lotin><b data-lotin>ö</b></td><td data-lotin>o'zbek → özbek</td></tr>
+        <tr data-rule="g"><td data-lotin>g'</td><td data-lotin><b data-lotin>ğ</b></td><td data-lotin>tog' → toğ</td></tr>
+        <tr data-rule="sh"><td data-lotin>sh</td><td data-lotin><b data-lotin>ş</b></td><td data-lotin>shahar → şahar</td></tr>
+        <tr data-rule="ch"><td data-lotin>ch</td><td data-lotin><b data-lotin>ç</b></td><td data-lotin>choy → çoy</td></tr>
+        <tr data-rule="sh2"><td data-lotin>s'h</td><td data-lotin><b data-lotin>sʼh</b></td><td data-lotin>Is'hoq → Isʼhoq</td></tr>
+        <tr data-rule="tutuq"><td data-lotin>ma'no</td><td data-lotin><b data-lotin>maʼno</b></td><td>tutuq belgisi ʼ</td></tr>
+      </tbody>
+    </table>
+    <div class="rule-notes">
+      <p><b>"<span data-lotin>sh</span>" har doim ham <span data-lotin>ş</span> emas.</b> Isʼhoq, asʼhob, musʼhaf kabi soʻzlarda s va h alohida oʻqiladi. Ularni hozirgidek tutuq bilan yozing: <code>s'h</code>. Natija <b data-lotin>sʼh</b> boʻladi.</p>
+      <p><b><span data-lotin>ng</span> oʻzgarmaydi:</b> tong, keng oldingidek yoziladi.</p>
+      <p>Qoidalar ЎРҚ-1184-son Qonunga (21.10.2026, kuchga kirish sanasi 22.04.2027) asoslangan. Rasmiy imlo qoidalari hali eʼlon qilinmagan; bu loyiha davlat loyihasi emas.</p>
+    </div>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="quiz-sec" id="test" aria-labelledby="test-sarlavha" hidden>
+    <div class="quiz">
+      <div class="quiz-top">
+        <h2 id="test-sarlavha" class="quiz-title">Test</h2>
+        <div class="prog" id="prog" role="img" aria-label="10 dan 1-savol"></div>
+      </div>
+      <div id="quiz-q">
+        <p class="q-n" id="q-n">1 / 10</p>
+        <p class="q" id="q"></p>
+        <div class="opts" id="opts"></div>
+        <p class="why" id="why" hidden></p>
+        <button type="button" class="btn btn-ink quiz-next" id="next" hidden>Keyingi savol</button>
+      </div>
+      <div class="quiz-result" id="result" tabindex="-1" hidden>
+        <p class="score"><span class="score-n" id="score">0</span><span class="score-of">/10</span></p>
+        <p class="grade" id="grade"></p>
+        <div class="result-acts">
+          <button type="button" class="btn btn-ink" id="story">Storyga qoʻyish</button>
+          <button type="button" class="btn btn-ghost" id="restart">Qaytadan boshlash</button>
+        </div>
+        <p class="story-err" id="story-err" hidden>Rasm yasab boʻlmadi. Qaytadan urinib koʻring.</p>
+        <figure class="story-prev" id="story-prev" hidden>
+          <img id="story-img" alt="Test natijasi rasmi" width="1080" height="1920">
+          <figcaption>Rasmni bosib turib saqlashingiz mumkin</figcaption>
+        </figure>
+      </div>
+      <p class="sr-only" id="quiz-live" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <div class="sec-rule" id="test-rule" aria-hidden="true" hidden></div>
+
+  <section class="faq" id="savollar" aria-labelledby="faq-sarlavha">
+    <h2 id="faq-sarlavha" class="sec-title">Savollar</h2>
+    <details id="nima-ozgardi">
+      <summary>Yangi alifboda nima oʻzgardi?</summary>
+      <p>Toʻrt harf yangi belgi oldi: <b data-lotin>o'</b> → <b data-lotin>ö</b>, <b data-lotin>g'</b> → <b data-lotin>ğ</b>, <b data-lotin>sh</b> → <b data-lotin>ş</b>, <b data-lotin>ch</b> → <b data-lotin>ç</b>. Soʻz ichidagi tutuq <b data-lotin>ʼ</b> belgisi bilan yoziladi: maʼno, eʼlon. <b data-lotin>ng</b> oʻzgarmaydi. Masalan, “<span data-lotin>o'zbek tili</span>” endi “<span data-lotin>özbek tili</span>” deb yoziladi.</p>
+    </details>
+    <details id="qonun">
+      <summary>Yangi alifbo qachon kuchga kiradi?</summary>
+      <p>ЎРҚ-1184-son Qonun 2026-yil 21-oktyabrda imzolangan va 2027-yil 22-aprelda kuchga kiradi. Rasmiy imlo qoidalari hali eʼlon qilinmagan. Yozgiç davlat loyihasi emas: qoidalar Qonunga va matbuotdagi xabarlarga asoslangan.</p>
+    </details>
+    <details id="ornatish">
+      <summary>Yangi alifbo klaviaturasini qanday oʻrnataman?</summary>
+      <p>Macʼda Terminalʼga bitta buyruqni joylang, dastur oʻzi yuklanadi va ishga tushadi. Windowsʼda beta faylni yuklab oching. Ikkalasi ham bepul. Qadamlar: <a href="#yuklab-olish">yuklab olish va oʻrnatish</a>.</p>
+    </details>
+    <details id="harflar">
+      <summary><span data-lotin>ö, ğ, ş, ç</span> harflarini qanday yozaman?</summary>
+      <p>Kompyuterda Yozgiç klaviaturasini oʻrnating: <b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b>, <b data-lotin>g'</b> yozsangiz <b data-lotin>ğ</b>, <b data-lotin>sh</b> yozsangiz <b data-lotin>ş</b>, <b data-lotin>ch</b> yozsangiz <b data-lotin>ç</b> chiqadi. Yangi tugmalarni yodlash shart emas. Telefonda ozarbayjoncha klaviaturani qoʻshing yoki harfni bosib turing: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Batafsil: <a href="#telefonda">Telefonda yozish</a>.</p>
+    </details>
+    <details id="kirill">
+      <summary>Kirill yoki eski lotin matnini yangi alifboga qanday oʻgiraman?</summary>
+      <p>Matnni <a href="#konverter">konverterga</a> joylang: kirill (<span lang="uz-Cyrl">Янги алифбо</span>) ham, eski lotin (<span data-lotin>o'zbek</span>) ham yangi alifboga (<span data-lotin>özbek</span>) shu zahoti oʻgiriladi. Matn hech qayerga yuborilmaydi, hammasi brauzeringizda ishlaydi.</p>
+    </details>
+    <details id="yoqilgan">
+      <summary>Klaviatura yoqilganini qanday bilaman?</summary>
+      <p>Menyu-barda (ekranning yuqori oʻng burchagida) <b data-lotin>ö</b> turgan boʻlsa, yoqilgan; <b data-lotin>A</b> turgan boʻlsa, oʻchiq. Almashtirish: <kbd>⇧ Shift</kbd> ni ikki marta bosing yoki <b data-lotin>ö</b> ni bosing. Boshqa tugma tanlash: <b data-lotin>ö</b> ustida oʻng tugma → “Yoqish/oʻchirish tugmasi”. <kbd>⌃ Control</kbd> + <kbd>Space</kbd> va <kbd>fn</kbd> endi faqat tilni almashtiradi.</p>
+      <p>Windowsʼda soat yonidagi ikonka holatni koʻrsatadi, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd> yoqib-oʻchiradi.</p>
+    </details>
+    <details>
+      <summary>Inglizcha yoki kod yozayotganimda nima qilaman?</summary>
+      <p>Klaviatura har qanday soʻzda <span data-lotin>o'</span> va <span data-lotin>sh</span> ni almashtiradi: <code>shop.uz</code> ham <code>şop.uz</code> boʻlib qoladi. Inglizcha yozishdan oldin <kbd>⇧ Shift</kbd> ni ikki marta bosib oʻchirib qoʻying (menyu-barda <b data-lotin>A</b> chiqadi). Rus klaviaturasida yozganingizga tegmaydi. Windowsʼda: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+    </details>
+    <details>
+      <summary>Ruxsat soʻrayaptimi? Matnimni koʻrib turadimi?</summary>
+      <p>Ha, bir marta: Accessibility ruxsati (tugmalarni koʻrib, <span data-lotin>o'</span> ni <span data-lotin>ö</span> ga almashtirish uchun). Ruscha macOSʼda: “Конфиденциальность и безопасность → Универсальный доступ”. Matn hech qayerga yuborilmaydi. Dastur kuniga koʻpi bilan bir marta GitHubʼdan yangi versiya raqamini tekshiradi: GitHub faqat IP manzilingiz va dastur versiyasini koʻradi, matn ham, sozlamalar ham yuborilmaydi. Menyudagi “Yangilanishni oʻzi tekshirsin” belgisini olib tashlasangiz, internetga umuman chiqmaydi.</p>
+      <p>Yangilangandan keyin macOS ruxsatni qayta soʻrashi mumkin, chunki dastur Apple sertifikati bilan imzolanmagan (loyiha bepul). Konverter ham faqat brauzeringizda ishlaydi.</p>
+    </details>
+    <details id="mac-ochirish">
+      <summary>Macʼdan qanday oʻchiraman?</summary>
+      <p>Terminalʼda: <code>curl -fsSL https://yozgich.uz/uninstall.sh | bash</code></p>
+      <p>GitHubʼdagi <code>.zip</code> faylni qoʻl bilan ochmang: ilova Apple sertifikatisiz, macOS uni <span lang="en">“damaged”</span> deb bloklaydi. Oʻrnatishning yagona toʻgʻri yoʻli yuqoridagi Terminal buyrugʻi.</p>
+      <p>Oʻchirgandan keyin System Settings → Privacy &amp; Security → Accessibility roʻyxatidan <b data-lotin>Yangi alifbo</b> ni ham olib tashlashingiz mumkin.</p>
+    </details>
+    <details id="yangilash">
+      <summary>Yangi versiyani qanday olaman?</summary>
+      <p>Sayt va konverter oʻzi yangilanadi: sahifani ochsangiz, eng yangisi chiqadi. Mac klaviaturasini yangilash uchun Terminalʼga oʻrnatish buyrugʻini qayta joylang: <code>curl -fsSL https://yozgich.uz/install.sh | bash</code>. Dastur eskisining ustidan yangilanadi, keyin macOS Accessibility ruxsatini bir marta qayta soʻraydi.</p>
+      <p>2.0.3 dan boshlab Mac dasturi yangi versiya chiqqanini oʻzi aytadi: menyu-barda <b data-lotin>ö↑</b> koʻrinadi, <span data-lotin>ö</span> ustida oʻng tugma bilan “Yangi versiya bor” ni bossangiz, Terminal ochilib shu buyruq oʻzi ishga tushadi.</p>
+      <p>Windowsʼda soat yonidagi ikonkadan “Chiqish” ni tanlang, yangi <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a> faylni yuklab oling va oching.</p>
+    </details>
+    <details id="windows">
+      <summary>Windowsʼda ishlaydimi?</summary>
+      <p>Ha, beta versiya: <a href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe">YangiAlifbo-windows-beta.exe</a>. Yoqish va oʻchirish: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. Avtomatik test Notepadʼda oʻtgan, lekin haqiqiy kompyuterlarda hali kam sinalgan; xato topsangiz GitHubʼda yozing.</p>
+      <p>Oʻchirish: soat yonidagi ikonkani oʻng tugma bilan bosib “Chiqish” ni tanlang, keyin faylni oʻchiring. Avtomatik ishga tushishga qoʻshgan boʻlsangiz, <code>shell:startup</code> papkasidagi yorliqni ham oʻchiring.</p>
+    </details>
+    <details id="bepul">
+      <summary>Yozgiç bepulmi? Qanday yordam bersam boʻladi?</summary>
+      <p>Ha, klaviatura ham, konverter ham bepul va bepul qoladi. Yordam bermoqchi boʻlsangiz, Yozgichni doʻstlaringizga ulashing yoki <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">istalgan miqdorda donat qiling</a>. Xato topsangiz, <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">GitHubʼda yozing</a>.</p>
+    </details>
+    <details>
+      <summary>Telefonda qanday yozaman?</summary>
+      <p>Eng qulayi: telefonga ozarbayjoncha klaviaturani qoʻshing, unda <span data-lotin>ö ğ ş ç</span> alohida tugmada. Katta <b data-lotin>I</b> uchun Shift + <b data-lotin>ı</b> ni bosing: <b data-lotin>i</b> ning katta harfi <b data-lotin>İ</b> (nuqtali), oʻzbekchada esa <b data-lotin>I</b> kerak. Klaviaturani almashtirmasdan ham boʻladi: harfni bosib turing, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (iPhoneʼda iOS 17 dan boshlab). Turk klaviaturasi soʻzlarni turkchaga tuzatib yuboradi. Batafsil, rasmlari bilan: <a href="#telefonda">Telefonda yozish</a>.</p>
+    </details>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
+  <section class="founder" id="asoschi" aria-labelledby="asoschi-sarlavha">
+    <div class="founder-card">
+      <div class="founder-photo">
+        <img src="/img/asoschi.webp" width="320" height="320" alt="Behruz Baxodirov" loading="lazy" decoding="async">
+      </div>
+      <div class="founder-body">
+        <p class="founder-kicker">Asoschi</p>
+        <h2 id="asoschi-sarlavha" class="founder-name">Behruz Baxodirov</h2>
+        <p class="founder-lede">Yozgiç asoschisiman. Maqsadim: odamlarning ishini osonlashtirish va yangi alifboga qiynalmay oʻtishiga yordam berish.</p>
+        <p class="services-title">Xizmatlarimiz</p>
+        <ul class="services">
+          <li>
+            <b>AI avtomatlashtirish</b>
+            <span>Mijozlarning takroriy savollariga AI yordamchi javob beradi. Siz vaqt yutasiz.</span>
+          </li>
+          <li>
+            <b>Sayt va dastur</b>
+            <span>Sayt, Telegram bot va dastur qilamiz. Ishlarimiz: <a href="https://bolalar-teatri.uz" target="_blank" rel="noopener">bolalar-teatri.uz</a>, Yozgiç.</span>
+          </li>
+          <li>
+            <b>AI kurs va maslahat</b>
+            <span>ChatGPT, Claude va boshqa AI vositalarini oʻz ishingizda qoʻllashni oʻrgatamiz.</span>
+          </li>
+        </ul>
+        <div class="founder-cta">
+          <span class="founder-cta-label">Aloqa:</span>
+          <a class="btn btn-big" href="https://t.me/behruz_baxodirov" target="_blank" rel="noopener">
+            <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 3.6 18.6 19.3c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 12.9 1.1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.5 2.4c.9-.3 1.7.2 1.4 1.2z"/></svg>
+            Telegramʼda yozing
+          </a>
+        </div>
+        <ul class="socials" aria-label="Ijtimoiy tarmoqlar">
+          <li><a href="https://t.me/baxodirov_ai" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 3.6 18.6 19.3c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 12.9 1.1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.5 2.4c.9-.3 1.7.2 1.4 1.2z"/></svg>
+            <span><b>Telegram kanal</b>@baxodirov_ai</span>
+          </a></li>
+          <li><a href="https://instagram.com/behruz_si" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+            <span><b>Instagram</b>@behruz_si</span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="close">
+  <p class="close-big">Bepul,<br>hamma uchun</p>
+  <div class="donate">
+    <p>Yozgiç bepul va bepul qoladi. Foydali boʻlgan boʻlsa, loyihani istalgan miqdorda qoʻllab-quvvatlashingiz mumkin.</p>
+    <a class="btn btn-ink btn-big" href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">Qoʻllab-quvvatlash</a>
+  </div>
+  <p class="close-links"><a href="https://instagram.com/behruz_si" target="_blank" rel="noopener">Instagram</a> · <a href="https://t.me/baxodirov_ai" target="_blank" rel="noopener">Telegram kanal</a> · <a href="https://t.me/behruz_baxodirov" target="_blank" rel="noopener">Aloqa</a></p>
+  </footer>
+
+
+<script type="module" src="/app.js?v=15"></script>
+</body>
+</html>

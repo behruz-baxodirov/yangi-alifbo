@@ -58,10 +58,9 @@ kbd {
 }
 .logo { display: inline-flex; align-items: center; gap: 10px; font: 900 26px/1 Doto, monospace; text-decoration: none; letter-spacing: .01em; }
 .logo-mark { width: 30px; height: 30px; flex: none; }
-.bar nav { display: flex; gap: 22px; font-weight: 500; }
-.bar nav a { text-decoration: none; }
-.bar nav a:hover { text-decoration: underline; }
-.bar nav { margin-left: auto; }
+.bar nav:not(.tillar) { display: flex; gap: 22px; font-weight: 500; margin-left: auto; }
+.bar nav:not(.tillar) a { text-decoration: none; }
+.bar nav:not(.tillar) a:hover { text-decoration: underline; }
 /* Asosçi: menyuda yumaloq qora kapsula, rasm va ism; harakatsiz, sokin */
 .nav-founder {
   display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 4px 18px 4px 4px; margin-left: 8px;
@@ -73,15 +72,29 @@ kbd {
 .nf-text { display: grid; gap: 3px; font: 600 14px/1.1 Onest; white-space: nowrap; }
 .nf-text small { font: 600 10.5px/1 Onest; letter-spacing: .1em; text-transform: uppercase; color: var(--crust); }
 .nav-founder:hover { background: var(--slab-well); }
-/* Yozuv tugmasi: lotin ↔ kirill */
-.script-btn {
-  flex: none; min-height: 40px; padding: 0 12px; border: 2px solid var(--char); border-radius: var(--corner);
-  background: transparent; color: var(--char); font: 700 14px/1 Onest; cursor: pointer;
-  transition: background-color .15s, color .15s;
+/* Til tanlagiç: 4 versiya (yangi, eski, kirill, rus), joriysi töldirilgan */
+.tillar { display: flex; gap: 4px; margin-left: 12px; }
+.tillar a {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 10px;
+  border: 2px solid var(--char); border-radius: var(--corner); color: var(--char);
+  font: 700 13px/1 Onest, system-ui, sans-serif; text-decoration: none; transition: background-color .15s, color .15s;
 }
-.script-btn:hover { background: var(--char); color: var(--flour); }
-/* Doto kirill harflarini bilmaydi: kirill rejimida sarlavhalar Onest 800 bilan */
-html[data-yozuv="kirill"] :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .count-n, .count-u) {
+.tillar a:hover, .tillar a[aria-current] { background: var(--char); color: var(--flour); }
+.tillar-m { display: none; position: relative; }
+.tillar-m summary {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; list-style: none; cursor: pointer;
+  border: 2px solid var(--char); border-radius: var(--corner); font: 700 14px/1 Onest, system-ui, sans-serif;
+}
+.tillar-m summary::-webkit-details-marker { display: none; }
+.tillar-m summary::after { content: "▾"; font-size: 11px; }
+.tillar-m div {
+  position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; display: grid; min-width: 150px;
+  background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner);
+}
+.tillar-m div a { padding: 11px 14px; color: var(--char); font: 600 15px/1.2 Onest, system-ui, sans-serif; text-decoration: none; }
+.tillar-m div a[aria-current] { background: var(--char); color: var(--flour); }
+/* Doto kirill harflarini bilmaydi: kirill va rus sahifalarida sarlavhalar Onest 800 bilan */
+html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .count-n, .count-u) {
   font-family: Onest, system-ui, sans-serif; font-weight: 800; letter-spacing: -.015em;
 }
 .nav-founder:focus-visible { outline-color: var(--char); outline-offset: 3px; }
@@ -476,10 +489,10 @@ html[data-yozuv="kirill"] :is(.hero-head, .sec-title, .try-title, .founder-name,
 .donate p { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.45; }
 .close a.btn { color: var(--flour); margin-top: 0; }
 
-/* Menyu tor oynada sığmaydi: 1040px gaça faqat logo, yozuv tugmasi va asosçi */
+/* Menyu tor oynada sığmaydi: 1040px gaça faqat logo, til tanlagiç va asosçi */
 @media (max-width: 1040px) {
-  .bar nav { display: none; }
-  .script-btn { margin-left: auto; }
+  .bar nav:not(.tillar) { display: none; }
+  .tillar { margin-left: auto; }
 }
 
 /* Planşet va telefon */
@@ -488,8 +501,8 @@ html[data-yozuv="kirill"] :is(.hero-head, .sec-title, .try-title, .founder-name,
   .non { max-width: 380px; }
 }
 @media (max-width: 860px) {
-  .bar nav { display: none; }
-  .script-btn { margin-left: auto; }
+  .bar nav:not(.tillar) { display: none; }
+  .tillar { margin-left: auto; }
   .hero {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "head" "lede" "dl" "non" "try";
@@ -536,11 +549,16 @@ html[data-yozuv="kirill"] :is(.hero-head, .sec-title, .try-title, .founder-name,
 @media (max-width: 420px) {
   .bar { gap: 10px; }
   .nav-founder { margin-left: 0; padding-right: 12px; }
-  .script-btn { padding: 0 10px; }
   .nf-name { display: none; }
   .nf-text small { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .dot, .btn, .tab, .chip { transition: none; }
+}
+
+/* Telefonda til tanlagiç oçiladigan röyxat */
+@media (max-width: 640px) {
+  .tillar { display: none; }
+  .tillar-m { display: block; margin-left: auto; }
 }
