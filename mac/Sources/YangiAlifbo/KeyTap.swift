@@ -31,9 +31,9 @@ final class KeyTap {
         guard tap == nil else { return true }
         let types: [CGEventType] = [.keyDown, .flagsChanged, .leftMouseDown, .rightMouseDown, .otherMouseDown]
         let mask = types.reduce(CGEventMask(0)) { $0 | (1 << $1.rawValue) }
-        let callback: CGEventTapCallBack = { _, type, event, info in
+        let callback: CGEventTapCallBack = { proxy, type, event, info in
             let me = Unmanaged<KeyTap>.fromOpaque(info!).takeUnretainedValue()
-            return me.handle(type: type, event: event)
+            return me.handle(proxy: proxy, type: type, event: event)
         }
         guard let port = CGEvent.tapCreate(tap: .cgSessionEventTap, place: .headInsertEventTap,
                                            options: .defaultTap, eventsOfInterest: mask,
@@ -46,11 +46,18 @@ final class KeyTap {
         let runLoopSource = CFMachPortCreateRunLoopSource(nil, port, 0)
         CFRunLoopAddSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
         CGEvent.tapEnable(tap: port, enable: true)
+        // Har ilovaga birinçi Accessibility sörovi 30–90 ms oladi: uni yozişdan oldin, fonda qilib qöyamiz.
+        NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didActivateApplicationNotification,
+                                                          object: nil, queue: nil) { note in
+            guard let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else { return }
+            let pid = app.processIdentifier
+            DispatchQueue.global(qos: .userInitiated).async { _ = Self.focusedSelectionLength(pid: pid) }
+        }
         log.notice("tap started")
         return true
     }
 
-    private func handle(type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
+    private func handle(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
         switch type {
         case .tapDisabledByTimeout, .tapDisabledByUserInput:
             if let tap { CGEvent.tapEnable(tap: tap, enable: true) }
@@ -83,23 +90,42 @@ final class KeyTap {
         case .pass:
             return Unmanaged.passUnretained(event)
         case .replace(let count, let text):
-            let selection = Self.focusedSelectionLength()
+            let selection = frontmostSelectionLength()
             let backspaces = RewriteAction.backspaceCount(deleteBefore: count, selectionLength: selection)
             log.debug("replace delete=\(count, privacy: .public) selection=\(selection ?? -1, privacy: .public) backspaces=\(backspaces, privacy: .public)")
-            post(deleting: backspaces, inserting: text)
+            post(deleting: backspaces, inserting: text, via: proxy)
             return nil
         }
+    }
+
+    /// Accessibility'ga javob bermagan ilova (pid → qaçongaça sörammaymiz).
+    /// Aks holda bunday ilovada har almaştiriş 2 × timeout kutib qoladi.
+    private var unresponsive: [pid_t: Date] = [:]
+
+    private func frontmostSelectionLength() -> Int? {
+        guard let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier else { return nil }
+        if let until = unresponsive[pid], until > Date() { return nil }
+        var timedOut = false
+        let length = Self.focusedSelectionLength(pid: pid, timedOut: &timedOut)
+        unresponsive[pid] = timedOut ? Date().addingTimeInterval(30) : nil
+        return length
     }
 
     /// Fokusdagi maydonda belgilangan matn uzunligi (Accessibility orqali; bilinmasa nil).
     /// Manzil qatori kabi joylar yozilayotgan sözning davomini belgilab taklif qiladi.
     /// Tizim bo'yiça (system-wide) so'rov Chrome'da işlamaydi, şuning uçun oldingi ilovadan so'raymiz.
-    private static func focusedSelectionLength() -> Int? {
-        guard let app = NSWorkspace.shared.frontmostApplication else { return nil }
-        let appElement = AXUIElementCreateApplication(app.processIdentifier)
+    private static func focusedSelectionLength(pid: pid_t) -> Int? {
+        var timedOut = false
+        return focusedSelectionLength(pid: pid, timedOut: &timedOut)
+    }
+
+    private static func focusedSelectionLength(pid: pid_t, timedOut: inout Bool) -> Int? {
+        let appElement = AXUIElementCreateApplication(pid)
         AXUIElementSetMessagingTimeout(appElement, 0.05)
         var focused: CFTypeRef?
-        guard AXUIElementCopyAttributeValue(appElement, kAXFocusedUIElementAttribute as CFString, &focused) == .success,
+        let focusedResult = AXUIElementCopyAttributeValue(appElement, kAXFocusedUIElementAttribute as CFString, &focused)
+        timedOut = focusedResult == .cannotComplete
+        guard focusedResult == .success,
               let focused, CFGetTypeID(focused) == AXUIElementGetTypeID() else { return nil }
         let element = focused as! AXUIElement
         AXUIElementSetMessagingTimeout(element, 0.05)
@@ -122,14 +148,17 @@ final class KeyTap {
 
     private static func seconds(_ event: CGEvent) -> Double { Double(event.timestamp) / 1_000_000_000 }
 
-    private func post(deleting count: Int, inserting text: String) {
+    /// Proxy orqali: tugmalar joriy tugma örniga tuşadi, navbatda turgan keyingi tugmalardan oldin.
+    /// Umumiy navbatga (`post(tap:)`) yuborilsa, tez yozilgan keyingi harf oldin ötib ketadi
+    /// va Backspace uni öçiradi ("shahar" → "sşhar").
+    private func post(deleting count: Int, inserting text: String, via proxy: CGEventTapProxy) {
         for _ in 0..<count {
-            sendKey(code: Self.deleteKeyCode, text: nil)
+            sendKey(code: Self.deleteKeyCode, text: nil, via: proxy)
         }
-        sendKey(code: 0, text: text)
+        sendKey(code: 0, text: text, via: proxy)
     }
 
-    private func sendKey(code: CGKeyCode, text: String?) {
+    private func sendKey(code: CGKeyCode, text: String?, via proxy: CGEventTapProxy) {
         for down in [true, false] {
             guard let e = CGEvent(keyboardEventSource: source, virtualKey: code, keyDown: down) else { continue }
             e.flags = []
@@ -138,7 +167,7 @@ final class KeyTap {
                 var units = Array(text.utf16)
                 e.keyboardSetUnicodeString(stringLength: units.count, unicodeString: &units)
             }
-            e.post(tap: .cgSessionEventTap)
+            e.tapPostEvent(proxy)
         }
     }
 }
