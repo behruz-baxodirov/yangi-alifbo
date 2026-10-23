@@ -1,5 +1,6 @@
 import { convert, detectScript } from "./converter.js";
 import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
+import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -225,6 +226,23 @@ share?.addEventListener("click", async () => {
     share.textContent = data.url;
   }
 });
+
+// Sanoq: qonun kuçga kirişiga qolgan kunlar va har kun uçun nuqta.
+{
+  const today = new Date();
+  const left = daysLeft(today);
+  const { total, passed } = dayDots(today);
+  document.getElementById("kun").textContent = left;
+  document.getElementById("kunlar").innerHTML = Array.from({ length: total }, (_, k) =>
+    `<i class="${k < passed ? "past" : k === passed ? "today" : ""}"></i>`).join("");
+  const phase = lawPhase(today);
+  if (phase !== "oldin") {
+    document.getElementById("sanoq-matn").innerHTML = "<b>ЎРҚ-1184</b>-son Qonun " +
+      (phase === "bugun" ? "bugun kuçga kirdi." : "22.04.2027 dan kuçda.");
+    document.getElementById("sanoq").classList.add("done");
+  }
+  document.getElementById("sanoq").hidden = false;
+}
 
 // Nuqta çiziqlarini sahifaning 12px çekiç töriga tekislaymiz.
 function alignDotRows() {

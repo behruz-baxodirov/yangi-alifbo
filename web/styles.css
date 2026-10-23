@@ -244,6 +244,20 @@ kbd {
 }
 .rules { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; align-items: start; }
 .rules .sec-title { grid-column: 1 / -1; }
+/* Sanoq: qonun kuçga kirişiga qolgan kunlar, har kun bitta nuqta */
+.count { grid-column: 1 / -1; margin: 0 0 36px; max-width: 760px; }
+.count-head { display: flex; align-items: baseline; gap: 12px; margin: 0; }
+.count-n { font: 900 64px/.9 Doto, monospace; letter-spacing: -.02em; }
+.count-u { font: 900 28px/1 Doto, monospace; }
+.count-t { margin: 10px 0 14px; font-size: 16px; color: var(--char-soft); max-width: 60ch; }
+.count-t b { color: var(--char); }
+.days { display: grid; grid-template-columns: repeat(auto-fill, 7px); gap: 4px 3px; }
+.days i { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid rgb(23 17 13 / .6); }
+.days i.past { background: var(--char); border-color: var(--char); }
+.days i.today { background: var(--flour); border-color: var(--char); }
+.days-cap { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; font: 600 12.5px/1.2 Onest; color: var(--char-soft); }
+.count.done .count-head, .count.done .days-cap { display: none; }
+
 .rule-table { width: 100%; border-collapse: collapse; font-size: 18px; }
 .rule-table th { text-align: left; font-size: 14px; font-weight: 500; color: var(--char-soft); padding: 0 0 12px; }
 .rule-table tr { background: var(--dot-row); background-position-x: var(--phase, 0px); }
