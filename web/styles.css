@@ -244,6 +244,32 @@ kbd {
 }
 .rules { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; align-items: start; }
 .rules .sec-title { grid-column: 1 / -1; }
+/* Telefonda yoziş: qora plita, iPhone | Android tablari, çizilgan harf menyulari */
+.phone { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
+.phone-slab { max-width: 640px; }
+.guide { padding-bottom: 6px; }
+.guide-lede { margin: 6px 0 4px; font-size: 15px; color: var(--slab-ink); }
+.guide b, .guide-warn b { color: var(--flour); }
+.keyrow {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; row-gap: 6px; align-items: center;
+  padding: 14px 0; background: var(--dot-row-light); background-position: left bottom;
+}
+.key { width: 44px; height: 52px; display: grid; place-items: center; border-radius: var(--corner); background: var(--flour); color: var(--char); font: 500 24px/1 Onest; }
+.pop { display: flex; flex-wrap: wrap; gap: 6px; }
+.pop span, .look span {
+  min-width: 40px; height: 44px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: var(--corner);
+  background: var(--slab-well); color: var(--slab-ink); font: 500 22px/1 Onest;
+}
+.pop .pick, .look .pick { background: var(--crust); color: var(--char); font-weight: 700; outline: 2px solid var(--flour); outline-offset: 2px; }
+.pop-cap { grid-column: 2; margin: 0; font-size: 14px; color: var(--slab-ink); }
+.guide-meta { margin: 14px 0 8px; font-size: 14px; color: var(--slab-ink); }
+.guide a { color: var(--crust); font-weight: 700; }
+.look { border-collapse: collapse; margin: 10px 0 4px; }
+.look th { text-align: left; font: 500 13.5px/1.2 Onest; color: var(--slab-ink); padding: 0 18px 10px 0; }
+.look td { padding: 6px 18px 6px 4px; }
+.look td:last-child span { margin-right: 6px; }
+.guide-warn { margin: 0; padding: 16px 22px 20px; font-size: 14px; color: var(--slab-ink); background: var(--dot-row-light); background-position: 22px top; }
+
 /* Sanoq: qonun kuçga kirişiga qolgan kunlar, har kun bitta nuqta */
 .count { grid-column: 1 / -1; margin: 0 0 36px; max-width: 760px; }
 .count-head { display: flex; align-items: baseline; gap: 12px; margin: 0; }

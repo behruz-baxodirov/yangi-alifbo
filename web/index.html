@@ -213,6 +213,47 @@
 
   <div class="sec-rule" aria-hidden="true"></div>
 
+  <section class="phone" id="telefonda" aria-labelledby="tel-sarlavha">
+    <h2 id="tel-sarlavha" class="sec-title">Telefonda yoziş</h2>
+    <div class="dl phone-slab">
+      <div class="tabs" role="tablist" aria-label="Telefoningiz">
+        <button type="button" class="tab" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">
+          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          iPhone
+        </button>
+        <button type="button" class="tab" role="tab" id="tab-and" aria-controls="panel-and" aria-selected="false" tabindex="-1">Android</button>
+      </div>
+
+      <div class="panel guide" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios" tabindex="0">
+        <p class="guide-lede">Harfni <b>bosib turing</b>, menyu oçiladi. Barmoqni töğri harfga surib qöyib yuboring.</p>
+        <div class="keyrow"><span class="key" aria-hidden="true">o</span><span class="pop" aria-hidden="true"><span>ô</span><span class="pick">ö</span><span>ò</span><span>ő</span></span><p class="pop-cap"><b>ö</b>: tepasida ikki nuqta</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true">g</span><span class="pop" aria-hidden="true"><span class="pick">ğ</span><span>ġ</span></span><p class="pop-cap"><b>ğ</b>: tepasida qayiqça, nuqta emas</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true">s</span><span class="pop" aria-hidden="true"><span>ś</span><span>š</span><span class="pick">ş</span><span>ș</span></span><p class="pop-cap"><b>ş</b>: ostida ilmoq. <b>ș</b> (vergul) boşqa harf</p></div>
+        <div class="keyrow"><span class="key" aria-hidden="true">c</span><span class="pop" aria-hidden="true"><span class="pick">ç</span><span>ć</span><span>č</span></span><p class="pop-cap"><b>ç</b>: ostida ilmoq</p></div>
+        <p class="guide-meta"><b>ğ</b> va <b>ş</b> iOS 17 va yangisida bor. Menyuda yöq bölsa, iOSʼni yangilang yoki <a href="#konverter">konverterdan</a> foydalaning. Tutuq <b>ʼ</b> uçun oddiy <b>'</b> yozing, konverter uni töğrilaydi.</p>
+      </div>
+
+      <div class="panel guide" role="tabpanel" id="panel-and" aria-labelledby="tab-and" tabindex="0" hidden>
+        <p class="guide-lede">Klaviaturalar har xil (Gboard, Samsung va boşqalar). Harfni <b>bosib turing</b>: o, g, s, c. Menyuda bölsa, töğrisini tanlang.</p>
+        <table class="look">
+          <caption class="sr-only">Töğri harf va unga öxşaş boşqa harflar</caption>
+          <thead><tr><th scope="col">Töğri</th><th scope="col">Öxşaş, lekin boşqa</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pick">ö</span></td><td><span>ő</span><span>ô</span><span>ò</span></td></tr>
+            <tr><td><span class="pick">ğ</span></td><td><span>ġ</span><span>ǧ</span></td></tr>
+            <tr><td><span class="pick">ş</span></td><td><span>ș</span><span>š</span><span>ś</span></td></tr>
+            <tr><td><span class="pick">ç</span></td><td><span>č</span><span>ć</span></td></tr>
+          </tbody>
+        </table>
+        <p class="guide-meta">Menyuda yöq bölsa, odatdagidek <b>o'</b>, <b>g'</b>, <b>sh</b>, <b>ch</b> deb yozing va matnni <a href="#konverter">konverterdan</a> ötkazing.</p>
+      </div>
+
+      <p class="guide-warn"><b>Turk klaviaturasini qöşmang:</b> unda i ning boş harfi İ (nuqtali) böladi, özbekçada I kerak.</p>
+    </div>
+  </section>
+
+  <div class="sec-rule" aria-hidden="true"></div>
+
   <section class="rules" id="qoidalar" aria-labelledby="qoida-sarlavha">
     <h2 id="qoida-sarlavha" class="sec-title">Qoidalar</h2>
     <div class="count" id="sanoq" hidden>
@@ -275,7 +316,7 @@
     </details>
     <details>
       <summary>Telefonda qanday yozaman?</summary>
-      <p>iPhone va Android klaviaturasida harfni bosib turing: <b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç. Turk klaviaturasini qöşmang: unda <b>i</b> ning boş harfi <b>İ</b> (nuqtali) bölib qoladi, özbekçada esa <b>I</b> kerak.</p>
+      <p>Telefon klaviaturasida harfni bosib turing. Batafsil, rasmlari bilan: <a href="#telefonda">Telefonda yoziş</a>. Turk klaviaturasini qöşmang: unda <b>i</b> ning boş harfi <b>İ</b> (nuqtali) bölib qoladi, özbekçada esa <b>I</b> kerak.</p>
     </details>
   </section>
 

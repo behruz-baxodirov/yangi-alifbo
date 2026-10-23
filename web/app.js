@@ -87,27 +87,32 @@ function restamp(text) {
   setTimeout(() => showPair(pair, true), reduceMotion ? 0 : 450);
 }
 
-// Yuklab oliş tablari: ARIA tablist, strelkalar bilan boşqariladi.
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-function selectTab(tab, focus = false) {
-  tabs.forEach((t) => {
-    const on = t === tab;
-    t.setAttribute("aria-selected", String(on));
-    t.tabIndex = on ? 0 : -1;
-    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+// Tablar (yuklab oliş va telefon yöriqnomasi): ARIA tablist, strelkalar bilan boşqariladi.
+// Har röyxat faqat öz panellarini almaştiradi.
+function setupTabs(list, initialId) {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus = false) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => select(tab));
+    tab.addEventListener("keydown", (e) => {
+      const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(tabs[(next + tabs.length) % tabs.length], true);
+    });
   });
-  if (focus) tab.focus();
+  select(document.getElementById(initialId));
 }
-tabs.forEach((tab, i) => {
-  tab.addEventListener("click", () => selectTab(tab));
-  tab.addEventListener("keydown", (e) => {
-    const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
-    if (next === undefined) return;
-    e.preventDefault();
-    selectTab(tabs[(next + tabs.length) % tabs.length], true);
-  });
-});
-selectTab(document.getElementById(device === "windows" ? "tab-win" : "tab-mac"));
+setupTabs(document.querySelector(".dl .tabs"), device === "windows" ? "tab-win" : "tab-mac");
+setupTabs(document.querySelector(".phone .tabs"), /Android/i.test(ua) ? "tab-and" : "tab-ios");
 
 // Konverter
 const input = document.getElementById("in");
@@ -266,6 +271,7 @@ document.addEventListener("click", (e) => {
   else if (el.matches('[data-copy="out"]')) track("konverter_nusxa");
   else if (el.matches("[data-sample]")) track("konverter_namuna", { namuna: el.dataset.sample });
   else if (el.id === "share") track("havola_ulashish");
+  else if (el.id === "tab-ios" || el.id === "tab-and") track("telefon_tab", { os: el.id === "tab-ios" ? "iphone" : "android" });
   else if (el.matches(".nav-founder")) track("asoschi_menyu");
   else if (href.includes("taps.uz")) track("donat", { joy: el.closest("footer") ? "pastki" : el.closest(".panel") ? "yuklash" : "savollar" });
   else if (href.startsWith("http") && !href.includes("yozgich.uz")) {
