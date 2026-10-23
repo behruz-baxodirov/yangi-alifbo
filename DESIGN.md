@@ -261,7 +261,7 @@ A baked palette: one drenched crust amber, nigella-black ink, a flour white for 
 **Body Font:** Onest 400 / 500 / 600 / 700, one variable file covering 400–700 (with system-ui, sans-serif)
 **Label/Mono Font:** ui-monospace, Menlo for code and for the old-spelling input column
 
-Both families are self-hosted (OFL) from `web/fonts/`, latin and latin-ext subsets, `font-display: swap`.
+Both families are self-hosted (OFL) from `web/fonts/`, `font-display: swap`. Doto: latin and latin-ext. Onest: one variable file per subset (latin, latin-ext, cyrillic, cyrillic-ext), weights 400–800; the cyrillic-ext file carries ў ғ қ ҳ.
 
 **Character:** A dot-matrix display that looks punched by the çekiç, paired with a plain, open grotesque that reads well on a low-end phone. Doto names things; Onest explains them.
 
@@ -286,6 +286,8 @@ Both families are self-hosted (OFL) from `web/fonts/`, latin and latin-ext subse
 **The Doto Has No Full Stop Rule.** Doto draws "." like a plus sign, so display lines never end with a period. Line breaks do the work punctuation would.
 
 **The Ğ Stays Out Of Doto Rule.** Doto's Ğ is weak, so ğ is never set in Doto display. Write display lines that avoid it; where ğ must appear large, draw it from the 5×10 dot glyph grid instead.
+
+**The Cyrillic Falls Back To Onest Rule.** Doto has no Cyrillic. In the Cyrillic reading mode (`html[data-yozuv="kirill"]`) every Doto heading (hero, section titles, converter and quiz titles, founder name, closing statement, countdown) is set in Onest 800 with -0.015em tracking. The logo stays Doto and Latin.
 
 **The Breve Must Show Rule.** Golos Text draws Ğ/ğ without the breve; never use it, here or as a fallback. Any face proposed for this system must render ö ğ ş ç and ʼ correctly before it is admitted.
 
@@ -381,6 +383,24 @@ The owner asked for real, recognisable marks, so the Apple logo and the Windows 
 
 ### Founder chip (header)
 A char capsule at the end of the top bar (shown on phones too): a 36px round photo, then a crust uppercase "Asosçi" over the name in flour. Fully rounded at the owner's request; the one exception to the Three Pixel Rule. No motion; hover steps to slab-well. Under 370px the name hides.
+
+### Phone Guide (Telefonda yoziş)
+A char slab like the download slab, with an iPhone | Android tablist (same ARIA tab behaviour; each tablist switches only its own panels). iPhone panel: four rows, each a flour key cap (44×52, Onest 500 24px) beside a drawn long-press menu of slab-well cells (40×44, Onest 500 22px); the correct letter is a crust cell with a 2px flour outline offset 2px, the lookalikes stay slab-well. Android panel: a "Töğri / Öxşaş, lekin boşqa" table in the same cells. A shared Turkish-keyboard warning closes the slab under a light dot row. The menus show the choice, never a claimed menu order.
+
+### Countdown (Sanoq)
+On crust at the top of the rules section: a Doto 64px number and "kun", a 17px char-soft line, then one 7px dot per day from signing (21.10.2026) to entry into force (22.04.2027): past days char, today flour with a char ring, the rest 1.5px rings. The dots are the countdown's whole graphic.
+
+### Word Check (Söz tekşiruv)
+A flour working field above the rules table: a 48px field with a 2px char stroke, then a dough result pane with the word in Onest 700 32px (changed letters clay, 3px dotted underline), an ink copy button and the list of rules that fired. The matching rule-table row turns char with flour text. Lookalike warnings are char cells with the letters in crust.
+
+### Quiz (Test)
+A flour panel (max 640px): Doto title, ten 10px progress dots (char = right, clay = wrong, outlined ring = current), Onest 700 21px question, three 56px option buttons with a 2px char stroke. The right answer turns dough with a hot tag; a wrong pick gets a 2px clay line-through. Result: Doto 96px score over a Doto "/10", ink and ghost (2px char border) buttons, and a 200px preview of the story image.
+
+### Story Image
+Canvas 1080×1920, drawn in the browser: crust ground with a 36px dot grid, the logo, "Yangi alifbo testi" in Doto, the non (rim bands, two pip rings) with the score stamped in Doto (scaled to fit the dough), "töğri javob" in Onest 700, and the domain in Onest 800. Never set the domain in Doto: its full stop draws as a plus.
+
+### Script Button
+A 40px transparent chip with a 2px char stroke in the top bar, Onest 700 14px, reading "Кирилл" in the Latin page and "Lotin" in the Cyrillic page; hover fills char. Under 420px the bar gap drops to 10px and the founder chip keeps only photo and "Asosçi".
 
 ### Logo
 The wordmark "yozgiç" in Logo type, preceded by a 30px mark: a char disc with a dough centre holding the ö dot glyph (the favicon's drawing).
