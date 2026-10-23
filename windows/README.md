@@ -17,6 +17,14 @@
 
 Windows'dagi usul macOS'dagidan farq qiladi: harf avval ekranga çiqadi, keyin dastur uni `Backspace` bilan öçirib, yangi harfni qöyadi.
 
+## Adaşgan harfni öçiriş
+
+Backspace faqat oxirgi harfni öçiradi, oldingisini dastur eslab qoladi: `c`, `b`, `⌫`, `h` yozsangiz `ç` çiqadi, `o`, `x`, `⌫`, `'` — `ö`.
+
+Strelka, Enter, Tab, Ctrl+Backspace yoki siçqonça bosilsa, dastur kursor qayerda turganini bilmaydi va eslab qolganini unutadi — keyingi `h` oddiy `h` bölib qoladi.
+
+Çeklov: dastur ekrandagi matnni öqimaydi. Agar matnni dasturning özi belgilagan bölsa (masalan, brauzer manzil qatori taklifi) va Backspace faqat şu belgilangan qismni öçirsa, keyingi `h` yoki `'` notöğri birikişi mumkin. Örtadagi harfni öçiriş (`cbh` → `←` → `⌫`) Windowsʼda hozirça birikmaydi.
+
 ## Yoqiş va öçiriş
 
 - **Ctrl + Alt + Space**
