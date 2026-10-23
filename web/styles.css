@@ -658,3 +658,21 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .fayl-p { max-width: 68ch; margin: 0 0 14px; font-size: 17px; }
 .try-more { margin: 14px 0 0; font-size: 16px; }
 .try-more a { font-weight: 700; }
+
+/* Maqolalar (/maqola/) */
+.maqola { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.maqola > * { max-width: 720px; }
+.maqola > p, .maqola li { font-size: 18px; line-height: 1.6; }
+.maqola-meta { margin: -12px 0 24px; font-size: 15px !important; color: var(--char-soft); }
+.maqola .soz-h2 { margin-top: 32px; }
+.maqola-table { margin: 0 0 8px; }
+.maqola-sana { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.maqola-note { margin-top: 32px; padding: 12px 14px; background: var(--flour); border-radius: var(--corner); font-size: 15px !important; }
+.maqola-list { display: grid; gap: 10px; padding: 0; list-style: none; }
+.maqola-list a {
+  display: grid; gap: 4px; padding: 16px 18px; text-decoration: none;
+  background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner);
+}
+.maqola-list a:hover { background: var(--dough); }
+.maqola-list b { font: 800 20px/1.25 Onest, system-ui, sans-serif; }
+.maqola-list span { font-size: 16px; color: var(--char-soft); }

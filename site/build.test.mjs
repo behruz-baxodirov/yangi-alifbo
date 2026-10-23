@@ -149,3 +149,33 @@ test("the real site builds word pages, the index and the search list", async () 
   assert.match(site.get("sitemap.xml"), /<loc>https:\/\/yozgich\.uz\/kr\/soz\/shahzod\/<\/loc>/);
   assert.match(site.get("index.html"), /href="\/soz\/"/);
 });
+
+const MAQOLALAR = ["nima-ozgardi", "qonun", "sh-qoidasi", "tutuq", "kirilldan", "ismlar"];
+
+test("every article has one Article JSON-LD whose headline is its h1, in every version", async () => {
+  const site = await renderSite({ siteDir: fileURLToPath(new URL(".", import.meta.url)) });
+  const plainText = (s) => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+  for (const slug of MAQOLALAR) {
+    for (const { prefix, lang } of TILLAR) {
+      const html = site.get(`${prefix}maqola/${slug}/index.html`);
+      assert.ok(html, `${prefix}maqola/${slug}`);
+      const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+      const articles = blocks.filter((b) => b["@type"] === "Article");
+      assert.equal(articles.length, 1, `${prefix}${slug}`);
+      assert.equal(articles[0].headline, plainText(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), `${prefix}${slug}`);
+      assert.match(articles[0].datePublished, /^\d{4}-\d{2}-\d{2}$/);
+      assert.equal(articles[0].inLanguage, lang);
+    }
+  }
+  assert.ok(site.has("maqola/index.html") && site.has("ru/maqola/index.html"));
+});
+
+test("articles stay within checked facts", () => {
+  const dir = fileURLToPath(new URL(".", import.meta.url));
+  for (const base of ["pages/maqola", "ru/maqola"]) {
+    for (const slug of MAQOLALAR) {
+      const src = readFileSync(join(dir, base, `${slug}.html`), "utf8");
+      assert.doesNotMatch(src, /pasport|паспорт|2031|Senat|Сенат/i, `${base}/${slug}`);
+    }
+  }
+});

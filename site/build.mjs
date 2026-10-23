@@ -10,7 +10,7 @@ import { toOldLatin } from "../web/eski.js";
 import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "18";
+export const ASSET_V = "19";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -92,6 +92,24 @@ function alternates(path) {
 
 function fill(template, values) {
   return template.replace(/\{\{([\w:-]+)\}\}/g, (all, key) => (key in values ? values[key] : all));
+}
+
+// Maqola: Article JSON-LD, sarlavhasi har versiyaning öz <h1> i.
+function articleLd(page, meta, t) {
+  const h1 = page.main.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: h1 ? plain(h1[1]) : page.title,
+    description: page.description,
+    datePublished: meta.article.published,
+    dateModified: meta.updated,
+    inLanguage: t.lang,
+    mainEntityOfPage: url(t.prefix, meta.path),
+    author: { "@type": "Person", name: "Behruz Baxodirov", url: `${SITE}/#asoschi` },
+    publisher: { "@type": "Organization", name: "Yozgiç", url: `${SITE}/` },
+  };
+  return `\n<script type="application/ld+json">${JSON.stringify(ld, null, 1)}</script>`;
 }
 
 function renderPage({ layout, header, footer, page, t }) {
@@ -179,6 +197,7 @@ export async function renderSite({ siteDir, extraPages = [] }) {
         footer = loc(partials.uz.footer);
       }
       page.head = syncFaq(page.head, page.main);
+      if (uz.meta.article) page.head += articleLd(page, uz.meta, t);
       files.set(outPath(t.prefix, path), renderPage({ layout, header, footer, page, t }));
       locs.push({ loc: url(t.prefix, path), updated });
     }
