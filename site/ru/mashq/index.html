@@ -1,0 +1,37 @@
+<!--meta
+{"title": "Тренажёр набора: ö ğ ş ç · Yozgiç", "description": "Тренируйте быстрый набор на новом узбекском алфавите: слова и предложения с буквами ö, ğ, ş, ç. Скорость, точность и буквы, на которых вы ошибаетесь.", "path": "/mashq/", "script": "mashq.js", "updated": "2026-10-24"}
+-->
+<section class="mashq" id="mashq">
+  <h1 class="sec-title">Тренажёр набора</h1>
+  <p class="soz-lede">Четыре новые буквы — четыре новые привычки. Набирайте текст: с Yozgiç вы пишете <b data-lotin>o'</b> — получается <b data-lotin>ö</b>; на телефоне можно набирать и на азербайджанской клавиатуре.</p>
+  <div class="chips mashq-rejim" role="group" aria-label="Режим">
+    <button type="button" class="chip" data-rejim="o" aria-pressed="true">Только <span data-lotin>ö</span></button>
+    <button type="button" class="chip" data-rejim="g">Только <span data-lotin>ğ</span></button>
+    <button type="button" class="chip" data-rejim="sh">Только <span data-lotin>ş</span></button>
+    <button type="button" class="chip" data-rejim="ch">Только <span data-lotin>ç</span></button>
+    <button type="button" class="chip" data-rejim="aralash">Вперемешку</button>
+    <button type="button" class="chip" data-rejim="gaplar">Предложения</button>
+  </div>
+  <div class="mashq-box">
+    <p class="mashq-matn" id="mashq-matn" data-lotin aria-live="off"></p>
+    <label class="sr-only" for="mashq-in">Набирайте</label>
+    <input class="check-field mashq-in" id="mashq-in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <p class="mashq-hint" id="mashq-hint" hidden>Похоже, Yozgiç выключен: при наборе <b data-lotin>o'</b> не появляется <b data-lotin>ö</b>. На Mac дважды нажмите <kbd>⇧ Shift</kbd>, в Windows — <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. <a href="/#yuklab-olish">Установка</a></p>
+    <p class="mashq-stat" id="mashq-stat">Начните печатать — время считается с первой буквы.</p>
+  </div>
+  <div class="mashq-natija" id="mashq-natija" tabindex="-1" hidden>
+    <p class="score"><span class="score-n" id="mashq-wpm">0</span><span class="score-of">слов/мин</span></p>
+    <p class="mashq-detal" id="mashq-detal"></p>
+    <div class="result-acts">
+      <button type="button" class="btn btn-ink" id="mashq-story">В сторис</button>
+      <button type="button" class="btn btn-ghost" id="mashq-qayta">Ещё раз</button>
+    </div>
+    <p class="story-err" id="mashq-err" hidden>Не удалось создать картинку. Попробуйте ещё раз.</p>
+    <figure class="story-prev" id="mashq-prev" hidden>
+      <img id="mashq-img" alt="Картинка с результатом тренажёра" width="1080" height="1920">
+      <figcaption>Удерживайте картинку, чтобы сохранить</figcaption>
+    </figure>
+  </div>
+  <p class="mashq-best" id="mashq-best"></p>
+  <p class="soz-cta">Результаты хранятся только в вашем браузере. <a href="/#yuklab-olish">Установить Yozgiç</a></p>
+</section>

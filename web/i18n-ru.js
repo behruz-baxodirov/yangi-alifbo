@@ -86,6 +86,16 @@ export const RU = {
   "Ismingiz özgarmaydi": "Имя не меняется",
   "Siz ham yasang:": "Сделайте и вы:",
 
+  // Maşq
+  "Eng yaxşi natija: {n} söz/daqiqa · maşq kunlari: {k}": "Лучший результат: {n} слов/мин · дней практики: {k}",
+  "Yoza boşlang — vaqt birinçi harfdan hisoblanadi.": "Начните печатать — время считается с первой буквы.",
+  "Aniqlik: {a}%": "Точность: {a}%",
+  "Köp adaşgan harf: {h}": "Чаще всего ошибались в букве {h}",
+  "{n} / {all} söz": "{n} / {all} слов",
+  "Tez yoziş": "Тренажёр",
+  "maşqi": "набора",
+  "söz/daqiqa": "слов/мин",
+
   // Story rasm
   "Yangi alifbo": "Новый алфавит",
   "testi": "тест",

@@ -4,12 +4,13 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { localizeHtml } from "./lib/html.mjs";
+import { convert } from "../web/converter.js";
 import { toCyrillic } from "../web/kirill.js";
 import { toOldLatin } from "../web/eski.js";
 import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "16";
+export const ASSET_V = "17";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -125,6 +126,22 @@ function sitemap(entries) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
+// [bölim] sarlavhalari; [gaplar] da har qator bitta gap, qolganida sözlar böşliq bilan ajraladi.
+export function mashqModule(text) {
+  const out = {};
+  let section = null;
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    if (!line || line.startsWith("#")) continue;
+    const m = line.match(/^\[(\w+)\]$/);
+    if (m) { section = m[1]; out[section] = []; continue; }
+    const items = section === "gaplar" ? [line] : line.split(/\s+/);
+    out[section].push(...items.map((x) => convert(x)));
+  }
+  return "// Bu faylni site/build.mjs yasagan (site/mashq.txt dan). Qölda tahrirlamang.\n"
+    + `export const MATN = ${JSON.stringify(out, null, 1)};\n`;
+}
+
 export async function renderSite({ siteDir, extraPages = [] }) {
   const read = (...p) => readFileSync(join(siteDir, ...p), "utf8");
   const layout = read("layout.html");
@@ -166,6 +183,10 @@ export async function renderSite({ siteDir, extraPages = [] }) {
       locs.push({ loc: url(t.prefix, path), updated });
     }
   }
+
+  // Maşq matnlari: site/mashq.txt → web/mashq-matn.js (yangi alifboda).
+  const mashqFile = join(siteDir, "mashq.txt");
+  if (existsSync(mashqFile)) files.set("mashq-matn.js", mashqModule(readFileSync(mashqFile, "utf8")));
 
   // Söz sahifalari: site/sozlar.txt bölsa (test fixture'da yöq).
   const sozFile = join(siteDir, "sozlar.txt");

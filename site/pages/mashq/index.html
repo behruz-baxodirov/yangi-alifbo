@@ -1,0 +1,37 @@
+<!--meta
+{"title": "Tez yoziş maşqi: ö ğ ş ç · Yozgiç", "description": "Yangi alifboda tez yozişni maşq qiling: ö, ğ, ş, ç harflari bilan sözlar va gaplar. Tezlik, aniqlik va qaysi harfda adaşganingizni körasiz.", "path": "/mashq/", "script": "mashq.js", "updated": "2026-10-24"}
+-->
+<section class="mashq" id="mashq">
+  <h1 class="sec-title">Tez yoziş maşqi</h1>
+  <p class="soz-lede">Törtta yangi harf — törtta yangi odat. Matnni yozing: Yozgiç bilan <b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b> çiqadi, telefonda ozarbayjonça klaviaturadan ham yozsa böladi.</p>
+  <div class="chips mashq-rejim" role="group" aria-label="Maşq turi">
+    <button type="button" class="chip" data-rejim="o" aria-pressed="true">Faqat <span data-lotin>ö</span></button>
+    <button type="button" class="chip" data-rejim="g">Faqat <span data-lotin>ğ</span></button>
+    <button type="button" class="chip" data-rejim="sh">Faqat <span data-lotin>ş</span></button>
+    <button type="button" class="chip" data-rejim="ch">Faqat <span data-lotin>ç</span></button>
+    <button type="button" class="chip" data-rejim="aralash">Aralaş</button>
+    <button type="button" class="chip" data-rejim="gaplar">Gaplar</button>
+  </div>
+  <div class="mashq-box">
+    <p class="mashq-matn" id="mashq-matn" data-lotin aria-live="off"></p>
+    <label class="sr-only" for="mashq-in">Yozing</label>
+    <input class="check-field mashq-in" id="mashq-in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <p class="mashq-hint" id="mashq-hint" hidden>Yozgiç yoqilmagan körinadi: <b data-lotin>o'</b> yozganda <b data-lotin>ö</b> çiqmayapti. Macʼda <kbd>⇧ Shift</kbd> ni ikki marta bosing, Windowsʼda <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>. <a href="/#yuklab-olish">Örnatiş</a></p>
+    <p class="mashq-stat" id="mashq-stat">Yoza boşlang — vaqt birinçi harfdan hisoblanadi.</p>
+  </div>
+  <div class="mashq-natija" id="mashq-natija" tabindex="-1" hidden>
+    <p class="score"><span class="score-n" id="mashq-wpm">0</span><span class="score-of">söz/daqiqa</span></p>
+    <p class="mashq-detal" id="mashq-detal"></p>
+    <div class="result-acts">
+      <button type="button" class="btn btn-ink" id="mashq-story">Storyga qöyiş</button>
+      <button type="button" class="btn btn-ghost" id="mashq-qayta">Yana bir marta</button>
+    </div>
+    <p class="story-err" id="mashq-err" hidden>Rasm yasab bölmadi. Qaytadan urinib köring.</p>
+    <figure class="story-prev" id="mashq-prev" hidden>
+      <img id="mashq-img" alt="Maşq natijasi rasmi" width="1080" height="1920">
+      <figcaption>Rasmni bosib turib saqlaşingiz mumkin</figcaption>
+    </figure>
+  </div>
+  <p class="mashq-best" id="mashq-best"></p>
+  <p class="soz-cta">Natijalar faqat sizning brauzeringizda saqlanadi. <a href="/#yuklab-olish">Yozgiçni örnatiş</a></p>
+</section>

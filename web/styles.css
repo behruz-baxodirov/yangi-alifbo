@@ -615,3 +615,23 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .ism-juft li { padding: 6px 12px; background: var(--char); color: var(--flour); border-radius: var(--corner); font: 700 17px/1.2 Onest, system-ui, sans-serif; }
 .ism-same { margin: 0 0 16px; font-size: 17px; }
 .ism .story-prev img { max-width: 260px; height: auto; }
+
+/* Tez yoziş maşqi (/mashq/) */
+.mashq { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.mashq > * { max-width: 820px; }
+.mashq-rejim { margin: 0 0 18px; }
+.mashq-box { padding: 20px; margin: 0 0 20px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); }
+.mashq-matn { margin: 0 0 16px; font: 500 clamp(20px, 2.6vw, 26px)/1.6 Onest, system-ui, sans-serif; color: var(--char-soft); }
+.mashq-matn .now { color: var(--char); background: var(--dough); border-radius: var(--corner); box-decoration-break: clone; padding: 0 2px; }
+.mashq-matn .ok { color: var(--char); }
+.mashq-matn .no { color: var(--clay); text-decoration: underline wavy 2px; text-underline-offset: 4px; }
+.mashq-in { font-size: 22px; }
+.mashq-in.bad { outline: 3px solid var(--clay); outline-offset: 2px; }
+.mashq-hint { margin: 12px 0 0; padding: 10px 12px; background: var(--char); color: var(--flour); border-radius: var(--corner); font-size: 15px; }
+.mashq-hint a { color: var(--crust); }
+.mashq-stat { margin: 12px 0 0; font-size: 15px; color: var(--char-soft); }
+.mashq-natija { padding: 20px; margin: 0 0 20px; background: var(--dough); border: 2px solid var(--char); border-radius: var(--corner); }
+.mashq-natija .score-of { margin-left: 10px; font: 700 20px/1 Onest, system-ui, sans-serif; }
+.mashq-detal { margin: 8px 0 16px; font-size: 17px; }
+.mashq-best { margin: 0 0 12px; font-size: 16px; }
+.mashq .story-prev img { max-width: 260px; height: auto; }

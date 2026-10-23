@@ -1,0 +1,43 @@
+# Tez yoziş maşqi matnlari, eski lotinda. Build ularni yangi alifboga ögirib web/mashq-matn.js ga yozadi.
+# [o] [g] [sh] [ch] [aralash] — sözlar (bo'şliq bilan), [gaplar] — har qatorda bitta gap.
+
+[o]
+o'zbek o'qish o'yin o'rik o'rmon o'tin o'g'il o'lka o'rta o'ng o'zgarish o'simlik o'tkir o'n o'ttiz o'rdak ko'z ko'k ko'l ko'p
+ko'prik ko'cha ko'ylak ko'ngil go'zal go'sht to'y to'p to'rt to'la so'z so'm bo'lim bo'sh bo'yoq qo'l qo'shni qo'zi do'st do'kon
+yo'l yo'q cho'l cho'pon jo'ja zo'r xo'roz no'xat ro'mol ro'yxat
+
+[g]
+tog' bog' bog'cha yog' yog'och yog'in yomg'ir sog' sog'liq og'iz og'ir g'isht g'oz g'alaba g'alla g'am g'urur g'oya g'ildirak g'arb
+g'azal g'or g'olib tug'ilgan bug'doy sig'ir qog'oz qarg'a yig'in to'g'a belbog' yong'oq lag'mon qayg'u chizg'ich Farg'ona Marg'ilon
+G'ulom Ulug'bek G'ayrat
+
+[sh]
+shahar shirin shamol shaftoli shoir ish ishchi kishi oshxona osh qosh tosh bosh quyosh qish qishloq qush shoh shim shisha shifokor
+sharbat shakar sharq shimol shanba shart shogird shudring tashqi tushlik yosh yashil eshik mushuk sher kurash shaxmat tish Toshkent
+Shahzod Shahnoza
+
+[ch]
+choy choyxona choynak chiroq chiroyli chaqaloq chang chegara chet chiqish chumoli chuqur chumchuq chuchvara kech kecha kuch kuchli
+achchiq uch ichimlik qilich pichoq kichik kuchuk ochiq chinor chashma chelak chaqmoq chopon echki archa quvonch olcha guruch soch
+Chirchiq Chust Charos
+
+[aralash]
+o'zbek tili shirin choy qo'shiq cho'pon tog'li qishloq go'zal shahar do'stlik bog'cha oshxona ko'cha chiroq yog'och shamol o'g'il
+qo'shni choynak g'alaba sog'inch ko'ngil achchiq yo'lovchi shaftoli bug'doy chumchuq o'rmon ishonch qog'oz kechqurun to'g'ri
+quyosh chegara yomg'ir shoshilmoq o'qituvchi chaqaloq g'isht ko'prik mushuk
+
+[gaplar]
+O'zbekiston go'zal yurt.
+Toshkentda choyxonalar ko'p.
+Shahzod qishloqqa bordi.
+Bog'da o'rik pishdi.
+Ertalab choy ichdik.
+Ko'chada bolalar o'ynaydi.
+Tog'da qor yog'di.
+Shamol kuchli esdi.
+Do'stim menga kitob sovg'a qildi.
+Qo'shnimiz osh pishirdi.
+Chiroqni o'chirib qo'ying.
+Yangi alifboda o'qish oson.
+Kechqurun ko'l bo'yida sayr qildik.
+Farg'ona vodiysi juda chiroyli.
