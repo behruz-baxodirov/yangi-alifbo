@@ -67,7 +67,7 @@ web/                      deploy qilinadigan papka (hozirgidek)
 6. Söz sahifalarini `sozlar.txt` dan yasaydi (§5).
 7. `web/sitemap.xml` ni hamma sahifadan qayta yozadi.
 
-Build ikki marta işlatilsa natija bayt-ba-bayt bir xil (sana `lastmod` faqat sahifa matni özgarganda yangilanadi — oldingi sitemapdan olinadi).
+Build ikki marta işlatilsa natija bayt-ba-bayt bir xil: `lastmod` build sanasidan emas, har sahifa manbasidagi `updated` maydonidan olinadi (söz sahifalari uçun bitta umumiy sana).
 
 ### 3.3. Eski lotin
 
