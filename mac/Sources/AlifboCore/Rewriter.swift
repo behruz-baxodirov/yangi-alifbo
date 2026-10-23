@@ -15,6 +15,16 @@ extension RewriteAction {
     }
 }
 
+extension Alphabet {
+    /// Örtadagi belgi öçirilganda qöşnilar birikadimi: c|b|h → ç, o|x|' → ö.
+    public static func joinedLetter(before: Character?, after: Character?) -> Character? {
+        guard let before, let after else { return nil }
+        if after == "h" || after == "H" { return withH[before] }
+        if apostrophes.contains(after) { return withApostrophe[before] }
+        return nil
+    }
+}
+
 public struct Rewriter {
     public var options: ComposerOptions
     /// Hujjatdagi oxirgi ikki belgi (biz bilgan qadar). Bo'sh — kontekst nomalum.
@@ -23,6 +33,11 @@ public struct Rewriter {
     public init(options: ComposerOptions = .init()) { self.options = options }
 
     public mutating func handle(_ input: KeyInput) -> RewriteAction {
+        if options.enabled, input == .backspace {
+            // Faqat oxirgi belgi öçadi: "c b ⌫ h" → ç.
+            if !recent.isEmpty { recent.removeLast() }
+            return .pass
+        }
         guard options.enabled, case .char(let ch) = input else {
             reset()
             return .pass
@@ -43,6 +58,9 @@ public struct Rewriter {
     }
 
     public mutating func reset() { recent.removeAll() }
+
+    /// Backspace belgilangan matnni öçirdi: kursor oldida nima qolgani noma'lum.
+    public mutating func deletedSelection() { reset() }
 
     private mutating func replaced(_ count: Int, with chars: [Character]) -> RewriteAction {
         recent.removeLast(min(count, recent.count))

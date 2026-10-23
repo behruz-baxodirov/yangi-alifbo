@@ -50,6 +50,57 @@ final class RewriterTests: XCTestCase {
         XCTAssertEqual(r.handle(.char("'")), .pass)
     }
 
+    // c, b (adaşib), ⌫, h → ç: Backspace faqat oxirgi harfni unutadi.
+    func testBackspaceKeepsLetterBeforeDeletedOne() {
+        var r = Rewriter()
+        _ = r.handle(.char("c"))
+        _ = r.handle(.char("b"))
+        XCTAssertEqual(r.handle(.backspace), .pass)
+        XCTAssertEqual(r.handle(.char("h")), .replace(deleteBefore: 1, insert: "ç"))
+    }
+
+    func testBackspaceAfterApostropheTypo() {
+        var r = Rewriter()
+        _ = r.handle(.char("o"))
+        _ = r.handle(.char("x"))
+        _ = r.handle(.backspace)
+        XCTAssertEqual(r.handle(.char("'")), .replace(deleteBefore: 1, insert: "ö"))
+    }
+
+    // Belgilangan matn öçirilsa, qaysi harf qolgani noma'lum: hammasi unutiladi.
+    func testDeletingSelectionForgetsContext() {
+        var r = Rewriter()
+        _ = r.handle(.char("c"))
+        r.deletedSelection()
+        XCTAssertEqual(r.handle(.char("h")), .pass)
+    }
+
+    func testDisabledBackspaceForgetsContext() {
+        var r = Rewriter(options: .init(enabled: false))
+        _ = r.handle(.char("c"))
+        _ = r.handle(.char("b"))
+        _ = r.handle(.backspace)
+        r.options.enabled = true
+        XCTAssertEqual(r.handle(.char("h")), .pass)
+    }
+
+    // cbh → kursor b dan keyin → ⌫: c va h birikadi.
+    func testJoinedLetterAroundDeletedCharacter() {
+        XCTAssertEqual(Alphabet.joinedLetter(before: "c", after: "h"), "ç")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "S", after: "H"), "Ş")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "s", after: "H"), "ş")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "o", after: "'"), "ö")
+        XCTAssertEqual(Alphabet.joinedLetter(before: "G", after: "’"), "Ğ")
+    }
+
+    func testNothingJoinsWithoutPair() {
+        XCTAssertNil(Alphabet.joinedLetter(before: "a", after: "h"))
+        XCTAssertNil(Alphabet.joinedLetter(before: "c", after: "b"))
+        XCTAssertNil(Alphabet.joinedLetter(before: "c", after: "'"))
+        XCTAssertNil(Alphabet.joinedLetter(before: nil, after: "h"))
+        XCTAssertNil(Alphabet.joinedLetter(before: "c", after: nil))
+    }
+
     func testOtherKeyForgetsContext() {
         var r = Rewriter()
         _ = r.handle(.char("s"))
