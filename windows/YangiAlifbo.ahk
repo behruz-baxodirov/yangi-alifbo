@@ -6,9 +6,7 @@
 
 global Enabled := true
 global Tutuq := true
-global Last := ""            ; oxirgi yozilgan belgi ("" — nomalum)
-global LastWasLetter := false
-global ApoAfterLetter := false
+global Recent := ""          ; hujjatdagi oxirgi ikki belgi, biz bilgan qadar ("" — nomalum)
 
 APOS := "'``‘’ʻʼ´"
 WITH_APOS := Map("o", "ö", "O", "Ö", "g", "ğ", "G", "Ğ")
@@ -31,50 +29,65 @@ OnChar(hook, ch) {
     global
     if !Enabled
         return
-    if InStr(APOS, ch, true) && WITH_APOS.Has(Last) {
-        Replace(2, WITH_APOS[Last])
+    last := SubStr(Recent, -1)
+    if InStr(APOS, ch, true) && WITH_APOS.Has(last) {
+        Replace(2, WITH_APOS[last])
         return
     }
-    if (ch == "h" || ch == "H") && WITH_H.Has(Last) {
-        Replace(2, WITH_H[Last])
+    if (ch == "h" || ch == "H") && WITH_H.Has(last) {
+        Replace(2, WITH_H[last])
         return
     }
-    if ApoAfterLetter && Tutuq && IsLetter(ch) {
+    if Tutuq && IsLetter(ch) && StrLen(Recent) == 2 && InStr(APOS, last, true) && IsLetter(SubStr(Recent, 1, 1)) {
         Send "{BS 2}"
         SendText "ʼ" ch
-        ApoAfterLetter := false
-        Last := ch
-        LastWasLetter := true
+        Recent := "ʼ" ch
         return
     }
-    ApoAfterLetter := InStr(APOS, ch, true) && LastWasLetter
-    LastWasLetter := IsLetter(ch)
-    Last := ch
+    Remember(ch)
 }
 
 Replace(count, letter) {
     global
     Send "{BS " count "}"
     SendText letter
-    Last := letter
-    LastWasLetter := true
-    ApoAfterLetter := false
+    ; ö ğ ş ç qoidalar kalitlari emas, şuning uçun keyingi tugma bilan qayta birikmaydi (maşhur).
+    Forget()
+    Remember(letter)
+}
+
+Remember(ch) {
+    global
+    Recent .= ch
+    if StrLen(Recent) > 2
+        Recent := SubStr(Recent, 2)
+}
+
+Forget() {
+    global
+    if Recent != ""
+        Recent := SubStr(Recent, 1, StrLen(Recent) - 1)
 }
 
 OnKeyDown(hook, vk, sc) {
-    ; Matn bölmagan tugmalar (strelka, Enter, Backspace, Tab, Esc…) kontekstni uzadi.
+    ; Matn bölmagan tugmalar (strelka, Enter, Tab, Esc, Ctrl+…) kontekstni uzadi.
     key := GetKeyName(Format("vk{:x}sc{:x}", vk, sc))
     if key ~= "^(L|R)?Shift$|^CapsLock$|^Space$"
         return
+    if key == "Backspace" && !(GetKeyState("Ctrl") || GetKeyState("Alt") || GetKeyState("LWin") || GetKeyState("RWin")) {
+        ; Faqat oxirgi belgi öçadi: "c b ⌫ h" → ç.
+        ; Belgilangan matn öçirilsa buni bilmaymiz; sichqonça, Shift+strelka va Ctrl+A
+        ; kontekstni allaqaçon uzgan, faqat dasturning özi belgilagan matn (manzil qatori taklifi) qoladi.
+        Forget()
+        return
+    }
     if StrLen(key) > 1 || GetKeyState("Ctrl") || GetKeyState("Alt") || GetKeyState("LWin") || GetKeyState("RWin")
         ResetState()
 }
 
 ResetState() {
     global
-    Last := ""
-    LastWasLetter := false
-    ApoAfterLetter := false
+    Recent := ""
 }
 
 IsLetter(ch) => RegExMatch(ch, "^\p{L}$")
