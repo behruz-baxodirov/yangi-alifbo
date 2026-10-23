@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Test converter
-        run: node --test web/converter.test.mjs web/test/seo.test.mjs
+        run: node --test web/*.test.mjs web/test/*.test.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

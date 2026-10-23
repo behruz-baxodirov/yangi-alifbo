@@ -1,5 +1,9 @@
 import { convert, detectScript } from "./converter.js";
 import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
+import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
+import { explain, RULE_TEXT } from "./soz.js";
+import { mountTest } from "./test.js";
+import { applyScript, toCyrillic } from "./kirill.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -86,27 +90,32 @@ function restamp(text) {
   setTimeout(() => showPair(pair, true), reduceMotion ? 0 : 450);
 }
 
-// Yuklab oliş tablari: ARIA tablist, strelkalar bilan boşqariladi.
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-function selectTab(tab, focus = false) {
-  tabs.forEach((t) => {
-    const on = t === tab;
-    t.setAttribute("aria-selected", String(on));
-    t.tabIndex = on ? 0 : -1;
-    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+// Tablar (yuklab oliş va telefon yöriqnomasi): ARIA tablist, strelkalar bilan boşqariladi.
+// Har röyxat faqat öz panellarini almaştiradi.
+function setupTabs(list, initialId) {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus = false) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => select(tab));
+    tab.addEventListener("keydown", (e) => {
+      const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(tabs[(next + tabs.length) % tabs.length], true);
+    });
   });
-  if (focus) tab.focus();
+  select(document.getElementById(initialId));
 }
-tabs.forEach((tab, i) => {
-  tab.addEventListener("click", () => selectTab(tab));
-  tab.addEventListener("keydown", (e) => {
-    const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
-    if (next === undefined) return;
-    e.preventDefault();
-    selectTab(tabs[(next + tabs.length) % tabs.length], true);
-  });
-});
-selectTab(document.getElementById(device === "windows" ? "tab-win" : "tab-mac"));
+setupTabs(document.querySelector(".dl .tabs"), device === "windows" ? "tab-win" : "tab-mac");
+setupTabs(document.querySelector(".phone .tabs"), /Android/i.test(ua) ? "tab-and" : "tab-ios");
 
 // Konverter
 const input = document.getElementById("in");
@@ -176,6 +185,41 @@ document.getElementById("clear").addEventListener("click", () => {
   input.focus();
 });
 
+// "Bu söz qanday yoziladi?": natija, qoidalar va jadvalning mos qatori.
+{
+  const field = document.getElementById("soz");
+  const box = document.getElementById("soz-natija");
+  const word = document.getElementById("soz-word");
+  const why = document.getElementById("soz-why");
+  const rows = document.querySelectorAll(".rule-table tr[data-rule]");
+  const li = (html, cls = "") => `<li${cls ? ` class="${cls}"` : ""}>${html}</li>`;
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+  let timer;
+  let tracked = false;
+
+  const show = () => {
+    const r = explain(field.value);
+    rows.forEach((tr) => tr.classList.toggle("lit", r.rules.includes(tr.dataset.rule)));
+    box.hidden = !r.result;
+    if (!r.result) return;
+    const changed = r.result !== field.value.trim();
+    word.innerHTML = [...r.result].map((ch) => (changed && NEW_LETTERS.test(ch) ? `<mark>${ch}</mark>` : esc(ch))).join("");
+    why.innerHTML = [
+      r.cyrillic ? li("Kirill harflari lotinga ögirildi") : "",
+      ...r.rules.map((id) => {
+        const { ex, note } = RULE_TEXT[id];
+        return li(`<b data-lotin>${esc(ex)}</b>${note ? `: ${note}` : ""}`);
+      }),
+      ...r.lookalikes.map((l) => li(`<b data-lotin>${l.bad}</b> özbekça harf emas. Töğrisi <b data-lotin>${l.good}</b> (${l.note}).`, "bad")),
+      r.ok ? li("Bu söz yangi alifboda töğri yozilgan.") : "",
+      r.ng ? li("<span data-lotin>ng</span> özgarmaydi.") : "",
+    ].join("");
+    if (!tracked) { track("soz_tekshirildi"); tracked = true; }
+  };
+  field.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(show, 150); });
+  document.getElementById("soz-tekshir").hidden = false;
+}
+
 // Nusxa oliş tugmalari
 document.querySelectorAll("[data-copy]").forEach((button) => {
   const label = button.textContent;
@@ -226,6 +270,23 @@ share?.addEventListener("click", async () => {
   }
 });
 
+// Sanoq: qonun kuçga kirişiga qolgan kunlar va har kun uçun nuqta.
+{
+  const today = new Date();
+  const left = daysLeft(today);
+  const { total, passed } = dayDots(today);
+  document.getElementById("kun").textContent = left;
+  document.getElementById("kunlar").innerHTML = Array.from({ length: total }, (_, k) =>
+    `<i class="${k < passed ? "past" : k === passed ? "today" : ""}"></i>`).join("");
+  const phase = lawPhase(today);
+  if (phase !== "oldin") {
+    document.getElementById("sanoq-matn").innerHTML = "<b>ЎРҚ-1184</b>-son Qonun " +
+      (phase === "bugun" ? "bugun kuçga kirdi." : "22.04.2027 dan kuçda.");
+    document.getElementById("sanoq").classList.add("done");
+  }
+  document.getElementById("sanoq").hidden = false;
+}
+
 // Nuqta çiziqlarini sahifaning 12px çekiç töriga tekislaymiz.
 function alignDotRows() {
   document.querySelectorAll(".rule-table, .faq, .sec-rule").forEach((el) => {
@@ -248,6 +309,7 @@ document.addEventListener("click", (e) => {
   else if (el.matches('[data-copy="out"]')) track("konverter_nusxa");
   else if (el.matches("[data-sample]")) track("konverter_namuna", { namuna: el.dataset.sample });
   else if (el.id === "share") track("havola_ulashish");
+  else if (el.id === "tab-ios" || el.id === "tab-and") track("telefon_tab", { os: el.id === "tab-ios" ? "iphone" : "android" });
   else if (el.matches(".nav-founder")) track("asoschi_menyu");
   else if (href.includes("taps.uz")) track("donat", { joy: el.closest("footer") ? "pastki" : el.closest(".panel") ? "yuklash" : "savollar" });
   else if (href.startsWith("http") && !href.includes("yozgich.uz")) {
@@ -270,4 +332,30 @@ const seen = new IntersectionObserver((entries) => {
     seen.unobserve(entry.target);
   });
 }, { rootMargin: "0px 0px -50% 0px" });
-["konverter", "qoidalar", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
+["konverter", "telefonda", "qoidalar", "test", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
+
+// Test: savollar, natija va story rasm (test.js).
+mountTest(document.getElementById("test"), track);
+
+// Kirillda öqiş: butun sahifa kirillga ögiriladi (kirill.js), tanlov eslab qolinadi.
+{
+  const button = document.getElementById("yozuv");
+  const KEY = "yozgich-yozuv";
+  const stored = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const set = (script) => {
+    const kirill = script === "kirill";
+    document.documentElement.lang = kirill ? "uz-Cyrl" : "uz";
+    document.documentElement.dataset.yozuv = script;
+    button.innerHTML = kirill ? '<span lang="uz">Lotin</span>' : '<span lang="uz-Cyrl">Кирилл</span>';
+    button.setAttribute("aria-label", kirill ? toCyrillic("Sahifani lotin yozuvida körsatiş") : "Sahifani kirill yozuvida körsatiş");
+    applyScript(document.body, script);
+  };
+  button.addEventListener("click", () => {
+    const next = document.documentElement.dataset.yozuv === "kirill" ? "lotin" : "kirill";
+    set(next);
+    try { localStorage.setItem(KEY, next); } catch { /* saqlab bölmasa, faqat şu sahifada */ }
+    track("yozuv_almashtirildi", { yozuv: next });
+  });
+  if (stored() === "kirill") set("kirill");
+  button.hidden = false;
+}
