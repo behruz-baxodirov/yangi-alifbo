@@ -14,25 +14,39 @@ cases := [
     ["ishchi", "işçi"],
     ["O'ZBEKISTON", "ÖZBEKISTON"],
 ]
+; Tugmalar ketma-ketligi ({Text} emas): adaşgan harf Backspace bilan öçirilgandan keyin ham birikadi.
+keyCases := [
+    ["cb{BS}h", "ç"],
+    ["ox{BS}'", "ö"],
+    ["sa{BS}h", "ş"],
+    ["ab{BS}{BS}{BS}h", "h"],
+    ["c{Left}{Right}h", "ch"],
+]
 
 Run "notepad.exe"
 WinWaitActive "ahk_exe notepad.exe", , 10
 Sleep 1000
 
 failed := 0
-for c in cases {
+for c in cases
+    Check("{Text}" c[1], c[1], c[2])
+for c in keyCases
+    Check(c[1], c[1], c[2])
+
+Check(keys, label, want) {
+    global failed
     Send "^a{Delete}"
     Sleep 200
-    SendEvent "{Text}" c[1]
+    SendEvent keys
     Sleep 400
     A_Clipboard := ""
     Send "^a^c"
     ClipWait 2
     got := A_Clipboard
-    status := (got == c[2]) ? "ok  " : "FAIL"
-    if (got != c[2])
+    status := (got == want) ? "ok  " : "FAIL"
+    if (got != want)
         failed += 1
-    FileAppend status " " c[1] " -> " got " (kutilgan " c[2] ")`n", "*", "UTF-8"
+    FileAppend status " " label " -> " got " (kutilgan " want ")`n", "*", "UTF-8"
 }
 WinClose "ahk_exe notepad.exe"
 Sleep 300
