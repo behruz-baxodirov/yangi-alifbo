@@ -54,3 +54,10 @@ test("unsupported formats and huge files are refused", async () => {
   assert.equal(txt.name, "Xat-yangi.TXT");
   assert.equal(new TextDecoder().decode(txt.bytes), "özbek");
 });
+
+test("a Windows-1251 subtitle is read as Cyrillic, not destroyed", async () => {
+  const cp1251 = new Uint8Array([0x31, 0x0a, 0xd8, 0xe0, 0xf5, 0xe0, 0xf0, 0x0a]); // "1\nШахар\n"
+  const out = await convertFile({ name: "a.srt", bytes: cp1251 }, opts);
+  assert.equal(new TextDecoder().decode(out.bytes), "1\nŞaxar\n");
+  assert.equal(out.changed, 1);
+});

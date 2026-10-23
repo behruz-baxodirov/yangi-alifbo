@@ -8,6 +8,12 @@ test("the word in progress tolerates Yozgiç's in-between o'", () => {
   assert.equal(liveOk("öğil", "ö"), true);
   assert.equal(liveOk("öğil", ""), true);
   assert.equal(liveOk("öğil", "ox"), false);
+  // Yangi harfdan oldingi tugma: o, s, c, g hali yakunlanmagan.
+  assert.equal(liveOk("öğil", "o"), true);
+  assert.equal(liveOk("şahar", "s"), true);
+  assert.equal(liveOk("çoy", "c"), true);
+  assert.equal(liveOk("toğ", "tog"), true);
+  assert.equal(liveOk("çoy", "x"), false);
 });
 
 test("a finished word must be typed in the new alphabet", () => {

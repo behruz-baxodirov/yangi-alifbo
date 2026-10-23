@@ -6,7 +6,10 @@ const nfc = (s) => s.normalize("NFC");
 
 /** Yozilayotgan söz: Yozgiç bir lahza o' ni körsatadi, keyin ö qöyadi — buni xato sanamaymiz. */
 export function liveOk(target, typed) {
-  return nfc(target).startsWith(nfc(convert(typed)));
+  const t = nfc(target);
+  if (t.startsWith(nfc(convert(typed)))) return true;
+  // Oxirgi o, g, s, c (yoki apostrof) hali yangi harfga aylanmagan bölişi mumkin: keyingi tugma hal qiladi.
+  return /[oOgGsScC'’ʻ`]$/.test(typed) && t.startsWith(nfc(convert(typed.slice(0, -1))));
 }
 
 /** Tugagan söz aynan yangi alifboda bölişi kerak; missed — yozilmay qolgan yangi harflar. */

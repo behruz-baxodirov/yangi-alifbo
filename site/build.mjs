@@ -11,7 +11,7 @@ import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs"
 import { bundleVidjet } from "./lib/bundle.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "22";
+export const ASSET_V = "23";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -85,7 +85,7 @@ function prefixLinks(html, prefix) {
   // Til tanlagiç havolalari (data-til) allaqaçon aniq versiyaga olib boradi.
   return html.replace(/<[a-z][^>]*>/g, (tag) => tag.includes("data-til=") ? tag : tag.replace(/href="(\/[^"]*)"/g, (all, href) => {
     if (/^\/(eski|kr|ru)\//.test(href)) return all;
-    const page = href === "/" || href.startsWith("/#") || /\/(#[^"]*)?$/.test(href);
+    const page = href === "/" || /^\/[?#]/.test(href) || /\/([?#][^"]*)?$/.test(href);
     return page ? `href="/${prefix}${href.slice(1)}"` : all;
   }));
 }

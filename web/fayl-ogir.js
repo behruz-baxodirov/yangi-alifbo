@@ -83,7 +83,14 @@ export async function convertFile(file, opts) {
   const ext = dot > 0 ? file.name.slice(dot + 1) : "";
   const name = `${dot > 0 ? file.name.slice(0, dot) : file.name}-yangi.${ext}`;
   const kind = ext.toLowerCase();
-  const asText = () => new TextDecoder("utf-8", { ignoreBOM: true }).decode(file.bytes);
+  // UTF-8 bölmasa (eski Windows subtitrlari), Windows-1251 deb öqiladi; natija doim UTF-8.
+  const asText = () => {
+    try {
+      return new TextDecoder("utf-8", { ignoreBOM: true, fatal: true }).decode(file.bytes);
+    } catch {
+      return new TextDecoder("windows-1251").decode(file.bytes);
+    }
+  };
   if (["txt", "md", "csv"].includes(kind) || ["srt", "vtt"].includes(kind)) {
     const r = kind === "srt" || kind === "vtt" ? convertSubtitle(asText(), opts) : convertText(asText(), opts);
     return { name, bytes: new TextEncoder().encode(r.text), changed: r.changed };

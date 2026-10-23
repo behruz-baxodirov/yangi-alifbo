@@ -55,6 +55,7 @@ test("internal page links get the prefix, assets do not", () => {
   assert.match(kr, /href="\/styles\.css\?v=1"/);
   assert.match(kr, /href="\/img\/a\.webp"/);
   assert.match(kr, /<a href="\/kr\/">/);
+  assert.match(kr, /href="\/kr\/ism\/\?n=x"/);
 });
 
 test("language switcher points at the same page in each version", () => {
