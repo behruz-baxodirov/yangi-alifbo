@@ -1,0 +1,21 @@
+<!--meta
+{"title": "Перевод файлов на новый алфавит: docx, srt, txt · Yozgiç", "description": "Переведите документ Word, субтитры или текстовый файл на новый узбекский алфавит. Файл обрабатывается в браузере и никуда не отправляется; стили и таблицы остаются на месте.", "path": "/fayl/", "script": "fayl.js", "updated": "2026-10-24"}
+-->
+<section class="fayl">
+  <h1 class="sec-title">Перевод файлов</h1>
+  <p class="soz-lede">Перетащите документ Word, субтитры или текстовый файл — он переведётся на новый алфавит прямо в браузере. Файл никуда не отправляется.</p>
+  <label class="fayl-drop" id="fayl-drop" for="fayl-in">
+    <span class="fayl-drop-t">Перетащите файл сюда</span>
+    <span class="fayl-drop-s">или нажмите, чтобы выбрать · <span data-lotin>.docx .txt .md .csv .srt .vtt</span> · до 20 МБ</span>
+    <input id="fayl-in" class="sr-only" type="file" multiple accept=".txt,.md,.csv,.srt,.vtt,.docx">
+  </label>
+  <label class="switch fayl-switch">
+    <input type="checkbox" id="fayl-tutuq" checked>
+    <span>Тутук <b data-lotin>ʼ</b></span>
+  </label>
+  <ul class="fayl-list" id="fayl-list" aria-live="polite"></ul>
+  <h2 class="soz-h2">Что происходит с документом Word</h2>
+  <p class="fayl-p">Документ не пересобирается, меняется только текст: стили, таблицы, картинки, заголовки и колонтитулы остаются на месте. Даже если <span data-lotin>o</span> и <span data-lotin>'</span> оформлены по-разному, получится <b data-lotin>ö</b>.</p>
+  <p class="fayl-p">В субтитрах номера и тайм-коды не трогаются. <span data-lotin>.doc</span>, <span data-lotin>.pdf</span> и <span data-lotin>.xlsx</span> не поддерживаются: сохраните их в Word как <span data-lotin>.docx</span> или обычный текст и перетащите снова.</p>
+  <p class="soz-cta">Для короткого текста: <a href="/#konverter">конвертер</a></p>
+</section>

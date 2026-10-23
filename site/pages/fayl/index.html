@@ -1,0 +1,21 @@
+<!--meta
+{"title": "Fayllarni yangi alifboga ögiriş: docx, srt, txt · Yozgiç", "description": "Word hujjat, subtitr yoki matn faylini yangi özbek alifbosiga ögiring. Fayl brauzerda ögiriladi va heç qayerga yuborilmaydi; uslublar va jadvallar joyida qoladi.", "path": "/fayl/", "script": "fayl.js", "updated": "2026-10-24"}
+-->
+<section class="fayl">
+  <h1 class="sec-title">Fayllarni ögiriş</h1>
+  <p class="soz-lede">Word hujjat, subtitr yoki matn faylini taşlang: u brauzeringiz içida yangi alifboga ögiriladi. Fayl heç qayerga yuborilmaydi.</p>
+  <label class="fayl-drop" id="fayl-drop" for="fayl-in">
+    <span class="fayl-drop-t">Faylni şu yerga taşlang</span>
+    <span class="fayl-drop-s">yoki bosib tanlang · <span data-lotin>.docx .txt .md .csv .srt .vtt</span> · 20 MB gaça</span>
+    <input id="fayl-in" class="sr-only" type="file" multiple accept=".txt,.md,.csv,.srt,.vtt,.docx">
+  </label>
+  <label class="switch fayl-switch">
+    <input type="checkbox" id="fayl-tutuq" checked>
+    <span>Tutuq belgisi <b data-lotin>ʼ</b></span>
+  </label>
+  <ul class="fayl-list" id="fayl-list" aria-live="polite"></ul>
+  <h2 class="soz-h2">Word hujjat bilan nima böladi</h2>
+  <p class="fayl-p">Hujjat qaytadan yiğilmaydi, faqat matn özgaradi: uslublar, jadvallar, rasmlar, sarlavha va kolontitullar joyida qoladi. <span data-lotin>o</span> va <span data-lotin>'</span> boşqa-boşqa formatlangan bölsa ham <b data-lotin>ö</b> böladi.</p>
+  <p class="fayl-p">Subtitrlarda raqamlar va vaqt belgilari tegilmaydi. <span data-lotin>.doc</span>, <span data-lotin>.pdf</span> va <span data-lotin>.xlsx</span> qöllanmaydi: ularni Wordda <span data-lotin>.docx</span> yoki oddiy matn sifatida saqlab, qayta taşlang.</p>
+  <p class="soz-cta">Qisqa matn uçun: <a href="/#konverter">konverter</a></p>
+</section>
