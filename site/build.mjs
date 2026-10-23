@@ -9,7 +9,7 @@ import { toOldLatin } from "../web/eski.js";
 import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "15";
+export const ASSET_V = "16";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },

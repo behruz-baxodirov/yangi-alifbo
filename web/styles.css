@@ -603,3 +603,15 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 @media (max-width: 640px) {
   .soz-forms { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Ism kartasi (/ism/) */
+.ism { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.ism > * { max-width: 760px; }
+.ism-box { margin-bottom: 16px; }
+.ism-karta { padding: 22px; margin: 0 0 28px; background: var(--dough); border: 2px solid var(--char); border-radius: var(--corner); }
+.ism-yangi { margin: 0 0 10px; font: 800 clamp(40px, 9vw, 84px)/1.05 Onest, system-ui, sans-serif; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.ism-eski { margin: 0 0 12px; font-size: 18px; }
+.ism-juft { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+.ism-juft li { padding: 6px 12px; background: var(--char); color: var(--flour); border-radius: var(--corner); font: 700 17px/1.2 Onest, system-ui, sans-serif; }
+.ism-same { margin: 0 0 16px; font-size: 17px; }
+.ism .story-prev img { max-width: 260px; height: auto; }

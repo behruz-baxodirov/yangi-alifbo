@@ -5,51 +5,9 @@ import { til, tx } from "./i18n.js";
 // Doto kirill harflarini bilmaydi: kirill va rus versiyada sarlavha Onest bilan.
 const HEAD = til === "kr" || til === "ru" ? "800 84px Onest, sans-serif" : "900 92px Doto, monospace";
 
-const C = {
-  crust: "#cf8a33", rim: "#a85d1b", rimEdge: "#7d4210", dough: "#f0cf97", pip: "#6b3510", char: "#17110d",
-};
-const W = 1080, H = 1920;
+import { C, W, H, loadFonts as load, logo, non, background } from "./kanvas.js";
 
-function loadFonts() {
-  return Promise.all([
-    document.fonts.load("900 100px Doto", "yozgiç Yangi alifbo testi 0123456789/"),
-    document.fonts.load("500 40px Onest"),
-    document.fonts.load("700 40px Onest", "töğri javob"),
-    document.fonts.load("800 40px Onest", tx("Yangi alifbo testi")),
-  ]).catch(() => {});
-}
-
-function dot(g, x, y, r) {
-  g.beginPath();
-  g.arc(x, y, r, 0, Math.PI * 2);
-  g.fill();
-}
-
-// Logo: char disk, dough markaz, ö nuqta harfi (favicon çizmasi), yonida "yozgiç".
-function logo(g, x, y) {
-  g.fillStyle = C.char; dot(g, x + 40, y + 40, 40);
-  g.fillStyle = C.dough; dot(g, x + 40, y + 40, 33);
-  g.fillStyle = C.char;
-  [[13, 9], [19, 9], [13, 14], [16, 14], [19, 14], [10.5, 17.5], [21.5, 17.5], [10.5, 21], [21.5, 21], [13, 24.5], [16, 24.5], [19, 24.5]]
-    .forEach(([px, py]) => dot(g, x + px * 2.5, y + py * 2.5, 4.3));
-  g.font = "900 72px Doto, monospace";
-  g.textBaseline = "middle";
-  g.fillText("yozgiç", x + 104, y + 44);
-}
-
-// Non: tekis halqalar, ikki çekiç pip halqasi (saytdagi non kabi 56 va 64 ta).
-function non(g, cx, cy, R) {
-  [[R, C.rimEdge], [R * 0.97, C.rim], [R * 0.885, C.rimEdge], [R * 0.86, C.dough]].forEach(([r, color]) => {
-    g.fillStyle = color; dot(g, cx, cy, r);
-  });
-  g.fillStyle = C.pip;
-  [[0.72, 56], [0.81, 64]].forEach(([k, n], ring) => {
-    for (let i = 0; i < n; i++) {
-      const a = (i / n) * Math.PI * 2 + ring * 0.07;
-      dot(g, cx + R * k * Math.cos(a), cy + R * k * Math.sin(a), 5.5);
-    }
-  });
-}
+const loadFonts = () => load(["Yangi alifbo", "testi", "töğri javob", "Siz ham sinab köring:"].map((s) => tx(s)).join(" "));
 
 export async function drawStory(canvas, score) {
   await loadFonts();
@@ -57,10 +15,7 @@ export async function drawStory(canvas, score) {
   canvas.height = H;
   const g = canvas.getContext("2d");
 
-  g.fillStyle = C.crust;
-  g.fillRect(0, 0, W, H);
-  g.fillStyle = "rgba(23,17,13,.15)";
-  for (let y = 18; y < H; y += 36) for (let x = 18; x < W; x += 36) dot(g, x, y, 4.2);
+  background(g);
 
   logo(g, 96, 120);
   g.fillStyle = C.char;

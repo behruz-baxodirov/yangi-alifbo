@@ -79,6 +79,13 @@ export const RU = {
   "Yomon emas. Qoidalarni bir körib çiqing.": "Неплохо. Загляните в правила.",
   "Boşlaniş şunday böladi. Qoidalarni öqib, qaytadan urinib köring.": "Всё начинается с этого. Прочитайте правила и попробуйте ещё раз.",
 
+  // Ism kartasi
+  "Ismim": "Моё имя",
+  "yangi alifboda": "на новом алфавите",
+  "Eski yozuvda:": "Старое написание:",
+  "Ismingiz özgarmaydi": "Имя не меняется",
+  "Siz ham yasang:": "Сделайте и вы:",
+
   // Story rasm
   "Yangi alifbo": "Новый алфавит",
   "testi": "тест",
