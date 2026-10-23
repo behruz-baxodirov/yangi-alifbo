@@ -11,7 +11,7 @@ import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs"
 import { bundleVidjet } from "./lib/bundle.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "20";
+export const ASSET_V = "22";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -131,7 +131,7 @@ function renderPage({ layout, header, footer, page, t }) {
     head: page.head ?? "",
     header: fill(header, hrefs),
     main: page.main,
-    footer,
+    footer: fill(footer, hrefs),
     script: page.script ? `<script type="module" src="/${page.script}?v=${ASSET_V}"></script>` : "",
     v: ASSET_V,
     oglocale: t.til === "ru" ? "ru_RU" : "uz_UZ",

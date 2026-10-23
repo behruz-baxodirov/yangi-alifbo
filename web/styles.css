@@ -489,8 +489,8 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .donate p { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.45; }
 .close a.btn { color: var(--flour); margin-top: 0; }
 
-/* Menyu tor oynada sığmaydi: 1040px gaça faqat logo, til tanlagiç va asosçi */
-@media (max-width: 1040px) {
+/* Menyu tor oynada sığmaydi: 1140px gaça (kirill va rus sözlari uzunroq) faqat logo, til tanlagiç va asosçi */
+@media (max-width: 1140px) {
   .bar nav:not(.tillar) { display: none; }
   .tillar { margin-left: auto; }
 }
@@ -681,3 +681,10 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .vidjet-demo { padding: 18px 20px; margin: 0 0 8px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); }
 .vidjet-demo p { margin: 0; }
 .vidjet-kod { margin: 0 0 12px; padding: 14px 16px; overflow-x: auto; background: var(--slab-well); color: var(--slab-ink); border-radius: var(--corner); font-size: 14px; line-height: 1.5; }
+.close-nav { margin: 24px 0 8px; font-size: 16px; line-height: 1.8; }
+.close-nav a { font-weight: 600; }
+.close-tillar { margin: 0; font-size: 15px; }
+@media (max-width: 420px) {
+  .tillar-m summary { padding: 0 9px; }
+  .nf-text small { letter-spacing: .04em; }
+}

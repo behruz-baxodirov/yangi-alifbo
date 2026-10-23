@@ -399,8 +399,23 @@ A flour panel (max 640px): Doto title, ten 10px progress dots (char = right, cla
 ### Story Image
 Canvas 1080×1920, drawn in the browser: crust ground with a 36px dot grid, the logo, "Yangi alifbo testi" in Doto, the non (rim bands, two pip rings) with the score stamped in Doto (scaled to fit the dough), "töğri javob" in Onest 700, and the domain in Onest 800. Never set the domain in Doto: its full stop draws as a plus.
 
-### Script Button
-A 40px transparent chip with a 2px char stroke in the top bar, Onest 700 14px, reading "Кирилл" in the Latin page and "Lotin" in the Cyrillic page; hover fills char. Under 420px the bar gap drops to 10px and the founder chip keeps only photo and "Asosçi".
+### Language Switcher (Til tanlagiç)
+Four 36px chips with a 2px char stroke in the top bar, Onest 700 13px: "Yangi · Eski · Кирилл · Рус", each in its own script (the nav carries `data-lotin`); the current version is filled char with flour text (`aria-current="page"`). At 640px and below it collapses to a `<details>` chip showing the current name; the list opens as a flour panel with a 2px char stroke. Links go to the same page in the other version and keep the `#hash`. The footer repeats the four versions as a text line. Under 420px the bar gap drops to 10px and the founder chip keeps only photo and "Asosçi".
+
+### Word Page (Söz sahifa)
+Breadcrumb, an Onest 800 heading ("{old} yangi alifboda: {new}", Cyrillic lead word on /kr/ and /ru/), three form cards (old Latin, new Latin on dough, Cyrillic) with a 2px char stroke, the rules that fired, a name-card button for names, and related words as flour chips. The /soz/ index has a search field, square 40px letter chips and the word chips grouped by letter.
+
+### Name Card (Ism kartasi)
+A dough card with the name in Onest 800 up to 84px, the old spelling and char chips with the letter pairs. Its story image uses the shared canvas helpers: the name sits inside the non, in Doto unless it contains ğ (then Onest 800).
+
+### Typing Practice (Maşq)
+Mode chips, a flour box with the target text in Onest 500 (current word on dough, wrong words clay with a wavy underline), a 22px input that gets a 3px clay outline while the word in progress cannot become the target, and a char hint when old forms are left unconverted. The result reuses the quiz score type with "söz/daqiqa" in Onest 700.
+
+### File Converter (Fayl)
+A flour drop zone with a 2px dashed char stroke (dough on hover and drag), the tutuq switch, and one flour row per file with the new name, the changed count and an ink download button; errors are char rows with flour text.
+
+### Articles and Widget
+Article pages are a 720px column of 18px Onest text with Onest 800 headings, rule tables reused for letter mappings and a flour note box for the unofficial-rules line. The widget page shows a live flour demo and the embed code on the slab well. The widget's own button on other sites uses inline styles only: dough fill, 2px char stroke, 3px corners.
 
 ### Logo
 The wordmark "yozgiç" in Logo type, preceded by a 30px mark: a char disc with a dough centre holding the ö dot glyph (the favicon's drawing).

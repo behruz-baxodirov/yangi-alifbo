@@ -78,3 +78,70 @@ test("eski lotin va kirill so'rovlari körinadigan matnda bor", () => {
     assert.ok(text.includes(query), `körinadigan matnda yöq: ${query}`);
   }
 });
+
+// Butun sayt: generator yasagan har bir sahifa.
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { localizeHtml } from "../../site/lib/html.mjs";
+
+const webDir = fileURLToPath(web);
+function pages(dir = webDir, rel = "") {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    if (e.isDirectory()) return pages(join(dir, e.name), `${rel}${e.name}/`);
+    return e.name === "index.html" ? [rel] : [];
+  });
+}
+const ALL = pages().sort();
+const load = (rel) => readFileSync(join(webDir, rel, "index.html"), "utf8");
+
+test("every page: one canonical equal to its own address", () => {
+  assert.ok(ALL.length > 3000, String(ALL.length));
+  for (const rel of ALL) {
+    const canon = [...load(rel).matchAll(/<link rel="canonical" href="([^"]+)">/g)].map((m) => m[1]);
+    assert.deepEqual(canon, [`https://yozgich.uz/${rel}`], rel);
+  }
+});
+
+test("hreflang alternates point back to each other", () => {
+  const sample = ALL.filter((rel, i) => i % 25 === 0 || !rel.includes("soz/"));
+  for (const rel of sample) {
+    const alts = [...load(rel).matchAll(/<link rel="alternate" hreflang="([^"]+)" href="https:\/\/yozgich\.uz\/([^"]*)">/g)];
+    assert.equal(alts.length, 4, rel);
+    for (const [, , target] of alts) {
+      const back = [...load(target).matchAll(/hreflang="[^"]+" href="https:\/\/yozgich\.uz\/([^"]*)"/g)].map((m) => m[1]);
+      const own = rel.startsWith("eski/") ? rel.slice(5) : rel;
+      assert.ok(back.includes(own) || back.includes(rel), `${target} → ${rel}`);
+    }
+  }
+});
+
+test("the sitemap lists every page exactly once", () => {
+  const locs = [...read("sitemap.xml").matchAll(/<loc>https:\/\/yozgich\.uz\/([^<]*)<\/loc>/g)].map((m) => m[1]).sort();
+  assert.deepEqual(locs, ALL);
+});
+
+test("old-Latin pages have no new letters outside examples", () => {
+  const bad = [];
+  for (const rel of ALL.filter((r) => r.startsWith("eski/"))) {
+    const html = load(rel);
+    const body = html.slice(html.indexOf("<body"));
+    let hit = "";
+    localizeHtml(body, (s) => {
+      const text = s.replaceAll("Yozgiç", ""); // brend nomi har versiyada bir xil
+      if (!hit && /[öğşçÖĞŞÇ]/.test(text)) hit = text.trim().slice(0, 40);
+      return s;
+    });
+    if (hit) bad.push(`${rel}: ${hit}`);
+  }
+  assert.deepEqual(bad, []);
+});
+
+test("Russian pages are marked as Russian, and the footer links every section and version", () => {
+  for (const rel of ALL.filter((r) => r.startsWith("ru/"))) assert.match(load(rel), /<html lang="ru"/, rel);
+  for (const rel of ["", "eski/", "kr/", "ru/", "soz/", "ru/mashq/"]) {
+    const footer = load(rel).match(/<footer[\s\S]*<\/footer>/)[0];
+    for (const path of ["fayl/", "soz/", "ism/", "mashq/", "maqola/", "vidjet/"]) assert.match(footer, new RegExp(`href="/${rel.match(/^(eski|kr|ru)\//)?.[0] ?? ""}${path}"`), `${rel} → ${path}`);
+    for (const p of ["/", "/eski/", "/kr/", "/ru/"]) assert.ok(footer.includes(`data-til="`) && footer.includes(`href="${p}`), `${rel} til ${p}`);
+  }
+});

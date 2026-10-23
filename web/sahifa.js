@@ -5,7 +5,7 @@ import { applyScript } from "./yozuv.js";
 applyScript(document.body, til);
 
 // Boşqa versiyaga ötganda sahifadagi joy (#konverter) saqlanadi; tanlov eslab qolinadi, lekin avtomatik yönaltiriş yöq.
-document.querySelectorAll(".tillar a, .tillar-m a").forEach((a) => {
+document.querySelectorAll(".tillar a, .tillar-m a, .close-tillar a").forEach((a) => {
   a.addEventListener("click", () => {
     if (location.hash) a.setAttribute("href", a.getAttribute("href").split("#")[0] + location.hash);
     try { localStorage.setItem("yozgich-til", a.dataset.til); } catch { /* saqlab bölmasa ham ötadi */ }
