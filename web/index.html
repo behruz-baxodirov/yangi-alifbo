@@ -262,16 +262,27 @@
       <div class="days" id="kunlar" aria-hidden="true"></div>
       <div class="days-cap" aria-hidden="true"><span>21.10.2026 imzolandi</span><span>22.04.2027</span></div>
     </div>
+    <div class="check" id="soz-tekshir" hidden>
+      <label class="check-label" for="soz">Bu söz qanday yoziladi?</label>
+      <input class="check-field" id="soz" type="text" placeholder="Masalan: Is'hoq" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="check-out" id="soz-natija" aria-live="polite" hidden>
+        <div class="check-top">
+          <div class="check-word" id="soz-word" data-lotin></div>
+          <button type="button" class="btn btn-ink" data-copy="soz-word">Nusxa oliş</button>
+        </div>
+        <ul class="check-why" id="soz-why"></ul>
+      </div>
+    </div>
     <table class="rule-table">
       <caption class="sr-only">Eski yozuv va yangi alifbo</caption>
       <thead><tr><th scope="col">Yozasiz</th><th scope="col">Çiqadi</th><th scope="col">Misol</th></tr></thead>
-      <tbody>
-        <tr><td>o'</td><td><b>ö</b></td><td>o'zbek → özbek</td></tr>
-        <tr><td>g'</td><td><b>ğ</b></td><td>tog' → toğ</td></tr>
-        <tr><td>sh</td><td><b>ş</b></td><td>shahar → şahar</td></tr>
-        <tr><td>ch</td><td><b>ç</b></td><td>choy → çoy</td></tr>
-        <tr><td>s'h</td><td><b>sʼh</b></td><td>Is'hoq → Isʼhoq</td></tr>
-        <tr><td>ma'no</td><td><b>maʼno</b></td><td>tutuq belgisi ʼ</td></tr>
+      <tbody data-lotin>
+        <tr data-rule="o"><td>o'</td><td><b>ö</b></td><td>o'zbek → özbek</td></tr>
+        <tr data-rule="g"><td>g'</td><td><b>ğ</b></td><td>tog' → toğ</td></tr>
+        <tr data-rule="sh"><td>sh</td><td><b>ş</b></td><td>shahar → şahar</td></tr>
+        <tr data-rule="ch"><td>ch</td><td><b>ç</b></td><td>choy → çoy</td></tr>
+        <tr data-rule="sh2"><td>s'h</td><td><b>sʼh</b></td><td>Is'hoq → Isʼhoq</td></tr>
+        <tr data-rule="tutuq"><td>ma'no</td><td><b>maʼno</b></td><td>tutuq belgisi ʼ</td></tr>
       </tbody>
     </table>
     <div class="rule-notes">

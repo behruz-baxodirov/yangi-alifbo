@@ -1,6 +1,7 @@
 import { convert, detectScript } from "./converter.js";
 import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
 import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
+import { explain, RULE_TEXT } from "./soz.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -181,6 +182,41 @@ document.getElementById("clear").addEventListener("click", () => {
   render(false);
   input.focus();
 });
+
+// "Bu söz qanday yoziladi?": natija, qoidalar va jadvalning mos qatori.
+{
+  const field = document.getElementById("soz");
+  const box = document.getElementById("soz-natija");
+  const word = document.getElementById("soz-word");
+  const why = document.getElementById("soz-why");
+  const rows = document.querySelectorAll(".rule-table tr[data-rule]");
+  const li = (html, cls = "") => `<li${cls ? ` class="${cls}"` : ""}>${html}</li>`;
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+  let timer;
+  let tracked = false;
+
+  const show = () => {
+    const r = explain(field.value);
+    rows.forEach((tr) => tr.classList.toggle("lit", r.rules.includes(tr.dataset.rule)));
+    box.hidden = !r.result;
+    if (!r.result) return;
+    const changed = r.result !== field.value.trim();
+    word.innerHTML = [...r.result].map((ch) => (changed && NEW_LETTERS.test(ch) ? `<mark>${ch}</mark>` : esc(ch))).join("");
+    why.innerHTML = [
+      r.cyrillic ? li("Kirill harflari lotinga ögirildi") : "",
+      ...r.rules.map((id) => {
+        const { ex, note } = RULE_TEXT[id];
+        return li(`<b data-lotin>${esc(ex)}</b>${note ? `: ${note}` : ""}`);
+      }),
+      ...r.lookalikes.map((l) => li(`<b>${l.bad}</b> özbekça harf emas. Töğrisi <b>${l.good}</b> (${l.note}).`, "bad")),
+      r.ok ? li("Bu söz yangi alifboda töğri yozilgan.") : "",
+      r.ng ? li("ng özgarmaydi.") : "",
+    ].join("");
+    if (!tracked) { track("soz_tekshirildi"); tracked = true; }
+  };
+  field.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(show, 150); });
+  document.getElementById("soz-tekshir").hidden = false;
+}
 
 // Nusxa oliş tugmalari
 document.querySelectorAll("[data-copy]").forEach((button) => {
