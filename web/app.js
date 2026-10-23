@@ -2,6 +2,7 @@ import { convert, detectScript } from "./converter.js";
 import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
 import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
 import { explain, RULE_TEXT } from "./soz.js";
+import { mountTest } from "./test.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -330,4 +331,7 @@ const seen = new IntersectionObserver((entries) => {
     seen.unobserve(entry.target);
   });
 }, { rootMargin: "0px 0px -50% 0px" });
-["konverter", "qoidalar", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
+["konverter", "telefonda", "qoidalar", "test", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
+
+// Test: savollar, natija va story rasm (test.js).
+mountTest(document.getElementById("test"), track);
