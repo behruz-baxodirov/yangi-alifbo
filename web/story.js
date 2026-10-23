@@ -1,5 +1,10 @@
 // Test natijasi uçun Instagram story rasmi (1080×1920): natija nonga tamğalanadi.
 // Hammasi brauzerda çiziladi, heç qayerga yuborilmaydi.
+import { til, tx } from "./i18n.js";
+
+// Doto kirill harflarini bilmaydi: kirill va rus versiyada sarlavha Onest bilan.
+const HEAD = til === "kr" || til === "ru" ? "800 84px Onest, sans-serif" : "900 92px Doto, monospace";
+
 const C = {
   crust: "#cf8a33", rim: "#a85d1b", rimEdge: "#7d4210", dough: "#f0cf97", pip: "#6b3510", char: "#17110d",
 };
@@ -10,7 +15,7 @@ function loadFonts() {
     document.fonts.load("900 100px Doto", "yozgiç Yangi alifbo testi 0123456789/"),
     document.fonts.load("500 40px Onest"),
     document.fonts.load("700 40px Onest", "töğri javob"),
-    document.fonts.load("800 40px Onest"),
+    document.fonts.load("800 40px Onest", tx("Yangi alifbo testi")),
   ]).catch(() => {});
 }
 
@@ -60,9 +65,9 @@ export async function drawStory(canvas, score) {
   logo(g, 96, 120);
   g.fillStyle = C.char;
   g.textBaseline = "alphabetic";
-  g.font = "900 92px Doto, monospace";
-  g.fillText("Yangi alifbo", 96, 400);
-  g.fillText("testi", 96, 500);
+  g.font = HEAD;
+  g.fillText(tx("Yangi alifbo"), 96, 400);
+  g.fillText(tx("testi"), 96, 500);
 
   const cx = W / 2, cy = 1040;
   non(g, cx, cy, 400);
@@ -80,11 +85,11 @@ export async function drawStory(canvas, score) {
   g.fillText("/10", left + w1 + gap, cy + 110);
   g.textAlign = "center";
   g.font = "700 42px Onest, sans-serif";
-  g.fillText("töğri javob", cx, cy + 205);
+  g.fillText(tx("töğri javob"), cx, cy + 205);
   g.textAlign = "left";
 
   g.font = "500 46px Onest, sans-serif";
-  g.fillText("Siz ham sinab köring:", 96, 1640);
+  g.fillText(tx("Siz ham sinab köring:"), 96, 1640);
   // Doto nuqtani plyus qilib çizadi, şuning uçun domen Onest bilan.
   g.font = "800 104px Onest, sans-serif";
   g.fillText("yozgich.uz", 96, 1770);

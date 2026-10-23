@@ -3,7 +3,8 @@ import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
 import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
 import { explain, RULE_TEXT } from "./soz.js";
 import { mountTest } from "./test.js";
-import { applyScript, toCyrillic } from "./kirill.js";
+import "./sahifa.js";
+import { t, tx } from "./i18n.js";
 import { NEW, checkTyping } from "./tekshir.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
@@ -126,7 +127,7 @@ const count = document.getElementById("count");
 const changed = document.getElementById("changed");
 const scriptTag = document.getElementById("script");
 const NEW_LETTERS = /[öğşçÖĞŞÇʼ]/u;
-const SCRIPT_NAMES = { latin: "Lotin", cyrillic: "Kirill", mixed: "Aralaş" };
+const SCRIPT_NAMES = { latin: t("Lotin"), cyrillic: t("Kirill"), mixed: t("Aralaş") };
 const SAMPLES = {
   latin: "O'zbekiston go'zal yurt. Toshkentning choyxonalari mashhur, odamlari mehmondo'st. Ma'naviyat bizning g'ururimiz.",
   cyrillic: "Ўзбекистон гўзал юрт. Тошкентнинг чойхоналари машҳур, одамлари меҳмондўст. Исҳоқ ака эртага келади.",
@@ -161,11 +162,11 @@ function render(fromUser) {
   output.replaceChildren(frag);
 
   const script = detectScript(input.value);
-  scriptTag.textContent = input.value.trim() ? SCRIPT_NAMES[script] : "Boş";
-  count.textContent = `${[...input.value].length} belgi`;
+  scriptTag.textContent = input.value.trim() ? SCRIPT_NAMES[script] : t("Boş");
+  count.textContent = t("{n} belgi", { n: [...input.value].length });
   changed.textContent = script === "cyrillic" && input.value.trim()
-    ? "Kirilldan ögirildi"
-    : `${marks} ta harf özgardi`;
+    ? t("Kirilldan ögirildi")
+    : t("{n} ta harf özgardi", { n: marks });
   if (fromUser) restamp(plain);
 }
 input.addEventListener("input", () => render(true));
@@ -206,14 +207,16 @@ document.getElementById("clear").addEventListener("click", () => {
     const changed = r.result !== field.value.trim();
     word.innerHTML = [...r.result].map((ch) => (changed && NEW_LETTERS.test(ch) ? `<mark>${ch}</mark>` : esc(ch))).join("");
     why.innerHTML = [
-      r.cyrillic ? li("Kirill harflari lotinga ögirildi") : "",
+      r.cyrillic ? li(t("Kirill harflari lotinga ögirildi")) : "",
       ...r.rules.map((id) => {
         const { ex, note } = RULE_TEXT[id];
-        return li(`<b data-lotin>${esc(ex)}</b>${note ? `: ${note}` : ""}`);
+        return li(`<b data-lotin>${esc(ex)}</b>${note ? `: ${t(note)}` : ""}`);
       }),
-      ...r.lookalikes.map((l) => li(`<b data-lotin>${l.bad}</b> özbekça harf emas. Töğrisi <b data-lotin>${l.good}</b> (${l.note}).`, "bad")),
-      r.ok ? li("Bu söz yangi alifboda töğri yozilgan.") : "",
-      r.ng ? li("<span data-lotin>ng</span> özgarmaydi.") : "",
+      ...r.lookalikes.map((l) => li(t("{bad} özbekça harf emas. Töğrisi {good} ({note}).", {
+        bad: `<b data-lotin>${l.bad}</b>`, good: `<b data-lotin>${l.good}</b>`, note: t(l.note),
+      }), "bad")),
+      r.ok ? li(t("Bu söz yangi alifboda töğri yozilgan.")) : "",
+      r.ng ? li(t("{ng} özgarmaydi.", { ng: "<span data-lotin>ng</span>" })) : "",
     ].join("");
     if (!tracked) { track("soz_tekshirildi"); tracked = true; }
   };
@@ -240,10 +243,10 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
       if (copied) getSelection().removeAllRanges();
     }
     if (copied) {
-      button.textContent = "Nusxa olindi";
+      button.textContent = t("Nusxa olindi");
       button.dataset.state = "done";
     } else {
-      button.textContent = { mac: "Belgilandi, ⌘C bosing", windows: "Belgilandi, Ctrl+C bosing", phone: "Bosib turib nusxa oling" }[device];
+      button.textContent = { mac: t("Belgilandi, ⌘C bosing"), windows: t("Belgilandi, Ctrl+C bosing"), phone: t("Bosib turib nusxa oling") }[device];
     }
     setTimeout(() => {
       button.textContent = label;
@@ -258,14 +261,14 @@ document.getElementById("cmd").addEventListener("click", () => document.querySel
 // Telefonda havolani ulaşiş
 const share = document.getElementById("share");
 share?.addEventListener("click", async () => {
-  const data = { title: "Yozgiç", text: "o' → ö, sh → ş: yangi alifboda odatdagidek yozing", url: location.href.split("#")[0] };
+  const data = { title: "Yozgiç", text: tx("o' → ö, sh → ş: yangi alifboda odatdagidek yozing"), url: location.href.split("#")[0] };
   if (navigator.share) {
     try { await navigator.share(data); } catch { /* foydalanuvçi bekor qildi */ }
     return;
   }
   try {
     await navigator.clipboard.writeText(data.url);
-    share.textContent = "Havola olindi";
+    share.textContent = t("Havola olindi");
   } catch {
     share.textContent = data.url;
   }
@@ -281,8 +284,10 @@ share?.addEventListener("click", async () => {
     `<i class="${k < passed ? "past" : k === passed ? "today" : ""}"></i>`).join("");
   const phase = lawPhase(today);
   if (phase !== "oldin") {
-    document.getElementById("sanoq-matn").innerHTML = "<b>ЎРҚ-1184</b>-son Qonun " +
-      (phase === "bugun" ? "bugun kuçga kirdi." : "22.04.2027 dan kuçda.");
+    const law = { qonun: "<b>ЎРҚ-1184</b>" };
+    document.getElementById("sanoq-matn").innerHTML = phase === "bugun"
+      ? t("{qonun}-son Qonun bugun kuçga kirdi.", law)
+      : t("{qonun}-son Qonun 22.04.2027 dan kuçda.", law);
     document.getElementById("sanoq").classList.add("done");
   }
   document.getElementById("sanoq").hidden = false;
@@ -324,12 +329,12 @@ input.addEventListener("input", () => track("konverter_yozdi"), { once: true });
 // Örnatgandan keyingi tekşiruv: yangi harf çiqsa çiroq yonadi. Eski şakl qolsa, Yozgiç ögirib ulgurişini
 // kutib turamiz: u avval o' ni yozib, keyin öçirib ö qöyadi.
 const SINOV = {
-  kutish: () => `Yozgiç yoqiq bölsa, <b data-lotin>o'</b> özi <b data-lotin>ö</b> ga aylanadi.`,
-  ishlayapti: () => "Işlayapti! Davom eting, qolgan harflar ham yonadi.",
-  tayyor: () => "Hammasi joyida: Yozgiç işlayapti.",
+  kutish: () => t("Yozgiç yoqiq bölsa, {old} özi {new} ga aylanadi.", { old: "<b data-lotin>o'</b>", new: "<b data-lotin>ö</b>" }),
+  ishlayapti: () => t("Işlayapti! Davom eting, qolgan harflar ham yonadi."),
+  tayyor: () => t("Hammasi joyida: Yozgiç işlayapti."),
   ishlamadi: (os) => os === "mac"
-    ? "Harflar ögirilmadi. Menyu-barda <b data-lotin>ö</b> turibdimi? Yoqiş: <kbd>⇧ Shift</kbd> ni ikki marta bosing. 3-qadamdagi ruxsatni ham tekşiring."
-    : "Harflar ögirilmadi. Soat yonida ikonka bormi? Yoqiş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.",
+    ? t("Harflar ögirilmadi. Menyu-barda {o} turibdimi? Yoqiş: {shift} ni ikki marta bosing. 3-qadamdagi ruxsatni ham tekşiring.", { o: "<b data-lotin>ö</b>", shift: "<kbd>⇧ Shift</kbd>" })
+    : t("Harflar ögirilmadi. Soat yonida ikonka bormi? Yoqiş: {keys}.", { keys: "<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>" }),
 };
 document.querySelectorAll(".sinov").forEach((box) => {
   const os = box.dataset.os;
@@ -379,26 +384,3 @@ const seen = new IntersectionObserver((entries) => {
 
 // Test: savollar, natija va story rasm (test.js).
 mountTest(document.getElementById("test"), track);
-
-// Kirillda öqiş: butun sahifa kirillga ögiriladi (kirill.js), tanlov eslab qolinadi.
-{
-  const button = document.getElementById("yozuv");
-  const KEY = "yozgich-yozuv";
-  const stored = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
-  const set = (script) => {
-    const kirill = script === "kirill";
-    document.documentElement.lang = kirill ? "uz-Cyrl" : "uz";
-    document.documentElement.dataset.yozuv = script;
-    button.innerHTML = kirill ? '<span lang="uz">Lotin</span>' : '<span lang="uz-Cyrl">Кирилл</span>';
-    button.setAttribute("aria-label", kirill ? toCyrillic("Sahifani lotin yozuvida körsatiş") : "Sahifani kirill yozuvida körsatiş");
-    applyScript(document.body, script);
-  };
-  button.addEventListener("click", () => {
-    const next = document.documentElement.dataset.yozuv === "kirill" ? "lotin" : "kirill";
-    set(next);
-    try { localStorage.setItem(KEY, next); } catch { /* saqlab bölmasa, faqat şu sahifada */ }
-    track("yozuv_almashtirildi", { yozuv: next });
-  });
-  if (stored() === "kirill") set("kirill");
-  button.hidden = false;
-}

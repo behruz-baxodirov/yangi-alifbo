@@ -1,6 +1,7 @@
 // 10 savollik test: savollar bittadan, javobdan keyin tuşuntiriş, oxirida ball va story rasm.
 import { QUESTIONS, grade, shuffle } from "./test-savollar.js";
 import { storyBlob } from "./story.js";
+import { t } from "./i18n.js";
 
 const TOTAL = QUESTIONS.length;
 const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -22,9 +23,9 @@ export function mountTest(section, track = () => {}) {
   function showQuestion(focus) {
     const item = QUESTIONS[index];
     dots.forEach((d, k) => d.classList.toggle("now", k === index));
-    prog.setAttribute("aria-label", `${TOTAL} dan ${index + 1}-savol`);
+    prog.setAttribute("aria-label", t("{total} dan {n}-savol", { total: TOTAL, n: index + 1 }));
     qn.textContent = `${index + 1} / ${TOTAL}`;
-    q.innerHTML = withExamples(item.q);
+    q.innerHTML = withExamples(t(item.q));
     opts.replaceChildren(...shuffle(item.options).map((text) => {
       const b = document.createElement("button");
       b.type = "button";
@@ -46,14 +47,14 @@ export function mountTest(section, track = () => {}) {
     const right = opts.querySelector("[data-ok]");
     opts.querySelectorAll(".opt").forEach((b) => { b.disabled = true; });
     right.classList.add("right");
-    right.insertAdjacentHTML("beforeend", ' <span class="tag tag-hot">Töğri</span>');
+    right.insertAdjacentHTML("beforeend", ` <span class="tag tag-hot">${t("Töğri")}</span>`);
     if (!ok) button.classList.add("wrong");
     if (ok) score++;
     dots[index].classList.add(ok ? "ok" : "no");
-    live.innerHTML = ok ? "Töğri" : `Xato. Töğri javob: <span data-lotin lang="uz">${esc(right.querySelector(".opt-text").textContent)}</span>`;
-    why.innerHTML = withExamples(QUESTIONS[index].why);
+    live.innerHTML = ok ? t("Töğri") : t("Xato. Töğri javob: {javob}", { javob: `<span data-lotin lang="uz">${esc(right.querySelector(".opt-text").textContent)}</span>` });
+    why.innerHTML = withExamples(t(QUESTIONS[index].why));
     why.hidden = false;
-    next.textContent = index === TOTAL - 1 ? "Natijani körsatiş" : "Keyingi savol";
+    next.textContent = index === TOTAL - 1 ? t("Natijani körsatiş") : t("Keyingi savol");
     next.hidden = false;
     // Fokus faqat klaviatura bilan işlaganda köçadi: telefonda ortiqça ramka çiqmasin.
     if (keyboard) next.focus();
@@ -66,8 +67,8 @@ export function mountTest(section, track = () => {}) {
     quiz.hidden = true;
     result.hidden = false;
     $("score").textContent = score;
-    $("grade").textContent = `${grade(score)} Döstlaringiz ham sinab körsin.`;
-    live.textContent = `Natija: ${TOTAL} dan ${score}`;
+    $("grade").textContent = `${t(grade(score))} ${t("Döstlaringiz ham sinab körsin.")}`;
+    live.textContent = t("Natija: {total} dan {score}", { total: TOTAL, score });
     if (e.detail === 0) result.focus();
     track("test_tugadi", { ball: score });
     prepareStory();
