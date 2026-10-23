@@ -40,6 +40,14 @@ jobs:
           Get-Content smoke.log -Encoding UTF8
           if ($p.ExitCode -ne 0) { throw "smoke test failed" }
 
+      - name: Fast typing test in Notepad (80–3 ms)
+        shell: pwsh
+        run: |
+          $ahk = "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
+          $p = Start-Process -Wait -PassThru -FilePath $ahk -ArgumentList "/ErrorStdOut", "windows\test\speed.ahk" -RedirectStandardOutput speed.log
+          Get-Content speed.log -Encoding UTF8
+          if ($p.ExitCode -ne 0) { throw "fast typing test failed" }
+
       - uses: actions/upload-artifact@v4
         with:
           name: YangiAlifbo-windows-beta
