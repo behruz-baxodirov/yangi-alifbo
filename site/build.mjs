@@ -6,6 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { localizeHtml } from "./lib/html.mjs";
 import { toCyrillic } from "../web/kirill.js";
 import { toOldLatin } from "../web/eski.js";
+import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs";
 
 export const SITE = "https://yozgich.uz";
 export const ASSET_V = "15";
@@ -164,6 +165,14 @@ export async function renderSite({ siteDir, extraPages = [] }) {
       files.set(outPath(t.prefix, path), renderPage({ layout, header, footer, page, t }));
       locs.push({ loc: url(t.prefix, path), updated });
     }
+  }
+
+  // Söz sahifalari: site/sozlar.txt bölsa (test fixture'da yöq).
+  const sozFile = join(siteDir, "sozlar.txt");
+  if (existsSync(sozFile)) {
+    const entries = parseSozlar(readFileSync(sozFile, "utf8"));
+    extraPages = [...sozIndexPages(entries), ...sozPages(entries), ...extraPages];
+    files.set("soz/sozlar.json", sozJson(entries));
   }
 
   for (const page of extraPages) {

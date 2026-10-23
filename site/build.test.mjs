@@ -139,3 +139,13 @@ test("examples keep their script in every version", () => {
   assert.match(web("kr/index.html"), /<span data-lotin>o'zbek<\/span>/);
   assert.match(web("kr/index.html"), /<b data-lotin>ö<\/b>/);
 });
+
+test("the real site builds word pages, the index and the search list", async () => {
+  const site = await renderSite({ siteDir: fileURLToPath(new URL(".", import.meta.url)) });
+  for (const p of ["soz/index.html", "kr/soz/index.html", "soz/shahzod/index.html", "ru/soz/shahzod/index.html", "soz/sozlar.json"]) {
+    assert.ok(site.has(p), p);
+  }
+  assert.match(site.get("eski/soz/shahzod/index.html"), /<title>Shahzod yangi alifboda: Şahzod · Yozgiç<\/title>/);
+  assert.match(site.get("sitemap.xml"), /<loc>https:\/\/yozgich\.uz\/kr\/soz\/shahzod\/<\/loc>/);
+  assert.match(site.get("index.html"), /href="\/soz\/"/);
+});

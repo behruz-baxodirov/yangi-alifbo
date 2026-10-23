@@ -1,7 +1,7 @@
 import { convert, detectScript } from "./converter.js";
 import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
 import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
-import { explain, RULE_TEXT } from "./soz.js";
+import { renderExplain } from "./soz-izoh.js";
 import { mountTest } from "./test.js";
 import "./sahifa.js";
 import { t, tx } from "./i18n.js";
@@ -194,30 +194,16 @@ document.getElementById("clear").addEventListener("click", () => {
   const word = document.getElementById("soz-word");
   const why = document.getElementById("soz-why");
   const rows = document.querySelectorAll(".rule-table tr[data-rule]");
-  const li = (html, cls = "") => `<li${cls ? ` class="${cls}"` : ""}>${html}</li>`;
-  const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
   let timer;
   let tracked = false;
 
   const show = () => {
-    const r = explain(field.value);
+    const r = renderExplain(field.value);
     rows.forEach((tr) => tr.classList.toggle("lit", r.rules.includes(tr.dataset.rule)));
     box.hidden = !r.result;
     if (!r.result) return;
-    const changed = r.result !== field.value.trim();
-    word.innerHTML = [...r.result].map((ch) => (changed && NEW_LETTERS.test(ch) ? `<mark>${ch}</mark>` : esc(ch))).join("");
-    why.innerHTML = [
-      r.cyrillic ? li(t("Kirill harflari lotinga ögirildi")) : "",
-      ...r.rules.map((id) => {
-        const { ex, note } = RULE_TEXT[id];
-        return li(`<b data-lotin>${esc(ex)}</b>${note ? `: ${t(note)}` : ""}`);
-      }),
-      ...r.lookalikes.map((l) => li(t("{bad} özbekça harf emas. Töğrisi {good} ({note}).", {
-        bad: `<b data-lotin>${l.bad}</b>`, good: `<b data-lotin>${l.good}</b>`, note: t(l.note),
-      }), "bad")),
-      r.ok ? li(t("Bu söz yangi alifboda töğri yozilgan.")) : "",
-      r.ng ? li(t("{ng} özgarmaydi.", { ng: "<span data-lotin>ng</span>" })) : "",
-    ].join("");
+    word.innerHTML = r.wordHtml;
+    why.innerHTML = r.whyHtml;
     if (!tracked) { track("soz_tekshirildi"); tracked = true; }
   };
   field.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(show, 150); });

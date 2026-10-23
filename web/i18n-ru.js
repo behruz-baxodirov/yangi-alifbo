@@ -30,6 +30,9 @@ export const RU = {
   "nuqtasiz": "без точки",
   "nuqtali": "с точкой",
 
+  // /soz/ qidiruvi
+  "Röyxatda yöq. Yangi alifboda:": "В списке нет. На новом алфавите:",
+
   // Sanoq
   "{qonun}-son Qonun bugun kuçga kirdi.": "Закон {qonun} вступил в силу сегодня.",
   "{qonun}-son Qonun 22.04.2027 dan kuçda.": "Закон {qonun} действует с 22.04.2027.",
