@@ -4,8 +4,10 @@ import { storyBlob } from "./story.js";
 
 const TOTAL = QUESTIONS.length;
 const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
-// « » içidagi eski yozuv misoli kirill rejimida ham lotinda qoladi.
-const withExamples = (s) => esc(s).replace(/«([^»]*)»/g, "«<span data-lotin>$1</span>»");
+// « » içidagi eski yozuv misoli va yolğiz yangi harflar (ö, sʼh) kirill rejimida ham lotinda qoladi.
+const withExamples = (s) => esc(s)
+  .replace(/«([^»]*)»/g, "«<span data-lotin>$1</span>»")
+  .replace(/(?<![\p{L}ʼ])(sʼh|[öğşçÖĞŞÇʼ])(?![\p{L}ʼ])/gu, "<span data-lotin>$1</span>");
 
 export function mountTest(section, track = () => {}) {
   const $ = (id) => section.querySelector(`#${id}`);

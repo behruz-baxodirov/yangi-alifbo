@@ -3,6 +3,7 @@ import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
 import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
 import { explain, RULE_TEXT } from "./soz.js";
 import { mountTest } from "./test.js";
+import { applyScript, toCyrillic } from "./kirill.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -335,3 +336,26 @@ const seen = new IntersectionObserver((entries) => {
 
 // Test: savollar, natija va story rasm (test.js).
 mountTest(document.getElementById("test"), track);
+
+// Kirillda öqiş: butun sahifa kirillga ögiriladi (kirill.js), tanlov eslab qolinadi.
+{
+  const button = document.getElementById("yozuv");
+  const KEY = "yozgich-yozuv";
+  const stored = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const set = (script) => {
+    const kirill = script === "kirill";
+    document.documentElement.lang = kirill ? "uz-Cyrl" : "uz";
+    document.documentElement.dataset.yozuv = script;
+    button.innerHTML = kirill ? '<span lang="uz">Lotin</span>' : '<span lang="uz-Cyrl">Кирилл</span>';
+    button.setAttribute("aria-label", kirill ? toCyrillic("Sahifani lotin yozuvida körsatiş") : "Sahifani kirill yozuvida körsatiş");
+    applyScript(document.body, script);
+  };
+  button.addEventListener("click", () => {
+    const next = document.documentElement.dataset.yozuv === "kirill" ? "lotin" : "kirill";
+    set(next);
+    try { localStorage.setItem(KEY, next); } catch { /* saqlab bölmasa, faqat şu sahifada */ }
+    track("yozuv_almashtirildi", { yozuv: next });
+  });
+  if (stored() === "kirill") set("kirill");
+  button.hidden = false;
+}
