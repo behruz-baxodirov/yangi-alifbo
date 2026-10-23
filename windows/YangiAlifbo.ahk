@@ -76,7 +76,7 @@ OnKeyDown(hook, vk, sc) {
         return
     if key == "Backspace" && !(GetKeyState("Ctrl") || GetKeyState("Alt") || GetKeyState("LWin") || GetKeyState("RWin")) {
         ; Faqat oxirgi belgi öçadi: "c b ⌫ h" → ç.
-        ; Belgilangan matn öçirilsa buni bilmaymiz; sichqonça, Shift+strelka va Ctrl+A
+        ; Belgilangan matn öçirilsa buni bilmaymiz; siçqonça, Shift+strelka va Ctrl+A
         ; kontekstni allaqaçon uzgan, faqat dasturning özi belgilagan matn (manzil qatori taklifi) qoladi.
         Forget()
         return
