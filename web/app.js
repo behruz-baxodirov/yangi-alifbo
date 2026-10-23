@@ -4,6 +4,7 @@ import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
 import { explain, RULE_TEXT } from "./soz.js";
 import { mountTest } from "./test.js";
 import { applyScript, toCyrillic } from "./kirill.js";
+import { NEW, checkTyping } from "./tekshir.js";
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
@@ -319,6 +320,48 @@ document.addEventListener("click", (e) => {
 });
 
 input.addEventListener("input", () => track("konverter_yozdi"), { once: true });
+
+// Örnatgandan keyingi tekşiruv: yangi harf çiqsa çiroq yonadi. Eski şakl qolsa, Yozgiç ögirib ulgurişini
+// kutib turamiz: u avval o' ni yozib, keyin öçirib ö qöyadi.
+const SINOV = {
+  kutish: () => `Yozgiç yoqiq bölsa, <b data-lotin>o'</b> özi <b data-lotin>ö</b> ga aylanadi.`,
+  ishlayapti: () => "Işlayapti! Davom eting, qolgan harflar ham yonadi.",
+  tayyor: () => "Hammasi joyida: Yozgiç işlayapti.",
+  ishlamadi: (os) => os === "mac"
+    ? "Harflar ögirilmadi. Menyu-barda <b data-lotin>ö</b> turibdimi? Yoqiş: <kbd>⇧ Shift</kbd> ni ikki marta bosing. 3-qadamdagi ruxsatni ham tekşiring."
+    : "Harflar ögirilmadi. Soat yonida ikonka bormi? Yoqiş: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.",
+};
+document.querySelectorAll(".sinov").forEach((box) => {
+  const os = box.dataset.os;
+  const field = box.querySelector(".sinov-field");
+  const lamps = [...box.querySelectorAll(".lamps i")];
+  const status = box.querySelector(".sinov-status");
+  const sent = new Set();
+  let wait;
+  const show = (verdict) => {
+    if (box.dataset.verdict === verdict) return;
+    box.dataset.verdict = verdict;
+    status.innerHTML = SINOV[verdict](os);
+  };
+  // Har biri bir marta; nusxa olib qöyilgan matn hisobga olinmaydi.
+  const once = (name, typed) => {
+    if (!typed || sent.has(name)) return;
+    sent.add(name);
+    track(name, { os });
+  };
+  field.addEventListener("input", (e) => {
+    const typed = !/^insertFrom(Paste|Drop)/.test(e.inputType ?? "");
+    const { found, verdict } = checkTyping(field.value);
+    lamps.forEach((lamp, k) => lamp.classList.toggle("on", found.includes(NEW[k])));
+    clearTimeout(wait);
+    if (verdict !== "ishlamadi") {
+      show(verdict);
+      if (verdict === "ishlayapti" || verdict === "tayyor") once("yozgich_ishladi", typed);
+      return;
+    }
+    wait = setTimeout(() => { show(verdict); once("yozgich_ishlamadi", typed); }, 900);
+  });
+});
 
 document.querySelectorAll(".faq details").forEach((d) => {
   d.addEventListener("toggle", () => d.open && track("savol_ochildi", { savol: d.id }));
