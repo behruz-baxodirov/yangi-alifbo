@@ -52,7 +52,13 @@ final class KeyTap {
                                                           object: nil, queue: nil) { note in
             guard let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else { return }
             let pid = app.processIdentifier
-            DispatchQueue.global(qos: .userInitiated).async { _ = Self.focusedSelectionLength(pid: pid) }
+            DispatchQueue.global(qos: .userInitiated).async {
+                Self.requestAccessibilityTree(pid: pid)
+                _ = Self.focusedSelectionLength(pid: pid)
+            }
+        }
+        if let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier {
+            DispatchQueue.global(qos: .userInitiated).async { Self.requestAccessibilityTree(pid: pid) }
         }
         log.notice("tap started")
         return true
@@ -153,6 +159,14 @@ final class KeyTap {
     private static func focusedSelectionLength(pid: pid_t) -> Int? {
         var timedOut = false
         return focusedElement(pid: pid, timedOut: &timedOut).flatMap { selectedRange($0)?.length }
+    }
+
+    /// Electron ilovalari (Claude, Slack, VS Code…) Accessibility daraxtini faqat söralganda quradi;
+    /// usiz kursor atrofi öqilmaydi va "cbh ← ⌫" birikmaydi. Boşqa ilovalar bu atributni e'tiborsiz qoldiradi.
+    private static func requestAccessibilityTree(pid: pid_t) {
+        let app = AXUIElementCreateApplication(pid)
+        AXUIElementSetMessagingTimeout(app, 0.05)
+        AXUIElementSetAttributeValue(app, "AXManualAccessibility" as CFString, kCFBooleanTrue)
     }
 
     private static func focusedElement(pid: pid_t, timedOut: inout Bool) -> AXUIElement? {
