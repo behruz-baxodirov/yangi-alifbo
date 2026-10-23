@@ -8,9 +8,10 @@ import { convert } from "../web/converter.js";
 import { toCyrillic } from "../web/kirill.js";
 import { toOldLatin } from "../web/eski.js";
 import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs";
+import { bundleVidjet } from "./lib/bundle.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "19";
+export const ASSET_V = "20";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -201,6 +202,12 @@ export async function renderSite({ siteDir, extraPages = [] }) {
       files.set(outPath(t.prefix, path), renderPage({ layout, header, footer, page, t }));
       locs.push({ loc: url(t.prefix, path), updated });
     }
+  }
+
+  // Vidjet sahifasi bor bölsa, web/vidjet.js ham yiğiladi.
+  if (existsSync(join(siteDir, "pages", "vidjet"))) {
+    const web = (f) => readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8");
+    files.set("vidjet.js", bundleVidjet(web("converter.js"), web("vidjet-src.js")));
   }
 
   // Maşq matnlari: site/mashq.txt → web/mashq-matn.js (yangi alifboda).

@@ -676,3 +676,8 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .maqola-list a:hover { background: var(--dough); }
 .maqola-list b { font: 800 20px/1.25 Onest, system-ui, sans-serif; }
 .maqola-list span { font-size: 16px; color: var(--char-soft); }
+
+/* Vidjet sahifasi (/vidjet/) */
+.vidjet-demo { padding: 18px 20px; margin: 0 0 8px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); }
+.vidjet-demo p { margin: 0; }
+.vidjet-kod { margin: 0 0 12px; padding: 14px 16px; overflow-x: auto; background: var(--slab-well); color: var(--slab-ink); border-radius: var(--corner); font-size: 14px; line-height: 1.5; }
