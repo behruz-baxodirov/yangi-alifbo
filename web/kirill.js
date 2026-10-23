@@ -2,7 +2,7 @@
 
 // Havolalar, email, @handle va domenlar ögirilmaydi (converter.js dagi kabi).
 const TLD = "uz|me|com|ru|org|net|io|asia|info|app|dev|tv|co|ai|gov|edu|kz|tj|kg|tm|tr";
-const PROTECTED = new RegExp(
+export const PROTECTED = new RegExp(
   "(https?:\\/\\/\\S+|www\\.\\S+|[\\w.+-]+@[\\w-]+(?:\\.[\\w-]+)+|@[\\w.]*\\w" +
     `|(?<![\\p{L}\\d@.-])(?:[\\w-]+\\.)+(?:${TLD})(?:\\/\\S*)?(?![\\p{L}\\d]))`,
   "iu",
