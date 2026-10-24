@@ -26,3 +26,20 @@ test("reads a real .docx made by macOS textutil", async () => {
 test("garbage is rejected", async () => {
   await assert.rejects(readZip(new Uint8Array([1, 2, 3])), /zip/);
 });
+
+test("corrupted entry data is rejected instead of being saved into a new document", async () => {
+  const bytes = await writeZip([{ name: "word/document.xml", data: enc.encode("shahar") }]);
+  const view = new DataView(bytes.buffer);
+  const central = bytes.findIndex((_, i) => i + 4 <= bytes.length && view.getUint32(i, true) === 0x02014b50);
+  view.setUint32(central + 16, view.getUint32(central + 16, true) ^ 1, true);
+  await assert.rejects(readZip(bytes), /zip/);
+});
+
+test("expanded ZIP size is limited even when its directory lies about the size", async () => {
+  const bytes = await writeZip([{ name: "word/document.xml", data: enc.encode("a".repeat(1024)) }]);
+  await assert.rejects(readZip(bytes, { maxUncompressedBytes: 64 }), /hajm/);
+  const view = new DataView(bytes.buffer);
+  const central = bytes.findIndex((_, i) => i + 4 <= bytes.length && view.getUint32(i, true) === 0x02014b50);
+  view.setUint32(central + 24, 1, true);
+  await assert.rejects(readZip(bytes, { maxUncompressedBytes: 64 }), /hajm/);
+});

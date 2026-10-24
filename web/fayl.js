@@ -13,6 +13,7 @@ const streams = typeof DecompressionStream === "function" && typeof CompressionS
 function message(error, name) {
   if (error?.message === "format") return t("Bu format qöllanmaydi. .doc, .pdf yoki .xlsx faylni Word (.docx) yoki matn sifatida saqlab, qayta taşlang.");
   if (error?.message === "hajm") return t("Fayl 20 MB dan katta.");
+  if (error?.message === "zip-hajm") return t("Word faylining oçilgandagi hajmi juda katta.");
   if (!streams && /\.docx$/i.test(name)) return t("Brauzeringiz eski: docx uçun Chrome, Edge, Safari 16.4 yoki Firefoxʼning yangi versiyasi kerak.");
   return t("Faylni ögirib bölmadi. Asl fayl özgarmadi.");
 }

@@ -3,9 +3,28 @@
 
 const fail = () => { throw new Error("zip"); };
 
-async function through(data, stream) {
-  const out = new Blob([data]).stream().pipeThrough(stream);
-  return new Uint8Array(await new Response(out).arrayBuffer());
+async function through(data, stream, limit = Infinity) {
+  const reader = new Blob([data]).stream().pipeThrough(stream).getReader();
+  const chunks = [];
+  let length = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      length += value.length;
+      if (length > limit) {
+        await reader.cancel();
+        throw new Error("zip-hajm");
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const out = new Uint8Array(length);
+  let offset = 0;
+  for (const chunk of chunks) { out.set(chunk, offset); offset += chunk.length; }
+  return out;
 }
 
 const CRC_TABLE = (() => {
@@ -25,7 +44,7 @@ function crc32(data) {
 }
 
 /** Arxivdagi fayllar: markaziy katalog tartibida { name, data }. */
-export async function readZip(bytes) {
+export async function readZip(bytes, { maxUncompressedBytes = 100 * 1024 * 1024 } = {}) {
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   const u32 = (o) => (o + 4 <= bytes.length ? view.getUint32(o, true) : fail());
   const u16 = (o) => (o + 2 <= bytes.length ? view.getUint16(o, true) : fail());
@@ -37,24 +56,34 @@ export async function readZip(bytes) {
   const count = u16(eocd + 10);
   let p = u32(eocd + 16);
   if (count === 0xffff || p === 0xffffffff) fail(); // ZIP64
+  const directory = p, end = p + u32(eocd + 12);
+  if (u16(eocd + 4) || u16(eocd + 6) || u16(eocd + 8) !== count || end > eocd) fail();
   const names = new TextDecoder();
   const entries = [];
+  let expanded = 0;
   for (let k = 0; k < count; k++) {
-    if (u32(p) !== 0x02014b50) fail();
+    if (p + 46 > end || u32(p) !== 0x02014b50) fail();
     const flags = u16(p + 8), method = u16(p + 10), size = u32(p + 20);
+    const unpacked = u32(p + 24), crc = u32(p + 16);
     const nameLen = u16(p + 28), extraLen = u16(p + 30), commentLen = u16(p + 32), local = u32(p + 42);
-    if (flags & 1 || size === 0xffffffff || local === 0xffffffff) fail();
+    if (flags & 1 || size === 0xffffffff || unpacked === 0xffffffff || local === 0xffffffff || p + 46 + nameLen + extraLen + commentLen > end) fail();
+    if (unpacked > maxUncompressedBytes - expanded) throw new Error("zip-hajm");
     const name = names.decode(bytes.subarray(p + 46, p + 46 + nameLen));
-    if (u32(local) !== 0x04034b50) fail();
+    if (local + 30 > directory || u32(local) !== 0x04034b50 || u16(local + 8) !== method || u16(local + 6) & 1) fail();
     const start = local + 30 + u16(local + 26) + u16(local + 28);
+    if (start + size > directory) fail();
     const raw = bytes.subarray(start, start + size);
     let data;
     if (method === 0) data = raw.slice();
-    else if (method === 8) data = await through(raw, new DecompressionStream("deflate-raw"));
+    else if (method === 8) data = await through(raw, new DecompressionStream("deflate-raw"), maxUncompressedBytes - expanded);
     else fail();
+    if (data.length > maxUncompressedBytes - expanded) throw new Error("zip-hajm");
+    if (data.length !== unpacked || crc32(data) !== crc) fail();
+    expanded += data.length;
     entries.push({ name, data });
     p += 46 + nameLen + extraLen + commentLen;
   }
+  if (p !== end) fail();
   return entries;
 }
 

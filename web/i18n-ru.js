@@ -99,6 +99,7 @@ export const RU = {
   // Fayl
   "Bu format qöllanmaydi. .doc, .pdf yoki .xlsx faylni Word (.docx) yoki matn sifatida saqlab, qayta taşlang.": "Этот формат не поддерживается. Сохраните .doc, .pdf или .xlsx как Word (.docx) или текст и перетащите снова.",
   "Fayl 20 MB dan katta.": "Файл больше 20 МБ.",
+  "Word faylining oçilgandagi hajmi juda katta.": "После распаковки файл Word слишком большой.",
   "Brauzeringiz eski: docx uçun Chrome, Edge, Safari 16.4 yoki Firefoxʼning yangi versiyasi kerak.": "Браузер устарел: для docx нужен свежий Chrome, Edge, Safari 16.4 или Firefox.",
   "Faylni ögirib bölmadi. Asl fayl özgarmadi.": "Не удалось перевести файл. Исходный файл не изменился.",
   "Ögirilmoqda…": "Переводим…",

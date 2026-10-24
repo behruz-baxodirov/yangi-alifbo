@@ -1,10 +1,9 @@
 // Fayllarni yangi alifboga ögiriş: matn (.txt .md .csv), subtitr (.srt .vtt) va Word (.docx).
 // Hammasi brauzerda: fayl heç qayerga yuborilmaydi.
-import { convert } from "./converter.js";
+import { convert, convertSegments } from "./converter.js";
 import { readZip, writeZip } from "./zip.js";
 
 const MAX_BYTES = 20 * 1024 * 1024;
-const APOS = "'`‘’ʻʼ´";
 const NEW = /[öğşçÖĞŞÇʼ]/gu;
 const count = (s) => (s.match(NEW) ?? []).length;
 const delta = (before, after) => Math.max(0, count(after) - count(before));
@@ -28,34 +27,31 @@ const decode = (s) => s.replace(/&(#x[\da-f]+|#\d+|\w+);/gi, (all, e) =>
 const encode = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /**
- * Word XML: faqat <w:t> matnlari özgaradi. Bir abzats içida bir run "o" bilan tugab, keyingisi
- * apostrof bilan boşlansa (yoki "s" + "h"), belgi oldingi runga köçiriladi; harf + ' + harf tutuq böladi.
+ * Word XML: yonma-yon <w:t> matnlari umumiy kontekstda ögiriladi, har belgi asl run uslubida qoladi.
+ * Abzats, satr, tab va maydon çegaralari kontekstni uzadi; XMLʼning qolgan qismi özgarmaydi.
  */
 export function convertDocxXml(xml, opts) {
   const tokens = [];
-  let para = 0;
-  for (const m of xml.matchAll(/<w:t(\s[^>]*)?>([\s\S]*?)<\/w:t>|<\/w:p>/g)) {
-    if (m[0] === "</w:p>") { para++; continue; }
-    tokens.push({ start: m.index, end: m.index + m[0].length, attrs: m[1] ?? "", text: decode(m[2]), para });
+  let group = [];
+  const flush = () => {
+    const converted = convertSegments(group.map((tok) => tok.text), opts);
+    group.forEach((tok, i) => { tok.converted = converted[i]; });
+    group = [];
+  };
+  for (const m of xml.matchAll(/<w:t(\s[^>]*)?>([\s\S]*?)<\/w:t>|<\/?w:(?:p|br|tab|cr|fldChar|instrText|drawing|object|sym)\b[^>]*>/g)) {
+    if (m[2] === undefined) { flush(); continue; }
+    const tok = { start: m.index, end: m.index + m[0].length, attrs: m[1] ?? "", text: decode(m[2]) };
+    tokens.push(tok);
+    group.push(tok);
   }
-  for (let i = 0; i < tokens.length; i++) {
-    const a = tokens[i];
-    if (!a.text) continue;
-    const b = tokens.slice(i + 1).find((x) => x.text);
-    if (!b || b.para !== a.para) continue;
-    if ((/[oOgG]$/.test(a.text) && APOS.includes(b.text[0])) || (/[sScC]$/.test(a.text) && /^[hH]/.test(b.text))) {
-      a.text += b.text[0];
-      b.text = b.text.slice(1);
-    } else if (opts.tutuq && /\p{L}$/u.test(a.text) && APOS.includes(b.text[0]) && /^\p{L}/u.test(b.text.slice(1))) {
-      b.text = "ʼ" + b.text.slice(1);
-    }
-  }
+  flush();
   let out = "", last = 0, changed = 0;
   for (const tok of tokens) {
-    const before = decode(xml.slice(tok.start, tok.end).replace(/^<w:t[^>]*>|<\/w:t>$/g, ""));
-    const text = convert(tok.text, opts);
-    changed += delta(before, text);
-    out += xml.slice(last, tok.start) + `<w:t${tok.attrs}>${encode(text)}</w:t>`;
+    const text = tok.converted;
+    changed += delta(tok.text, text);
+    // Almaşmagan XML, jumladan entity yozilişi ham asl holida qoladi.
+    const rendered = text === tok.text ? xml.slice(tok.start, tok.end) : `<w:t${tok.attrs}>${encode(text)}</w:t>`;
+    out += xml.slice(last, tok.start) + rendered;
     last = tok.end;
   }
   return { xml: out + xml.slice(last), changed };

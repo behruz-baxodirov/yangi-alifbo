@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { convertText, convertSubtitle, convertDocxXml, convertFile } from "./fayl-ogir.js";
 import { readZip } from "./zip.js";
+import { convert } from "./converter.js";
 
 const opts = { tutuq: true };
 const runs = (...texts) => `<w:p>${texts.map((x) => `<w:r><w:t>${x}</w:t></w:r>`).join("")}</w:p>`;
@@ -14,6 +15,27 @@ test("a letter and its apostrophe in different runs still become one letter", ()
   assert.deepEqual(texts(convertDocxXml(runs("O", "’zbek"), opts).xml), ["Ö", "zbek"]);
   assert.deepEqual(texts(convertDocxXml(runs("s", "hahar"), opts).xml), ["ş", "ahar"]);
   assert.deepEqual(texts(convertDocxXml(runs("ma", "'no"), opts).xml), ["ma", "ʼno"]);
+});
+
+test("Word conversion does not depend on where formatting splits a word", () => {
+  const fixtures = JSON.parse(readFileSync(new URL("../core/fixtures/cases.json", import.meta.url), "utf8"));
+  const samples = [...fixtures.map((c) => c.in), "Ishoq", "mushaf", "Ўзбекистон", "Исҳоқ", "маъно", "съезд", "SH😀o'z", "https://shop.uz/ch", "info@shosh.uz"];
+  for (const sample of samples) {
+    for (let i = 1; i < sample.length; i++) {
+      const input = runs(sample.slice(0, i), sample.slice(i));
+      assert.equal(texts(convertDocxXml(input, opts).xml).join(""), convert(sample, opts), `${sample} at ${i}`);
+    }
+    assert.equal(texts(convertDocxXml(runs(...sample), opts).xml).join(""), convert(sample, opts), sample);
+  }
+  assert.deepEqual(texts(convertDocxXml(runs("ma", "'", "no"), opts).xml), ["ma", "ʼ", "no"]);
+  assert.equal(texts(convertDocxXml(runs("ma", "'", "no"), { tutuq: false }).xml).join(""), "ma'no");
+});
+
+test("Word breaks, tabs, fields and paragraphs keep letters apart", () => {
+  for (const separator of ["<w:br/>", "<w:tab/>", "<w:cr/>", '<w:fldChar w:fldCharType="begin"/>', '<w:instrText>sh</w:instrText>', "</w:r></w:p><w:p><w:r>"]) {
+    const xml = `<w:p><w:r><w:t>s</w:t>${separator}<w:t>h</w:t></w:r></w:p>`;
+    assert.equal(convertDocxXml(xml, opts).xml, xml, separator);
+  }
 });
 
 test("only text runs change; field codes, attributes and entities stay", () => {
