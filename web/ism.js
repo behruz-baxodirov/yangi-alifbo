@@ -3,6 +3,7 @@ import "./sahifa.js";
 import { til, t, tx } from "./i18n.js";
 import { ismKarta } from "./ism-hisob.js";
 import { C, W, H, loadFonts, logo, non, background, toPng } from "./kanvas.js";
+import { objectUrls } from "./object-url.js";
 
 const PAIR = { ö: "oʻ → ö", ğ: "gʻ → ğ", ş: "sh → ş", ç: "ch → ç", ʼ: "' → ʼ" };
 // Doto kirill harflarini va ğ ni bilmaydi.
@@ -78,7 +79,7 @@ $("ism-story").addEventListener("click", async () => {
   const blob = await drawNameStory(canvas, card).then(() => toPng(canvas)).catch(() => null);
   if (!blob) { err.hidden = false; return; }
   const file = new File([blob], "ism-yozgich.png", { type: "image/png" });
-  const url = URL.createObjectURL(blob);
+  const url = objectUrls.replace("ism", blob);
   img.src = url;
   preview.hidden = false;
   window.track?.("ism_story");

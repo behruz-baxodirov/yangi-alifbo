@@ -19,6 +19,7 @@ test("conversion is idempotent over fixtures", () => {
 test("tutuq option off keeps the apostrophe", () => {
   assert.equal(convert("ma'no", { tutuq: false }), "ma'no");
   assert.equal(convert("o'zbek", { tutuq: false }), "özbek");
+  assert.equal(convert("маъно Исҳоқ Ishoq", { tutuq: false }), "ma'no Is'hoq Is'hoq");
 });
 
 test("cyrillic to new latin", () => {

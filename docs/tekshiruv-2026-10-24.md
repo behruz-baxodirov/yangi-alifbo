@@ -61,7 +61,10 @@ maʼlumot va hajm testlari ham avval yiqildi; söng barçasi ötdi.
 - Jonli sitemap 3 360 URLʼni sanaydi; Yandex tasdiq meta tegi saqlangan.
 - Jonli `/fayl/` 375 px da sinov Word faylini muvaffaqiyatli ögirdi.
 
-### minor (deferred)
+### Dastlabki minor (deferred) qaydlari
+
+Quyidagi qaydlar birinçi review holatini bildiradi. Davom işida tuzatilganlari
+va haqiqiy qurilma talab qiladiganlari pastdagi yakuniy holatda ajratilgan.
 
 - Maşq kunlari `toISOString()` orqali UTC sanasida saqlanadi; mahalliy yarim
   tundan keyin kun bir kun farq qilişi mumkin.
@@ -135,3 +138,61 @@ Gboard va Samsung Keyboardʼda qurilma/Android/klaviatura versiyasi bilan:
 - Android matni haqiqiy Gboard va Samsung Keyboardʼda tekşirilişi kerak.
 - Yandex sitemap yuborişi taşqi xizmatga yozişdir; egasi tasdiğidan keyin.
 - Reliz, DNS, worktree/branch tozalaş va pullik xizmatlarga tegilmadi.
+
+## Davom işining yakuniy holati
+
+### Sayt — tuzatildi
+
+- Maşq kunlari mahalliy kalendar sanasida saqlanadi; saqlangan JSON tuzilmasi
+  tekşiriladi, notöğri qiymat sahifani işdan çiqarmaydi.
+- Adaşilgan yangi harf haqiqiy örni böyiça hisoblanadi.
+- Asinxron söz qidiruvi eski sörov natijasini yangi sörov ustiga yozmaydi.
+- Ism/maşq rasmi almaşganda oldingi Blob URL böşatiladi; fayl havolalari
+  sahifadan çiqilganda tozalanadi, BFCacheʼdan qaytgan sahifa esa saqlanadi.
+- Subtitrdagi NOTE/STYLE/REGION bloklari, cue identifikatorlari, HTML teglar,
+  atributlar, entity va vaqt qatorlari saqlanadi. Matn format teglari orasida ham ögiriladi.
+- `tutuq:false` kirill ъ/сҳ va luğat istisnolarida ham ASCII apostrofni beradi;
+  oddiy konverter va Word bir xil mantiqdan foydalanadi.
+- Maqoladagi eski yozuv misoli va «boş sahifa» matni töğrilandi.
+- README/PRODUCT/DESIGNʼdagi eski input source/build tavsiflari yangilandi.
+
+Android yöriqnomasi [Gboard hujjati](https://support.google.com/gboard/answer/7068494?hl=en)
+va [Samsung hujjati](https://www.samsung.com/us/support/answer/ANS10001592/)
+bilan soliştirildi: joylaşuv tanlaş qadami, Samsung til menyusi va versiyaga
+qarab farq qilişi aniqlaştirildi. Bu haqiqiy telefon sinovi örnini bosmaydi.
+Egasi bu sessiyada Windows/Android qurilmalarini ulab bölmasligini tasdiqladi.
+
+### Mac — 2.0.4 reliz nomzodi
+
+- `ö↑` / `A↑` ustidagi çap bosiş menyuni oçadi, yozişni öçirmaydi.
+- Option orqali yozilgan ‘ ’ konverterga yetadi; Command/Control yorliqlari saqlanadi.
+- Ruxsat menyusidagi ASCII apostrof töğrilandi.
+- Oldin saqlangan yangi versiya qayta işga tuşganda ham UIʼga bildiriladi;
+  bir versiya xabarini qayta körsatmaslik test bilan tekşiriladi.
+- `.command` aniq Terminal ilovasida oçiladi; xato bölsa buyruq nusxalanadi.
+- KeyMapper, menyu va Updater uçun 8 ta yangi XCTest bor; jami **59/59**.
+- macOS CI manbasi tayyor: XCTest, universal yiğiş, plist va imzo tekşiruvi.
+- Universal arm64/x86_64 yiğiş, plist, ad-hoc imzo va `--version` tekşirildi:
+  **2.0.4**. Reliz fayllari `dist/` da tayyor, Windows exeʼsi v2.0.3 bilan bir xil.
+- Haqiqiy Chrome, Terminal oçilişi va HUD körinişi qöl sinovi sifatida hali
+  tasdiqlanmagan. UI vositasi menyu-bar ilovasini öqiy olmadi; yolğiz Shift
+  bosişini yuborişni ham qöllamadi. Natija avtomatik testdan alohida saqlanadi.
+
+### Yakuniy dalillar va qolgan çegaralar
+
+- Web: **127 test, 0 xato**; Swift: **59 XCTest, 0 xato**.
+- Generator 3 364 fayl beradi; qayta yiğiş yangi fayl özgarişi kiritmaydi.
+- 72 sahifa/kenglik tekşiruvi (36 sahifa × 375/1280 px), overflow va konsol xatosi yöq.
+- Tutuq öçiq konverter, Android tabi va söz qidiruvi tört versiyada sinaldi.
+- Yandex Sitemap qayta tekşirildi: hali «Только для чтения», qöşiş tugmasi öçirilgan.
+- Yopiluvçi ASCII qoştirnoq bilan o/g apostrofi bir xil tugma: `'kino'`
+  kabi noaniq holat eski çeklov sifatida qoladi. Uni umumiy fixture qoidalarini
+  taxmin bilan almaştirib «tuzatildi» deb belgilamadim; matnda juft qoştirnoq
+  (`"kino"`) işlatiş bu noaniqlikni çetlab ötadi.
+- Backspaceʼdagi AX sörovlari fokus, tanlov va matnni tekşiradi. Fokus/matn
+  keşi notöğri belgini öçirişga olib kelişi mumkin; haqiqiy sekin ilovada
+  sinaşsiz bu himoya olib taşlanmadi.
+- ABCʼga majburiy ötiş qöşilmadi: 2.x faol layoutʼda işlaydi; dead-key
+  layout va eski 1.x migratsiyasi haqiqiy qurilma tekşiruvini talab qiladi.
+- GitHub reliz va eski worktree/branchʼlarni öçiriş — egasi tasdiğini kutadigan
+  alohida amallar. Kelajak Pro, bot va Linux xususiyatlari qurilmadi.

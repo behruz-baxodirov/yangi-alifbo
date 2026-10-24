@@ -2,9 +2,10 @@
 import "./sahifa.js";
 import { til, t, tx } from "./i18n.js";
 import { MATN } from "./mashq-matn.js";
-import { liveOk, judgeWord, summary } from "./mashq-hisob.js";
+import { liveOk, judgeWord, summary, localDay, readPractice } from "./mashq-hisob.js";
 import { checkTyping } from "./tekshir.js";
 import { C, W, H, loadFonts, logo, non, background, toPng } from "./kanvas.js";
+import { objectUrls } from "./object-url.js";
 
 const $ = (id) => document.getElementById(id);
 const textEl = $("mashq-matn"), field = $("mashq-in"), stat = $("mashq-stat"), hint = $("mashq-hint");
@@ -18,7 +19,7 @@ const pick = (list, n) => [...list].sort(() => Math.random() - 0.5).slice(0, n);
 const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
 function load() {
-  try { return JSON.parse(localStorage.getItem(KEY)) ?? { best: 0, kunlar: [] }; } catch { return { best: 0, kunlar: [] }; }
+  try { return readPractice(localStorage.getItem(KEY)); } catch { return readPractice(null); }
 }
 function save(data) {
   try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { /* saqlab bölmasa, faqat şu sahifada */ }
@@ -64,7 +65,7 @@ function finish() {
   result.hidden = false;
   $("mashq-prev").hidden = true;
   const data = load();
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDay(new Date());
   if (!data.kunlar.includes(today)) data.kunlar.push(today);
   data.best = Math.max(data.best, last.wpm);
   save(data);
@@ -146,7 +147,7 @@ $("mashq-story").addEventListener("click", async () => {
   const blob = await drawMashqStory(canvas, last).then(() => toPng(canvas)).catch(() => null);
   if (!blob) { $("mashq-err").hidden = false; return; }
   const file = new File([blob], "mashq-yozgich.png", { type: "image/png" });
-  const url = URL.createObjectURL(blob);
+  const url = objectUrls.replace("mashq", blob);
   $("mashq-img").src = url;
   $("mashq-prev").hidden = false;
   window.track?.("mashq_story");

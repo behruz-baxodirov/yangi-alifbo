@@ -17,7 +17,21 @@ export function convertText(text, opts) {
 const KEEP_LINE = /^(\d+|WEBVTT.*|NOTE\b.*|.*-->.*|\s*)$/;
 
 export function convertSubtitle(text, opts) {
-  const out = text.split(/(\r?\n)/).map((part, i) => (i % 2 || KEEP_LINE.test(part) ? part : convert(part, opts))).join("");
+  const lines = text.split(/(\r?\n)/);
+  let metadata = false;
+  const out = lines.map((part, i) => {
+    if (i % 2) return part;
+    if (!part.trim()) { metadata = false; return part; }
+    if (/^(?:\uFEFF?WEBVTT|NOTE\b|STYLE$|REGION$)/.test(part)) metadata = true;
+    if (metadata || KEEP_LINE.test(part) || lines[i + 2]?.includes("-->")) return part;
+    // Teg/atributlar va HTML entityʼlar saqlanadi; matn format teglari orasida ham birikadi.
+    return part.split(/(&#?\w+;)/).map((piece, k) => {
+      if (k % 2) return piece;
+      const tokens = piece.split(/(<[^>]*>)/);
+      const converted = convertSegments(tokens.filter((_, j) => j % 2 === 0), opts);
+      return tokens.map((token, j) => j % 2 ? token : converted[j / 2]).join("");
+    }).join("");
+  }).join("");
   return { text: out, changed: delta(text, out) };
 }
 

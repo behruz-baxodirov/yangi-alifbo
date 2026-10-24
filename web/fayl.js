@@ -2,6 +2,7 @@
 import "./sahifa.js";
 import { t } from "./i18n.js";
 import { convertFile } from "./fayl-ogir.js";
+import { objectUrls } from "./object-url.js";
 
 const drop = document.getElementById("fayl-drop");
 const input = document.getElementById("fayl-in");
@@ -27,7 +28,7 @@ async function handle(file) {
   try {
     const bytes = new Uint8Array(await file.arrayBuffer());
     const out = await convertFile({ name: file.name, bytes }, { tutuq: tutuq.checked });
-    const url = URL.createObjectURL(new Blob([out.bytes], { type: file.type || "application/octet-stream" }));
+    const url = objectUrls.replace(li, new Blob([out.bytes], { type: file.type || "application/octet-stream" }));
     li.innerHTML = `<b class="fayl-name" data-lotin>${esc(out.name)}</b> <span class="fayl-st">${t("{n} ta harf özgardi", { n: out.changed })}</span>`
       + ` <a class="btn btn-ink" href="${url}" download="${esc(out.name)}">${t("Yuklab oliş")}</a>`;
     window.track?.("fayl_ogirildi", { tur });

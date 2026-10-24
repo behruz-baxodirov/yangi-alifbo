@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { liveOk, judgeWord, summary } from "./mashq-hisob.js";
+import { liveOk, judgeWord, summary, localDay, readPractice } from "./mashq-hisob.js";
 import { MATN } from "./mashq-matn.js";
 
 test("the word in progress tolerates Yozgiç's in-between o'", () => {
@@ -21,6 +21,19 @@ test("a finished word must be typed in the new alphabet", () => {
   assert.deepEqual(judgeWord("öğil", "o'g'il"), { ok: false, missed: ["ö", "ğ"] });
   assert.deepEqual(judgeWord("Şahar", "şahar"), { ok: false, missed: [] });
   assert.equal(judgeWord("çoy", "çoy").ok, true); // NFD
+});
+
+test("a new letter in the wrong position still counts as a missed letter", () => {
+  assert.deepEqual(judgeWord("şaş", "şas"), { ok: false, missed: ["ş"] });
+  assert.deepEqual(judgeWord("şahar", "aşhar"), { ok: false, missed: ["ş"] });
+});
+
+test("practice days use the local date and stored records are validated", () => {
+  assert.equal(localDay(new Date(2026, 9, 24, 0, 5)), "2026-10-24");
+  for (const raw of [null, "{}", "false", '"x"', '{"best":8,"kunlar":null}', 'invalid']) {
+    assert.deepEqual(readPractice(raw), { best: 0, kunlar: [] });
+  }
+  assert.deepEqual(readPractice('{"best":15,"kunlar":["2026-10-24","bad","2026-10-24"]}'), { best: 15, kunlar: ["2026-10-24"] });
 });
 
 test("speed, accuracy and the most missed letter", () => {

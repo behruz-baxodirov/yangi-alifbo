@@ -52,6 +52,12 @@ test("subtitles: numbers and timings untouched", () => {
   assert.equal(convertSubtitle("WEBVTT\n\n00:01.000 --> 00:02.000\no'g'il\n", opts).text, "WEBVTT\n\n00:01.000 --> 00:02.000\nöğil\n");
 });
 
+test("subtitle markup, cue identifiers and metadata are preserved", () => {
+  const vtt = "WEBVTT\r\nKind: captions\r\n\r\nNOTE shahar\r\nshahar comment\r\n\r\nSTYLE\r\n::cue(.sh) { color: red; }\r\n\r\nshahar-id\r\n00:01.000 --> 00:02.000\r\n<c.sh>s<b>h</b>ahar &shy; choy</c>\r\n";
+  const want = vtt.replace('<c.sh>s<b>h</b>ahar &shy; choy</c>', '<c.sh>ş<b></b>ahar &shy; çoy</c>');
+  assert.equal(convertSubtitle(vtt, opts).text, want);
+});
+
 test("plain text keeps its BOM and converts Cyrillic", () => {
   const r = convertText("﻿Шаҳар", opts);
   assert.equal(r.text, "﻿Şahar");

@@ -4,6 +4,16 @@ import { convert } from "./converter.js";
 const NEW = /[öğşçÖĞŞÇʼ]/u;
 const nfc = (s) => s.normalize("NFC");
 
+export const localDay = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+export function readPractice(raw) {
+  const empty = { best: 0, kunlar: [] };
+  try {
+    const value = JSON.parse(raw);
+    if (!value || !Number.isFinite(value.best) || value.best < 0 || !Array.isArray(value.kunlar)) return empty;
+    return { best: value.best, kunlar: [...new Set(value.kunlar.filter((day) => typeof day === "string" && /^\d{4}-\d{2}-\d{2}$/.test(day)))] };
+  } catch { return empty; }
+}
+
 /** Yozilayotgan söz: Yozgiç bir lahza o' ni körsatadi, keyin ö qöyadi — buni xato sanamaymiz. */
 export function liveOk(target, typed) {
   const t = nfc(target);
@@ -15,8 +25,8 @@ export function liveOk(target, typed) {
 /** Tugagan söz aynan yangi alifboda bölişi kerak; missed — yozilmay qolgan yangi harflar. */
 export function judgeWord(target, typed) {
   const want = nfc(target), got = nfc(typed);
-  const lower = got.toLowerCase();
-  const missed = [...want.toLowerCase()].filter((ch) => NEW.test(ch) && !lower.includes(ch));
+  const letters = [...got.toLowerCase()];
+  const missed = [...want.toLowerCase()].filter((ch, i) => NEW.test(ch) && letters[i] !== ch);
   return { ok: want === got, missed: [...new Set(missed)] };
 }
 

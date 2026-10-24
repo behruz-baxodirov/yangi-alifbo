@@ -94,15 +94,15 @@ function convertPlain(text, tutuq, map) {
   if (tutuq) {
     out = replace(out, new RegExp(`(\\p{L})[${APOS}](?=\\p{L})`, "gu"), (_, l) => l + TUTUQ, map);
   }
-  out = fixExceptions(out, map);
-  return out.replaceAll(HOLD, TUTUQ);
+  out = fixExceptions(out, map, tutuq);
+  return out.replaceAll(HOLD, tutuq ? TUTUQ : "'");
 }
 
-function fixExceptions(text, map) {
+function fixExceptions(text, map, tutuq) {
   let out = text;
   for (const [wrong, right] of EXCEPTIONS) {
     const re = new RegExp(`(?<!\\p{L})${wrong}`, "giu");
-    out = replace(out, re, (m) => matchCase(m, right), map, (i, m) => {
+    out = replace(out, re, (m) => matchCase(m, tutuq ? right : right.replaceAll(TUTUQ, "'")), map, (i, m) => {
       const at = m.toLowerCase().indexOf("ş");
       return i <= at ? i : i <= at + 2 ? at : i - 2;
     });

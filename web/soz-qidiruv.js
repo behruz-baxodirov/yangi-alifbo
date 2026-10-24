@@ -22,6 +22,7 @@ async function search() {
   if (!q) { out.innerHTML = ""; return; }
   if (!tracked) { tracked = true; window.track?.("soz_sahifa_qidiruv"); }
   const words = await load();
+  if (q !== field.value.trim()) return;
   const qOld = norm(q), qNew = convert(q).toLowerCase();
   const hits = words.filter((w) => w.y.toLowerCase().startsWith(qNew) || norm(w.e).startsWith(qOld)).slice(0, 12);
   if (hits.length) {
