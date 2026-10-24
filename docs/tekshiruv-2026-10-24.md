@@ -162,7 +162,7 @@ bilan soliştirildi: joylaşuv tanlaş qadami, Samsung til menyusi va versiyaga
 qarab farq qilişi aniqlaştirildi. Bu haqiqiy telefon sinovi örnini bosmaydi.
 Egasi bu sessiyada Windows/Android qurilmalarini ulab bölmasligini tasdiqladi.
 
-### Mac — 2.0.4 reliz nomzodi
+### Mac — 2.0.4
 
 - `ö↑` / `A↑` ustidagi çap bosiş menyuni oçadi, yozişni öçirmaydi.
 - Option orqali yozilgan ‘ ’ konverterga yetadi; Command/Control yorliqlari saqlanadi.
@@ -171,7 +171,8 @@ Egasi bu sessiyada Windows/Android qurilmalarini ulab bölmasligini tasdiqladi.
   bir versiya xabarini qayta körsatmaslik test bilan tekşiriladi.
 - `.command` aniq Terminal ilovasida oçiladi; xato bölsa buyruq nusxalanadi.
 - KeyMapper, menyu va Updater uçun 8 ta yangi XCTest bor; jami **59/59**.
-- macOS CI manbasi tayyor: XCTest, universal yiğiş, plist va imzo tekşiruvi.
+- [macOS CI 40075335131](https://github.com/behruz-baxodirov/yangi-alifbo/actions/runs/40075335131)
+  muvaffaqiyatli ötdi: XCTest, universal yiğiş, plist va imzo tekşiruvi.
 - Universal arm64/x86_64 yiğiş, plist, ad-hoc imzo va `--version` tekşirildi:
   **2.0.4**. Reliz fayllari `dist/` da tayyor, Windows exeʼsi v2.0.3 bilan bir xil.
 - Haqiqiy Chrome, Terminal oçilişi va HUD körinişi qöl sinovi sifatida hali
@@ -194,5 +195,25 @@ Egasi bu sessiyada Windows/Android qurilmalarini ulab bölmasligini tasdiqladi.
   sinaşsiz bu himoya olib taşlanmadi.
 - ABCʼga majburiy ötiş qöşilmadi: 2.x faol layoutʼda işlaydi; dead-key
   layout va eski 1.x migratsiyasi haqiqiy qurilma tekşiruvini talab qiladi.
-- GitHub reliz va eski worktree/branchʼlarni öçiriş — egasi tasdiğini kutadigan
-  alohida amallar. Kelajak Pro, bot va Linux xususiyatlari qurilmadi.
+- Egasi reliz va zaxirali tozalaşni alohida tasdiqladi. Kelajak Pro, bot va
+  Linux xususiyatlari bu iş doirasiga kiritilmadi.
+
+### Reliz va tozalaş bajarildi
+
+- [v2.0.4 relizi](https://github.com/behruz-baxodirov/yangi-alifbo/releases/tag/v2.0.4)
+  `e5757034a` commitdan çiqarildi. Ikkala fayl avval qoralamaga yuklandi,
+  SHA-256 tekşirildi, söng reliz eʼlon qilindi.
+- `YangiAlifbo.zip`: 299 242 bayt, SHA-256
+  `fac262f35a4a38ccca6716b2f8beda8812cfe12a6d566c6ba95cb2f6dcbd49fe`.
+- `YangiAlifbo-windows-beta.exe`: 1 287 168 bayt, SHA-256
+  `ddda297749359b50e86ebce8a7d6218babd1852acc5b8c64089c59706a45a32e`;
+  Windows kodi özgarmagan, fayl v2.0.3 relizidan qayta qöşildi.
+- `releases/latest` v2.0.4 ga yönaladi. Ikkala `latest/download/…`
+  manzili HTTP 200 qaytardi; yuklangan fayllar lokal nusxalarga mos.
+- Tasdiqlangan 5 eski worktree, 8 lokal branch va 2 GitHub branchʼi öçirildi.
+  Faqat `main` worktreeʼi qoldi; avvalgi reliz taglari saqlandi.
+- Zaxira: `/Users/a1111/.codex/backups/yozgich-2026-10-24-iQY7eE`.
+  Töliq Git bundle, worktree fayllari/metamaʼlumotlari, refs röyxati,
+  reliz fayllari va SHA256SUMS bor. Bundle, tar va Git connectivity tekşiruvlari ötdi.
+- Birlamçi daraxtdagi avvaldan commit qilinmagan `docs/codex-handoff.md`
+  öz holida qoldi; uning nusxasi ham zaxirada saqlandi.
