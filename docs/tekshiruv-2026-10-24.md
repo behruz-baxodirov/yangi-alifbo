@@ -54,6 +54,12 @@ maʼlumot va hajm testlari ham avval yiqildi; söng barçasi ötdi.
 - Alohida runʼli Word fayli brauzerda ögirildi; natijani `textutil` oçdi,
   Python `zipfile.testzip()` xato topmadi. Tutuq, satr uzilişi va URL saqlandi.
 - Yasalgan sahifalarning içki sahifa/aktiv havolalarida uziliş topilmadi.
+- Commit: `18e8c5b64`; Pages run `40055143838` — success.
+- Jonli saytda `converter.js`, `fayl-ogir.js`, `zip.js`, `fayl.js` manbalari
+  lokal commit bilan baytma-bayt bir xil. Bosh sahifa, `/kr/`,
+  `/soz/shahzod/`, `/ru/fayl/` va Google tasdiq fayli HTTP 200 qaytardi.
+- Jonli sitemap 3 360 URLʼni sanaydi; Yandex tasdiq meta tegi saqlangan.
+- Jonli `/fayl/` 375 px da sinov Word faylini muvaffaqiyatli ögirdi.
 
 ### minor (deferred)
 
@@ -92,8 +98,36 @@ Bu testlar haqiqiy ilovadagi Accessibility/Terminal xatti-harakatini tasdiqlamay
 
 Hali qölda tasdiqlanişi kerak: menyudagi Yangilaş → haqiqiy Terminal oynasi,
 bir versiyaga bir martalik HUD, Chrome maydonida `c b ⌫ h → ç`.
+Örnatilgan nusxa 2.0.3 ekanligi öqildi; native avtomatlaştiriş uning
+menyu-bar oynasini öqiy olmadi. Şuning uçun bu uçta holat ötgan deb
+belgilanmadi. `swift test` qayta işlatildi: yana 51 XCTest, 0 xato.
 Kodda qolgan kiçik muammolar: Backspaceʼda bir neçta AX sörovi,
 `ö↑` ustidagi çap bosişning yoqiş/öçiriş vazifasi, ruxsat menyusidagi ASCII apostrof.
+
+## SEO holati
+
+2026-10-24 kuni Googleʼning haqiqiy brauzer natijasida
+`site:yozgich.uz uchun` sörovi bosh sahifani topdi. Natijada eski lotindagi
+«Yangi oʼzbek alifbosi uchun klaviatura va konvertor» izohi körindi.
+Bu aynan şu sörov böyiça natija; umumiy sörovlardagi örin yoki hamma yangi
+sahifa indekslangani haqida xulosa qilinmadi.
+
+Yandex Webmaster → Yozgiç → Индексирование → Файлы Sitemap tekşirildi.
+Xizmat hali «Только для чтения» holatida, «Добавить» tugmasi öçirilgan.
+Sitemap qöşilmadi. Tayyor manzil: `https://yozgich.uz/sitemap.xml`.
+Xizmat oçilganda yuborişdan oldin egasidan alohida tasdiq olinadi.
+
+## Android uçun qolgan qöl tekşiruvi
+
+Haqiqiy Android qurilma bu sessiyada ulanmagan. Chromeʼning tor oynasi
+telefon klaviaturasi matnini tasdiqlamaydi.
+Gboard va Samsung Keyboardʼda qurilma/Android/klaviatura versiyasi bilan:
+
+1. Ozarbayjonça klaviaturani tanlaş yöli va `ö ğ ş ç` tugmalarini tekşiriş.
+2. `i/ı/İ/I` ning kiçik/katta harfdagi natijasini tekşiriş.
+3. Gap boşidagi avtomatik katta harf va avtomatik tuzatişni tekşiriş.
+4. Oddiy layoutʼda bosib turiş orqali qaysi harflar çiqişini tekşiriş.
+5. Tutuq kirişini sayt konverterida tekşiriş va yöriqnoma bilan soliştiriş.
 
 ## Keyingi qadamlar
 
