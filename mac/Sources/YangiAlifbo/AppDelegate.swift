@@ -2,6 +2,17 @@ import Cocoa
 import ApplicationServices
 import AlifboCore
 
+enum StatusMenu {
+    static let accessibilityPrompt = "⚠︎ Ruxsat kerak: Accessibilityʼda \"Yangi alifbo\"ni yoqing…"
+    static func opensMenu(rightClick: Bool, hasPermission: Bool, available: String?) -> Bool {
+        rightClick || !hasPermission || available != nil
+    }
+    static func announcement(available: String?, announced: String?) -> String? {
+        guard let available, available != announced else { return nil }
+        return available
+    }
+}
+
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private let keyTap = KeyTap()
     private let hud = ToggleHUD()
@@ -25,7 +36,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func updateChanged() {
         refresh()
-        guard let version = updater.available, Settings.announcedVersion != version else { return }
+        guard let version = StatusMenu.announcement(available: updater.available, announced: Settings.announcedVersion) else { return }
         Settings.announcedVersion = version
         hud.show(symbol: "↑", title: "Yangi versiya bor: \(version)",
                  subtitle: "ö ustida öng tugma → yangilaş", seconds: 5)
@@ -76,7 +87,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func statusClicked(_ sender: Any?) {
         let isRight = NSApp.currentEvent?.type == .rightMouseUp
             || NSApp.currentEvent?.modifierFlags.contains(.control) == true
-        if isRight || !hasPermission {
+        if StatusMenu.opensMenu(rightClick: isRight, hasPermission: hasPermission, available: updater.available) {
             showMenu()
         } else {
             toggleEnabled(nil)
@@ -86,7 +97,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showMenu() {
         let menu = NSMenu()
         if !hasPermission {
-            menu.addItem(item("⚠︎ Ruxsat kerak: Accessibility'da \"Yangi alifbo\"ni yoqing…", #selector(openAccessibility(_:))))
+            menu.addItem(item(StatusMenu.accessibilityPrompt, #selector(openAccessibility(_:))))
             menu.addItem(.separator())
         }
         if let version = updater.available {

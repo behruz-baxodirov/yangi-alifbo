@@ -1,0 +1,26 @@
+name: macos
+
+on:
+  push:
+    paths: ["mac/**", "core/fixtures/**", ".github/workflows/macos.yml"]
+  pull_request:
+    paths: ["mac/**", "core/fixtures/**", ".github/workflows/macos.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift tests
+        run: swift test --package-path mac
+      - name: Universal release build
+        run: bash mac/scripts/build.sh
+      - name: Verify app
+        run: |
+          lipo dist/YangiAlifbo.app/Contents/MacOS/YangiAlifbo -verify_arch arm64 x86_64
+          plutil -lint dist/YangiAlifbo.app/Contents/Info.plist
+          codesign --verify --strict dist/YangiAlifbo.app

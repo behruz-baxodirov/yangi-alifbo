@@ -12,5 +12,6 @@ let package = Package(
             linkerSettings: [.linkedFramework("Cocoa"), .linkedFramework("ApplicationServices")]
         ),
         .testTarget(name: "AlifboCoreTests", dependencies: ["AlifboCore"]),
+        .testTarget(name: "YangiAlifboTests", dependencies: ["YangiAlifbo"]),
     ]
 )

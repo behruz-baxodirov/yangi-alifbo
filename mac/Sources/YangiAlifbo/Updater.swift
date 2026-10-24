@@ -19,32 +19,44 @@ final class Updater: NSObject, URLSessionTaskDelegate {
     var onChange: (() -> Void)?
     private var timer: Timer?
     private var checking = false
+    private let defaults: UserDefaults
+    private let currentVersion: String
+
+    init(defaults: UserDefaults = .standard, version: String = AppInfo.version) {
+        self.defaults = defaults
+        self.currentVersion = version
+        super.init()
+    }
 
     private lazy var session: URLSession = {
         let config = URLSessionConfiguration.ephemeral
-        config.httpAdditionalHeaders = ["User-Agent": "YangiAlifbo/\(AppInfo.version)"]
+        config.httpAdditionalHeaders = ["User-Agent": "YangiAlifbo/\(currentVersion)"]
         config.timeoutIntervalForRequest = 15
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }()
 
-    var available: String? { Settings.availableVersion }
+    var available: String? { defaults.string(forKey: Settings.availableVersionKey) }
 
     func start() {
         // Yangilangandan keyin eski xabar qolib ketmasin.
-        if let saved = Settings.availableVersion, UpdateCheck.newer(latest: saved, than: AppInfo.version) == nil {
-            Settings.availableVersion = nil
+        if let saved = available, UpdateCheck.newer(latest: saved, than: currentVersion) == nil {
+            defaults.removeObject(forKey: Settings.availableVersionKey)
         }
+        // Oldin topilgan, lekin hali körsatilmagan versiya tarmoq javobini kutmasin.
+        if available != nil { onChange?() }
         // Login paytida Wi-Fi hali ulanmagan bölişi mumkin.
         DispatchQueue.main.asyncAfter(deadline: .now() + 60) { [weak self] in self?.checkIfDue() }
         timer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in self?.checkIfDue() }
     }
 
+    deinit { timer?.invalidate() }
+
     func checkIfDue() {
-        guard Settings.autoUpdateCheck else {
+        guard defaults.object(forKey: Settings.autoUpdateCheckKey) as? Bool ?? true else {
             updateLog.notice("update check skipped")
             return
         }
-        guard !checking, UpdateCheck.isDue(last: Settings.lastUpdateCheck, now: Date()) else { return }
+        guard !checking, UpdateCheck.isDue(last: defaults.object(forKey: Settings.lastUpdateCheckKey) as? Date, now: Date()) else { return }
         checking = true
         fetchLatest { [weak self] result in
             DispatchQueue.main.async { self?.finish(result) }
@@ -54,11 +66,11 @@ final class Updater: NSObject, URLSessionTaskDelegate {
     private func finish(_ result: FetchResult) {
         checking = false
         guard case .latest(let latest) = result else { return }
-        Settings.lastUpdateCheck = Date()
+        defaults.set(Date(), forKey: Settings.lastUpdateCheckKey)
         updateLog.notice("update check: latest=\(latest?.description ?? "?", privacy: .public)")
-        let available = UpdateCheck.available(latest: latest, current: AppInfo.version, saved: Settings.availableVersion)
-        guard available != Settings.availableVersion else { return }
-        Settings.availableVersion = available
+        let found = UpdateCheck.available(latest: latest, current: currentVersion, saved: available)
+        guard found != available else { return }
+        defaults.set(found, forKey: Settings.availableVersionKey)
         onChange?()
     }
 
@@ -100,7 +112,18 @@ final class Updater: NSObject, URLSessionTaskDelegate {
 
     /// .command fayl Terminal'da oçiladi va buyruq körinib işlaydi (Automation ruxsati kerak emas).
     private func runInstaller() {
-        if let script = try? writeInstallScript(), NSWorkspace.shared.open(script) { return }
+        guard let script = try? writeInstallScript(),
+              let terminal = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Terminal") else {
+            showInstallerFailure()
+            return
+        }
+        // .command faylning tasodifan almaştirilgan default ilovasiga boğlanmaymiz.
+        NSWorkspace.shared.open([script], withApplicationAt: terminal, configuration: NSWorkspace.OpenConfiguration()) { [weak self] _, error in
+            if error != nil { DispatchQueue.main.async { self?.showInstallerFailure() } }
+        }
+    }
+
+    private func showInstallerFailure() {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(AppInfo.installCommand, forType: .string)
         let alert = NSAlert()
@@ -109,9 +132,9 @@ final class Updater: NSObject, URLSessionTaskDelegate {
         alert.runModal()
     }
 
-    private func writeInstallScript() throws -> URL {
+    func writeInstallScript(in directory: URL? = nil) throws -> URL {
         let caches = try FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let dir = caches.appendingPathComponent("uz.yangialifbo.YangiAlifbo", isDirectory: true)
+        let dir = directory ?? caches.appendingPathComponent("uz.yangialifbo.YangiAlifbo", isDirectory: true)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         let script = dir.appendingPathComponent("yangilash.command")
         try "#!/bin/bash\n\(AppInfo.installCommand)\n".write(to: script, atomically: true, encoding: .utf8)

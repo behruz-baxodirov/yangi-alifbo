@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Static HTML/CSS/vanilla JS, no framework, no build step; served from GitHub Pages (`web/`). Chosen in the spec (docs/superpowers/specs/2026-10-22-yangi-alifbo-klaviatura-design.md) and approved by the owner.
+Static HTML/CSS/vanilla JS without a framework. A dependency-free Node generator builds `site/` into committed `web/` files; GitHub Pages tests and deploys that output without rebuilding it. Four versions: new Latin, old Latin, Cyrillic and Russian.
 
 ## Users
 
@@ -16,21 +16,22 @@ Ordinary Uzbek people reached through the owner's Instagram (@behruz_si): mostly
 
 ## Product Purpose
 
-"Yozgiç" lets people type the new alphabet with old habits: `o'`→`ö`, `g'`→`ğ`, `sh`→`ş`, `ch`→`ç`, `s'h`→`sʼh`, tutuq `ʼ`. Two parts: a free macOS input source (one-line Terminal install) and an online converter (old Latin or Cyrillic → new alphabet). Success: a visitor installs on Mac in about a minute, or converts text on the phone in seconds.
+"Yozgiç" lets people type the new alphabet with old habits: `o'`→`ö`, `g'`→`ğ`, `sh`→`ş`, `ch`→`ç`, `s'h`→`sʼh`, tutuq `ʼ`. Three parts: a free macOS menu-bar app, a Windows beta and an online converter. The site also offers word pages, name cards, typing practice, document conversion, articles and a widget. Success: a visitor installs on Mac in about a minute, or converts text on the phone in seconds.
 
 ## Positioning
 
-A real macOS input source: no permissions, no "keylogger" prompt, works in every app, switched with 🌐 / ⌃Space like any keyboard. Free and open source. The `s'h` rule follows the law's own spelling (Isʼhoq) instead of a word list.
+A macOS background menu-bar app using CGEventTap and Accessibility permission. It keeps the active keyboard layout and toggles by double Shift or the menu-bar symbol; the shortcut is configurable. Free and open source. The `s'h` rule follows the law's own spelling (Isʼhoq) instead of a word list.
 
 ## Operating Context
 
-Visitors arrive from an Instagram post or bio link, often mid-scroll on a phone. Mac users copy one command into Terminal. Windows version is a later beta.
+Visitors arrive from an Instagram post or bio link, often mid-scroll on a phone. Mac users copy one command into Terminal. Windows beta is available, with automated Notepad tests; real-device validation is still pending.
 
 ## Capabilities and Constraints
 
 - Site copy is written in the new alphabet itself.
 - Device-aware first screen: on a Mac the install command leads; on a phone the converter leads, with a note to open the link on the Mac.
 - Converter runs fully in the browser (no server, text never leaves the device).
+- The Mac app checks GitHub for a release version at most once per 24 hours after a server response; this can be disabled. It does not send typed text.
 - Official orthography rules are not yet published; the converter follows the law and press reports. Must not claim to be official or government-endorsed.
 
 ## Brand Commitments

@@ -17,9 +17,9 @@ enum Settings {
     private static let enabledKey = "enabled"
     private static let shortcutKey = "shortcut"
     private static let welcomedKey = "welcomed"
-    private static let autoUpdateCheckKey = "autoUpdateCheck"
-    private static let lastUpdateCheckKey = "lastUpdateCheck"
-    private static let availableVersionKey = "availableVersion"
+    static let autoUpdateCheckKey = "autoUpdateCheck"
+    static let lastUpdateCheckKey = "lastUpdateCheck"
+    static let availableVersionKey = "availableVersion"
     private static let announcedVersionKey = "announcedVersion"
 
     /// Kuniga bir marta yangi versiyani tekşiriş; öçiq bölsa internetga umuman çiqilmaydi.

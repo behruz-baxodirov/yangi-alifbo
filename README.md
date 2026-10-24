@@ -40,7 +40,8 @@ curl -fsSL https://yozgich.uz/uninstall.sh | bash
 ## Tuzilişi
 
 - `core/fixtures/cases.json` — klaviatura va konverter uçun umumiy test holatlari.
-- `mac/` — Swift package: `AlifboCore` (holat mashinasi) va `YangiAlifbo` (InputMethodKit ilovasi).
+- `mac/` — Swift package: `AlifboCore` (Composer, Rewriter va sof mantiq), `YangiAlifbo` (Accessibility/CGEventTap menyu-bar dasturi), XCTest testlari.
+- `site/` — sahifa manbalari va Node generatori: tört versiyadagi natija `web/` ga yoziladi va commit qilinadi.
 - `web/` — konverter (`converter.js`), örnatiş skriptlari; sayt maketlari `.impeccable/mockups/` da.
 - `windows/` — AutoHotkey v2 versiyasi.
 
@@ -51,11 +52,16 @@ swift test --package-path mac
 ```
 
 ```bash
-node --test web/converter.test.mjs
+npm test
+npm run build
 ```
 
 ```bash
 bash mac/scripts/build.sh
 ```
+
+`npm run build` dan keyin generator natijasida yangi Git farqi qolmasligi kerak.
+Pages workflow tayyor `web/` ni deploy qiladi, generatorni işga tuşirmaydi.
+Mac CI sof mantiq, KeyMapper, menyu va yangilaniş testlarini hamda universal yiğişni tekşiradi.
 
 Muallif: [@behruz_si](https://instagram.com/behruz_si). Bepul va oçiq kod.

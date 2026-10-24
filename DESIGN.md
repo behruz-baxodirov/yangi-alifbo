@@ -432,7 +432,7 @@ A full-bleed flour band with the Display Close statement ("Bepul, hamma uçun") 
 - **Do** draw any new large letter from the 5×10 dot grid (mark, gap, letter, cedilla).
 - **Do** paint dot rows once per row and phase-align rows on crust to the body's 12px grid.
 - **Do** order the first screen by device: the download tab pre-selected for Mac or Windows, the converter first on a phone.
-- **Do** write shortcuts as key caps and keep them true: the Mac keyboard is always on and is switched like any keyboard with ⌃ Control + Space or fn (globe); Windows toggles with Ctrl + Alt + Space.
+- **Do** write shortcuts as key caps and keep them true: the Mac menu-bar app toggles with double Shift by default or its ö/A symbol; the shortcut is configurable. Windows toggles with Ctrl + Alt + Space.
 - **Do** use the 3px corner token on every rectangle.
 - **Do** keep motion to dot migration with an exponential ease-out, and turn it off under reduced motion.
 
@@ -444,5 +444,5 @@ A full-bleed flour band with the Display Close statement ("Bepul, hamma uçun") 
 - **Don't** round anything except the non and its dots; no pills.
 - **Don't** shade the non or anything else: no gradients that model light, no insets, no drop shadows.
 - **Don't** use icon glyphs; build marks from dots. The only exceptions are the platform and social marks above.
-- **Don't** describe the Mac keyboard as switched on and off with a dedicated toggle.
+- **Don't** describe the current Mac app as an InputMethodKit source or claim that it needs no Accessibility permission.
 - **Don't** lead a phone visitor with an install command.

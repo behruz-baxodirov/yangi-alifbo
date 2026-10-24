@@ -6,7 +6,9 @@ enum KeyMapper {
 
     static func input(for event: NSEvent) -> KeyInput {
         let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-        if !flags.intersection([.command, .control, .option]).isEmpty { return .other }
+        if !flags.intersection([.command, .control]).isEmpty { return .other }
+        // Option orqali yozilgan tipografik apostrof matn, qolgan Option yorliqlari özgarmaydi.
+        if flags.contains(.option), !["‘", "’"].contains(event.characters ?? "") { return .other }
         if event.keyCode == deleteKeyCode { return .backspace }
         guard let chars = event.characters, chars.count == 1, let ch = chars.first,
               let scalar = ch.unicodeScalars.first else { return .other }
