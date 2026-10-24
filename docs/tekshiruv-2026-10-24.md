@@ -132,7 +132,7 @@ Gboard va Samsung Keyboardʼda qurilma/Android/klaviatura versiyasi bilan:
 4. Oddiy layoutʼda bosib turiş orqali qaysi harflar çiqişini tekşiriş.
 5. Tutuq kirişini sayt konverterida tekşiriş va yöriqnoma bilan soliştiriş.
 
-## Keyingi qadamlar
+## Dastlabki bosqiçdan keyingi qadamlar
 
 - Windowsʼni haqiqiy qurilmada sinaş: `docs/windows-qolda-sinash.md`.
 - Android matni haqiqiy Gboard va Samsung Keyboardʼda tekşirilişi kerak.
@@ -217,3 +217,25 @@ Egasi bu sessiyada Windows/Android qurilmalarini ulab bölmasligini tasdiqladi.
   reliz fayllari va SHA256SUMS bor. Bundle, tar va Git connectivity tekşiruvlari ötdi.
 - Birlamçi daraxtdagi avvaldan commit qilinmagan `docs/codex-handoff.md`
   öz holida qoldi; uning nusxasi ham zaxirada saqlandi.
+
+### Relizdan keyingi yangilaniş sörovi
+
+2026-10-24 kuni haqiqiy GitHub HEAD sörovi ikkala nusxada tekşirildi:
+
+```text
+$ /Users/a1111/Applications/YangiAlifbo.app/Contents/MacOS/YangiAlifbo --check-update
+joriy: 2.0.3, oxirgi: 2.0.4, yangilaş: 2.0.4
+$ dist/YangiAlifbo.app/Contents/MacOS/YangiAlifbo --check-update
+joriy: 2.0.4, oxirgi: 2.0.4, yangilaş: kerak emas
+```
+
+Ikkala buyruq 0 kodi bilan tugadi. Bu Terminalʼni menyudan oçiş sinovi emas;
+faqat haqiqiy relizni aniqlaş va versiyani soliştiriş yölini tasdiqlaydi.
+Örnatilgan nusxa hali 2.0.3 va `enabled = 0`: brauzer maydonidagi `ch`
+natijasi yoqilgan klaviatura xatosi deb belgilanmadi. Native UI vositasi
+sinov tabidan boşqa faol Chrome tabiga yönaldi, şuning uçun bu uriniş
+haqiqiy tugma kuzatuvçisi uçun dalil sifatida olinmadi. Sinov tabi yopildi.
+
+Macʼdagi aniq qöl qadamlar va kutiladigan natijalar:
+[`mac-qolda-sinash.md`](mac-qolda-sinash.md). Windows/Android qurilmalari
+ulanmaganligi va Mac UI sinovi tasdiqlanmaganligi haqidagi çegaralar saqlanadi.
