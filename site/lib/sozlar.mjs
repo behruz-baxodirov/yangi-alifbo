@@ -50,6 +50,7 @@ const UZ = {
   idxDesc: "{n} ta söz, ism va joy nomi yangi özbek alifbosida: eski yozuvi, yangi yozuvi va kirillçasi.",
   idxLede: "{n} ta söz, ism va joy nomi: eski yozuvi, yangi yozuvi va kirillçasi. Röyxatda yöq sözni qidiruvga yozing.",
   search: "Sözni qidiring",
+  count: "ta",
   searchPh: "Masalan: {ex}",
   letters: "Harflar",
 };
@@ -68,6 +69,7 @@ const RU = {
   idxDesc: "{n} слов, имён и названий мест на новом узбекском алфавите: старое написание, новое и кириллица.",
   idxLede: "{n} слов, имён и названий мест: старое написание, новое и кириллица. Если слова нет в списке, введите его в поиск.",
   search: "Найти слово",
+  count: "шт.",
   searchPh: "Например: {ex}",
   letters: "Буквы",
 };
@@ -168,7 +170,7 @@ export function sozIndexPages(entries) {
     const L = (s) => `<span data-lotin>${esc(s)}</span>`;
     const item = (w) => {
       const left = til === "kr" || til === "ru" ? `<span lang="uz-Cyrl">${esc(w.kir)}</span>` : L(w.eski);
-      return `<li><a href="/soz/${w.slug}/">${left} → ${L(w.yangi)}</a></li>`;
+      return `<li><a href="/soz/${w.slug}/"><span class="soz-old">${left}</span> → <b>${L(w.yangi)}</b></a></li>`;
     };
     const main = `<div class="page-head">
   <h1 class="page-title">${str(til, "idxTitle")}</h1>
@@ -181,7 +183,7 @@ export function sozIndexPages(entries) {
 </div>
 <section class="soz-index">
   <nav class="harflar" aria-label="${str(til, "letters")}" data-lotin>${used.map(([l]) => `<a href="#${id(l)}">${l}</a>`).join("")}</nav>
-  ${used.map(([l, list]) => `<section class="harf" id="${id(l)}"><h2 data-lotin>${l}</h2><ul class="soz-list">${list.map(item).join("")}</ul></section>`).join("\n  ")}
+  ${used.map(([l, list]) => `<section class="harf" id="${id(l)}"><h2 class="harf-h${l === "Ğ" ? " harf-h--text" : ""}"><span data-lotin>${l}</span><span class="harf-n">${list.length} ${str(til, "count")}</span></h2><ul class="soz-list">${list.map(item).join("")}</ul></section>`).join("\n  ")}
 </section>`;
     return {
       path: "/soz/",

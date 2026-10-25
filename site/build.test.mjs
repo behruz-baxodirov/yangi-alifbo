@@ -348,3 +348,17 @@ test("file page: main column with the drop zone, side card with the Word notes",
     assert.equal(m.match(/class="fayl-fmt"/g)?.length, 6, p);
   }
 });
+
+test("word groups carry a big letter with a count; article index is a card grid", async () => {
+  const site = await real;
+  const soz = mainOf(site.get("soz/index.html"));
+  assert.match(soz, /<section class="harf" id="harf-a"><h2 class="harf-h"><span data-lotin>A<\/span><span class="harf-n">\d+ ta<\/span><\/h2>/);
+  assert.match(soz, /<h2 class="harf-h harf-h--text"><span data-lotin>Ğ<\/span>/);
+  assert.match(mainOf(site.get("ru/soz/index.html")), /<span class="harf-n">\d+ шт\.<\/span>/);
+  for (const p of ["maqola/index.html", "ru/maqola/index.html"]) {
+    const m = mainOf(site.get(p));
+    assert.equal(m.match(/<a class="maqola-card/g)?.length, 6, p);
+    assert.match(m, /<a class="maqola-card maqola-card--top"/, p);
+    assert.equal(m.match(/class="maqola-tag"/g)?.length, 6, p);
+  }
+});
