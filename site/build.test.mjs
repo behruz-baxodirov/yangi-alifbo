@@ -216,3 +216,15 @@ test("real footer: four columns, founder, versions, old-script text", async () =
   assert.match(f, /class="close-alt"/);
   assert.match(footer(site.get("ru/index.html")), /Бесплатно,<br>для всех/);
 });
+
+test("phone page: two tabs, three closed methods each, every version", async () => {
+  const site = await real;
+  for (const { prefix } of TILLAR) assert.ok(site.has(`${prefix}telefon/index.html`), `${prefix}telefon`);
+  const main = site.get("telefon/index.html").match(/<main[\s\S]*<\/main>/)[0];
+  assert.match(main, /role="tablist"/);
+  assert.equal(main.match(/<details class="usul"/g)?.length, 6);
+  assert.doesNotMatch(main, /<details class="usul"[^>]*\bopen\b/);
+  assert.equal(main.match(/Tavsiya/g)?.length, 2);
+  assert.match(site.get("kr/telefon/index.html"), /<h1[^>]*>Телефонда ёзиш<\/h1>/);
+  assert.match(site.get("ru/telefon/index.html"), /<h1[^>]*>Как писать на телефоне<\/h1>/);
+});
