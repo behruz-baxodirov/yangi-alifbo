@@ -86,3 +86,13 @@ test("the search example keeps its spelling in every version", () => {
   assert.equal(ph("kr"), "Масалан: Шаҳзод");
   assert.equal(ph("ru"), "Например: Shahzod");
 });
+
+test("group counts: Uzbek 'ta', Russian plural forms", async () => {
+  const { countLabel } = await import("./sozlar.mjs");
+  assert.equal(countLabel("yangi", 25), "25 ta");
+  assert.equal(countLabel("ru", 1), "1 слово");
+  assert.equal(countLabel("ru", 3), "3 слова");
+  assert.equal(countLabel("ru", 11), "11 слов");
+  assert.equal(countLabel("ru", 22), "22 слова");
+  assert.equal(countLabel("ru", 25), "25 слов");
+});

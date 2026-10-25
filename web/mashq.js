@@ -2,7 +2,7 @@
 import "./sahifa.js";
 import { til, t, tx } from "./i18n.js";
 import { MATN } from "./mashq-matn.js";
-import { liveOk, judgeWord, summary, localDay, readPractice, lastDays } from "./mashq-hisob.js";
+import { liveOk, judgeWord, summary, localDay, readPractice, readLast, lastDays } from "./mashq-hisob.js";
 import { checkTyping } from "./tekshir.js";
 import { C, W, H, loadFonts, logo, non, background, toPng } from "./kanvas.js";
 import { objectUrls } from "./object-url.js";
@@ -28,7 +28,15 @@ function save(data) {
 function showBest() {
   const data = load();
   best.textContent = data.best ? t("Eng yaxşi natija: {n} söz/daqiqa", { n: data.best }) : t("Hali natija yöq");
-  $("mashq-kunlar").innerHTML = lastDays(data.kunlar, new Date()).map((on) => `<i${on ? ' class="on"' : ""}></i>`).join("");
+  const week = lastDays(data.kunlar, new Date());
+  $("mashq-kunlar").innerHTML = week.map((on) => `<i${on ? ' class="on"' : ""}></i>`).join("");
+  $("mashq-kunlar-sr").textContent = t("Oxirgi 7 kunda {n} kun maşq qilingan", { n: week.filter(Boolean).length });
+  let stored = null;
+  try { stored = readLast(localStorage.getItem(KEY)); } catch { /* saqlanmagan */ }
+  if (stored) {
+    $("mashq-wpm-k").textContent = stored.wpm;
+    $("mashq-acc-k").textContent = `${stored.accuracy}%`;
+  }
 }
 
 function paint() {
@@ -70,7 +78,7 @@ function finish() {
   const today = localDay(new Date());
   if (!data.kunlar.includes(today)) data.kunlar.push(today);
   data.best = Math.max(data.best, last.wpm);
-  save(data);
+  save({ ...data, last: { wpm: last.wpm, accuracy: last.accuracy } });
   showBest();
   window.track?.("mashq_tugadi", { rejim, wpm: last.wpm });
   result.focus();

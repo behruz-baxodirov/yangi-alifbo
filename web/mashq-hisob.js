@@ -14,6 +14,17 @@ export function lastDays(kunlar, today, n = 7) {
   });
 }
 
+// Oxirgi maşq natijasi (qaytib kelgan foydalanuvçi uçun yon kartalar).
+export function readLast(raw) {
+  try {
+    const last = JSON.parse(raw)?.last;
+    if (!last || typeof last !== "object") return null;
+    const { wpm, accuracy } = last;
+    if (!Number.isFinite(wpm) || wpm < 0 || !Number.isFinite(accuracy) || accuracy < 0 || accuracy > 100) return null;
+    return { wpm, accuracy };
+  } catch { return null; }
+}
+
 export function readPractice(raw) {
   const empty = { best: 0, kunlar: [] };
   try {

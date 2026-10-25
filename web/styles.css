@@ -816,9 +816,6 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 /* Söz sahifalari (/soz/ va /soz/<söz>/) */
 .soz-page, .soz-index { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
 .soz-page > * { max-width: 760px; }
-.soz-crumb { margin: 0 0 12px; font-size: 15px; color: var(--char-soft); }
-.soz-crumb a { color: inherit; }
-.soz-h1 { margin: 0 0 24px; font: 800 clamp(28px, 4vw, 44px)/1.15 Onest, system-ui, sans-serif; letter-spacing: -.015em; overflow-wrap: anywhere; }
 .soz-forms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 32px; }
 .soz-forms div { padding: 14px 16px; border: 2px solid var(--char); border-radius: var(--corner); background: var(--flour); }
 .soz-forms .soz-hot { background: var(--dough); }
@@ -836,7 +833,6 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .soz-list a:hover { background: var(--dough); }
 .soz-cta { margin: 0; font-size: 17px; }
 .soz-cta a { font-weight: 700; }
-.soz-lede { max-width: 62ch; margin: 0 0 24px; font-size: 18px; }
 .soz-qidir { max-width: 760px; }
 .soz-natija { margin-top: 14px; }
 .soz-natija .soz-list { margin-bottom: 0; }
@@ -875,6 +871,8 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .maqola-tag { align-self: flex-start; padding: 5px 9px; border-radius: var(--corner); background: rgb(23 17 13 / .08); font-size: 12px; font-weight: 700; }
 .maqola-cta { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 .maqola-cta::after { content: " →"; }
+.maqola-card:hover { background: #efdfc2; }
+.maqola-card--top:hover { background: var(--slab-well); }
 .maqola-card--top { grid-column: span 2; padding: 28px; background: var(--char); color: var(--slab-ink); }
 .maqola-card--top b { font-size: 30px; line-height: 1.15; color: var(--flour); max-width: 18ch; }
 .maqola-card--top .maqola-d { color: var(--slab-ink); font-size: 16px; }
@@ -1001,7 +999,6 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 /* Maqola matni öqiş uçun tor ustunda; indeks va vidjet panjaralari töliq kenglikda */
 .maqola:not(.maqola-index, .vidjet) > * { max-width: 720px; }
 .maqola > p, .maqola li { font-size: 18px; line-height: 1.6; }
-.maqola-meta { margin: -12px 0 24px; font-size: 15px !important; color: var(--char-soft); }
 .maqola .soz-h2 { margin-top: 32px; }
 .maqola-table { margin: 0 0 8px; }
 .maqola-sana { grid-template-columns: repeat(2, minmax(0, 1fr)); }

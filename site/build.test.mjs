@@ -354,7 +354,7 @@ test("word groups carry a big letter with a count; article index is a card grid"
   const soz = mainOf(site.get("soz/index.html"));
   assert.match(soz, /<section class="harf" id="harf-a"><h2 class="harf-h"><span data-lotin>A<\/span><span class="harf-n">\d+ ta<\/span><\/h2>/);
   assert.match(soz, /<h2 class="harf-h harf-h--text"><span data-lotin>Ğ<\/span>/);
-  assert.match(mainOf(site.get("ru/soz/index.html")), /<span class="harf-n">\d+ шт\.<\/span>/);
+  assert.match(mainOf(site.get("ru/soz/index.html")), /<span class="harf-n">\d+ (слово|слова|слов)<\/span>/);
   for (const p of ["maqola/index.html", "ru/maqola/index.html"]) {
     const m = mainOf(site.get(p));
     assert.equal(m.match(/<a class="maqola-card/g)?.length, 6, p);
@@ -381,4 +381,14 @@ test("name page: live card beside the field; widget page: steps beside the demo"
 test("story button is disabled until a name is typed", async () => {
   const site = await real;
   for (const p of ["ism/index.html", "ru/ism/index.html"]) assert.match(site.get(p), /<button type="button" class="btn btn-ink" id="ism-story" disabled>/, p);
+});
+
+test("small stage 4 copy fixes: widget step titles, tutuq cell, practice-days for screen readers", async () => {
+  const site = await real;
+  const vid = mainOf(site.get("vidjet/index.html"));
+  assert.match(vid, /<h2 class="vidjet-h">Kodni sahifangizga qöying<\/h2>/);
+  assert.match(vid, /<h2 class="vidjet-h">Xohlasangiz sozlang<\/h2>/);
+  assert.match(mainOf(site.get("ru/vidjet/index.html")), /<h2 class="vidjet-h">Вставьте код на страницу<\/h2>/);
+  assert.doesNotMatch(mainOf(site.get("kr/qoidalar/index.html")), /белгиси ъ/);
+  assert.match(mainOf(site.get("mashq/index.html")), /<span class="sr-only" id="mashq-kunlar-sr"><\/span>/);
 });

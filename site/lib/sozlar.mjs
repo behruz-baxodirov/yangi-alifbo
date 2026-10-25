@@ -107,6 +107,14 @@ function rules(til, w) {
   }).join("")}</ul>`;
 }
 
+// Guruh sanoği: özbekça «N ta», rusça söz şakllari (1 слово, 3 слова, 5 слов).
+export function countLabel(til, n) {
+  if (til !== "ru") return `${n} ${str(til, "count")}`;
+  const d = n % 10, h = n % 100;
+  const word = d === 1 && h !== 11 ? "слово" : d >= 2 && d <= 4 && (h < 12 || h > 14) ? "слова" : "слов";
+  return `${n} ${word}`;
+}
+
 function sozMain(til, w, related) {
   const L = (s) => `<span data-lotin>${esc(s)}</span>`;
   const head = til === "kr" || til === "ru" ? `<span lang="uz-Cyrl">${esc(w.kir)}</span>` : L(w.eski);
@@ -183,7 +191,7 @@ export function sozIndexPages(entries) {
 </div>
 <section class="soz-index">
   <nav class="harflar" aria-label="${str(til, "letters")}" data-lotin>${used.map(([l]) => `<a href="#${id(l)}">${l}</a>`).join("")}</nav>
-  ${used.map(([l, list]) => `<section class="harf" id="${id(l)}"><h2 class="harf-h${l === "Ğ" ? " harf-h--text" : ""}"><span data-lotin>${l}</span><span class="harf-n">${list.length} ${str(til, "count")}</span></h2><ul class="soz-list">${list.map(item).join("")}</ul></section>`).join("\n  ")}
+  ${used.map(([l, list]) => `<section class="harf" id="${id(l)}"><h2 class="harf-h${l === "Ğ" ? " harf-h--text" : ""}"><span data-lotin>${l}</span><span class="harf-n">${countLabel(til, list.length)}</span></h2><ul class="soz-list">${list.map(item).join("")}</ul></section>`).join("\n  ")}
 </section>`;
     return {
       path: "/soz/",

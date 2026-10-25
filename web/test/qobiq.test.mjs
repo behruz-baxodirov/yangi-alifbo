@@ -63,3 +63,9 @@ test("inner grids are not capped by old column widths", () => {
     assert.ok(!css.includes(`\n${sel} { max-width`), `${sel} still caps its children`);
   }
 });
+
+test("leftover rules from the old page tops are gone and cards react to hover", () => {
+  assert.doesNotMatch(css, /\n\.soz-(crumb|h1|lede)\b/);
+  assert.doesNotMatch(css, /\.maqola-meta \{ margin: -12px/);
+  assert.match(css, /\.maqola-card:hover/);
+});

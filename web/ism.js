@@ -89,9 +89,11 @@ async function storyPng() {
 }
 
 // "Rasmni saqlaş": ulaşiş oynasisiz, PNG faylni yuklab beradi.
+let saving = false;
 save.addEventListener("click", async () => {
-  if (!card) return;
-  const blob = await storyPng();
+  if (!card || saving) return; // ikki marta bosilsa ikki fayl yuklanmasin
+  saving = true;
+  const blob = await storyPng().finally(() => { saving = false; });
   if (!blob) return;
   const url = objectUrls.replace("ism", blob);
   img.src = url;

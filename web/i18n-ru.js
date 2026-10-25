@@ -89,6 +89,7 @@ export const RU = {
   // Maşq
   "Eng yaxşi natija: {n} söz/daqiqa": "Лучший результат: {n} слов/мин",
   "Hali natija yöq": "Результатов пока нет",
+  "Oxirgi 7 kunda {n} kun maşq qilingan": "За последние 7 дней практики: {n} дн.",
   "Yoza boşlang — vaqt birinçi harfdan hisoblanadi.": "Начните печатать — время считается с первой буквы.",
   "Aniqlik: {a}%": "Точность: {a}%",
   "Köp adaşgan harf: {h}": "Чаще всего ошибались в букве {h}",

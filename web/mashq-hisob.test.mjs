@@ -59,3 +59,13 @@ test("last seven days of practice, oldest first", async () => {
   assert.deepEqual(lastDays(["2026-10-26", "2026-10-24", "2026-10-01"], today), [false, false, false, false, true, false, true]);
   assert.equal(lastDays(["2026-10-20"], today)[0], true);
 });
+
+test("the last run is read back only when it is a sane record", async () => {
+  const { readLast } = await import("./mashq-hisob.js");
+  assert.equal(readLast(null), null);
+  assert.equal(readLast('{"best":3,"kunlar":[]}'), null);
+  assert.deepEqual(readLast('{"best":30,"kunlar":[],"last":{"wpm":30,"accuracy":96}}'), { wpm: 30, accuracy: 96 });
+  for (const last of ['{"wpm":-1,"accuracy":50}', '{"wpm":20,"accuracy":101}', '{"wpm":"x","accuracy":50}', "7"]) {
+    assert.equal(readLast(`{"best":1,"kunlar":[],"last":${last}}`), null, last);
+  }
+});
