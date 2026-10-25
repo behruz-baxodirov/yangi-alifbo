@@ -142,7 +142,7 @@ kbd {
 }
 
 /* Doto kirill harflarini bilmaydi: kirill va rus sahifalarida sarlavhalar Onest 800 bilan */
-html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .count-n, .count-u) {
+html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .vaqt-title, .count-n, .count-u) {
   font-family: Onest, system-ui, sans-serif; font-weight: 800; letter-spacing: -.015em;
 }
 
@@ -494,6 +494,52 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   .test-facts { grid-template-columns: minmax(0, 1fr); }
   .test-start { width: 100%; justify-content: center; }
 }
+
+/* Vaqt poygasi: ikki yöl bir vaqtda, soniyalar haqiqiy vaqtda (vaqt.js); kalkulyator */
+.vaqt { max-width: var(--max); margin: 0 auto; padding: 72px var(--gutter); }
+.vaqt-title { margin: 0 0 12px; font: 900 clamp(28px, 3.4vw, 42px)/1.05 Doto, monospace; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
+.vaqt-sub { margin: 0 auto 32px; max-width: 58ch; text-align: center; color: var(--char-soft); }
+.race { max-width: 880px; margin: 0 auto; padding: 32px; border-radius: var(--corner); background: var(--flour-deep); display: grid; gap: 26px; }
+.lane { display: grid; gap: 12px; }
+.lane-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.lane-name { font-weight: 700; font-size: 16px; }
+.clock { font: 900 34px/1 Doto, monospace; font-variant-numeric: tabular-nums; }
+.clock.slow { color: var(--clay); }
+.race-field { display: flex; align-items: center; gap: 2px; min-height: 58px; padding: 0 16px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); font: 500 22px/1 Onest, system-ui, sans-serif; }
+.race-tag { margin-left: auto; padding: 5px 8px; border-radius: var(--corner); background: rgb(23 17 13 / .08); font-size: 12px; font-weight: 700; }
+.race-search { margin-left: 12px; padding: 4px 8px; border-radius: var(--corner); background: var(--dough); font-size: 14px; font-weight: 600; }
+.race-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-s { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border: 2px solid var(--char); border-radius: var(--corner); font: 600 14px/1 Onest, system-ui, sans-serif; transition: background-color .15s, color .15s; }
+.chip-s.on { background: var(--char); color: var(--flour); }
+.chip-s.done { background: var(--crust); }
+.race-track { height: 12px; border-radius: var(--corner); background: rgb(23 17 13 / .1); overflow: hidden; }
+.race-fill { height: 100%; border-radius: var(--corner); }
+.race-fill.slow { background: linear-gradient(90deg, var(--crust), var(--clay)); }
+.race-fill.fast { background: var(--char); }
+.race-axis { display: flex; justify-content: space-between; font: 600 12px/1 Onest, system-ui, sans-serif; color: var(--char-soft); font-variant-numeric: tabular-nums; }
+.race-result { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.race-result b { font-size: 18px; opacity: 0; transition: opacity .3s; }
+.race-result b.shown { opacity: 1; }
+.btn-line { background: transparent; color: var(--char); border: 2px solid var(--char); }
+.calc { max-width: 880px; margin: 24px auto 0; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 3fr); gap: 16px; align-items: end; }
+.calc label { display: grid; gap: 10px; font-weight: 700; font-size: 15px; }
+.calc-n { font: 900 30px/1 Doto, monospace; }
+.calc input[type=range] { width: 100%; min-height: 32px; accent-color: var(--char); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stat { margin: 0; padding: 16px; border-radius: var(--corner); background: var(--char); color: var(--slab-ink); }
+.stat b { display: block; margin-bottom: 6px; font: 900 30px/1 Doto, monospace; color: var(--flour); }
+.stat span { font-size: 13px; }
+.vaqt-note { max-width: 880px; margin: 12px auto 0; font-size: 13px; color: var(--char-soft); }
+@media (max-width: 860px) {
+  .vaqt { padding: 48px var(--gutter); }
+  .race { padding: 18px; }
+  .clock { font-size: 26px; }
+  .calc { grid-template-columns: minmax(0, 1fr); }
+  .stats { gap: 8px; }
+  .stat { padding: 12px; }
+  .stat b { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .chip-s, .race-result b { transition: none; } }
 
 /* Boş sahifa: alohida sahifalarga olib boradigan kartalar (butun karta bitta havola) */
 .yana { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }

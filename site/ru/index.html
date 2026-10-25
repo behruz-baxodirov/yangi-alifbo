@@ -253,6 +253,36 @@
     </section>
   </section>
 
+  <section class="vaqt" id="vaqt" aria-labelledby="vaqt-sarlavha">
+    <h2 id="vaqt-sarlavha" class="vaqt-title">Вручную 6 секунд, с Yozgiç мгновенно</h2>
+    <p class="vaqt-sub">Без Yozgiç букву <b data-lotin>ö</b> приходится искать, копировать и вставлять. С Yozgiç вы пишете <b data-lotin>o'</b> как привыкли, остальное он сделает сам.</p>
+    <div class="race" id="vaqt-race">
+      <div class="lane">
+        <div class="lane-top"><span class="lane-name">Без Yozgiç</span><span class="clock slow" id="vaqt-c1" data-lotin>6,4 s</span></div>
+        <div class="race-field"><span id="vaqt-t1" data-lotin>Kö</span><span class="race-search" id="vaqt-s1" hidden>«буква ö»</span><span class="race-tag" data-lotin>ABC</span></div>
+        <div class="race-chips" id="vaqt-ch1"><span class="chip-s">Поиск</span><span class="chip-s">Копирование</span><span class="chip-s">Возврат</span><span class="chip-s">Вставка</span></div>
+        <div class="race-track"><div class="race-fill slow" id="vaqt-b1" style="width: 80%"></div></div>
+      </div>
+      <div class="lane">
+        <div class="lane-top"><span class="lane-name">С Yozgiç</span><span class="clock" id="vaqt-c2" data-lotin>0,4 s</span></div>
+        <div class="race-field"><span id="vaqt-t2" data-lotin>Kö</span><span class="race-tag" data-lotin>ö</span></div>
+        <div class="race-chips" id="vaqt-ch2"><span class="chip-s" data-lotin>o</span><span class="chip-s" data-lotin>'</span><span class="chip-s done" id="vaqt-ok"><span data-lotin>ö</span> Готово</span></div>
+        <div class="race-track"><div class="race-fill fast" id="vaqt-b2" style="width: 5%"></div></div>
+      </div>
+      <div class="race-axis" aria-hidden="true" data-lotin><span>0 s</span><span>2</span><span>4</span><span>6</span><span>8 s</span></div>
+      <div class="race-result"><b class="shown" id="vaqt-res">Каждая буква экономит 6 секунд</b><button type="button" class="btn btn-line" id="vaqt-replay">Показать снова</button></div>
+    </div>
+    <div class="calc">
+      <label for="vaqt-n">Сколько новых букв вы пишете в день?<output class="calc-n" id="vaqt-nout" for="vaqt-n" data-lotin>40</output><input type="range" id="vaqt-n" min="10" max="200" step="10" value="40"></label>
+      <div class="stats">
+        <p class="stat"><b><span id="vaqt-wk" data-lotin>28</span> мин</b><span>экономия в неделю</span></p>
+        <p class="stat"><b><span id="vaqt-yr" data-lotin>24</span> ч</b><span>экономия в год</span></p>
+        <p class="stat"><b id="vaqt-cnt" data-lotin>14 600</b><span>раз не нужно искать</span></p>
+      </div>
+    </div>
+    <p class="vaqt-note">Оценка: найти и вставить букву вручную занимает около 6 секунд, с Yozgiç 0,4 секунды.</p>
+  </section>
+
   <div class="sec-rule" aria-hidden="true"></div>
 
   <section class="yana" id="yana" aria-labelledby="yana-sarlavha">

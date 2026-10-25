@@ -1,6 +1,7 @@
 import { convert, detectScript } from "./converter.js";
 import { PAIR_OF, layout } from "./glyphs.js";
 import { mountSahna } from "./sahna.js";
+import { mountVaqt } from "./vaqt.js";
 import "./sahifa.js";
 import { t, tx } from "./i18n.js";
 import { NEW, checkTyping } from "./tekshir.js";
@@ -260,4 +261,7 @@ const seen = new IntersectionObserver((entries) => {
     seen.unobserve(entry.target);
   });
 }, { rootMargin: "0px 0px -50% 0px" });
-["konverter", "yana", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
+["konverter", "vaqt", "yana", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
+
+// Vaqt poygasi va tejaliş kalkulyatori (vaqt.js).
+mountVaqt(document.getElementById("vaqt"), track, reduceMotion);

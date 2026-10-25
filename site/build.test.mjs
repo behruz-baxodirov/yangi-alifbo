@@ -276,3 +276,15 @@ test("home hero carries the stage in its final state", async () => {
   assert.match(stage, /id="non-center"/);
   assert.match((await real).get("ru/index.html"), /<p class="stage-label">Вы набираете<\/p>/);
 });
+
+test("home has the time race in its final state", async () => {
+  const site = await real;
+  const vaqt = site.get("index.html").match(/<section class="vaqt" id="vaqt"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(vaqt, /<h2 id="vaqt-sarlavha" class="vaqt-title">Qölda 6 soniya, Yozgiç bilan bir zumda<\/h2>/);
+  assert.match(vaqt, /<span class="clock slow" id="vaqt-c1" data-lotin>6,4 s<\/span>/);
+  assert.match(vaqt, /<span class="clock" id="vaqt-c2" data-lotin>0,4 s<\/span>/);
+  assert.match(vaqt, /<input type="range" id="vaqt-n" min="10" max="200" step="10" value="40">/);
+  const home = site.get("index.html");
+  assert.ok(home.indexOf('id="konverter"') < home.indexOf('id="vaqt"') && home.indexOf('id="vaqt"') < home.indexOf('id="yana"'));
+  assert.match(site.get("ru/index.html"), /class="vaqt-title">Вручную 6 секунд, с Yozgiç мгновенно<\/h2>/);
+});
