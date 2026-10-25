@@ -124,7 +124,7 @@ kbd {
 .site-menu nav a:not(.btn):last-of-type { border-bottom: 0; }
 .site-menu-cta { margin-top: 12px; justify-content: center; }
 
-@media (max-width: 1023px) {
+@media (max-width: 1179px) {
   .bar .bar-nav, .bar .bar-cta { display: none; }
   .til, .bar-nav + .til { margin-left: auto; }
   .site-menu { display: block; }
@@ -142,7 +142,7 @@ kbd {
 }
 
 /* Doto kirill harflarini bilmaydi: kirill va rus sahifalarida sarlavhalar Onest 800 bilan */
-html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .count-n, .count-u) {
+html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .count-n, .count-u) {
   font-family: Onest, system-ui, sans-serif; font-weight: 800; letter-spacing: -.015em;
 }
 
@@ -356,24 +356,13 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 
 /* Bölimlar */
 .sec-title { font: 900 clamp(28px, 2.6vw, 36px)/1 Doto, monospace; margin: 0 0 24px; overflow-wrap: anywhere; }
-.rules, .faq { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
+.faq { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
 /* Bölimlar orasidagi yirik nuqta çiziq: har bölim alohida blok bölib körinadi. */
 .sec-rule {
   width: min(calc(100% - 2 * var(--gutter)), calc(var(--max) - 2 * var(--gutter))); height: 10px; margin: 0 auto 56px;
   background: radial-gradient(circle, var(--char) 3.2px, transparent 3.7px) 0 center / var(--cell) 10px repeat-x;
 }
-.rules {
-  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; align-items: start;
-  grid-template-areas: "title title" "count count" "check notes" "table notes";
-}
-.rules .sec-title { grid-area: title; }
-.rules .count { grid-area: count; }
-.rules .check { grid-area: check; }
-.rules .rule-table { grid-area: table; }
-.rules .rule-notes { grid-area: notes; }
 /* Telefonda yoziş: qora plita, iPhone | Android tablari, çizilgan harf menyulari */
-.phone { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
-.phone-slab { max-width: 640px; }
 .guide { padding-bottom: 6px; }
 .guide-lede { margin: 6px 0 4px; font-size: 15px; color: var(--slab-ink); }
 .guide b, .guide-warn b { color: var(--flour); }
@@ -474,6 +463,29 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   .test-title { font-size: 32px; }
   .test-facts { grid-template-columns: minmax(0, 1fr); }
   .test-start { width: 100%; justify-content: center; }
+}
+
+/* Boş sahifa: alohida sahifalarga olib boradigan kartalar (butun karta bitta havola) */
+.yana { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
+.yana-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.yana-card { display: flex; flex-direction: column; gap: 12px; min-height: 220px; padding: 24px; border-radius: var(--corner); background: var(--flour-deep); color: var(--char); text-decoration: none; }
+.yana-card:hover { background: #efdfc2; }
+.yana-belgi { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: var(--corner); background: var(--char); color: var(--crust); font: 900 26px/1 Doto, monospace; }
+.yana-t { font-size: 20px; font-weight: 700; }
+.yana-d { flex: 1; font-size: 15px; line-height: 1.5; color: var(--char-soft); }
+.yana-s { display: none; font-size: 14px; color: var(--char-soft); }
+.yana-cta { font-size: 15px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.yana-cta::after { content: " →"; }
+@media (max-width: 860px) {
+  .yana { padding-bottom: 48px; }
+  .yana-list { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .yana-card { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "b t c" "b s c"; align-items: center; gap: 2px 14px; min-height: 76px; padding: 14px; }
+  .yana-belgi { grid-area: b; width: 44px; height: 44px; font-size: 22px; }
+  .yana-t { grid-area: t; font-size: 17px; }
+  .yana-s { grid-area: s; display: block; }
+  .yana-d { display: none; }
+  .yana-cta { grid-area: c; font-size: 0; text-decoration: none; }
+  .yana-cta::after { content: "→"; font-size: 18px; font-weight: 800; }
 }
 
 /* Test: flour işçi panel, savollar bittadan, 10 nuqtali progress */
@@ -685,7 +697,6 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   .pane textarea, .out { min-height: 88px; }
   .pane-arrow svg { rotate: 90deg; }
   .pane-foot .btn { flex: 1; max-width: 200px; }
-  .rules { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "count" "check" "table" "notes"; }
   .founder { padding-bottom: 56px; }
   .sec-rule { margin-bottom: 40px; }
   .founder-card { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px 18px; }

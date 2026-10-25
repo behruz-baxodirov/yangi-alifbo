@@ -248,3 +248,22 @@ test("quiz page opens on an intro that names it a test", async () => {
   assert.match(main, /<section class="quiz-sec" id="test"[^>]*hidden/);
   assert.match(site.get("ru/test/index.html"), /<h1 class="test-title">Насколько хорошо вы знаете новый алфавит\?<\/h1>/);
 });
+
+test("home links to the three pages and no longer hosts them", async () => {
+  const home = (await real).get("index.html").match(/<main[\s\S]*<\/main>/)[0];
+  for (const id of ["telefonda", "qoidalar", "test"]) assert.doesNotMatch(home, new RegExp(`id="${id}"`));
+  const yana = home.match(/<section class="yana" id="yana"[\s\S]*?<\/section>/)?.[0] ?? "";
+  for (const href of ["/telefon/", "/qoidalar/", "/test/"]) assert.match(yana, new RegExp(`href="${href}"`));
+  const sources = ["pages/index.html", "ru/index.html", "pages/maqola/sh-qoidasi.html", "ru/maqola/sh-qoidasi.html", "pages/maqola/qonun.html", "ru/maqola/qonun.html"]
+    .map((p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), "utf8")).join("\n");
+  assert.doesNotMatch(sources, /href="\/?#(telefonda|qoidalar|test|soz-tekshir)"/);
+});
+
+test("header marks the new sections and drops Fayl", async () => {
+  const site = await real;
+  assert.match(header(site.get("test/index.html")), /href="\/test\/" aria-current="page"/);
+  assert.match(header(site.get("telefon/index.html")), /href="\/telefon\/" aria-current="page"/);
+  assert.match(header(site.get("qoidalar/index.html")), /href="\/qoidalar\/" aria-current="page"/);
+  const nav = header(site.get("index.html")).match(/<nav class="bar-nav"[\s\S]*?<\/nav>/)[0];
+  assert.deepEqual([...nav.matchAll(/href="([^"]+)"/g)].map((m) => m[1]), ["/#konverter", "/telefon/", "/qoidalar/", "/test/", "/mashq/", "/soz/"]);
+});

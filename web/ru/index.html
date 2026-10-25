@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#cf8a33">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="/fonts/fonts.css?v=10">
-<link rel="stylesheet" href="/styles.css?v=35">
+<link rel="stylesheet" href="/styles.css?v=36">
 <script type="application/ld+json">{
  "@context": "https://schema.org",
  "@graph": [
@@ -245,10 +245,11 @@
   </a>
   <nav class="bar-nav" aria-label="Разделы">
     <a href="/ru/#konverter">Конвертер</a>
-    <a href="/ru/fayl/">Файлы</a>
+    <a href="/ru/telefon/">Телефон</a>
+    <a href="/ru/qoidalar/">Правила</a>
+    <a href="/ru/test/">Тест</a>
     <a href="/ru/mashq/">Тренажёр</a>
     <a href="/ru/soz/">Слова</a>
-    <a href="/ru/maqola/">Статьи</a>
   </nav>
   <details class="til">
     <summary><span class="sr-only">Язык сайта: </span><span class="til-belgi" data-lotin>Я</span><span class="til-nomi" data-lotin>Рус</span><svg class="til-strelka" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
@@ -264,6 +265,9 @@
     <summary><span class="sr-only m-yopiq">Меню</span><span class="sr-only m-ochiq">Закрыть меню</span><svg class="menu-dots" viewBox="0 0 18 18" aria-hidden="true"><g fill="currentColor"><circle cx="3" cy="5" r="1.8"/><circle cx="9" cy="5" r="1.8"/><circle cx="15" cy="5" r="1.8"/><circle cx="3" cy="13" r="1.8"/><circle cx="9" cy="13" r="1.8"/><circle cx="15" cy="13" r="1.8"/></g></svg><svg class="menu-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></summary>
     <nav aria-label="Все разделы">
       <a href="/ru/#konverter">Конвертер</a>
+      <a href="/ru/telefon/">Как писать на телефоне</a>
+      <a href="/ru/qoidalar/">Правила</a>
+      <a href="/ru/test/">Тест</a>
       <a href="/ru/fayl/">Перевести файл</a>
       <a href="/ru/mashq/">Тренажёр</a>
       <a href="/ru/soz/">Слова</a>
@@ -290,7 +294,7 @@
       <h2 id="dl-title" class="sr-only">Скачать и установить</h2>
 
       <div class="dl-phone">
-        <p><b>Клавиатура — для компьютера.</b> Сохраните ссылку и откройте её на Mac или Windows. На телефоне пользуйтесь конвертером выше или <a href="#telefonda">инструкцией для телефона</a>.</p>
+        <p><b>Клавиатура — для компьютера.</b> Сохраните ссылку и откройте её на Mac или Windows. На телефоне пользуйтесь конвертером выше или <a href="/ru/telefon/">инструкцией для телефона</a>.</p>
         <button type="button" class="btn" id="share">Поделиться ссылкой</button>
       </div>
 
@@ -441,162 +445,40 @@
           </div>
         </div>
       </div>
-      <p class="try-more"><a href="/ru/fayl/">Перевести файл Word или субтитры</a> · <a href="/ru/soz/">Список слов</a> · <a href="#telefonda">Как писать на телефоне</a></p>
+      <p class="try-more"><a href="/ru/fayl/">Перевести файл Word или субтитры</a> · <a href="/ru/soz/">Список слов</a> · <a href="/ru/telefon/">Как писать на телефоне</a></p>
     </section>
   </section>
 
   <div class="sec-rule" aria-hidden="true"></div>
 
-  <section class="phone" id="telefonda" aria-labelledby="tel-sarlavha">
-    <h2 id="tel-sarlavha" class="sec-title">Как писать на телефоне</h2>
-    <div class="dl phone-slab">
-      <div class="tabs" role="tablist" aria-label="Ваш телефон">
-        <button type="button" class="tab" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">
-          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          iPhone
-        </button>
-        <button type="button" class="tab" role="tab" id="tab-and" aria-controls="panel-and" aria-selected="false" tabindex="-1">Android</button>
-      </div>
-
-      <div class="panel guide" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios" tabindex="0">
-        <h3 class="guide-h">Способ 1: азербайджанская клавиатура <span class="tag tag-hot">Советуем</span></h3>
-        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> — на отдельных клавишах, удерживать ничего не нужно. Добавляете один раз, потом переключаете кнопкой <kbd>🌐</kbd>.</p>
-        <ol class="steps">
-          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Откройте настройки</h4><p><b lang="ru">Настройки</b> → <b lang="ru">Основные</b> → <b lang="ru">Клавиатура</b> (на английском: <b lang="en">Settings</b> → <b lang="en">General</b> → <b lang="en">Keyboard</b>).</p></div></li>
-          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Добавьте клавиатуру</h4><p><b lang="ru">Клавиатуры</b> → <b lang="ru">Новые клавиатуры</b> (<b lang="en">Keyboards</b> → <b lang="en">Add New Keyboard…</b>).</p></div></li>
-          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Выберите азербайджанскую</h4><p>Нажмите в списке <b lang="ru">Азербайджанская</b> (<b lang="en">Azerbaijani</b>).</p></div></li>
-          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Переключайтесь при наборе</h4><p>Нажмите <kbd>🌐</kbd> — на экране появится клавиатура <b lang="az">Azərbaycan</b>.</p><p class="step-hint">В ней нет автоисправления, поэтому она не «исправит» ваши узбекские слова.</p></div></li>
-        </ol>
-        <div class="guide-note">
-          <p class="guide-note-t">Для заглавной <b data-lotin>I</b> — клавиша <b data-lotin>ı</b></p>
-          <p>На этой клавиатуре две <span data-lotin>i</span>: <b data-lotin>i</b> и <b data-lotin>ı</b> (без точки). Заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском такой буквы нет.</p>
-          <ul class="ikeys" aria-hidden="true">
-            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">строчная <span data-lotin>i</span></span></li>
-            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">заглавная <span data-lotin>I</span></span></li>
-            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">не нужна</span></li>
-          </ul>
-          <p>В начале предложения клавиатура может сама поставить <b data-lotin>İ</b> — проверяйте. Буквы <b data-lotin>ə</b> в узбекском нет. Для тутука <b data-lotin>ʼ</b> пишите обычный <b data-lotin>'</b>.</p>
-        </div>
-        <h3 class="guide-h guide-h2">Способ 2: без смены клавиатуры</h3>
-        <p class="guide-lede"><b>Удерживайте</b> букву — откроется меню. Проведите пальцем к нужной букве и отпустите.</p>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>o</span><span class="pop" aria-hidden="true" data-lotin><span>ô</span><span class="pick">ö</span><span>ò</span><span>ő</span></span><p class="pop-cap"><b data-lotin>ö</b>: две точки сверху</p></div>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>g</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ğ</span><span>ġ</span></span><p class="pop-cap"><b data-lotin>ğ</b>: «галочка-лодочка» сверху, не точка</p></div>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>s</span><span class="pop" aria-hidden="true" data-lotin><span>ś</span><span>š</span><span class="pick">ş</span><span>ș</span></span><p class="pop-cap"><b data-lotin>ş</b>: крючок снизу. <b>ș</b> (с запятой) — другая буква</p></div>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>c</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ç</span><span>ć</span><span>č</span></span><p class="pop-cap"><b data-lotin>ç</b>: крючок снизу</p></div>
-        <p class="guide-meta"><b data-lotin>ğ</b> и <b data-lotin>ş</b> есть в iOS 17 и новее. Если их нет в меню, обновите iOS или воспользуйтесь <a href="#konverter">конвертером</a>. Для тутука <b data-lotin>ʼ</b> пишите обычный <b data-lotin>'</b> — конвертер исправит.</p>
-      </div>
-
-      <div class="panel guide" role="tabpanel" id="panel-and" aria-labelledby="tab-and" tabindex="0" hidden>
-        <h3 class="guide-h">Способ 1: азербайджанская клавиатура <span class="tag tag-hot">Советуем</span></h3>
-        <p class="guide-lede">Шаги ниже — для <b lang="en">Gboard</b>. Добавьте азербайджанскую раскладку и проверьте набор <b data-lotin>ö ğ ş ç</b>: раскладка и названия пунктов зависят от версии клавиатуры.</p>
-        <ol class="steps">
-          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Откройте настройки Gboard</h4><p>Когда клавиатура открыта, нажмите <kbd>⚙</kbd>. Или: <b lang="ru">Настройки</b> → <b lang="ru">Система</b> → <b lang="ru">Язык и ввод</b> → <b lang="ru">Экранная клавиатура</b> → <b lang="en">Gboard</b>.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Добавьте язык</h4><p><b lang="ru">Языки</b> → <b lang="ru">Добавить клавиатуру</b> (<b lang="en">Languages</b> → <b lang="en">Add keyboard</b>).</p></div></li>
-          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Выберите азербайджанский</h4><p><b lang="az">Azərbaycan</b> (<b lang="en">Azerbaijani</b>), затем раскладку → <b lang="ru">Готово</b>.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Переключайтесь при наборе</h4><p>Нажмите <kbd>🌐</kbd> или удерживайте пробел.</p><p class="step-hint">В Samsung: настройки клавиатуры → <span lang="en">Languages and types</span> → <span lang="en">Manage input languages</span>; добавьте <b lang="az">Azərbaycan</b>, если он есть в списке.</p></div></li>
-        </ol>
-        <div class="guide-note">
-          <p class="guide-note-t">Для заглавной <b data-lotin>I</b> — клавиша <b data-lotin>ı</b></p>
-          <p>На этой клавиатуре две <span data-lotin>i</span>: <b data-lotin>i</b> и <b data-lotin>ı</b> (без точки). Заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском такой буквы нет.</p>
-          <ul class="ikeys" aria-hidden="true">
-            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">строчная <span data-lotin>i</span></span></li>
-            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">заглавная <span data-lotin>I</span></span></li>
-            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">не нужна</span></li>
-          </ul>
-          <p>В начале предложения клавиатура может сама поставить <b data-lotin>İ</b> — проверяйте. Буквы <b data-lotin>ə</b> в узбекском нет. Для тутука <b data-lotin>ʼ</b> пишите обычный <b data-lotin>'</b>.</p>
-        </div>
-        <h3 class="guide-h guide-h2">Способ 2: без смены клавиатуры</h3>
-        <p class="guide-lede">Клавиатуры бывают разные (Gboard, Samsung и другие). <b>Удерживайте</b> букву: <span data-lotin>o, g, s, c</span>. Если в меню есть нужная — выберите её.</p>
-        <table class="look">
-          <caption class="sr-only">Правильная буква и похожие на неё другие буквы</caption>
-          <thead><tr><th scope="col">Правильная</th><th scope="col">Похожие, но другие</th></tr></thead>
-          <tbody data-lotin>
-            <tr><td><span class="pick">ö</span></td><td><span>ő</span><span>ô</span><span>ò</span></td></tr>
-            <tr><td><span class="pick">ğ</span></td><td><span>ġ</span><span>ǧ</span></td></tr>
-            <tr><td><span class="pick">ş</span></td><td><span>ș</span><span>š</span><span>ś</span></td></tr>
-            <tr><td><span class="pick">ç</span></td><td><span>č</span><span>ć</span></td></tr>
-          </tbody>
-        </table>
-        <p class="guide-meta">Если в меню их нет, пишите как привыкли — <b data-lotin>o'</b>, <b data-lotin>g'</b>, <b data-lotin>sh</b>, <b data-lotin>ch</b> — и пропустите текст через <a href="#konverter">конвертер</a>.</p>
-      </div>
-
-      <p class="guide-warn"><b>Не турецкая, а азербайджанская:</b> на iPhone турецкая клавиатура исправляет слова на турецкий лад, а в азербайджанской автоисправления нет.</p>
+  <section class="yana" id="yana" aria-labelledby="yana-sarlavha">
+    <h2 id="yana-sarlavha" class="sec-title yana-title">Ещё полезное</h2>
+    <div class="yana-list">
+    <a class="yana-card" href="/ru/telefon/">
+      <span class="yana-belgi" aria-hidden="true" data-lotin>ş</span>
+      <span class="yana-t">Как писать на телефоне</span>
+      <span class="yana-d">iPhone и Android: азербайджанская клавиатура, долгое нажатие или конвертер.</span>
+      <span class="yana-s">iPhone и Android, 3 способа</span>
+      <span class="yana-cta">Выбрать способ</span>
+    </a>
+    <a class="yana-card" href="/ru/qoidalar/">
+      <span class="yana-belgi" aria-hidden="true" data-lotin>ö</span>
+      <span class="yana-t">Правила</span>
+      <span class="yana-d">Четыре новые буквы, <span data-lotin>sʼh</span> и тутук в одной таблице. Проверьте своё слово.</span>
+      <span class="yana-s">6 правил и проверка слова</span>
+      <span class="yana-cta">Смотреть правила</span>
+    </a>
+    <a class="yana-card" href="/ru/test/">
+      <span class="yana-belgi" aria-hidden="true" data-lotin>10</span>
+      <span class="yana-t">Тест</span>
+      <span class="yana-d">Насколько хорошо вы знаете новый алфавит? 10 вопросов за минуту, результат в сторис.</span>
+      <span class="yana-s">10 вопросов, 1 минута</span>
+      <span class="yana-cta">Начать тест</span>
+    </a>
     </div>
   </section>
 
   <div class="sec-rule" aria-hidden="true"></div>
-
-  <section class="rules" id="qoidalar" aria-labelledby="qoida-sarlavha">
-    <h2 id="qoida-sarlavha" class="sec-title">Правила</h2>
-    <div class="count" id="sanoq" hidden>
-      <p class="count-head"><span class="count-n" id="kun">181</span> <span class="count-u">дн.</span></p>
-      <p class="count-t" id="sanoq-matn">осталось до вступления в силу Закона <b>ЎРҚ-1184</b> (22.04.2027). Каждая точка — один день.</p>
-      <div class="days" id="kunlar" aria-hidden="true"></div>
-      <div class="days-cap" aria-hidden="true"><span>21.10.2026 подписан</span><span>22.04.2027</span></div>
-    </div>
-    <div class="check" id="soz-tekshir" hidden>
-      <label class="check-label" for="soz">Как пишется это слово?</label>
-      <input class="check-field" id="soz" type="text" placeholder="Например: Is'hoq" autocomplete="off" autocapitalize="off" spellcheck="false">
-      <div class="check-out" id="soz-natija" aria-live="polite" hidden>
-        <div class="check-top">
-          <div class="check-word" id="soz-word" data-lotin></div>
-          <button type="button" class="btn btn-ink" data-copy="soz-word">Копировать</button>
-        </div>
-        <ul class="check-why" id="soz-why"></ul>
-      </div>
-    </div>
-    <table class="rule-table">
-      <caption class="sr-only">Старое письмо и новый алфавит</caption>
-      <thead><tr><th scope="col">Набираете</th><th scope="col">Получается</th><th scope="col">Пример</th></tr></thead>
-      <tbody>
-        <tr data-rule="o"><td data-lotin>o'</td><td data-lotin><b data-lotin>ö</b></td><td data-lotin>o'zbek → özbek</td></tr>
-        <tr data-rule="g"><td data-lotin>g'</td><td data-lotin><b data-lotin>ğ</b></td><td data-lotin>tog' → toğ</td></tr>
-        <tr data-rule="sh"><td data-lotin>sh</td><td data-lotin><b data-lotin>ş</b></td><td data-lotin>shahar → şahar</td></tr>
-        <tr data-rule="ch"><td data-lotin>ch</td><td data-lotin><b data-lotin>ç</b></td><td data-lotin>choy → çoy</td></tr>
-        <tr data-rule="sh2"><td data-lotin>s'h</td><td data-lotin><b data-lotin>sʼh</b></td><td data-lotin>Is'hoq → Isʼhoq</td></tr>
-        <tr data-rule="tutuq"><td data-lotin>ma'no</td><td data-lotin><b data-lotin>maʼno</b></td><td>тутук ʼ</td></tr>
-      </tbody>
-    </table>
-    <div class="rule-notes">
-      <p><b>«<span data-lotin>sh</span>» — не всегда <span data-lotin>ş</span>.</b> В словах вроде <span data-lotin>Isʼhoq, asʼhob, musʼhaf</span> s и h читаются раздельно. Пишите их, как сейчас, с тутуком: <code>s'h</code>. Получится <b data-lotin>sʼh</b>.</p>
-      <p><b><span data-lotin>ng</span> не меняется:</b> <span data-lotin>tong, keng</span> пишутся как раньше.</p>
-      <p>Правила основаны на Законе ЎРҚ-1184 (21.10.2026, вступает в силу 22.04.2027). Официальные правила орфографии ещё не опубликованы; это не государственный проект.</p>
-    </div>
-  </section>
-
-  <div class="sec-rule" aria-hidden="true"></div>
-
-  <section class="quiz-sec" id="test" aria-labelledby="test-sarlavha" hidden>
-    <div class="quiz">
-      <div class="quiz-top">
-        <h2 id="test-sarlavha" class="quiz-title">Тест</h2>
-        <div class="prog" id="prog" role="img" aria-label="Вопрос 1 из 10"></div>
-      </div>
-      <div id="quiz-q">
-        <p class="q-n" id="q-n">1 / 10</p>
-        <p class="q" id="q"></p>
-        <div class="opts" id="opts"></div>
-        <p class="why" id="why" hidden></p>
-        <button type="button" class="btn btn-ink quiz-next" id="next" hidden>Следующий вопрос</button>
-      </div>
-      <div class="quiz-result" id="result" tabindex="-1" hidden>
-        <p class="score"><span class="score-n" id="score">0</span><span class="score-of">/10</span></p>
-        <p class="grade" id="grade"></p>
-        <div class="result-acts">
-          <button type="button" class="btn btn-ink" id="story">В сторис</button>
-          <button type="button" class="btn btn-ghost" id="restart">Начать заново</button>
-        </div>
-        <p class="story-err" id="story-err" hidden>Не удалось создать картинку. Попробуйте ещё раз.</p>
-        <figure class="story-prev" id="story-prev" hidden>
-          <img id="story-img" alt="Картинка с результатом теста" width="1080" height="1920">
-          <figcaption>Удерживайте картинку, чтобы сохранить</figcaption>
-        </figure>
-      </div>
-      <p class="sr-only" id="quiz-live" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <div class="sec-rule" id="test-rule" aria-hidden="true" hidden></div>
 
   <section class="faq" id="savollar" aria-labelledby="faq-sarlavha">
     <h2 id="faq-sarlavha" class="sec-title">Вопросы</h2>
@@ -614,7 +496,7 @@
     </details>
     <details id="harflar">
       <summary>Как набирать буквы <span data-lotin>ö, ğ, ş, ç</span>?</summary>
-      <p>Установите на компьютер клавиатуру Yozgiç: набираете <b data-lotin>o'</b> — получается <b data-lotin>ö</b>, <b data-lotin>g'</b> — <b data-lotin>ğ</b>, <b data-lotin>sh</b> — <b data-lotin>ş</b>, <b data-lotin>ch</b> — <b data-lotin>ç</b>. Запоминать новые клавиши не нужно. На телефоне добавьте азербайджанскую клавиатуру или удерживайте букву: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Подробнее: <a href="#telefonda">как писать на телефоне</a>.</p>
+      <p>Установите на компьютер клавиатуру Yozgiç: набираете <b data-lotin>o'</b> — получается <b data-lotin>ö</b>, <b data-lotin>g'</b> — <b data-lotin>ğ</b>, <b data-lotin>sh</b> — <b data-lotin>ş</b>, <b data-lotin>ch</b> — <b data-lotin>ç</b>. Запоминать новые клавиши не нужно. На телефоне добавьте азербайджанскую клавиатуру или удерживайте букву: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Подробнее: <a href="/ru/telefon/">как писать на телефоне</a>.</p>
     </details>
     <details id="kirill">
       <summary>Как перевести текст с кириллицы или старой латиницы на новый алфавит?</summary>
@@ -657,7 +539,7 @@
     </details>
     <details>
       <summary>Как писать на телефоне?</summary>
-      <p>Удобнее всего добавить азербайджанскую клавиатуру: в ней <span data-lotin>ö ğ ş ç</span> на отдельных клавишах. Для заглавной <b data-lotin>I</b> нажимайте Shift + <b data-lotin>ı</b>: заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском нужна <b data-lotin>I</b>. Можно и без смены клавиатуры: удерживайте букву, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (на iPhone — начиная с iOS 17). Турецкая клавиатура исправляет слова на турецкий лад. Подробнее, с картинками: <a href="#telefonda">как писать на телефоне</a>.</p>
+      <p>Удобнее всего добавить азербайджанскую клавиатуру: в ней <span data-lotin>ö ğ ş ç</span> на отдельных клавишах. Для заглавной <b data-lotin>I</b> нажимайте Shift + <b data-lotin>ı</b>: заглавная от <b data-lotin>i</b> — это <b data-lotin>İ</b> (с точкой), а в узбекском нужна <b data-lotin>I</b>. Можно и без смены клавиатуры: удерживайте букву, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (на iPhone — начиная с iOS 17). Турецкая клавиатура исправляет слова на турецкий лад. Подробнее, с картинками: <a href="/ru/telefon/">как писать на телефоне</a>.</p>
     </details>
   </section>
 
@@ -719,12 +601,15 @@
     <nav class="close-col" aria-label="Разделы">
       <p class="close-h">Разделы</p>
       <a href="/ru/#konverter">Конвертер</a>
-      <a href="/ru/fayl/">Перевести файл</a>
+      <a href="/ru/telefon/">Как писать на телефоне</a>
+      <a href="/ru/qoidalar/">Правила</a>
+      <a href="/ru/test/">Тест</a>
       <a href="/ru/mashq/">Тренажёр</a>
       <a href="/ru/soz/">Слова</a>
     </nav>
     <nav class="close-col" aria-label="Ещё">
       <p class="close-h">Ещё</p>
+      <a href="/ru/fayl/">Перевести файл</a>
       <a href="/ru/ism/">Карточка с именем</a>
       <a href="/ru/maqola/">Статьи</a>
       <a href="/ru/vidjet/">Виджет для сайта</a>
@@ -744,6 +629,6 @@
 </footer>
 
 
-<script type="module" src="/app.js?v=35"></script>
+<script type="module" src="/app.js?v=36"></script>
 </body>
 </html>

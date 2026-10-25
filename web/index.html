@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#cf8a33">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="/fonts/fonts.css?v=10">
-<link rel="stylesheet" href="/styles.css?v=35">
+<link rel="stylesheet" href="/styles.css?v=36">
 <script type="application/ld+json">{
  "@context": "https://schema.org",
  "@graph": [
@@ -245,10 +245,11 @@
   </a>
   <nav class="bar-nav" aria-label="Bölimlar">
     <a href="/#konverter">Konverter</a>
-    <a href="/fayl/">Fayl</a>
+    <a href="/telefon/">Telefonda</a>
+    <a href="/qoidalar/">Qoidalar</a>
+    <a href="/test/">Test</a>
     <a href="/mashq/">Maşq</a>
     <a href="/soz/">Sözlar</a>
-    <a href="/maqola/">Maqolalar</a>
   </nav>
   <details class="til">
     <summary><span class="sr-only">Sayt yozuvi: </span><span class="til-belgi" data-lotin>ö</span><span class="til-nomi" data-lotin>Yangi</span><svg class="til-strelka" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
@@ -264,6 +265,9 @@
     <summary><span class="sr-only m-yopiq">Menyu</span><span class="sr-only m-ochiq">Menyuni yopiş</span><svg class="menu-dots" viewBox="0 0 18 18" aria-hidden="true"><g fill="currentColor"><circle cx="3" cy="5" r="1.8"/><circle cx="9" cy="5" r="1.8"/><circle cx="15" cy="5" r="1.8"/><circle cx="3" cy="13" r="1.8"/><circle cx="9" cy="13" r="1.8"/><circle cx="15" cy="13" r="1.8"/></g></svg><svg class="menu-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></summary>
     <nav aria-label="Barcha bölimlar">
       <a href="/#konverter">Konverter</a>
+      <a href="/telefon/">Telefonda yoziş</a>
+      <a href="/qoidalar/">Qoidalar</a>
+      <a href="/test/">Test</a>
       <a href="/fayl/">Faylni ögiriş</a>
       <a href="/mashq/">Tez yoziş maşqi</a>
       <a href="/soz/">Sözlar</a>
@@ -290,7 +294,7 @@
       <h2 id="dl-title" class="sr-only">Yuklab oliş va örnatiş</h2>
 
       <div class="dl-phone">
-        <p><b>Klaviatura kompyuter uçun.</b> Havolani saqlab qöying va Mac yoki Windowsʼda oçing. Telefonda yuqoridagi konverter yoki <a href="#telefonda">telefon yöriqnomasidan</a> foydalaning.</p>
+        <p><b>Klaviatura kompyuter uçun.</b> Havolani saqlab qöying va Mac yoki Windowsʼda oçing. Telefonda yuqoridagi konverter yoki <a href="/telefon/">telefon yöriqnomasidan</a> foydalaning.</p>
         <button type="button" class="btn" id="share">Havolani ulaşiş</button>
       </div>
 
@@ -441,162 +445,40 @@
           </div>
         </div>
       </div>
-      <p class="try-more"><a href="/fayl/">Word yoki subtitr faylini ögiriş</a> · <a href="/soz/">Sözlar röyxati</a> · <a href="#telefonda">Telefonda yoziş</a></p>
+      <p class="try-more"><a href="/fayl/">Word yoki subtitr faylini ögiriş</a> · <a href="/soz/">Sözlar röyxati</a> · <a href="/telefon/">Telefonda yoziş</a></p>
     </section>
   </section>
 
   <div class="sec-rule" aria-hidden="true"></div>
 
-  <section class="phone" id="telefonda" aria-labelledby="tel-sarlavha">
-    <h2 id="tel-sarlavha" class="sec-title">Telefonda yoziş</h2>
-    <div class="dl phone-slab">
-      <div class="tabs" role="tablist" aria-label="Telefoningiz">
-        <button type="button" class="tab" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">
-          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          iPhone
-        </button>
-        <button type="button" class="tab" role="tab" id="tab-and" aria-controls="panel-and" aria-selected="false" tabindex="-1">Android</button>
-      </div>
-
-      <div class="panel guide" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios" tabindex="0">
-        <h3 class="guide-h">1-usul: ozarbayjonça klaviatura <span class="tag tag-hot">Tavsiya</span></h3>
-        <p class="guide-lede"><b data-lotin>ö ğ ş ç</b> alohida tugmada turadi, bosib turiş şart emas. Bir marta qöşasiz, keyin <kbd>🌐</kbd> tugmasi bilan almaştirasiz.</p>
-        <ol class="steps">
-          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Sozlamalarni oçing</h4><p><b lang="en">Settings</b> → <b lang="en">General</b> → <b lang="en">Keyboard</b>. Ruşça: <b lang="ru">Настройки</b> → <b lang="ru">Основные</b> → <b lang="ru">Клавиатура</b>.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Yangi klaviatura qöşing</h4><p><b lang="en">Keyboards</b> → <b lang="en">Add New Keyboard…</b> Ruşça: <b lang="ru">Клавиатуры</b> → <b lang="ru">Новые клавиатуры</b>.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Ozarbayjonçani tanlang</h4><p>Röyxatdan <b lang="en">Azerbaijani</b> (<b lang="ru">Азербайджанская</b>) ni bosing.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Yozayotganda almaştiring</h4><p><kbd>🌐</kbd> tugmasini bosing: ekranda <b lang="az">Azərbaycan</b> klaviaturasi çiqadi.</p><p class="step-hint">Bu klaviaturada avtomatik tuzatiş yöq, şuning uçun özbekça sözlaringizni “töğrilab” buzmaydi.</p></div></li>
-        </ol>
-        <div class="guide-note">
-          <p class="guide-note-t">Katta <b data-lotin>I</b> uçun <b data-lotin>ı</b> tugmasi</p>
-          <p>Bu klaviaturada ikkita <span data-lotin>i</span> bor: <b data-lotin>i</b> va <b data-lotin>ı</b> (nuqtasiz). Katta harfda <b data-lotin>i</b> tugmasi <b data-lotin>İ</b> (nuqtali) beradi, u özbekçada yöq.</p>
-          <ul class="ikeys" aria-hidden="true">
-            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">kiçik <span data-lotin>i</span></span></li>
-            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">katta <span data-lotin>I</span></span></li>
-            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">kerak emas</span></li>
-          </ul>
-          <p>Gap boşida klaviatura özi <b data-lotin>İ</b> qöyib yuborişi mumkin: tekşirib qöying. <b data-lotin>ə</b> harfi özbekçada yöq. Tutuq <b data-lotin>ʼ</b> uçun oddiy <b data-lotin>'</b> yozing.</p>
-        </div>
-        <h3 class="guide-h guide-h2">2-usul: klaviaturani almaştirmasdan</h3>
-        <p class="guide-lede">Harfni <b>bosib turing</b>, menyu oçiladi. Barmoqni töğri harfga surib qöyib yuboring.</p>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>o</span><span class="pop" aria-hidden="true" data-lotin><span>ô</span><span class="pick">ö</span><span>ò</span><span>ő</span></span><p class="pop-cap"><b data-lotin>ö</b>: tepasida ikki nuqta</p></div>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>g</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ğ</span><span>ġ</span></span><p class="pop-cap"><b data-lotin>ğ</b>: tepasida qayiqça, nuqta emas</p></div>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>s</span><span class="pop" aria-hidden="true" data-lotin><span>ś</span><span>š</span><span class="pick">ş</span><span>ș</span></span><p class="pop-cap"><b data-lotin>ş</b>: ostida ilmoq. <b>ș</b> (vergul) boşqa harf</p></div>
-        <div class="keyrow"><span class="key" aria-hidden="true" data-lotin>c</span><span class="pop" aria-hidden="true" data-lotin><span class="pick">ç</span><span>ć</span><span>č</span></span><p class="pop-cap"><b data-lotin>ç</b>: ostida ilmoq</p></div>
-        <p class="guide-meta"><b data-lotin>ğ</b> va <b data-lotin>ş</b> iOS 17 va yangisida bor. Menyuda yöq bölsa, iOSʼni yangilang yoki <a href="#konverter">konverterdan</a> foydalaning. Tutuq <b data-lotin>ʼ</b> uçun oddiy <b data-lotin>'</b> yozing, konverter uni töğrilaydi.</p>
-      </div>
-
-      <div class="panel guide" role="tabpanel" id="panel-and" aria-labelledby="tab-and" tabindex="0" hidden>
-        <h3 class="guide-h">1-usul: ozarbayjonça klaviatura <span class="tag tag-hot">Tavsiya</span></h3>
-        <p class="guide-lede">Quyidagi qadamlar <b lang="en">Gboard</b> uçun. Ozarbayjonça joylaşuvni qöşib, <b data-lotin>ö ğ ş ç</b> ni yozib tekşiring: joylaşuv va menyu nomlari klaviatura versiyasiga qarab farq qilişi mumkin.</p>
-        <ol class="steps">
-          <li><span class="step-n" aria-hidden="true">1</span><div><h4 class="step-t">Gboard sozlamalarini oçing</h4><p>Klaviatura oçiq turganda <kbd>⚙</kbd> belgisini bosing. Yoki: <b lang="en">Settings</b> → <b lang="en">System</b> → <b lang="en">Languages &amp; input</b> → <b lang="en">On-screen keyboard</b> → <b lang="en">Gboard</b>.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">2</span><div><h4 class="step-t">Til qöşing</h4><p><b lang="en">Languages</b> → <b lang="en">Add keyboard</b>. Ruşça: <b lang="ru">Языки</b> → <b lang="ru">Добавить клавиатуру</b>.</p></div></li>
-          <li><span class="step-n" aria-hidden="true">3</span><div><h4 class="step-t">Ozarbayjonçani tanlang</h4><p><b lang="az">Azərbaycan</b> (<b lang="en">Azerbaijani</b>) ni va joylaşuvni tanlang → <b lang="en">Done</b> (<b lang="ru">Готово</b>).</p></div></li>
-          <li><span class="step-n" aria-hidden="true">4</span><div><h4 class="step-t">Yozayotganda almaştiring</h4><p><kbd>🌐</kbd> tugmasini bosing yoki boşliq tugmasini bosib turing.</p><p class="step-hint">Samsungʼda: klaviatura sozlamalari → <span lang="en">Languages and types</span> → <span lang="en">Manage input languages</span>; röyxatda bölsa, <b lang="az">Azərbaycan</b> ni qöşing.</p></div></li>
-        </ol>
-        <div class="guide-note">
-          <p class="guide-note-t">Katta <b data-lotin>I</b> uçun <b data-lotin>ı</b> tugmasi</p>
-          <p>Bu klaviaturada ikkita <span data-lotin>i</span> bor: <b data-lotin>i</b> va <b data-lotin>ı</b> (nuqtasiz). Katta harfda <b data-lotin>i</b> tugmasi <b data-lotin>İ</b> (nuqtali) beradi, u özbekçada yöq.</p>
-          <ul class="ikeys" aria-hidden="true">
-            <li><span class="key" data-lotin>i</span><span class="ikey-out" data-lotin>i</span><span class="ikey-v">kiçik <span data-lotin>i</span></span></li>
-            <li><span class="key key-wide" data-lotin>⇧ ı</span><span class="ikey-out" data-lotin>I</span><span class="ikey-v">katta <span data-lotin>I</span></span></li>
-            <li class="ikey-bad"><span class="key key-wide" data-lotin>⇧ i</span><span class="ikey-out" data-lotin>İ</span><span class="ikey-v">kerak emas</span></li>
-          </ul>
-          <p>Gap boşida klaviatura özi <b data-lotin>İ</b> qöyib yuborişi mumkin: tekşirib qöying. <b data-lotin>ə</b> harfi özbekçada yöq. Tutuq <b data-lotin>ʼ</b> uçun oddiy <b data-lotin>'</b> yozing.</p>
-        </div>
-        <h3 class="guide-h guide-h2">2-usul: klaviaturani almaştirmasdan</h3>
-        <p class="guide-lede">Klaviaturalar har xil (Gboard, Samsung va boşqalar). Harfni <b>bosib turing</b>: <span data-lotin>o, g, s, c</span>. Menyuda bölsa, töğrisini tanlang.</p>
-        <table class="look">
-          <caption class="sr-only">Töğri harf va unga öxşaş boşqa harflar</caption>
-          <thead><tr><th scope="col">Töğri</th><th scope="col">Öxşaş, lekin boşqa</th></tr></thead>
-          <tbody data-lotin>
-            <tr><td><span class="pick">ö</span></td><td><span>ő</span><span>ô</span><span>ò</span></td></tr>
-            <tr><td><span class="pick">ğ</span></td><td><span>ġ</span><span>ǧ</span></td></tr>
-            <tr><td><span class="pick">ş</span></td><td><span>ș</span><span>š</span><span>ś</span></td></tr>
-            <tr><td><span class="pick">ç</span></td><td><span>č</span><span>ć</span></td></tr>
-          </tbody>
-        </table>
-        <p class="guide-meta">Menyuda yöq bölsa, odatdagidek <b data-lotin>o'</b>, <b data-lotin>g'</b>, <b data-lotin>sh</b>, <b data-lotin>ch</b> deb yozing va matnni <a href="#konverter">konverterdan</a> ötkazing.</p>
-      </div>
-
-      <p class="guide-warn"><b>Turk klaviaturasi emas, ozarbayjonça:</b> iPhoneʼda turkça klaviatura sözlarni turkçaga tuzatib yuboradi, ozarbayjonçada avtomatik tuzatiş yöq.</p>
+  <section class="yana" id="yana" aria-labelledby="yana-sarlavha">
+    <h2 id="yana-sarlavha" class="sec-title yana-title">Yana foydali</h2>
+    <div class="yana-list">
+    <a class="yana-card" href="/telefon/">
+      <span class="yana-belgi" aria-hidden="true" data-lotin>ş</span>
+      <span class="yana-t">Telefonda yoziş</span>
+      <span class="yana-d">iPhone va Android: ozarbayjonça klaviatura, harfni bosib turiş yoki konverter.</span>
+      <span class="yana-s">iPhone va Android, 3 usul</span>
+      <span class="yana-cta">Usulni tanlaş</span>
+    </a>
+    <a class="yana-card" href="/qoidalar/">
+      <span class="yana-belgi" aria-hidden="true" data-lotin>ö</span>
+      <span class="yana-t">Qoidalar</span>
+      <span class="yana-d">Tört yangi harf, <span data-lotin>sʼh</span> va tutuq belgisi bitta jadvalda. Sözingizni tekşirib köring.</span>
+      <span class="yana-s">6 qoida va söz tekşiruv</span>
+      <span class="yana-cta">Qoidalarni köriş</span>
+    </a>
+    <a class="yana-card" href="/test/">
+      <span class="yana-belgi" aria-hidden="true" data-lotin>10</span>
+      <span class="yana-t">Test</span>
+      <span class="yana-d">Yangi alifboni qançalik bilasiz? 10 savol, bir daqiqa, natijani storyga qöyasiz.</span>
+      <span class="yana-s">10 savol, 1 daqiqa</span>
+      <span class="yana-cta">Testni boşlaş</span>
+    </a>
     </div>
   </section>
 
   <div class="sec-rule" aria-hidden="true"></div>
-
-  <section class="rules" id="qoidalar" aria-labelledby="qoida-sarlavha">
-    <h2 id="qoida-sarlavha" class="sec-title">Qoidalar</h2>
-    <div class="count" id="sanoq" hidden>
-      <p class="count-head"><span class="count-n" id="kun">181</span> <span class="count-u">kun</span></p>
-      <p class="count-t" id="sanoq-matn"><b>ЎРҚ-1184</b>-son Qonun kuçga kirişiga qoldi (22.04.2027). Har nuqta bir kun.</p>
-      <div class="days" id="kunlar" aria-hidden="true"></div>
-      <div class="days-cap" aria-hidden="true"><span>21.10.2026 imzolandi</span><span>22.04.2027</span></div>
-    </div>
-    <div class="check" id="soz-tekshir" hidden>
-      <label class="check-label" for="soz">Bu söz qanday yoziladi?</label>
-      <input class="check-field" id="soz" type="text" placeholder="Masalan: Is'hoq" autocomplete="off" autocapitalize="off" spellcheck="false">
-      <div class="check-out" id="soz-natija" aria-live="polite" hidden>
-        <div class="check-top">
-          <div class="check-word" id="soz-word" data-lotin></div>
-          <button type="button" class="btn btn-ink" data-copy="soz-word">Nusxa oliş</button>
-        </div>
-        <ul class="check-why" id="soz-why"></ul>
-      </div>
-    </div>
-    <table class="rule-table">
-      <caption class="sr-only">Eski yozuv va yangi alifbo</caption>
-      <thead><tr><th scope="col">Yozasiz</th><th scope="col">Çiqadi</th><th scope="col">Misol</th></tr></thead>
-      <tbody>
-        <tr data-rule="o"><td data-lotin>o'</td><td data-lotin><b data-lotin>ö</b></td><td data-lotin>o'zbek → özbek</td></tr>
-        <tr data-rule="g"><td data-lotin>g'</td><td data-lotin><b data-lotin>ğ</b></td><td data-lotin>tog' → toğ</td></tr>
-        <tr data-rule="sh"><td data-lotin>sh</td><td data-lotin><b data-lotin>ş</b></td><td data-lotin>shahar → şahar</td></tr>
-        <tr data-rule="ch"><td data-lotin>ch</td><td data-lotin><b data-lotin>ç</b></td><td data-lotin>choy → çoy</td></tr>
-        <tr data-rule="sh2"><td data-lotin>s'h</td><td data-lotin><b data-lotin>sʼh</b></td><td data-lotin>Is'hoq → Isʼhoq</td></tr>
-        <tr data-rule="tutuq"><td data-lotin>ma'no</td><td data-lotin><b data-lotin>maʼno</b></td><td>tutuq belgisi ʼ</td></tr>
-      </tbody>
-    </table>
-    <div class="rule-notes">
-      <p><b>"<span data-lotin>sh</span>" har doim ham <span data-lotin>ş</span> emas.</b> Isʼhoq, asʼhob, musʼhaf kabi sözlarda s va h alohida öqiladi. Ularni hozirgidek tutuq bilan yozing: <code>s'h</code>. Natija <b data-lotin>sʼh</b> böladi.</p>
-      <p><b><span data-lotin>ng</span> özgarmaydi:</b> tong, keng oldingidek yoziladi.</p>
-      <p>Qoidalar ЎРҚ-1184-son Qonunga (21.10.2026, kuçga kiriş sanasi 22.04.2027) asoslangan. Rasmiy imlo qoidalari hali eʼlon qilinmagan; bu loyiha davlat loyihasi emas.</p>
-    </div>
-  </section>
-
-  <div class="sec-rule" aria-hidden="true"></div>
-
-  <section class="quiz-sec" id="test" aria-labelledby="test-sarlavha" hidden>
-    <div class="quiz">
-      <div class="quiz-top">
-        <h2 id="test-sarlavha" class="quiz-title">Test</h2>
-        <div class="prog" id="prog" role="img" aria-label="10 dan 1-savol"></div>
-      </div>
-      <div id="quiz-q">
-        <p class="q-n" id="q-n">1 / 10</p>
-        <p class="q" id="q"></p>
-        <div class="opts" id="opts"></div>
-        <p class="why" id="why" hidden></p>
-        <button type="button" class="btn btn-ink quiz-next" id="next" hidden>Keyingi savol</button>
-      </div>
-      <div class="quiz-result" id="result" tabindex="-1" hidden>
-        <p class="score"><span class="score-n" id="score">0</span><span class="score-of">/10</span></p>
-        <p class="grade" id="grade"></p>
-        <div class="result-acts">
-          <button type="button" class="btn btn-ink" id="story">Storyga qöyiş</button>
-          <button type="button" class="btn btn-ghost" id="restart">Qaytadan boşlaş</button>
-        </div>
-        <p class="story-err" id="story-err" hidden>Rasm yasab bölmadi. Qaytadan urinib köring.</p>
-        <figure class="story-prev" id="story-prev" hidden>
-          <img id="story-img" alt="Test natijasi rasmi" width="1080" height="1920">
-          <figcaption>Rasmni bosib turib saqlaşingiz mumkin</figcaption>
-        </figure>
-      </div>
-      <p class="sr-only" id="quiz-live" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <div class="sec-rule" id="test-rule" aria-hidden="true" hidden></div>
 
   <section class="faq" id="savollar" aria-labelledby="faq-sarlavha">
     <h2 id="faq-sarlavha" class="sec-title">Savollar</h2>
@@ -614,7 +496,7 @@
     </details>
     <details id="harflar">
       <summary><span data-lotin>ö, ğ, ş, ç</span> harflarini qanday yozaman?</summary>
-      <p>Kompyuterda Yozgiç klaviaturasini örnating: <b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b>, <b data-lotin>g'</b> yozsangiz <b data-lotin>ğ</b>, <b data-lotin>sh</b> yozsangiz <b data-lotin>ş</b>, <b data-lotin>ch</b> yozsangiz <b data-lotin>ç</b> çiqadi. Yangi tugmalarni yodlaş şart emas. Telefonda ozarbayjonça klaviaturani qöşing yoki harfni bosib turing: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Batafsil: <a href="#telefonda">Telefonda yoziş</a>.</p>
+      <p>Kompyuterda Yozgiç klaviaturasini örnating: <b data-lotin>o'</b> yozsangiz <b data-lotin>ö</b>, <b data-lotin>g'</b> yozsangiz <b data-lotin>ğ</b>, <b data-lotin>sh</b> yozsangiz <b data-lotin>ş</b>, <b data-lotin>ch</b> yozsangiz <b data-lotin>ç</b> çiqadi. Yangi tugmalarni yodlaş şart emas. Telefonda ozarbayjonça klaviaturani qöşing yoki harfni bosib turing: <span data-lotin><b>o</b> → ö, <b>g</b> → ğ, <b>s</b> → ş, <b>c</b> → ç</span>. Batafsil: <a href="/telefon/">Telefonda yoziş</a>.</p>
     </details>
     <details id="kirill">
       <summary>Kirill yoki eski lotin matnini yangi alifboga qanday ögiraman?</summary>
@@ -657,7 +539,7 @@
     </details>
     <details>
       <summary>Telefonda qanday yozaman?</summary>
-      <p>Eng qulayi: telefonga ozarbayjonça klaviaturani qöşing, unda <span data-lotin>ö ğ ş ç</span> alohida tugmada. Katta <b data-lotin>I</b> uçun Shift + <b data-lotin>ı</b> ni bosing: <b data-lotin>i</b> ning katta harfi <b data-lotin>İ</b> (nuqtali), özbekçada esa <b data-lotin>I</b> kerak. Klaviaturani almaştirmasdan ham böladi: harfni bosib turing, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (iPhoneʼda iOS 17 dan boşlab). Turk klaviaturasi sözlarni turkçaga tuzatib yuboradi. Batafsil, rasmlari bilan: <a href="#telefonda">Telefonda yoziş</a>.</p>
+      <p>Eng qulayi: telefonga ozarbayjonça klaviaturani qöşing, unda <span data-lotin>ö ğ ş ç</span> alohida tugmada. Katta <b data-lotin>I</b> uçun Shift + <b data-lotin>ı</b> ni bosing: <b data-lotin>i</b> ning katta harfi <b data-lotin>İ</b> (nuqtali), özbekçada esa <b data-lotin>I</b> kerak. Klaviaturani almaştirmasdan ham böladi: harfni bosib turing, <span data-lotin>o → ö, g → ğ, s → ş, c → ç</span> (iPhoneʼda iOS 17 dan boşlab). Turk klaviaturasi sözlarni turkçaga tuzatib yuboradi. Batafsil, rasmlari bilan: <a href="/telefon/">Telefonda yoziş</a>.</p>
     </details>
   </section>
 
@@ -719,12 +601,15 @@
     <nav class="close-col" aria-label="Bölimlar">
       <p class="close-h">Bölimlar</p>
       <a href="/#konverter">Konverter</a>
-      <a href="/fayl/">Faylni ögiriş</a>
+      <a href="/telefon/">Telefonda yoziş</a>
+      <a href="/qoidalar/">Qoidalar</a>
+      <a href="/test/">Test</a>
       <a href="/mashq/">Maşq</a>
       <a href="/soz/">Sözlar</a>
     </nav>
     <nav class="close-col" aria-label="Yana">
       <p class="close-h">Yana</p>
+      <a href="/fayl/">Faylni ögiriş</a>
       <a href="/ism/">Ism kartasi</a>
       <a href="/maqola/">Maqolalar</a>
       <a href="/vidjet/">Saytingiz uçun vidjet</a>
@@ -748,6 +633,6 @@
 </footer>
 
 
-<script type="module" src="/app.js?v=35"></script>
+<script type="module" src="/app.js?v=36"></script>
 </body>
 </html>

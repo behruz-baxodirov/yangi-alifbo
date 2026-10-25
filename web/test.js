@@ -127,6 +127,4 @@ export function mountTest(section, track = () => {}) {
 
   showQuestion(false);
   section.hidden = false;
-  // Boş sahifadagi eski bölim (2-bosqiçda olib taşlanadi) bölsa, uning ajratgiçini ham oçamiz.
-  document.getElementById("test-rule")?.removeAttribute("hidden");
 }

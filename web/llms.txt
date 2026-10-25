@@ -10,7 +10,9 @@ Qidiruvda: yangi alifbo, yangi alifbo klaviatura, yangi o'zbek alifbosi, yangi a
 
 - [Yuklab oliş va örnatiş](https://yozgich.uz/#yuklab-olish): Macʼda Terminalʼga bitta buyruq (`curl -fsSL https://yozgich.uz/install.sh | bash`), Windowsʼda beta .exe fayl.
 - [Konverter](https://yozgich.uz/#konverter): kirill yoki eski lotin matn → yangi alifbo.
-- [Qoidalar](https://yozgich.uz/#qoidalar): qaysi harf nimaga almaşadi, misollar bilan.
+- [Qoidalar](https://yozgich.uz/qoidalar/): qaysi harf nimaga almaşadi, misollar bilan; sözni tekşiriş va qonun sanoği.
+- [Telefonda yoziş](https://yozgich.uz/telefon/): iPhone va Android, ozarbayjonça klaviatura yoki harfni bosib turiş.
+- [Test](https://yozgich.uz/test/): 10 savol, natijani storyga qöyiş.
 - [Savollar](https://yozgich.uz/#savollar): yangi alifbo qaçon kuçga kiradi, ö ğ ş ç ni qanday yozaş, ruxsatlar, öçiriş.
 
 ## Faktlar

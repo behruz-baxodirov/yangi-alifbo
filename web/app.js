@@ -1,8 +1,5 @@
 import { convert, detectScript } from "./converter.js";
 import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
-import { daysLeft, dayDots, lawPhase } from "./sanoq.js";
-import { renderExplain } from "./soz-izoh.js";
-import { mountTest } from "./test.js";
 import "./sahifa.js";
 import { t, tx } from "./i18n.js";
 import { NEW, checkTyping } from "./tekshir.js";
@@ -99,7 +96,6 @@ function restamp(text) {
 }
 
 setupTabs(document.querySelector(".dl .tabs"), device === "windows" ? "tab-win" : "tab-mac");
-setupTabs(document.querySelector(".phone .tabs"), /Android/i.test(ua) ? "tab-and" : "tab-ios");
 
 // Konverter
 const input = document.getElementById("in");
@@ -169,29 +165,6 @@ document.getElementById("clear").addEventListener("click", () => {
   input.focus();
 });
 
-// "Bu söz qanday yoziladi?": natija, qoidalar va jadvalning mos qatori.
-{
-  const field = document.getElementById("soz");
-  const box = document.getElementById("soz-natija");
-  const word = document.getElementById("soz-word");
-  const why = document.getElementById("soz-why");
-  const rows = document.querySelectorAll(".rule-table tr[data-rule]");
-  let timer;
-  let tracked = false;
-
-  const show = () => {
-    const r = renderExplain(field.value);
-    rows.forEach((tr) => tr.classList.toggle("lit", r.rules.includes(tr.dataset.rule)));
-    box.hidden = !r.result;
-    if (!r.result) return;
-    word.innerHTML = r.wordHtml;
-    why.innerHTML = r.whyHtml;
-    if (!tracked) { track("soz_tekshirildi"); tracked = true; }
-  };
-  field.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(show, 150); });
-  document.getElementById("soz-tekshir").hidden = false;
-}
-
 setupCopy(document, device);
 
 // Buyruqning özini bosganda ham nusxa olinadi.
@@ -213,26 +186,6 @@ share?.addEventListener("click", async () => {
   }
 });
 
-// Sanoq: qonun kuçga kirişiga qolgan kunlar va har kun uçun nuqta.
-{
-  const today = new Date();
-  const left = daysLeft(today);
-  const { total, passed } = dayDots(today);
-  document.getElementById("kun").textContent = left;
-  document.getElementById("kunlar").innerHTML = Array.from({ length: total }, (_, k) =>
-    `<i class="${k < passed ? "past" : k === passed ? "today" : ""}"></i>`).join("");
-  const phase = lawPhase(today);
-  if (phase !== "oldin") {
-    const law = { qonun: "<b>ЎРҚ-1184</b>" };
-    document.getElementById("sanoq-matn").innerHTML = phase === "bugun"
-      ? t("{qonun}-son Qonun bugun kuçga kirdi.", law)
-      : t("{qonun}-son Qonun 22.04.2027 dan kuçda.", law);
-    document.getElementById("sanoq").classList.add("done");
-  }
-  document.getElementById("sanoq").hidden = false;
-}
-
-
 // Statistika: nimani bosişdi, qaysi bölimgaça yetib borişdi (index.html'dagi track).
 const track = (name, params) => window.track?.(name, params);
 
@@ -245,7 +198,6 @@ document.addEventListener("click", (e) => {
   else if (el.matches('[data-copy="out"]')) track("konverter_nusxa");
   else if (el.matches("[data-sample]")) track("konverter_namuna", { namuna: el.dataset.sample });
   else if (el.id === "share") track("havola_ulashish");
-  else if (el.id === "tab-ios" || el.id === "tab-and") track("telefon_tab", { os: el.id === "tab-ios" ? "iphone" : "android" });
   else if (el.matches(".close-founder")) track("asoschi_menyu");
   else if (href.includes("taps.uz")) track("donat", { joy: el.closest("footer") ? "pastki" : el.closest(".panel") ? "yuklash" : "savollar" });
   else if (href.startsWith("http") && !href.includes("yozgich.uz")) {
@@ -310,7 +262,4 @@ const seen = new IntersectionObserver((entries) => {
     seen.unobserve(entry.target);
   });
 }, { rootMargin: "0px 0px -50% 0px" });
-["konverter", "telefonda", "qoidalar", "test", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
-
-// Test: savollar, natija va story rasm (test.js).
-mountTest(document.getElementById("test"), track);
+["konverter", "yana", "savollar", "asoschi"].forEach((id) => seen.observe(document.getElementById(id)));
