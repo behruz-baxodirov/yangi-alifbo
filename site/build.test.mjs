@@ -117,9 +117,10 @@ test("FAQPage JSON-LD is built from the visible questions of each version", () =
   assert.equal(faq(page("ru/savol/index.html"))[0].name, "Как писать?");
 });
 
-test("current version name in the header", () => {
-  assert.match(page("kr/index.html"), /<b data-lotin>Кирилл<\/b>/);
-  assert.match(page("index.html"), /<b data-lotin>Yangi<\/b>/);
+test("current version name and mark in the header", () => {
+  assert.match(page("kr/index.html"), /<span class="til-nomi" data-lotin>Кирилл<\/span>/);
+  assert.match(page("kr/index.html"), /<span class="til-belgi" data-lotin>Ў<\/span>/);
+  assert.match(page("index.html"), /<span class="til-belgi" data-lotin>ö<\/span>/);
 });
 
 test("no placeholder is left unfilled", () => {
@@ -179,4 +180,26 @@ test("articles stay within checked facts", () => {
       assert.doesNotMatch(src, /pasport|паспорт|2031|Senat|Сенат/i, `${base}/${slug}`);
     }
   }
+});
+
+// Haqiqiy sayt qobiği (header, footer) bir marta yasaladi.
+const real = renderSite({ siteDir: fileURLToPath(new URL(".", import.meta.url)) });
+const header = (html) => html.match(/<header class="bar">[\s\S]*?<\/header>/)[0];
+
+test("real header: one switcher, no founder pill, section marked current", async () => {
+  const site = await real;
+  const soz = header(site.get("soz/index.html"));
+  assert.equal(soz.match(/<details class="til">/g)?.length, 1);
+  assert.equal(soz.match(/<details class="site-menu">/g)?.length, 1);
+  assert.doesNotMatch(soz, /nav-founder|class="tillar/);
+  assert.match(header(site.get("fayl/index.html")), /href="\/fayl\/" aria-current="page"/);
+  const nav = header(site.get("index.html")).match(/<nav class="bar-nav"[\s\S]*?<\/nav>/)[0];
+  assert.doesNotMatch(nav, /aria-current/);
+});
+
+test("kr switcher keeps names, converts labels", async () => {
+  const h = header((await real).get("kr/fayl/index.html"));
+  assert.match(h, /<b>Yangi alifbo<\/b>/);
+  assert.match(h, /<small>o' g' sh ch<\/small>/);
+  assert.match(h, /Сайт ёзуви: /);
 });

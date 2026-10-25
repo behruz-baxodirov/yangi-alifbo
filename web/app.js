@@ -295,7 +295,6 @@ document.addEventListener("click", (e) => {
   else if (el.matches("[data-sample]")) track("konverter_namuna", { namuna: el.dataset.sample });
   else if (el.id === "share") track("havola_ulashish");
   else if (el.id === "tab-ios" || el.id === "tab-and") track("telefon_tab", { os: el.id === "tab-ios" ? "iphone" : "android" });
-  else if (el.matches(".nav-founder")) track("asoschi_menyu");
   else if (href.includes("taps.uz")) track("donat", { joy: el.closest("footer") ? "pastki" : el.closest(".panel") ? "yuklash" : "savollar" });
   else if (href.startsWith("http") && !href.includes("yozgich.uz")) {
     const where = el.closest("#asoschi") ? "asoschi" : el.closest("footer") ? "pastki" : "boshqa";

@@ -11,7 +11,7 @@ import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs"
 import { bundleVidjet } from "./lib/bundle.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "28";
+export const ASSET_V = "29";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
@@ -20,6 +20,9 @@ export const TILLAR = [
 ];
 const CONVERT = { yangi: (s) => s, eski: toOldLatin, kr: toCyrillic };
 const NOMI = { yangi: "Yangi", eski: "Eski", kr: "Кирилл", ru: "Рус" };
+const BELGI = { yangi: "ö", eski: "o'", kr: "Ў", ru: "Я" };
+// Headerda joriy bölim havolasi: {{bolim:fayl}} → aria-current, sahifa yöli şu bölimdan boşlansa.
+const BOLIMLAR = ["fayl", "mashq", "soz", "maqola", "ism", "vidjet"];
 
 // ⟦…⟧ içi (masalan, «o' → ö» misoli) hamma versiyada özgarmaydi, qavslar olib taşlanadi.
 const keepMarked = (fn) => (text) => text.split(/⟦([^⟧]*)⟧/).map((part, i) => (i % 2 ? part : fn(part))).join("");
@@ -127,6 +130,8 @@ function renderPage({ layout, header, footer, page, t }) {
     hrefs[`current:${x.til}`] = x.til === t.til ? ' aria-current="page"' : "";
   }
   hrefs.tilnomi = NOMI[t.til];
+  hrefs.tilbelgi = BELGI[t.til];
+  for (const b of BOLIMLAR) hrefs[`bolim:${b}`] = path.startsWith(`/${b}/`) ? ' aria-current="page"' : "";
   const html = fill(layout, {
     lang: t.lang,
     til: t.til,
