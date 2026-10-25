@@ -1,0 +1,316 @@
+<title>Yozgiç animatsiyalari</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@900&family=Onest:wght@400;500;600;700;800&display=swap">
+<style>
+/* Yozgiç: un fon, qahrabo lenta, yassi 3px tugmalar. Hero: tugmalar bosiladi, juftlik bitta harfga birlaşadi va nonga tamğalanadi. */
+:root {
+  --crust: #cf8a33; --crust-hi: #e19a42; --rim: #a85d1b; --rim-edge: #7d4210; --dough: #f0cf97; --pip: #6b3510;
+  --char: #17110d; --char-soft: #3d220c; --clay: #9c3b22; --flour: #fbf6ec; --flour-deep: #f4e8d2; --slab-ink: #e9d6b4;
+  --display: "Doto", ui-monospace, monospace; --body: "Onest", system-ui, sans-serif;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--flour); color: var(--char); font: 400 17px/1.55 var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 700px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+
+/* Lenta va header */
+.band { background: radial-gradient(circle, rgb(23 17 13 / .09) 1.4px, transparent 1.6px) 0 0 / 12px 12px, var(--crust); }
+.bar { display: flex; align-items: center; gap: 24px; padding-block: 18px; }
+.logo { display: flex; align-items: center; gap: 10px; font: 900 26px/1 var(--display); color: var(--char); text-decoration: none; }
+.logo svg { width: 30px; height: 30px; }
+.bar-note { margin-left: auto; font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 3px; background: rgb(23 17 13 / .1); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 32px 72px; }
+.hero h1 { margin: 0 0 18px; font: 900 clamp(32px, 4.2vw, 52px)/1.04 var(--display); letter-spacing: -.01em; text-wrap: balance; }
+.lede { margin: 0 0 26px; max-width: 44ch; font-size: 18px; color: var(--char-soft); }
+.lede b { color: var(--char); }
+.ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 3px; font: 700 16px/1 var(--body); text-decoration: none; border: 2px solid var(--char); cursor: pointer; }
+.btn-ink { background: var(--char); color: var(--flour); }
+.btn-line { background: transparent; color: var(--char); }
+.btn:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--char); outline-offset: 3px; }
+
+/* Sahna: ekran qatori, non, tugmalar */
+.stage { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.screen {
+  width: min(100%, 420px); min-height: 64px; display: flex; align-items: center; gap: 2px; padding: 0 18px;
+  background: var(--flour); border: 2px solid var(--char); border-radius: 3px; font: 600 26px/1 var(--body);
+}
+.screen .old { color: var(--char-soft); background: rgb(23 17 13 / .08); border-radius: 3px; padding: 0 2px; }
+.screen .new { color: var(--clay); font-weight: 800; text-decoration: underline dotted 3px; text-underline-offset: 6px; animation: pop .45s var(--ease); }
+.caret { width: 2px; height: 30px; background: var(--clay); animation: blink 1s steps(1) infinite; }
+.screen-label { width: min(100%, 420px); margin: 0 0 -14px; font-size: 13px; font-weight: 700; color: var(--char-soft); }
+
+.non { position: relative; width: min(220px, 60vw); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle closest-side, var(--dough) 0 70%, var(--rim-edge) 70% 72%, var(--rim) 72% 94%, var(--rim-edge) 94% 100%, transparent 100%); }
+.non::before, .non::after { content: ""; position: absolute; border-radius: 50%; border: 4px dotted var(--pip); }
+.non::before { inset: 17%; }
+.non::after { inset: 23%; opacity: .7; }
+.non-letter { position: absolute; inset: 0; display: grid; place-items: center; font: 800 76px/1 var(--body); color: var(--char); }
+.non-letter.stamp { animation: stamp .5s var(--ease); }
+
+.keys { display: flex; justify-content: center; gap: 8px; min-height: 60px; }
+.key {
+  display: grid; place-items: center; width: 52px; height: 56px; overflow: hidden;
+  background: var(--flour); border: 2px solid var(--char); border-bottom-width: 5px; border-radius: 3px;
+  font: 700 22px/1 var(--body); color: var(--char);
+  transition: transform .09s, border-bottom-width .09s, width .35s var(--ease), margin .35s var(--ease), opacity .3s, background-color .2s;
+}
+.key.down { transform: translateY(3px); border-bottom-width: 2px; }
+.key.merged { background: var(--crust); }
+.key.gone { width: 0; margin-left: -8px; opacity: 0; border-width: 0; }
+.keys.fade .key { opacity: 0; }
+
+.shift { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--char-soft); }
+.shift kbd { display: grid; place-items: center; min-width: 34px; height: 30px; padding: 0 6px; border: 2px solid var(--char); border-bottom-width: 3px; border-radius: 3px; background: var(--flour); font: 700 14px/1 var(--body); color: var(--char); }
+.shift kbd.tap { animation: tap .3s; }
+
+/* Vaqt taqqoslaş */
+.time { padding-block: 72px; }
+.time h2 { margin: 0 0 12px; font: 900 clamp(28px, 3.4vw, 42px)/1.05 var(--display); text-align: center; text-wrap: balance; }
+.time-sub { margin: 0 auto 32px; max-width: 58ch; text-align: center; color: var(--char-soft); }
+.race { max-width: 880px; margin: 0 auto; padding: 32px; border-radius: 3px; background: var(--flour-deep); display: flex; flex-direction: column; gap: 26px; }
+.lane { display: flex; flex-direction: column; gap: 12px; }
+.lane-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.lane-name { font-weight: 700; font-size: 16px; }
+.clock { font: 900 34px/1 var(--display); font-variant-numeric: tabular-nums; }
+.clock.slow { color: var(--clay); }
+.field { display: flex; align-items: center; min-height: 58px; padding: 0 16px; gap: 2px; background: var(--flour); border: 2px solid var(--char); border-radius: 3px; font: 500 22px/1 var(--body); }
+.field .tag { margin-left: auto; padding: 5px 8px; border-radius: 3px; background: rgb(23 17 13 / .08); font-size: 12px; font-weight: 700; }
+.field .search { margin-left: 12px; padding: 4px 8px; border-radius: 3px; background: var(--dough); font-size: 14px; font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { min-height: 34px; display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; border-radius: 3px; border: 2px solid var(--char); font: 600 14px/1 var(--body); background: transparent; transition: background-color .15s, color .15s; }
+.chip.on { background: var(--char); color: var(--flour); }
+.chip.done { background: var(--crust); }
+.track { height: 12px; border-radius: 3px; background: rgb(23 17 13 / .1); overflow: hidden; }
+.fill { height: 100%; width: 0; border-radius: 3px; }
+.fill.slow { background: linear-gradient(90deg, var(--crust), var(--clay)); }
+.fill.fast { background: var(--char); }
+.axis { display: flex; justify-content: space-between; font: 600 12px/1 var(--body); color: var(--char-soft); font-variant-numeric: tabular-nums; }
+.result { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 6px; }
+.result b { font-size: 18px; }
+.result button { min-height: 44px; padding: 0 16px; border: 2px solid var(--char); border-radius: 3px; background: transparent; font: 700 15px/1 var(--body); color: var(--char); cursor: pointer; }
+
+.calc { max-width: 880px; margin: 24px auto 0; display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 16px; align-items: end; }
+.calc label { display: flex; flex-direction: column; gap: 10px; font-weight: 700; font-size: 15px; }
+.calc output.n { font: 900 30px/1 var(--display); }
+.calc input[type=range] { width: 100%; accent-color: var(--char); min-height: 32px; }
+.stat { padding: 16px; border-radius: 3px; background: var(--char); color: var(--slab-ink); }
+.stat b { display: block; font: 900 30px/1 var(--display); color: var(--flour); margin-bottom: 6px; }
+.stat span { font-size: 13px; }
+.note { max-width: 880px; margin: 12px auto 0; font-size: 13px; color: var(--char-soft); }
+
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pop { from { transform: translateY(6px) scale(.8); opacity: 0; } }
+@keyframes stamp { 0% { transform: scale(1.35); opacity: 0; } 60% { transform: scale(.94); opacity: 1; } }
+@keyframes tap { 50% { transform: translateY(2px); border-bottom-width: 1px; background: var(--crust); } }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 16px 48px; }
+  .stage { order: -1; }
+  .hero-copy { order: -2; }
+  .key { width: 46px; height: 50px; font-size: 20px; }
+  .keys { gap: 6px; }
+  .non { width: 150px; }
+  .non-letter { font-size: 54px; }
+  .race { padding: 18px; }
+  .clock { font-size: 26px; }
+  .calc { grid-template-columns: minmax(0, 1fr); }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .stat { padding: 12px; } .stat b { font-size: 22px; }
+}
+@media (min-width: 861px) { .stats { display: contents; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<div class="band">
+  <div class="wrap">
+    <header class="bar">
+      <a class="logo" href="#" aria-label="Yozgiç">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#17110d"/><circle cx="16" cy="16" r="12.5" fill="#f0cf97"/><g fill="#17110d"><circle cx="13" cy="9" r="1.7"/><circle cx="19" cy="9" r="1.7"/><circle cx="13" cy="14" r="1.7"/><circle cx="16" cy="14" r="1.7"/><circle cx="19" cy="14" r="1.7"/><circle cx="10.5" cy="17.5" r="1.7"/><circle cx="21.5" cy="17.5" r="1.7"/><circle cx="10.5" cy="21" r="1.7"/><circle cx="21.5" cy="21" r="1.7"/><circle cx="13" cy="24.5" r="1.7"/><circle cx="16" cy="24.5" r="1.7"/><circle cx="19" cy="24.5" r="1.7"/></g></svg>
+        yozgiç
+      </a>
+      <span class="bar-note">Animatsiya prototipi</span>
+    </header>
+    <section class="hero" aria-labelledby="h1">
+      <div class="hero-copy">
+        <h1 id="h1">Odatdagidek yozing, yangi harf özi çiqadi</h1>
+        <p class="lede"><b>o'</b> yozsangiz <b>ö</b>, <b>sh</b> yozsangiz <b>ş</b> böladi. Yangi tugmalarni yodlaş şart emas: Mac va Windows uçun bepul klaviatura.</p>
+        <div class="ctas">
+          <a class="btn btn-ink" href="#">macOS uçun yuklab oliş</a>
+          <a class="btn btn-line" href="#vaqt">Qanday işlaydi</a>
+        </div>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <p class="screen-label">Siz yozasiz</p>
+        <div class="screen" id="screen"><span id="typed">özbek</span><span class="caret"></span></div>
+        <div class="non"><div class="non-letter" id="nonLetter">ö</div></div>
+        <div class="keys" id="keys"></div>
+        <p class="shift">Yoqiş va öçiriş: <kbd id="sh1">⇧</kbd><kbd id="sh2">⇧</kbd> ikki marta</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section class="time wrap" id="vaqt" aria-labelledby="h2">
+  <h2 id="h2">Qölda 6 soniya, Yozgiç bilan bir zumda</h2>
+  <p class="time-sub">Yozgiçsiz <b>ö</b> ni topiş uçun uni qidirasiz, nusxalaysiz va qaytib qöyasiz. Yozgiç bilan odatdagidek <b>o'</b> yozasiz, qolganini u qiladi.</p>
+
+  <div class="race" id="race">
+    <div class="lane">
+      <div class="lane-top"><span class="lane-name">Yozgiçsiz</span><span class="clock slow" id="c1">6,4 s</span></div>
+      <div class="field" id="f1"><span id="t1">Kö</span><span class="search" id="s1" hidden>«ö harfi»</span><span class="tag">ABC</span></div>
+      <div class="chips" id="ch1"><span class="chip">Qidiriş</span><span class="chip">Nusxalaş</span><span class="chip">Qaytiş</span><span class="chip">Qöyiş</span></div>
+      <div class="track"><div class="fill slow" id="b1" style="width: 80%"></div></div>
+    </div>
+    <div class="lane">
+      <div class="lane-top"><span class="lane-name">Yozgiç bilan</span><span class="clock" id="c2">0,4 s</span></div>
+      <div class="field"><span id="t2">Kö</span><span class="tag">ö</span></div>
+      <div class="chips" id="ch2"><span class="chip">o</span><span class="chip">'</span><span class="chip done" id="ok2">ö Tayyor</span></div>
+      <div class="track"><div class="fill fast" id="b2" style="width: 5%"></div></div>
+    </div>
+    <div class="axis" aria-hidden="true"><span>0 s</span><span>2</span><span>4</span><span>6</span><span>8 s</span></div>
+    <div class="result"><b id="res">Har bir harfda 6 soniya tejaysiz</b><button type="button" id="replay">Qaytadan körsatiş</button></div>
+  </div>
+
+  <div class="calc">
+    <label for="n">Kuniga neçta yangi harf yozasiz?<output class="n" id="nOut" for="n">40</output><input type="range" id="n" min="10" max="200" step="10" value="40"></label>
+    <div class="stats">
+      <div class="stat"><b id="wk">28 daq</b><span>haftasiga tejaladi</span></div>
+      <div class="stat"><b id="yr">24 soat</b><span>yiliga tejaladi</span></div>
+      <div class="stat"><b id="cnt">14 600</b><span>marta qidirmaysiz</span></div>
+    </div>
+  </div>
+  <p class="note">Taxmin: harfni qölda topib qöyiş taxminan 6 soniya, Yozgiç bilan 0,4 soniya.</p>
+</section>
+
+<script>
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const $ = (id) => document.getElementById(id);
+
+  // Hero: har söz tugmalarda yoziladi; juftlikning ikkinçi tugmasi bosilganda u bitta harfga birlaşadi.
+  const WORDS = [
+    { k: ["o", "'", "z", "b", "e", "k"], at: 0, to: "ö" },
+    { k: ["c", "h", "o", "y"], at: 0, to: "ç" },
+    { k: ["t", "o", "g", "'"], at: 2, to: "ğ" },
+    { k: ["s", "h", "a", "h", "a", "r"], at: 0, to: "ş" },
+  ];
+  const keysEl = $("keys"), typed = $("typed"), nonLetter = $("nonLetter");
+
+  function finalState(w) {
+    keysEl.innerHTML = "";
+    w.k.forEach((ch, i) => {
+      if (i === w.at + 1) return;
+      const key = document.createElement("span");
+      key.className = "key" + (i === w.at ? " merged" : "");
+      key.textContent = i === w.at ? w.to : ch;
+      keysEl.append(key);
+    });
+    const before = w.k.slice(0, w.at).join(""), after = w.k.slice(w.at + 2).join("");
+    typed.innerHTML = `${before}<span class="new">${w.to}</span>${after}`;
+    nonLetter.textContent = w.to;
+  }
+
+  async function tapShift() {
+    for (const id of ["sh1", "sh2"]) { $(id).classList.add("tap"); await sleep(320); $(id).classList.remove("tap"); }
+  }
+
+  async function playWord(w) {
+    keysEl.classList.remove("fade");
+    keysEl.innerHTML = "";
+    const caps = w.k.map((ch) => { const s = document.createElement("span"); s.className = "key"; s.textContent = ch; keysEl.append(s); return s; });
+    typed.textContent = "";
+    await sleep(500);
+    let text = "";
+    for (let i = 0; i < w.k.length; i++) {
+      caps[i].classList.add("down");
+      await sleep(110);
+      caps[i].classList.remove("down");
+      if (i === w.at + 1) {
+        typed.innerHTML = `${text}<span class="old">${w.k[w.at]}${w.k[i]}</span>`;
+        await sleep(320);
+        caps[w.at].textContent = w.to;
+        caps[w.at].classList.add("merged");
+        caps[i].classList.add("gone");
+        text += `<span class="new">${w.to}</span>`;
+        typed.innerHTML = text;
+        nonLetter.textContent = w.to;
+        nonLetter.classList.remove("stamp"); void nonLetter.offsetWidth; nonLetter.classList.add("stamp");
+      } else if (i !== w.at) {
+        text += w.k[i];
+        typed.innerHTML = text;
+      } else {
+        typed.innerHTML = text + w.k[i];
+      }
+      await sleep(i === w.at ? 140 : 200);
+    }
+    await sleep(1500);
+    keysEl.classList.add("fade");
+    await sleep(350);
+  }
+
+  async function loop() {
+    for (let n = 0; ; n++) {
+      await playWord(WORDS[n % WORDS.length]);
+      if (n % 2 === 1) await tapShift();
+    }
+  }
+  if (reduce) finalState(WORDS[0]); else loop();
+
+  // Vaqt taqqoslaş: ikki yöl bir vaqtda boşlanadi, soniyalar haqiqiy vaqtda sanaladi.
+  const SLOW = 6.4, FAST = 0.4, SCALE = 8;
+  const fmt = (t) => t.toFixed(1).replace(".", ",") + " s";
+  const ch1 = [...$("ch1").children], ch2 = [...$("ch2").children];
+  const STEPS = [[0.5, 2.3], [2.3, 3.6], [3.6, 4.8], [4.8, 6.4]];
+  let raf = 0;
+
+  function frame(t) {
+    const t1 = Math.min(t, SLOW), t2 = Math.min(t, FAST);
+    $("c1").textContent = fmt(t1); $("c2").textContent = fmt(t2);
+    $("b1").style.width = `${(t1 / SCALE) * 100}%`; $("b2").style.width = `${(t2 / SCALE) * 100}%`;
+    ch1.forEach((c, i) => c.classList.toggle("on", t1 >= STEPS[i][0] && t1 < STEPS[i][1] && t < SLOW));
+    $("s1").hidden = !(t1 >= 0.5 && t1 < 3.6);
+    $("t1").textContent = t1 < 0.25 ? "" : t1 < 6.4 ? "K" : "Kö";
+    $("t2").textContent = t2 < 0.12 ? "K" : t2 < 0.26 ? "Ko" : t2 < FAST ? "Ko'" : "Kö";
+    ch2[0].classList.toggle("on", t2 >= 0.12 && t2 < 0.26);
+    ch2[1].classList.toggle("on", t2 >= 0.26 && t2 < FAST);
+    $("ok2").hidden = t2 < FAST;
+    $("res").style.opacity = t >= SLOW ? 1 : 0;
+  }
+
+  function run() {
+    cancelAnimationFrame(raf);
+    if (reduce) { frame(SLOW); return; }
+    const start = performance.now();
+    const step = (now) => { const t = (now - start) / 1000; frame(t); if (t < SLOW + 0.1) raf = requestAnimationFrame(step); };
+    raf = requestAnimationFrame(step);
+  }
+  $("replay").addEventListener("click", run);
+  let seen = false;
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !seen) { seen = true; run(); }
+  }, { threshold: 0.4 }).observe($("race"));
+
+  // Hisob: kuniga N harf, har birida 6 soniya.
+  const SAVED = SLOW - FAST;
+  const n = $("n");
+  const group = (x) => String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  function calc() {
+    const v = Number(n.value);
+    $("nOut").textContent = v;
+    $("wk").textContent = `${Math.round((v * SAVED * 7) / 60)} daq`;
+    $("yr").textContent = `${Math.round((v * SAVED * 365) / 3600)} soat`;
+    $("cnt").textContent = group(v * 365);
+  }
+  n.addEventListener("input", calc);
+  calc();
+})();
+</script>
