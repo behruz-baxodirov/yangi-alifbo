@@ -11,15 +11,17 @@ menus.forEach((menu) => {
   menu.addEventListener("toggle", () => {
     if (menu.open) menus.forEach((other) => { if (other !== menu) other.open = false; });
   });
-  menu.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape" || !menu.open) return;
-    menu.open = false;
-    menu.querySelector("summary").focus();
-    event.preventDefault();
-  });
   menu.addEventListener("click", (event) => {
     if (event.target.closest("a")) menu.open = false;
   });
+});
+// Escape hujjat darajasida: Safari sichqonça bosilganda summary ga fokus bermaydi, şunda ham yopiladi.
+if (menus.length) document.addEventListener("keydown", (event) => {
+  const menu = menus.find((m) => m.open);
+  if (event.key !== "Escape" || !menu) return;
+  menu.open = false;
+  menu.querySelector("summary").focus();
+  event.preventDefault();
 });
 if (menus.length) document.addEventListener("pointerdown", (event) => {
   menus.forEach((menu) => { if (menu.open && !menu.contains(event.target)) menu.open = false; });

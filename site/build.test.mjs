@@ -288,3 +288,19 @@ test("home has the time race in its final state", async () => {
   assert.ok(home.indexOf('id="konverter"') < home.indexOf('id="vaqt"') && home.indexOf('id="vaqt"') < home.indexOf('id="yana"'));
   assert.match(site.get("ru/index.html"), /class="vaqt-title">Вручную 6 секунд, с Yozgiç мгновенно<\/h2>/);
 });
+
+test("every generated page has exactly one switcher and one menu", async () => {
+  const site = await real;
+  for (const [p, html] of site) {
+    if (!p.endsWith(".html") || !html.includes('<header class="bar">')) continue;
+    const h = header(html);
+    assert.equal(h.match(/<details class="til">/g)?.length, 1, p);
+    assert.equal(h.match(/<details class="site-menu">/g)?.length, 1, p);
+  }
+});
+
+test("Russian name card label is the same in header and footer", () => {
+  const read = (f) => readFileSync(fileURLToPath(new URL(f, import.meta.url)), "utf8");
+  assert.match(read("ru/partials/header.html"), />Карточка с именем</);
+  assert.doesNotMatch(read("ru/partials/header.html"), /Карточка имени/);
+});

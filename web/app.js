@@ -7,11 +7,6 @@ import { t, tx } from "./i18n.js";
 import { NEW, checkTyping } from "./tekshir.js";
 import { setupTabs } from "./tablar.js";
 import { DEVICE, setupCopy } from "./nusxa.js";
-import { redirectFor } from "./yonaltir.js";
-
-// Eski havolalar (/#telefonda, /#qoidalar, /#test) endi alohida sahifada.
-const moved = redirectFor(location.pathname, location.hash);
-if (moved) location.replace(moved);
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;

@@ -66,7 +66,9 @@ export function mountVaqt(root, track = () => {}, reduce = false) {
     };
     raf = requestAnimationFrame(step);
   }
-  $("vaqt-replay").addEventListener("click", () => { track("vaqt_qayta"); run(); });
+  // Harakat kamaytirilganda qayta körsatadigan narsa yöq: tugma yaşiriladi.
+  if (reduce) $("vaqt-replay").hidden = true;
+  else $("vaqt-replay").addEventListener("click", () => { track("vaqt_qayta"); run(); });
   let started = false;
   new IntersectionObserver((entries) => {
     if (!entries[0].isIntersecting || started) return;

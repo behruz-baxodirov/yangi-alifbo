@@ -42,3 +42,14 @@ test("switcher list opens toward the left from the right edge", () => {
 test("wordmark gives way on very narrow layouts", () => {
   assert.match(css, /@media \(max-width: 259px\) \{[^}]*\.logo span \{ display: none; \}/);
 });
+
+test("on phones the switcher name stays for screen readers", () => {
+  const phone = css.match(/@media \(max-width: 639px\) \{[\s\S]*?\n\}/)[0];
+  assert.doesNotMatch(phone, /\.til-nomi \{ display: none/);
+  assert.match(phone, /\.til-nomi \{[^}]*clip/);
+});
+
+test("the last menu link before the download button has no divider", () => {
+  assert.match(css, /\.site-menu nav a:not\(\.btn\):nth-last-child\(2\) \{ border-bottom: 0; \}/);
+  assert.doesNotMatch(css, /last-of-type/);
+});

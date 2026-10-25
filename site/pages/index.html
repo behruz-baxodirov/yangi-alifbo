@@ -1,7 +1,14 @@
 <!--meta
 {"title": "Yangi alifbo klaviaturasi va konverter · Yozgiç", "title_kr": "Yangi alifbo klaviaturasi va kirill-lotin konvertor · Yozgiç", "description": "Yangi özbek alifbosi klaviaturasi Mac va Windows uçun bepul: ⟦o'⟧ yozsangiz ⟦ö⟧, ⟦sh⟧ yozsangiz ⟦ş⟧. Onlayn konverter kirill va eski lotin matnini ögiradi.", "path": "/", "script": "app.js", "updated": "2026-10-24"}
 -->
-<!--head--><script type="application/ld+json">{
+<!--head--><script id="eski-havola">
+// Eski havolalar (/#telefonda, /#qoidalar, /#test) analitika yuklanişidan oldin yangi sahifaga ötadi (web/yonaltir.js bilan bir xil).
+(function () {
+  var to = { "#telefonda": "telefon/", "#qoidalar": "qoidalar/", "#soz-tekshir": "qoidalar/#soz-tekshir", "#test": "test/" }[location.hash];
+  var home = location.pathname.replace(/index\.html$/, "");
+  if (to && ["/", "/eski/", "/kr/", "/ru/"].indexOf(home) > -1) location.replace(home + to);
+})();
+</script><script type="application/ld+json">{
  "@context": "https://schema.org",
  "@graph": [
   {

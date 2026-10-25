@@ -88,6 +88,7 @@ export function mountSahna(root, { onPair = () => {}, reduce = false } = {}) {
       }
     }
     await sleep(1500);
+    if (gate.active()) return; // pauzada tugmalar qatori körinib tursin
     keys.classList.add("fade");
     await sleep(350);
   }
