@@ -12,6 +12,7 @@ colors:
   char-soft: "#3d220c"
   clay: "#9c3b22"
   flour: "#fbf6ec"
+  flour-deep: "#f4e8d2"
   slab-ink: "#e9d6b4"
   slab-well: "#2a2019"
 typography:
@@ -196,9 +197,9 @@ components:
     rounded: "{rounded.non}"
     width: "460px"
   closing-band:
-    backgroundColor: "{colors.flour}"
-    textColor: "{colors.char}"
-    padding: "56px clamp(16px, 4vw, 40px) 64px"
+    backgroundColor: "{colors.char}"
+    textColor: "{colors.slab-ink}"
+    padding: "64px clamp(16px, 4vw, 40px) 40px"
 ---
 
 # Design System: Yozgiç
@@ -207,14 +208,14 @@ components:
 
 **Creative North Star: "Non va çekiç"**
 
-Letters are stamped into the centre of an Uzbek non with a çekiç, the bread stamp whose pins punch rings of dots into the dough. The whole system is made of that one material: dots. The ground is baked-crust amber with a faint 12px çekiç grid, headings are set in a dot-matrix face, the new letters are drawn on a 5×10 dot grid, dividers are rows of dots, and the hero non shows the apostrophe of o' turning into the two dots of ö as the dots migrate. National-modern register: an Uzbek graphic object rendered flat and contemporary, never ornamental or antique.
+Letters are stamped into the centre of an Uzbek non with a çekiç, the bread stamp whose pins punch rings of dots into the dough. The whole system is made of that one material: dots. The ground is flour; a baked-crust amber band with a faint 12px çekiç grid runs behind the header (and the hero on the home page), headings are set in a dot-matrix face, the new letters are drawn on a 5×10 dot grid, dividers are rows of dots, and the hero non shows the apostrophe of o' turning into the two dots of ö as the dots migrate. National-modern register: an Uzbek graphic object rendered flat and contemporary, never ornamental or antique.
 
-Density is calm and large. One drenched amber ground carries everything; the surfaces sit on it by tone alone: black action slabs, flour working fields, and dough, which belongs to the non and to the converter's result. There are no shadows, no pills, no gradients that shade. Everything is flat and stamped.
+Density is calm and large. A flour ground carries the reading; the amber band names the brand at the top; surfaces sit on the ground by tone alone: black action slabs, flour-deep working fields, a black footer, and dough, which belongs to the non and to the converter's result. There are no shadows, no pills, no gradients that shade. Everything is flat and stamped.
 
 The site speaks the alphabet it sells. Every line of copy is written in the new alphabet (ö ğ ş ç, tutuq ʼ), and old spellings appear only as the input side of an example.
 
 **Key Characteristics:**
-- Drenched crust-amber ground with a 12px çekiç dot grid.
+- Flour ground; one crust-amber top band with a faint 12px çekiç grid.
 - Dot-matrix display (Doto 900) over a plain humanist body (Onest).
 - Flat surfaces separated by tone: char slab, flour field, dough non and dough result.
 - 3px corners on every rectangle; round silhouettes only in the non and its dots.
@@ -223,10 +224,10 @@ The site speaks the alphabet it sells. Every line of copy is written in the new 
 
 ## Colors
 
-A baked palette: one drenched crust amber, nigella-black ink, a flour white for working fields, and a single clay red held back for marking change inside the working fields.
+A baked palette: a flour ground, one crust-amber band, nigella-black ink, and a single clay red held back for marking change inside the working fields.
 
 ### Primary
-- **Baked Crust** (crust): the drenched page ground, the browser theme colour, the fill of primary buttons, the selected download tab and the step-numeral squares on the black slab. **Crust Highlight** (crust-hi) is its hover step only.
+- **Baked Crust** (crust): the top band (header, and the hero on `/`), the browser theme colour, the fill of primary buttons, the selected download tab and the step-numeral squares on the black slab. **Crust Highlight** (crust-hi) is its hover step only.
 
 ### Secondary
 - **Tandir Clay** (clay): emphasis inside working fields only: the changed letters in the converter output, the text caret, and the closing-band links.
@@ -239,14 +240,15 @@ A baked palette: one drenched crust amber, nigella-black ink, a flour white for 
 ### Neutral
 - **Nigella Char** (char): all ink on crust, flour and dough; the action slab; the ink button and pressed chip; the stamp dots; focus rings; selection. Translucent char tints (8% under script tags, 10% under inline code) are the only other fills.
 - **Char Soft** (char-soft): secondary reading text on crust and flour (lede, table headers, example column, converter subline, counts, empty-state hint).
-- **Flour** (flour): working fields (converter panel, input pane) and the closing band; text on the char slab.
+- **Flour** (flour): the page ground, input fields and open menus; text on the char slab and headings in the footer.
+- **Flour Deep** (flour-deep): working panels on the ground (converter panel, quiz, word check, article note) and the current row of the script switcher.
 - **Slab Ink** (slab-ink): body copy and unselected tabs inside the char slab, one step quieter than flour; at 35% it draws the slab's light dot rows.
 - **Slab Well** (slab-well): the recessed command field inside the slab, the tab hover, and the ink button's hover.
 
 ### Named Rules
 **The Clay In The Field Rule.** Clay is used only on flour (6.4:1) and on the dough of the converter's output pane (4.6:1, always with a 700-weight letter and a dotted underline so change is never shown by colour alone). On crust it measures 2.4:1 and fails even large text, so clay never touches the amber ground, the slab or the non.
 
-**The Flour Is For Work Rule.** Flour appears only inside working fields (converter panel, input pane) and the closing band. Ordinary content sections sit directly on crust.
+**The Band Rule.** Crust amber as a ground appears only in the top band: behind the header on every page, and behind the hero on the home page. Everything below sits on flour; a working panel steps to flour-deep. The band's faint grid is the only dotted ground in the system.
 
 ## Typography
 
@@ -298,11 +300,11 @@ The direction contract's first viewport named a ~64px headline and a ~520px non;
 
 **The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Desktop: one download slab whose macOS | Windows tab is pre-selected for the device (macOS is the default and the no-JS state). Phone: headline, then the converter, then the non (max 240px), the lede, and the slab last, with a share-the-link notice above a native computer-install disclosure. The markup leaves installation details open for desktop and without JavaScript; the app closes them on a detected phone, where the summary expands them natively. Never show an install command as the first action on a phone.
 
-**The Çekiç Grid Rule.** The body carries a 12px dot grid (1.4px dots at 15% char). Every dot row on crust (rule-table rows, FAQ items) is painted once per row as a 12px-period strip of 1.6px dots at 55% char along the row's bottom edge, and its phase is shifted in script so the dots land on the body's 12px grid. Rows inside a surface that covers the ground (pane bars on flour and dough, the slab's light rows) keep the 12px period and start at the surface's edge. Never draw dot rows per cell, and never let a row on crust drift off the ground grid.
+**The Dot Row Rule.** Every dot row (rule-table rows, FAQ items, section rules) is painted once per row as a 12px-period strip starting at its element's edge. Never draw dot rows per cell.
 
 ## Elevation & Depth
 
-Flat. There is no box-shadow anywhere in the system. Depth is tonal: the crust ground, the char slab and the flour field are distinct planes by colour alone, the command well and tab hover sit one tone into the slab, and the output pane steps from flour to dough. Buttons acknowledge a press by moving 1px down, not by casting a shadow.
+Flat. There is no box-shadow anywhere in the system. Depth is tonal: the flour ground, the crust band, the char slab and footer, and the flour-deep working panel are distinct planes by colour alone, the command well and tab hover sit one tone into the slab, and the output pane steps from flour to dough. Buttons acknowledge a press by moving 1px down, not by casting a shadow.
 
 **The Stamped Not Lifted Rule.** Nothing floats. Surfaces are stamped into the ground or laid on it; no drop shadows, no glows, no blur.
 
@@ -335,9 +337,11 @@ Short, firm, and flat.
 - **Beta tag:** 11px uppercase with a 1.5px currentColor stroke, inside the Windows tab only; it marks release status and is not a general label style.
 
 ### Navigation
-The top bar wraps with enlarged text. The logo and desktop section links have minimum 44px targets.
-- **Responsive menu:** at 1140px and below, a full-width native disclosure replaces the desktop section links. Its two-column flour list has 44px minimum targets for all seven destinations: converter, file converter, typing practice, words, name card, articles and widget. The final link spans both columns. The dot-built plus becomes a minus when open.
-- **Keyboard:** native summary activation works without JavaScript. Shared page script adds Escape to close and return focus to the summary, and closes the menu after choosing a link. Language selection stays separate.
+One row on the amber band: logo, section links, the script switcher, the ink «Yuklab oliş» button. The founder lives in the footer, not the header.
+- **Section links:** 600 15px with 44px targets; the current section carries `aria-current` and a 3px dotted underline.
+- **Script switcher:** one native disclosure. Closed: 2px char stroke, 44px tall, a 22px char square with the crust script mark (ö, o', Ў, Я), the short name and an arrow; open it fills char. The list is 290px of flour with a 2px char stroke: four ≥52px rows (mark square, name, one-line hint); the current row is flour-deep with a check. Names stay as written in every version (`data-lotin`). Below 640px only the mark and arrow show, and the list spans the header width less 24px.
+- **Menu (below 1024px):** section links and the download button give way to a 44px char button with six dots (a cross when open). It opens a full-width flour panel under the header: seven 50px rows (18px 700) with 12% char dividers and a full-width crust «Kompyuterga yuklab oliş» button.
+- **Keyboard:** both disclosures work without JavaScript. Shared page script closes the other one when one opens, closes on Escape (focus back to its summary), outside press or link choice.
 
 ### Download Slab
 The black plate that holds the one action for this device.
@@ -424,7 +428,7 @@ Article pages are a 720px column of 18px Onest text with Onest 800 headings, rul
 The wordmark "yozgiç" in Logo type, preceded by a 30px mark: a char disc with a dough centre holding the ö dot glyph (the favicon's drawing).
 
 ### Closing Band
-A full-bleed flour band with the Display Close statement ("Bepul, hamma uçun") and clay links to Instagram, the Telegram channel and Telegram contact.
+A full-bleed char footer. Four columns on one edge (1.4fr and three 1fr, 40px gaps): the Display Close statement («Bepul, hamma uçun», flour, 56px; 40px on phone) with the donate line and a crust button; «Bölimlar»; «Yana» (other pages, Instagram, Telegram, contact); «Asosçi» (round 44px photo, name, a contact line). Column headings 13px 700 slab-ink, links 15px flour. A slab-ink rule at 20% separates the base row: the four version links and «© 2026 Yozgiç · Davlat loyihasi emas». The old-Latin and Cyrillic description stays below as visible 13px text at 70% slab-ink. Focus rings are crust. On phones the statement and founder span both columns and the two link lists sit side by side.
 
 ## Do's and Don'ts
 
@@ -433,7 +437,7 @@ A full-bleed flour band with the Display Close statement ("Bepul, hamma uçun") 
 - **Do** keep clay (#9c3b22) on flour and on the dough output pane only, and pair it with weight and a dotted underline when it marks change.
 - **Do** keep the h1 the largest heading above the footer.
 - **Do** draw any new large letter from the 5×10 dot grid (mark, gap, letter, cedilla).
-- **Do** paint dot rows once per row and phase-align rows on crust to the body's 12px grid.
+- **Do** paint dot rows once per row, starting at the element's edge.
 - **Do** order the first screen by device: the download tab pre-selected for Mac or Windows, the converter first on a phone.
 - **Do** write shortcuts as key caps and keep them true: the Mac menu-bar app toggles with double Shift by default or its ö/A symbol; the shortcut is configurable. Windows toggles with Ctrl + Alt + Space.
 - **Do** use the 3px corner token on every rectangle.
