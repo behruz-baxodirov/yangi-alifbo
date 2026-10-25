@@ -220,7 +220,7 @@ The site speaks the alphabet it sells. Every line of copy is written in the new 
 - Flat surfaces separated by tone: char slab, flour field, dough non and dough result.
 - 3px corners on every rectangle; round silhouettes only in the non and its dots.
 - Dots as the single decorative device: glyphs, dividers, numerals, the converter arrow, the FAQ toggle, the stamp.
-- One motion: dots migrating with an exponential ease-out.
+- Two named motions, both with an exponential ease-out: the hero stage (keycaps pressed, a pair merging into one new letter that the non stamps by migrating its dots) and the time race on the home page.
 
 ## Colors
 
@@ -337,10 +337,10 @@ Short, firm, and flat.
 - **Beta tag:** 11px uppercase with a 1.5px currentColor stroke, inside the Windows tab only; it marks release status and is not a general label style.
 
 ### Navigation
-One row on the amber band: logo, section links, the script switcher, the ink «Yuklab oliş» button. The founder lives in the footer, not the header.
+One row on the amber band: logo, six section links (Konverter, Telefonda, Qoidalar, Test, Maşq, Sözlar), the script switcher, the ink «Yuklab oliş» button. The founder lives in the footer, not the header.
 - **Section links:** 600 15px with 44px targets; the current section carries `aria-current` and a 3px dotted underline.
 - **Script switcher:** one native disclosure. Closed: 2px char stroke, 44px tall, a 22px char square with the crust script mark (ö, o', Ў, Я), the short name and an arrow; open it fills char. The list is 290px of flour with a 2px char stroke: four ≥52px rows (mark square, name, one-line hint); the current row is flour-deep with a check. Names stay as written in every version (`data-lotin`). Below 640px only the mark and arrow show, and the list spans the header width less 24px.
-- **Menu (below 1024px):** section links and the download button give way to a 44px char button with six dots (a cross when open). It opens a full-width flour panel under the header: seven 50px rows (18px 700) with 12% char dividers and a full-width crust «Kompyuterga yuklab oliş» button.
+- **Menu (below 1180px):** section links and the download button give way to a 44px char button with six dots (a cross when open). It opens a full-width flour panel under the header: ten 50px rows (18px 700) with 12% char dividers and a full-width crust «Kompyuterga yuklab oliş» button.
 - **Keyboard:** both disclosures work without JavaScript. Shared page script closes the other one when one opens, closes on Escape (focus back to its summary), outside press or link choice.
 
 ### Download Slab
@@ -374,7 +374,7 @@ A disclosure on crust with a dot-row bottom edge. The item is a flow-root block 
 The hero object.
 - **Construction:** flat concentric bands with hard stops: dough centre to 86%, a rim-edge band, the rim, a rim-edge outer band. Two punched çekiç pip rings (56 and 64 pips at 36% and 40.5% radius) and 18 nigella seeds scattered between them.
 - **Stamp:** a 13×10 dot field at the centre (48% wide, slightly above middle) holding the pair as dot glyphs; the letter is stamped in char dots; the pair label ("o' → ö") sits below in Label type.
-- **Motion:** every 1.6s the dots migrate from the old pair to the new letter, 0.9s on cubic-bezier(.16, 1, .3, 1). Typing in the converter re-stamps the last converted letter and holds it for 6s. Under reduced motion the dots stay still on the stamped letter and change only every 4s.
+- **Motion:** driven by the hero stage: when a keycap pair merges, the dots migrate from the old pair to the new letter, 0.9s on cubic-bezier(.16, 1, .3, 1). Typing in the converter re-stamps the last converted letter and pauses the stage for 6s. Under reduced motion the non shows ö and stays still.
 
 **The Flat Non Rule.** The non is flat: crust rim and rim-edge bands, dough centre, punched pip rings, nigella seeds, the letter in char dots. No shading gradients, no insets, no drop shadows, no texture photography.
 
@@ -388,8 +388,6 @@ A char slab after the FAQ that credits the author and offers his services.
 ### Platform and social marks
 The owner asked for real, recognisable marks, so the Apple logo and the Windows four-pane logo sit in the download tabs and the Windows download button, and the Telegram plane and Instagram camera sit in the founder slab. They are flat single-colour `currentColor` SVGs. This is the only exception to "no icon glyphs"; nothing else gets an icon.
 
-### Founder chip (header)
-A char capsule at the end of the top bar (shown on phones too): a 36px round photo, then a crust uppercase "Asosçi" over the name in flour. Fully rounded at the owner's request; the one exception to the Three Pixel Rule. No motion; hover steps to slab-well. Under 370px the name hides.
 
 ### Phone Guide (Telefonda yoziş)
 A char slab like the download slab, with an iPhone | Android tablist (same ARIA tab behaviour; each tablist switches only its own panels). iPhone panel: four rows, each a flour key cap (44×52, Onest 500 24px) beside a drawn long-press menu of slab-well cells (40×44, Onest 500 22px); the correct letter is a crust cell with a 2px flour outline offset 2px, the lookalikes stay slab-well. Android panel: a "Töğri / Öxşaş, lekin boşqa" table in the same cells. A shared Turkish-keyboard warning closes the slab under a light dot row. The menus show the choice, never a claimed menu order.
@@ -427,6 +425,18 @@ Article pages are a 720px column of 18px Onest text with Onest 800 headings, rul
 ### Logo
 The wordmark "yozgiç" in Logo type, preceded by a 30px mark: a char disc with a dough centre holding the ö dot glyph (the favicon's drawing).
 
+### Hero Stage
+The right column of the home hero (on a phone: after the converter). «Siz yozasiz» label, a flour screen line (60px, 2px char, 24px Onest 600, clay caret), the non (260px; 150px on phone), a row of keycaps and a «⇧ ⇧ ikki marta» hint. Keycaps are 52×56 flour squares with a 2px char stroke and a 5px bottom edge; a press moves 3px down. When the second key of a pair is pressed, the screen shows the pair faded, then the first cap turns crust with the new letter, the second folds to zero width, the screen shows the letter in clay with a dotted underline, and the non stamps it. Words: o'zbek, choy, tog', shahar. The markup holds the final «özbek» frame, so reduced motion and no-JS visitors see it still. A letter typed in the converter pauses the stage for 6 s.
+
+### Time Race
+A flour-deep card (max 880px) with two lanes: «Yozgiçsiz» (clay Doto clock to «6,4 s», chips Qidiriş · Nusxalaş · Qaytiş · Qöyiş, crust-to-clay bar) and «Yozgiç bilan» (char clock to «0,4 s», chips o · ' · crust «ö Tayyor», char bar), an axis to 8 s, a result line and «Qaytadan körsatiş». Clocks use a decimal comma. It starts once at 40% visibility. Below: a 10–200 slider and three char cards (minutes a week, hours a year, times not searched), and a note marking the 6 s figure as an estimate.
+
+### Link Cards
+«Yana foydali» on the home page: three flour-deep cards (220px, 3 columns) each a single link with a 52px char square holding a crust Doto mark, a 20px title, a line of text and an underlined call; on phones a 76px row with a short line and an arrow.
+
+### Method Disclosure and Segment Tabs
+On /telefon/: a 2-tab segment (2px char frame, selected tab char) switches iPhone/Android; each method is a native disclosure on flour-deep with a 2px char stroke, a crust Doto number, the name and a «kimga mos» line; its open body is a char slab, the same as the download slab.
+
 ### Closing Band
 A full-bleed char footer. Four columns on one edge (1.4fr and three 1fr, 40px gaps): the Display Close statement («Bepul, hamma uçun», flour, 56px; 40px on phone) with the donate line and a crust button; «Bölimlar»; «Yana» (other pages, Instagram, Telegram, contact); «Asosçi» (round 44px photo, name, a contact line). Column headings 13px 700 slab-ink, links 15px flour. A slab-ink rule at 20% separates the base row: the four version links and «© 2026 Yozgiç · Davlat loyihasi emas». The old-Latin and Cyrillic description stays below as visible 13px text at 70% slab-ink. Focus rings are crust. On phones the statement and founder span both columns and the two link lists sit side by side.
 
@@ -441,7 +451,7 @@ A full-bleed char footer. Four columns on one edge (1.4fr and three 1fr, 40px ga
 - **Do** order the first screen by device: the download tab pre-selected for Mac or Windows, the converter first on a phone.
 - **Do** write shortcuts as key caps and keep them true: the Mac menu-bar app toggles with double Shift by default or its ö/A symbol; the shortcut is configurable. Windows toggles with Ctrl + Alt + Space.
 - **Do** use the 3px corner token on every rectangle.
-- **Do** keep motion to dot migration with an exponential ease-out, and turn it off under reduced motion.
+- **Do** keep motion to the named motions (non dot migration, hero stage, time race) with an exponential ease-out, and show their final frames under reduced motion.
 
 ### Don't:
 - **Don't** end a Doto display line with a period.
