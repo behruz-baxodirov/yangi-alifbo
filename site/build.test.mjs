@@ -377,3 +377,8 @@ test("name page: live card beside the field; widget page: steps beside the demo"
     assert.match(vid.match(/<aside class="vidjet-side">[\s\S]*?<\/aside>/)?.[0] ?? "", /class="vidjet-demo"/, pre);
   }
 });
+
+test("story button is disabled until a name is typed", async () => {
+  const site = await real;
+  for (const p of ["ism/index.html", "ru/ism/index.html"]) assert.match(site.get(p), /<button type="button" class="btn btn-ink" id="ism-story" disabled>/, p);
+});

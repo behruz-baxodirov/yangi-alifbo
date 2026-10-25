@@ -64,6 +64,7 @@ function render() {
   cardName.textContent = card ? card.yangi : SAMPLE;
   cardName.classList.toggle("is-sample", !card);
   save.disabled = !card;
+  $("ism-story").disabled = !card;
   if (!card) return;
   $("ism-yangi").textContent = card.yangi;
   $("ism-eski").textContent = card.eski;

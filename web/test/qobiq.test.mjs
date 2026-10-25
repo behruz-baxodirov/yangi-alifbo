@@ -53,3 +53,13 @@ test("the last menu link before the download button has no divider", () => {
   assert.match(css, /\.site-menu nav a:not\(\.btn\):nth-last-child\(2\) \{ border-bottom: 0; \}/);
   assert.doesNotMatch(css, /last-of-type/);
 });
+
+test("no old rule shrinks the word-group letter", () => {
+  assert.doesNotMatch(css, /\n\.harf h2 \{/);
+});
+
+test("inner grids are not capped by old column widths", () => {
+  for (const sel of [".maqola > *", ".ism > *", ".mashq > *"]) {
+    assert.ok(!css.includes(`\n${sel} { max-width`), `${sel} still caps its children`);
+  }
+});
