@@ -20,3 +20,25 @@ test("dot rows no longer align to a page grid", () => {
   assert.doesNotMatch(read("app.js"), /alignDotRows/);
   assert.doesNotMatch(css, /--phase/);
 });
+
+const rule = (sel) => css.match(new RegExp(`(?:^|\\n)${sel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} \\{([^}]*)\\}`))?.[1] ?? "";
+const rules = (sel) => [...css.matchAll(new RegExp(`(?:^|\\n)${sel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} \\{([^}]*)\\}`, "g"))].map((m) => m[1]);
+const z = (sel) => Math.max(0, ...rules(sel).map((r) => Number(r.match(/z-index:\s*(\d+)/)?.[1] ?? 0)));
+
+test("skip link sits above the header", () => {
+  assert.ok(z(".skip") > z(".bar"), `.skip ${z(".skip")} <= .bar ${z(".bar")}`);
+});
+
+test("flour under the converter reaches the hero bottom on any screen height", () => {
+  assert.match(rule(".hero"), /overflow-y: clip/);
+  assert.doesNotMatch(rule(".try::before"), /vh/);
+});
+
+test("switcher list opens toward the left from the right edge", () => {
+  assert.match(rule(".til-list"), /right: 0/);
+  assert.doesNotMatch(rule(".til-list"), /left: 0/);
+});
+
+test("wordmark gives way on very narrow layouts", () => {
+  assert.match(css, /@media \(max-width: 259px\) \{[^}]*\.logo span \{ display: none; \}/);
+});

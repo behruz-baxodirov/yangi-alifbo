@@ -47,7 +47,7 @@ kbd {
 }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip {
-  position: absolute; left: 16px; top: 0; translate: 0 -110%; z-index: 10; padding: 10px 14px;
+  position: absolute; left: 16px; top: 0; translate: 0 -110%; z-index: 40; padding: 10px 14px;
   max-width: calc(100% - 32px);
   background: var(--char); color: var(--flour); border-radius: var(--corner); font-weight: 700;
 }
@@ -86,7 +86,7 @@ kbd {
 .til[open] > summary .til-belgi { background: var(--crust); color: var(--char); }
 .til[open] .til-strelka { rotate: 180deg; }
 .til-list {
-  position: absolute; top: calc(100% + 8px); left: 0; z-index: 20; display: grid; gap: 2px; width: 290px; padding: 6px;
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 20; display: grid; gap: 2px; width: 290px; padding: 6px;
   background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner);
 }
 .til-list a { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 6px 10px; border-radius: var(--corner); text-decoration: none; }
@@ -129,6 +129,9 @@ kbd {
   .til, .bar-nav + .til { margin-left: auto; }
   .site-menu { display: block; }
 }
+@media (max-width: 259px) {
+  .logo span { display: none; }
+}
 @media (max-width: 639px) {
   .bar { padding: 12px var(--gutter); gap: 10px; }
   .logo { font-size: 24px; }
@@ -151,10 +154,10 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 /* Header oçiladigan röyxatlari hero ustida tursin. */
 .bar { z-index: 30; }
 .bar::before, .hero::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; background: var(--band); }
-/* Hero ostidagi qismni (konverter, telefonda undan keyingilar ham) yana un fonga qaytaradi; hero pastidan çiqqani kesiladi. */
-.hero { clip-path: inset(0 -100vmax); }
+/* Hero ostidagi qismni (konverter, telefonda undan keyingilar ham) yana un fonga qaytaradi; hero pastidan çiqqani overflow-y: clip bilan kesiladi. */
+.hero { overflow-y: clip; }
 .try { position: relative; }
-.try::before { content: ""; position: absolute; top: -28px; bottom: -100vh; left: calc(50% - 50vw); right: calc(50% - 50vw); z-index: -1; background: var(--flour); }
+.try::before { content: ""; position: absolute; top: -28px; bottom: -10000px; left: calc(50% - 50vw); right: calc(50% - 50vw); z-index: -1; background: var(--flour); }
 
 /* Birinçi ekran */
 .hero {
