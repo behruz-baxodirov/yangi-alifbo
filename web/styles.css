@@ -142,7 +142,7 @@ kbd {
 }
 
 /* Doto kirill harflarini bilmaydi: kirill va rus sahifalarida sarlavhalar Onest 800 bilan */
-html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .vaqt-title, .page-title, .count-n, .count-u) {
+html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .vaqt-title, .page-title, .ism-card-h, .count-n, .count-u) {
   font-family: Onest, system-ui, sans-serif; font-weight: 800; letter-spacing: -.015em;
 }
 
@@ -892,6 +892,29 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 
 /* Ism kartasi (/ism/) */
 .ism { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
+/* /ism/: çapda maydon va izoh, öngda jonli story kartasi */
+.ism-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; }
+.ism-main .ism-box { background: var(--flour-deep); }
+.ism-side { display: grid; justify-items: center; gap: 14px; }
+.ism-card {
+  display: flex; flex-direction: column; gap: 14px; width: min(300px, 100%); aspect-ratio: 9 / 16; padding: 22px;
+  border: 2px solid var(--char); border-radius: var(--corner); background: var(--band);
+}
+.ism-card-logo, .ism-card-h { font: 900 18px/1.2 Doto, monospace; }
+.ism-card-non {
+  flex: 1; display: grid; place-items: center; width: 82%; aspect-ratio: 1; align-self: center; border-radius: 50%;
+  background: radial-gradient(circle closest-side, var(--dough) 0 74%, var(--rim-edge) 74% 77%, var(--rim) 77% 96%, var(--rim-edge) 96% 100%, transparent 100%);
+}
+.ism-card-name { max-width: 80%; font: 800 34px/1.1 Onest, system-ui, sans-serif; text-align: center; overflow-wrap: anywhere; }
+.ism-card-name.is-sample { opacity: .45; }
+.ism-card-foot { font-size: 12px; font-weight: 700; }
+.ism-side .result-acts { justify-content: center; }
+.ism-side .story-prev img { max-width: 240px; }
+@media (max-width: 860px) {
+  .ism-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .ism-card { width: 240px; padding: 16px; }
+  .ism-card-name { font-size: 28px; }
+}
 .ism > * { max-width: 760px; }
 .ism-box { margin-bottom: 16px; }
 .ism-karta { padding: 22px; margin: 0 0 28px; background: var(--dough); border: 2px solid var(--char); border-radius: var(--corner); }
@@ -987,6 +1010,16 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .maqola-note { margin-top: 32px; padding: 12px 14px; background: var(--flour-deep); border-radius: var(--corner); font-size: 15px !important; }
 
 /* Vidjet sahifasi (/vidjet/) */
+/* /vidjet/: çapda uç qadam, öngda jonli namuna */
+.vidjet-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.vidjet-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 26px; }
+.vidjet-steps > li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; }
+.vidjet-steps .step-n { width: 34px; height: 34px; font-size: 20px; }
+.vidjet-h { margin: 4px 0 10px; font: 800 18px/1.3 Onest, system-ui, sans-serif; }
+.vidjet-step .soz-why { margin-bottom: 0; }
+.vidjet-side { padding: 22px; border-radius: var(--corner); background: var(--flour-deep); }
+.vidjet-side .vidjet-h { margin-top: 0; font-size: 14px; }
+@media (max-width: 860px) { .vidjet-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } .vidjet-side { order: -1; } }
 .vidjet-demo { padding: 18px 20px; margin: 0 0 8px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); }
 .vidjet-demo p { margin: 0; }
 .vidjet-kod { margin: 0 0 12px; padding: 14px 16px; overflow-x: auto; background: var(--slab-well); color: var(--slab-ink); border-radius: var(--corner); font-size: 14px; line-height: 1.5; }

@@ -6,21 +6,33 @@
   <p class="page-lede">Напишите имя как угодно: старой латиницей, кириллицей или уже на новом алфавите. Карточка и картинка для сторис создаются прямо здесь, имя никуда не отправляется.</p>
 </div>
 <section class="ism">
-  <div class="check ism-box">
+<div class="ism-grid">
+  <div class="ism-main">
+    <div class="check ism-box">
     <label class="check-label" for="ism-q">Ваше имя</label>
     <input class="check-field" id="ism-q" type="text" placeholder="Gʻulom" maxlength="60" autocomplete="given-name" autocapitalize="words" spellcheck="false">
   </div>
-  <div class="ism-karta" id="ism-karta" aria-live="polite" hidden>
+    <div class="ism-karta" id="ism-karta" aria-live="polite" hidden>
     <p class="ism-yangi" id="ism-yangi" data-lotin></p>
     <p class="ism-eski">Старое написание: <b id="ism-eski" data-lotin></b></p>
     <ul class="ism-juft" id="ism-juft" data-lotin></ul>
     <p class="ism-same" id="ism-same" hidden>Ваше имя не меняется: на новом алфавите оно пишется так же.</p>
-    <div class="result-acts"><button type="button" class="btn btn-ink" id="ism-story">В сторис</button></div>
+  </div>
+    <p class="soz-cta">Другие слова: <a href="/soz/">список слов</a> · <a href="/#konverter">конвертер</a></p>
+  </div>
+  <aside class="ism-side">
+    <div class="ism-card" id="ism-card" aria-hidden="true">
+      <span class="ism-card-logo" data-lotin>yozgiç</span>
+      <span class="ism-card-h">Моё имя<br>на новом алфавите</span>
+      <span class="ism-card-non"><b class="ism-card-name is-sample" data-lotin>Ğulom</b></span>
+      <span class="ism-card-foot">Попробуйте и вы: yozgich.uz</span>
+    </div>
+    <div class="result-acts"><button type="button" class="btn btn-ink" id="ism-story">В сторис</button><button type="button" class="btn btn-line" id="ism-save" disabled>Сохранить картинку</button></div>
     <p class="story-err" id="ism-err" hidden>Не удалось создать картинку. Попробуйте ещё раз.</p>
     <figure class="story-prev" id="ism-prev" hidden>
       <img id="ism-img" alt="Картинка с карточкой имени" width="1080" height="1920">
       <figcaption>Удерживайте картинку, чтобы сохранить</figcaption>
     </figure>
-  </div>
-  <p class="soz-cta">Другие слова: <a href="/soz/">список слов</a> · <a href="/#konverter">конвертер</a></p>
+  </aside>
+</div>
 </section>

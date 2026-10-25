@@ -52,11 +52,18 @@ const field = $("ism-q"), box = $("ism-karta"), err = $("ism-err"), preview = $(
 const esc = (s) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 let card = null, shown = false;
 
+const cardName = document.querySelector(".ism-card-name"), save = $("ism-save");
+const SAMPLE = cardName.textContent;
+
 function render() {
   card = ismKarta(field.value);
   box.hidden = !card;
   preview.hidden = true;
   err.hidden = true;
+  // Yon kartadagi ism jonli yangilanadi; ism yöq bölsa namuna xira turadi.
+  cardName.textContent = card ? card.yangi : SAMPLE;
+  cardName.classList.toggle("is-sample", !card);
+  save.disabled = !card;
   if (!card) return;
   $("ism-yangi").textContent = card.yangi;
   $("ism-eski").textContent = card.eski;
@@ -72,12 +79,34 @@ if (fromLink) { field.value = fromLink; render(); }
 
 // Instagram va Facebook ilova brauzerida yuklab oliş sahifani rasm bilan almaştirib yuboradi.
 const inApp = /Instagram|FBAN|FBAV/.test(navigator.userAgent);
-$("ism-story").addEventListener("click", async () => {
-  if (!card) return;
+async function storyPng() {
   err.hidden = true;
   const canvas = document.createElement("canvas");
   const blob = await drawNameStory(canvas, card).then(() => toPng(canvas)).catch(() => null);
-  if (!blob) { err.hidden = false; return; }
+  if (!blob) err.hidden = false;
+  return blob;
+}
+
+// "Rasmni saqlaş": ulaşiş oynasisiz, PNG faylni yuklab beradi.
+save.addEventListener("click", async () => {
+  if (!card) return;
+  const blob = await storyPng();
+  if (!blob) return;
+  const url = objectUrls.replace("ism", blob);
+  img.src = url;
+  preview.hidden = false;
+  window.track?.("ism_saqlandi");
+  if (inApp) return;
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ism-yozgich.png";
+  a.click();
+});
+
+$("ism-story").addEventListener("click", async () => {
+  if (!card) return;
+  const blob = await storyPng();
+  if (!blob) return;
   const file = new File([blob], "ism-yozgich.png", { type: "image/png" });
   const url = objectUrls.replace("ism", blob);
   img.src = url;

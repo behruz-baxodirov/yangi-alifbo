@@ -6,28 +6,42 @@
   <p class="page-lede">Одна строка кода — и над статьёй появится кнопка «<span data-lotin>Yangi alifboda</span>». Читатель одним нажатием видит текст на новом алфавите, вторым — возвращает исходный.</p>
 </div>
 <section class="maqola vidjet">
-  <h2 class="soz-h2">Работает прямо здесь</h2>
-  <div class="vidjet-demo" data-yozgich data-lotin>
-    <p>Toshkent shahrida bugun ochiq havo. Bog'bon g'isht terdi, cho'pon qo'y boqdi. Yangi o'quv yili boshlandi va maktablarda darslar qizg'in ketmoqda.</p>
-  </div>
-  <h2 class="soz-h2">Как подключить</h2>
-  <p>Добавьте атрибут <code>data-yozgich</code> элементу с текстом и подключите скрипт в конце страницы:</p>
+<div class="vidjet-grid">
+  <div class="vidjet-main">
+  <ol class="vidjet-steps">
+    <li><span class="step-n" aria-hidden="true">1</span><div class="vidjet-step">
+      <h2 class="vidjet-h">Как подключить</h2>
+      <p>Добавьте атрибут <code>data-yozgich</code> элементу с текстом и подключите скрипт в конце страницы:</p>
   <pre class="vidjet-kod" id="vidjet-kod"><code>&lt;div data-yozgich&gt;
   …текст статьи…
 &lt;/div&gt;
 &lt;script src="https://yozgich.uz/vidjet.js" defer&gt;&lt;/script&gt;</code></pre>
   <p><button type="button" class="btn btn-ink" id="vidjet-copy">Скопировать код</button></p>
-  <h2 class="soz-h2">Настройки</h2>
-  <ul class="soz-why">
+    </div></li>
+    <li><span class="step-n" aria-hidden="true">2</span><div class="vidjet-step">
+      <h2 class="vidjet-h">Настройки</h2>
+      <ul class="soz-why">
     <li>Надпись на кнопке: <code>data-yozgich-label="Yangi alifboda|Eski yozuvda"</code></li>
     <li>Кнопка под текстом: <code>data-yozgich-button="bottom"</code></li>
   </ul>
-  <h2 class="soz-h2">Чего он не делает</h2>
-  <ul class="soz-why">
+    </div></li>
+    <li><span class="step-n" aria-hidden="true">3</span><div class="vidjet-step">
+      <h2 class="vidjet-h">Чего он не делает</h2>
+      <ul class="soz-why">
     <li>Не выходит в сеть: после загрузки скрипт никуда не отправляет запросов.</li>
     <li>Не ставит cookie, ничего не сохраняет, не узнаёт читателя.</li>
     <li>Не трогает текст до нажатия кнопки; поля ввода, код и скрипты не трогает вообще.</li>
   </ul>
+    </div></li>
+  </ol>
   <p class="soz-cta">Бесплатно, без ограничений. Вопросы: <a href="https://t.me/behruz_baxodirov" target="_blank" rel="noopener">Telegram</a></p>
+  </div>
+  <aside class="vidjet-side">
+    <h2 class="vidjet-h">Работает прямо здесь</h2>
+    <div class="vidjet-demo" data-yozgich data-lotin>
+    <p>Toshkent shahrida bugun ochiq havo. Bog'bon g'isht terdi, cho'pon qo'y boqdi. Yangi o'quv yili boshlandi va maktablarda darslar qizg'in ketmoqda.</p>
+  </div>
+  </aside>
+</div>
 </section>
 <script src="/vidjet.js" defer></script>

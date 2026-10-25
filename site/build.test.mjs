@@ -362,3 +362,18 @@ test("word groups carry a big letter with a count; article index is a card grid"
     assert.equal(m.match(/class="maqola-tag"/g)?.length, 6, p);
   }
 });
+
+test("name page: live card beside the field; widget page: steps beside the demo", async () => {
+  const site = await real;
+  for (const pre of ["", "ru/"]) {
+    const ism = mainOf(site.get(`${pre}ism/index.html`));
+    assert.match(ism.match(/<div class="ism-main">[\s\S]*?<\/div>/)?.[0] ?? "", /id="ism-q"/, pre);
+    const side = ism.match(/<aside class="ism-side">[\s\S]*?<\/aside>/)?.[0] ?? "";
+    assert.match(side, /id="ism-card"[\s\S]*class="ism-card-name/, pre);
+    assert.match(side, /id="ism-story"/, pre);
+    assert.match(side, /<button type="button" class="btn btn-line" id="ism-save" disabled>/, pre);
+    const vid = mainOf(site.get(`${pre}vidjet/index.html`));
+    assert.equal(vid.match(/<ol class="vidjet-steps">[\s\S]*?<\/ol>/)?.[0].match(/<li><span class="step-n"/g)?.length, 3, pre);
+    assert.match(vid.match(/<aside class="vidjet-side">[\s\S]*?<\/aside>/)?.[0] ?? "", /class="vidjet-demo"/, pre);
+  }
+});
