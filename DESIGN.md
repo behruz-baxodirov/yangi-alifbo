@@ -431,6 +431,12 @@ The right column of the home hero (on a phone: after the converter). «Siz yozas
 ### Time Race
 A flour-deep card (max 880px) with two lanes: «Yozgiçsiz» (clay Doto clock to «6,4 s», chips Qidiriş · Nusxalaş · Qaytiş · Qöyiş, crust-to-clay bar) and «Yozgiç bilan» (char clock to «0,4 s», chips o · ' · crust «ö Tayyor», char bar), an axis to 8 s, a result line and «Qaytadan körsatiş». Clocks use a decimal comma. It starts once at 40% visibility. Below: a 10–200 slider and three char cards (minutes a week, hours a year, times not searched), and a note marking the 6 s figure as an estimate.
 
+### Page Head
+Every inner page opens with one block inside the amber band, contiguous with the header: an optional crumb («← Sözlar», «← Maqolalar», 14px 700, underlined), the title and a lede (19px, char-soft, max 60ch; 17px on phones). Section pages set the title in Doto 900 46px (32px on phones, max 22ch); word and article pages, whose titles can hold a colon or ğ, use Onest 800 42px (30px). Cyrillic and Russian pages use Onest 800 throughout. Padding 28px/48px (20px/32px on phones); content starts 40px below (24px). The word index puts its search field inside the head. /test/ keeps its own intro card instead; the home page keeps its hero.
+
+### Inner Page Grids
+Above 860px the tools sit in two columns, below they stack: /fayl/ 1.4fr:1fr (drop zone with format chips and results; char note card and a converter link card), /mashq/ 1.6fr:1fr (practice; two char stat cards for the last run and a flour-deep card with the best result and 7-day dots), /ism/ 1fr:1fr (field and details; a live 9:16 story card with the name in Onest 800, faded sample when empty, «Storyga qöyiş» and «Rasmni saqlaş»), /vidjet/ 1.15fr:1fr (three numbered steps; the live demo, first on phones). /soz/ groups words under a big Doto letter with a count (Ğ in Onest 800) in a 3/2/1-column grid of flour-deep cells, with a sticky letter bar (one scrolling row on phones). /maqola/ is a 3-column card grid with a topic tag on every card; the first card spans two columns in char.
+
 ### Link Cards
 «Yana foydali» on the home page: three flour-deep cards (220px, 3 columns) each a single link with a 52px char square holding a crust Doto mark, a 20px title, a line of text and an underlined call; on phones a 76px row with a short line and an arrow.
 
