@@ -165,9 +165,9 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   display: grid; column-gap: 56px;
   grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
   grid-template-areas:
-    "head non"
-    "lede non"
-    "dl   non"
+    "head stage"
+    "lede stage"
+    "dl   stage"
     "try  try";
   align-items: start;
 }
@@ -175,8 +175,38 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .hero-lede { grid-area: lede; font-size: 18px; max-width: 46ch; margin: 0 0 22px; color: var(--char-soft); }
 .hero-lede b { color: var(--char); }
 .dl { grid-area: dl; }
-.non { grid-area: non; }
+.stage { grid-area: stage; }
 .try { grid-area: try; }
+
+/* Sahna: "Siz yozasiz" ekran qatori, non, tugmalar. Juftlik bitta yangi harfga birlaşadi (sahna.js). */
+.stage { display: flex; flex-direction: column; align-items: center; gap: 18px; align-self: center; min-width: 0; }
+.stage-label { width: min(100%, 420px); margin: 0 0 -10px; font-size: 13px; font-weight: 700; color: var(--char-soft); }
+.screen {
+  width: min(100%, 420px); min-height: 60px; display: flex; align-items: center; padding: 0 18px;
+  background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); font: 600 24px/1 Onest, system-ui, sans-serif;
+}
+.screen .old { padding: 0 2px; border-radius: var(--corner); background: rgb(23 17 13 / .08); color: var(--char-soft); }
+.screen .new { color: var(--clay); font-weight: 800; text-decoration: underline dotted 3px; text-underline-offset: 6px; animation: pop .45s var(--ease); }
+.caret { width: 2px; height: 28px; margin-left: 2px; background: var(--clay); animation: blink 1s steps(1) infinite; }
+.stage .non { max-width: 260px; }
+.keys { display: flex; justify-content: center; gap: 8px; min-height: 60px; }
+.kc {
+  display: grid; place-items: center; width: 52px; height: 56px; overflow: hidden;
+  background: var(--flour); border: 2px solid var(--char); border-bottom-width: 5px; border-radius: var(--corner);
+  font: 700 22px/1 Onest, system-ui, sans-serif; color: var(--char);
+  transition: transform .09s, border-bottom-width .09s, width .35s var(--ease), margin .35s var(--ease), opacity .3s, background-color .2s;
+}
+.kc.down { transform: translateY(3px); border-bottom-width: 2px; }
+.kc.merged { background: var(--crust); }
+.kc.gone { width: 0; margin-left: -8px; opacity: 0; border-width: 0; }
+.keys.fade .kc { opacity: 0; }
+.shift { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 600; color: var(--char-soft); }
+.shift kbd { display: grid; place-items: center; min-width: 34px; height: 30px; border-bottom-width: 3px; background: var(--flour); color: var(--char); font-size: 14px; }
+.shift kbd.tap { animation: tap .3s; }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pop { from { transform: translateY(6px) scale(.8); opacity: 0; } }
+@keyframes tap { 50% { transform: translateY(2px); background: var(--crust); } }
+@media (prefers-reduced-motion: reduce) { .caret, .screen .new, .shift kbd.tap { animation: none; } .kc { transition: none; } }
 
 /* Non: tekis qobiq halqa, markazda çekiç halqalari va sedana; harf tekis nuqtalardan */
 .non {
@@ -660,21 +690,24 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 /* Planşet va telefon */
 @media (max-width: 980px) {
   .hero { column-gap: 32px; }
-  .non { max-width: 380px; }
+  .stage .non { max-width: 220px; }
 }
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "head" "lede" "dl" "non" "try";
+    grid-template-areas: "head" "lede" "dl" "stage" "try";
     padding-bottom: 48px;
   }
-  [data-device="phone"] .hero { grid-template-areas: "head" "try" "non" "lede" "dl"; }
+  [data-device="phone"] .hero { grid-template-areas: "head" "try" "stage" "lede" "dl"; }
   [data-device="phone"] .try { margin: 28px 0 28px; }
   [data-device="phone"] .try::before { top: -20px; }
-  [data-device="phone"] .non { max-width: 240px; }
+  [data-device="phone"] .stage .non { max-width: 150px; }
   .hero-head { font-size: clamp(28px, 7.5vw, 36px); margin-top: 6px; }
   .hero-lede { font-size: 17px; margin-top: 18px; }
-  .non { max-width: 320px; margin: 28px 0 4px; }
+  .stage { margin: 28px 0 8px; }
+  .stage .non { max-width: 180px; }
+  .kc { width: 46px; height: 50px; font-size: 20px; }
+  .keys { gap: 6px; }
   .dl { max-width: none; }
   .panel { padding: 6px 16px 18px; }
   .try { padding: 18px; margin-top: 32px; }

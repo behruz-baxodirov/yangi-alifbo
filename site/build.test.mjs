@@ -267,3 +267,12 @@ test("header marks the new sections and drops Fayl", async () => {
   const nav = header(site.get("index.html")).match(/<nav class="bar-nav"[\s\S]*?<\/nav>/)[0];
   assert.deepEqual([...nav.matchAll(/href="([^"]+)"/g)].map((m) => m[1]), ["/#konverter", "/telefon/", "/qoidalar/", "/test/", "/mashq/", "/soz/"]);
 });
+
+test("home hero carries the stage in its final state", async () => {
+  const home = (await real).get("index.html");
+  const stage = home.match(/<div class="stage" aria-hidden="true">[\s\S]*?<p class="shift"/)?.[0] ?? "";
+  assert.match(stage, /id="screen"[\s\S]*<span class="new">ö<\/span>zbek/);
+  assert.match(stage, /<span class="kc merged">ö<\/span>/);
+  assert.match(stage, /id="non-center"/);
+  assert.match((await real).get("ru/index.html"), /<p class="stage-label">Вы набираете<\/p>/);
+});

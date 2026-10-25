@@ -1,5 +1,6 @@
 import { convert, detectScript } from "./converter.js";
-import { PAIRS, PAIR_OF, layout } from "./glyphs.js";
+import { PAIR_OF, layout } from "./glyphs.js";
+import { mountSahna } from "./sahna.js";
 import "./sahifa.js";
 import { t, tx } from "./i18n.js";
 import { NEW, checkTyping } from "./tekshir.js";
@@ -72,15 +73,12 @@ function showPair([from, to], stamped) {
   pairLabel.textContent = `${from.toLowerCase()} → ${to.toLowerCase()}`;
 }
 
-let step = reduceMotion ? 1 : 0;
-let idleUntil = 0;
-function tick() {
-  if (Date.now() < idleUntil) return;
-  showPair(PAIRS[Math.floor(step / 2) % PAIRS.length], step % 2 === 1);
-  step++;
-}
-tick();
-setInterval(tick, reduceMotion ? 4000 : 1600);
+// Sahna: tugmalar bosiladi, juftlik birlaşgan payt non şu harfni tamğalaydi (sahna.js).
+showPair(PAIR_OF["ö"], true);
+const sahna = mountSahna(document.querySelector(".stage"), {
+  onPair: (to, stamped) => showPair(PAIR_OF[to], stamped),
+  reduce: reduceMotion,
+});
 
 // Bosilgan oxirgi yangi harf nonga qayta tamğalanadi.
 let lastStamped = "";
@@ -89,7 +87,7 @@ function restamp(text) {
   const last = letters ? letters[letters.length - 1] : "";
   if (!last || last === lastStamped) return;
   lastStamped = last;
-  idleUntil = Date.now() + 6000;
+  sahna.pause(6000);
   const pair = PAIR_OF[last];
   showPair(pair, false);
   setTimeout(() => showPair(pair, true), reduceMotion ? 0 : 450);
