@@ -51,3 +51,11 @@ test("practice texts: every mode filled, new alphabet only", () => {
     assert.ok(MATN[mode].every((w) => w.toLowerCase().includes(letter)), mode);
   }
 });
+
+test("last seven days of practice, oldest first", async () => {
+  const { lastDays } = await import("./mashq-hisob.js");
+  const today = new Date(2026, 9, 26);
+  assert.deepEqual(lastDays([], today), [false, false, false, false, false, false, false]);
+  assert.deepEqual(lastDays(["2026-10-26", "2026-10-24", "2026-10-01"], today), [false, false, false, false, true, false, true]);
+  assert.equal(lastDays(["2026-10-20"], today)[0], true);
+});

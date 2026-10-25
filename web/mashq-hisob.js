@@ -5,6 +5,15 @@ const NEW = /[öğşçÖĞŞÇʼ]/u;
 const nfc = (s) => s.normalize("NFC");
 
 export const localDay = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+// Oxirgi n kun (eskisi birinçi): şu kuni maşq qilinganmi.
+export function lastDays(kunlar, today, n = 7) {
+  const set = new Set(kunlar);
+  return Array.from({ length: n }, (_, i) => {
+    const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (n - 1 - i));
+    return set.has(localDay(d));
+  });
+}
+
 export function readPractice(raw) {
   const empty = { best: 0, kunlar: [] };
   try {

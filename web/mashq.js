@@ -2,7 +2,7 @@
 import "./sahifa.js";
 import { til, t, tx } from "./i18n.js";
 import { MATN } from "./mashq-matn.js";
-import { liveOk, judgeWord, summary, localDay, readPractice } from "./mashq-hisob.js";
+import { liveOk, judgeWord, summary, localDay, readPractice, lastDays } from "./mashq-hisob.js";
 import { checkTyping } from "./tekshir.js";
 import { C, W, H, loadFonts, logo, non, background, toPng } from "./kanvas.js";
 import { objectUrls } from "./object-url.js";
@@ -24,11 +24,11 @@ function load() {
 function save(data) {
   try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { /* saqlab bölmasa, faqat şu sahifada */ }
 }
+// Yon panel: eng yaxşi natija va oxirgi 7 kunda qaysi kunlari maşq qilingan.
 function showBest() {
   const data = load();
-  best.textContent = data.best
-    ? t("Eng yaxşi natija: {n} söz/daqiqa · maşq kunlari: {k}", { n: data.best, k: data.kunlar.length })
-    : "";
+  best.textContent = data.best ? t("Eng yaxşi natija: {n} söz/daqiqa", { n: data.best }) : t("Hali natija yöq");
+  $("mashq-kunlar").innerHTML = lastDays(data.kunlar, new Date()).map((on) => `<i${on ? ' class="on"' : ""}></i>`).join("");
 }
 
 function paint() {
@@ -58,6 +58,8 @@ function finish() {
   field.disabled = true;
   last = { ...summary(results, Date.now() - started), rejim };
   $("mashq-wpm").textContent = last.wpm;
+  $("mashq-wpm-k").textContent = last.wpm;
+  $("mashq-acc-k").textContent = `${last.accuracy}%`;
   $("mashq-detal").innerHTML = [
     t("Aniqlik: {a}%", { a: last.accuracy }),
     last.worst ? t("Köp adaşgan harf: {h}", { h: `<b data-lotin>${last.worst}</b>` }) : "",
