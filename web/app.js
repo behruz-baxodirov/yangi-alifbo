@@ -6,13 +6,17 @@ import { mountTest } from "./test.js";
 import "./sahifa.js";
 import { t, tx } from "./i18n.js";
 import { NEW, checkTyping } from "./tekshir.js";
+import { setupTabs } from "./tablar.js";
+import { DEVICE, setupCopy } from "./nusxa.js";
+import { redirectFor } from "./yonaltir.js";
+
+// Eski havolalar (/#telefonda, /#qoidalar, /#test) endi alohida sahifada.
+const moved = redirectFor(location.pathname, location.hash);
+if (moved) location.replace(moved);
 
 // Qurilma: Mac'da macOS tabi, Windows'da Windows tabi, telefonda konverter birinçi.
 const ua = navigator.userAgent;
-const touch = navigator.maxTouchPoints > 1;
-const device = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && touch)
-  ? "phone"
-  : /Windows/i.test(ua) ? "windows" : "mac";
+const device = DEVICE;
 document.documentElement.dataset.device = device;
 // Kompyuter yöriqnomasi telefondagi asosiy vazifani berkitmasin; JSʼsiz u oçiq qoladi.
 document.getElementById("install-details").open = device !== "phone";
@@ -94,30 +98,6 @@ function restamp(text) {
   setTimeout(() => showPair(pair, true), reduceMotion ? 0 : 450);
 }
 
-// Tablar (yuklab oliş va telefon yöriqnomasi): ARIA tablist, strelkalar bilan boşqariladi.
-// Har röyxat faqat öz panellarini almaştiradi.
-function setupTabs(list, initialId) {
-  const tabs = [...list.querySelectorAll('[role="tab"]')];
-  const select = (tab, focus = false) => {
-    tabs.forEach((t) => {
-      const on = t === tab;
-      t.setAttribute("aria-selected", String(on));
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-    });
-    if (focus) tab.focus();
-  };
-  tabs.forEach((tab, i) => {
-    tab.addEventListener("click", () => select(tab));
-    tab.addEventListener("keydown", (e) => {
-      const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
-      if (next === undefined) return;
-      e.preventDefault();
-      select(tabs[(next + tabs.length) % tabs.length], true);
-    });
-  });
-  select(document.getElementById(initialId));
-}
 setupTabs(document.querySelector(".dl .tabs"), device === "windows" ? "tab-win" : "tab-mac");
 setupTabs(document.querySelector(".phone .tabs"), /Android/i.test(ua) ? "tab-and" : "tab-ios");
 
@@ -212,36 +192,7 @@ document.getElementById("clear").addEventListener("click", () => {
   document.getElementById("soz-tekshir").hidden = false;
 }
 
-// Nusxa oliş tugmalari
-document.querySelectorAll("[data-copy]").forEach((button) => {
-  const label = button.textContent;
-  button.addEventListener("click", async () => {
-    const source = document.getElementById(button.dataset.copy);
-    let copied = false;
-    try {
-      await navigator.clipboard.writeText(source.textContent);
-      copied = true;
-    } catch {
-      // Ruxsat bölmasa: matnni özimiz belgilaymiz va eski usulda nusxa olamiz.
-      const range = document.createRange();
-      range.selectNodeContents(source);
-      getSelection().removeAllRanges();
-      getSelection().addRange(range);
-      try { copied = document.execCommand("copy"); } catch { copied = false; }
-      if (copied) getSelection().removeAllRanges();
-    }
-    if (copied) {
-      button.textContent = t("Nusxa olindi");
-      button.dataset.state = "done";
-    } else {
-      button.textContent = { mac: t("Belgilandi, ⌘C bosing"), windows: t("Belgilandi, Ctrl+C bosing"), phone: t("Bosib turib nusxa oling") }[device];
-    }
-    setTimeout(() => {
-      button.textContent = label;
-      delete button.dataset.state;
-    }, 1800);
-  });
-});
+setupCopy(document, device);
 
 // Buyruqning özini bosganda ham nusxa olinadi.
 document.getElementById("cmd").addEventListener("click", () => document.querySelector('[data-copy="cmd"]').click());
