@@ -142,7 +142,7 @@ kbd {
 }
 
 /* Doto kirill harflarini bilmaydi: kirill va rus sahifalarida sarlavhalar Onest 800 bilan */
-html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .vaqt-title, .count-n, .count-u) {
+html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .yana-title, .vaqt-title, .page-title, .count-n, .count-u) {
   font-family: Onest, system-ui, sans-serif; font-weight: 800; letter-spacing: -.015em;
 }
 
@@ -429,10 +429,23 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .ikey-bad .ikey-out { color: var(--slab-ink); text-decoration: line-through 2px; }
 .guide-warn { margin: 0; padding: 16px 22px 20px; font-size: 14px; color: var(--slab-ink); background: var(--dot-row-light); background-position: 22px top; }
 
+/* Içki sahifa boşi: crumb, sarlavha va izoh qahrabo lenta içida, header bilan uzluksiz */
+.page-head { position: relative; isolation: isolate; max-width: var(--max); margin: 0 auto; padding: 28px var(--gutter) 48px; display: grid; gap: 12px; justify-items: start; }
+.page-head::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; background: var(--band); }
+.page-crumb { font-size: 14px; font-weight: 700; text-underline-offset: 3px; }
+.page-title { margin: 0; max-width: 22ch; font: 900 46px/1.05 Doto, monospace; letter-spacing: -.01em; text-wrap: balance; overflow-wrap: anywhere; }
+.page-title--text { max-width: 28ch; font: 800 42px/1.1 Onest, system-ui, sans-serif; letter-spacing: -.015em; }
+.page-lede { margin: 0; max-width: 60ch; font-size: 19px; line-height: 1.55; color: var(--char-soft); }
+.page-head :focus-visible { outline-color: var(--char); }
+@media (max-width: 860px) {
+  .page-head { padding: 20px var(--gutter) 32px; }
+  .page-title { font-size: 32px; }
+  .page-title--text { font-size: 30px; }
+  .page-lede { font-size: 17px; }
+}
+
 /* /telefon/: iPhone | Android segmenti va yopiq usullar; oçilgan usul matni qora slabda (yuklab oliş slabi bilan bir xil) */
-.tel-page { max-width: 820px; margin: 0 auto; padding: 32px var(--gutter) 72px; display: grid; gap: 20px; }
-.tel-page .sec-title { margin: 0; }
-.tel-page .soz-lede { margin: 0; }
+.tel-page { max-width: 820px; margin: 0 auto; padding: 40px var(--gutter) 72px; display: grid; gap: 20px; }
 .seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; max-width: 360px; padding: 4px; border: 2px solid var(--char); border-radius: var(--corner); }
 .seg-tab { min-height: 44px; border: 0; border-radius: var(--corner); background: transparent; color: var(--char); font: 700 15px/1.2 Onest, system-ui, sans-serif; cursor: pointer; }
 .seg-tab[aria-selected="true"] { background: var(--char); color: var(--flour); }
@@ -459,9 +472,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 @media (max-width: 640px) { .usul-body { padding: 4px 16px 16px; } }
 
 /* /qoidalar/: uçta alohida bölim, har birining öz sarlavhasi */
-.qoida-page { max-width: var(--max); margin: 0 auto; padding: 32px var(--gutter) 72px; display: grid; gap: 56px; }
-.qoida-head { display: grid; gap: 12px; }
-.qoida-head .sec-title, .qoida-head .soz-lede { margin: 0; }
+.qoida-page { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; display: grid; gap: 56px; }
 .qoida-h { margin: 0 0 14px; font: 800 20px/1.25 Onest, system-ui, sans-serif; }
 .qoida-jadval { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
 .qoida-jadval .rule-notes { display: grid; gap: 12px; padding-top: 38px; }
@@ -795,7 +806,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 }
 
 /* Söz sahifalari (/soz/ va /soz/<söz>/) */
-.soz-page, .soz-index { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.soz-page, .soz-index { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
 .soz-page > * { max-width: 760px; }
 .soz-crumb { margin: 0 0 12px; font-size: 15px; color: var(--char-soft); }
 .soz-crumb a { color: inherit; }
@@ -836,7 +847,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 }
 
 /* Ism kartasi (/ism/) */
-.ism { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.ism { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
 .ism > * { max-width: 760px; }
 .ism-box { margin-bottom: 16px; }
 .ism-karta { padding: 22px; margin: 0 0 28px; background: var(--dough); border: 2px solid var(--char); border-radius: var(--corner); }
@@ -848,7 +859,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .ism .story-prev img { max-width: 260px; height: auto; }
 
 /* Tez yoziş maşqi (/mashq/) */
-.mashq { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.mashq { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
 .mashq > * { max-width: 820px; }
 .mashq-rejim { margin: 0 0 18px; }
 .mashq-box { padding: 20px; margin: 0 0 20px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); }
@@ -868,7 +879,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .mashq .story-prev img { max-width: 260px; height: auto; }
 
 /* Fayl konvertori (/fayl/) */
-.fayl { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.fayl { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
 .fayl > * { max-width: 820px; }
 .fayl-drop {
   display: grid; gap: 6px; place-items: center; text-align: center; padding: 40px 20px; margin: 0 0 14px; cursor: pointer;
@@ -891,7 +902,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .try-more a { font-weight: 700; }
 
 /* Maqolalar (/maqola/) */
-.maqola { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px; }
+.maqola { max-width: var(--max); margin: 0 auto; padding: 40px var(--gutter) 72px; }
 .maqola > * { max-width: 720px; }
 .maqola > p, .maqola li { font-size: 18px; line-height: 1.6; }
 .maqola-meta { margin: -12px 0 24px; font-size: 15px !important; color: var(--char-soft); }

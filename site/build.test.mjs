@@ -304,3 +304,19 @@ test("Russian name card label is the same in header and footer", () => {
   assert.match(read("ru/partials/header.html"), />Карточка с именем</);
   assert.doesNotMatch(read("ru/partials/header.html"), /Карточка имени/);
 });
+
+const mainOf = (html) => html.match(/<main id="main">([\s\S]*?)<\/main>/)[1];
+const pageHead = (html) => mainOf(html).match(/^\s*<div class="page-head">[\s\S]*?<\/div>/)?.[0];
+
+test("inner pages open with one page head in the band", async () => {
+  const site = await real;
+  for (const slug of ["fayl", "mashq", "ism", "vidjet", "telefon", "qoidalar", "maqola"]) {
+    for (const { prefix } of TILLAR) {
+      const p = `${prefix}${slug}/index.html`;
+      const head = pageHead(site.get(p));
+      assert.ok(head, `${p}: main starts with page-head`);
+      assert.equal(head.match(/<h1 class="page-title/g)?.length, 1, p);
+    }
+  }
+  for (const p of ["index.html", "test/index.html"]) assert.doesNotMatch(site.get(p), /class="page-head"/, p);
+});
