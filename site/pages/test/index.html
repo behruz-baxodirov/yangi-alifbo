@@ -1,0 +1,44 @@
+<!--meta
+{"title": "Yangi alifbo testi: 10 savol · Yozgiç", "description": "Yangi özbek alifbosini qançalik bilasiz? 10 savol, bir daqiqa: harflar, tutuq va istisnolar. Natijani Instagram storyga qöying.", "path": "/test/", "script": "test-sahifa.js", "updated": "2026-10-25"}
+-->
+<section class="test-page">
+  <div class="test-intro" id="test-intro">
+    <p class="test-kicker">Test · 10 savol · 1 daqiqa</p>
+    <h1 class="test-title">Yangi alifboni qançalik bilasiz?</h1>
+    <ul class="test-facts">
+      <li><b>10</b><span>savol: harflar, tutuq va istisnolar</span></li>
+      <li><b>1</b><span>bosişda javob va izoh</span></li>
+      <li><b data-lotin>ö</b><span>natijani storyga qöyasiz</span></li>
+    </ul>
+    <button type="button" class="btn btn-ink btn-big test-start" id="test-start">Testni boşlaş <svg class="test-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4l-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <section class="quiz-sec" id="test" aria-labelledby="test-sarlavha" hidden>
+    <div class="quiz">
+      <div class="quiz-top">
+        <h2 id="test-sarlavha" class="quiz-label">Test</h2>
+        <div class="prog" id="prog" role="img" aria-label="10 dan 1-savol"></div>
+      </div>
+      <div id="quiz-q">
+        <p class="q-n" id="q-n">1 / 10</p>
+        <p class="q" id="q"></p>
+        <div class="opts" id="opts"></div>
+        <p class="why" id="why" hidden></p>
+        <button type="button" class="btn btn-ink quiz-next" id="next" hidden>Keyingi savol</button>
+      </div>
+      <div class="quiz-result" id="result" tabindex="-1" hidden>
+        <p class="score"><span class="score-n" id="score">0</span><span class="score-of">/10</span></p>
+        <p class="grade" id="grade"></p>
+        <div class="result-acts">
+          <button type="button" class="btn btn-ink" id="story">Storyga qöyiş</button>
+          <button type="button" class="btn btn-ghost" id="restart">Qaytadan boşlaş</button>
+        </div>
+        <p class="story-err" id="story-err" hidden>Rasm yasab bölmadi. Qaytadan urinib köring.</p>
+        <figure class="story-prev" id="story-prev" hidden>
+          <img id="story-img" alt="Test natijasi rasmi" width="1080" height="1920">
+          <figcaption>Rasmni bosib turib saqlaşingiz mumkin</figcaption>
+        </figure>
+      </div>
+      <p class="sr-only" id="quiz-live" aria-live="polite"></p>
+    </div>
+  </section>
+</section>

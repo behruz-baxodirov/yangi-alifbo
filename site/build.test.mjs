@@ -238,3 +238,13 @@ test("rules page: three headed sections, table, check and countdown", async () =
   for (const id of ["soz-tekshir", "soz", "soz-natija", "kunlar", "sanoq"]) assert.match(main, new RegExp(`id="${id}"`));
   assert.match(site.get("ru/qoidalar/index.html"), /<h2 id="h-jadval"[^>]*>Что изменилось<\/h2>/);
 });
+
+test("quiz page opens on an intro that names it a test", async () => {
+  const site = await real;
+  for (const { prefix } of TILLAR) assert.ok(site.has(`${prefix}test/index.html`), `${prefix}test`);
+  const main = site.get("test/index.html").match(/<main[\s\S]*<\/main>/)[0];
+  assert.match(main, /id="test-intro"[\s\S]*Test · 10 savol · 1 daqiqa[\s\S]*id="test-start"/);
+  assert.match(main, /<h1 class="test-title">Yangi alifboni qançalik bilasiz\?<\/h1>/);
+  assert.match(main, /<section class="quiz-sec" id="test"[^>]*hidden/);
+  assert.match(site.get("ru/test/index.html"), /<h1 class="test-title">Насколько хорошо вы знаете новый алфавит\?<\/h1>/);
+});

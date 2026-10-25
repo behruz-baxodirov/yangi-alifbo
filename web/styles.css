@@ -142,7 +142,7 @@ kbd {
 }
 
 /* Doto kirill harflarini bilmaydi: kirill va rus sahifalarida sarlavhalar Onest 800 bilan */
-html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .count-n, .count-u) {
+html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .founder-name, .close-big, .quiz-title, .test-title, .count-n, .count-u) {
   font-family: Onest, system-ui, sans-serif; font-weight: 800; letter-spacing: -.015em;
 }
 
@@ -453,6 +453,27 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   .qoida-page { gap: 40px; }
   .qoida-jadval { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .qoida-jadval .rule-notes { padding-top: 0; }
+}
+
+/* /test/: kiriş ekrani; test ekani birinçi qarašda körinadi */
+.test-page { max-width: 720px; margin: 0 auto; padding: 48px var(--gutter) 72px; }
+.test-page .quiz-sec { padding: 0; }
+.test-page .quiz { max-width: none; }
+.test-intro { display: grid; gap: 22px; justify-items: start; padding: 36px; border-radius: var(--corner); background: var(--flour-deep); }
+.test-kicker { margin: 0; padding: 6px 10px; border-radius: var(--corner); background: var(--char); color: var(--flour); font-size: 13px; font-weight: 700; }
+.test-title { margin: 0; font: 900 44px/1.05 Doto, monospace; text-wrap: balance; overflow-wrap: anywhere; }
+.test-facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.test-facts li { padding: 14px; border-radius: var(--corner); background: var(--flour); font-size: 15px; line-height: 1.4; }
+.test-facts b { display: block; margin-bottom: 8px; font: 900 26px/1 Doto, monospace; }
+.test-start { min-height: 56px; font-size: 17px; }
+.test-arrow { width: 16px; height: 16px; }
+.quiz-label { margin: 0; font-size: 14px; font-weight: 700; }
+@media (max-width: 640px) {
+  .test-page { padding-top: 24px; }
+  .test-intro { padding: 22px 18px; }
+  .test-title { font-size: 32px; }
+  .test-facts { grid-template-columns: minmax(0, 1fr); }
+  .test-start { width: 100%; justify-content: center; }
 }
 
 /* Test: flour işçi panel, savollar bittadan, 10 nuqtali progress */

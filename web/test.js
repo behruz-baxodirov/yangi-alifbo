@@ -18,7 +18,7 @@ export function mountTest(section, track = () => {}) {
   prog.innerHTML = "<i></i>".repeat(TOTAL);
   const dots = [...prog.children];
 
-  let index = 0, score = 0, started = false;
+  let index = 0, score = 0;
 
   function showQuestion(focus) {
     const item = QUESTIONS[index];
@@ -42,7 +42,6 @@ export function mountTest(section, track = () => {}) {
   }
 
   function answer(button, keyboard) {
-    if (!started) { started = true; track("test_boshlandi"); }
     const ok = "ok" in button.dataset;
     const right = opts.querySelector("[data-ok]");
     opts.querySelectorAll(".opt").forEach((b) => { b.disabled = true; });
@@ -128,5 +127,6 @@ export function mountTest(section, track = () => {}) {
 
   showQuestion(false);
   section.hidden = false;
-  document.getElementById("test-rule").hidden = false;
+  // Boş sahifadagi eski bölim (2-bosqiçda olib taşlanadi) bölsa, uning ajratgiçini ham oçamiz.
+  document.getElementById("test-rule")?.removeAttribute("hidden");
 }
