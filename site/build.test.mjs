@@ -320,3 +320,18 @@ test("inner pages open with one page head in the band", async () => {
   }
   for (const p of ["index.html", "test/index.html"]) assert.doesNotMatch(site.get(p), /class="page-head"/, p);
 });
+
+const pageHeadFull = (html) => mainOf(html).match(/^\s*<div class="page-head">[\s\S]*?<\/div>\s*<(section|article)/)?.[0];
+
+test("word index, word pages and articles open with the page head", async () => {
+  const site = await real;
+  assert.match(pageHeadFull(site.get("soz/index.html")) ?? "", /id="soz-q"/);
+  const word = pageHeadFull(site.get("soz/shahzod/index.html")) ?? "";
+  assert.match(word, /<a class="page-crumb" href="\/soz\/">/);
+  assert.match(word, /<h1 class="page-title page-title--text">/);
+  const art = pageHeadFull(site.get("maqola/tutuq/index.html")) ?? "";
+  assert.match(art, /<a class="page-crumb" href="\/maqola\/">/);
+  assert.match(art, /page-title page-title--text/);
+  assert.match(art, /class="maqola-meta"/);
+  assert.match(pageHeadFull(site.get("ru/soz/index.html")) ?? "", /<h1 class="page-title">Слова и имена на новом алфавите<\/h1>/);
+});

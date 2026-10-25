@@ -111,9 +111,11 @@ function sozMain(til, w, related) {
   const card = w.tur.startsWith("ism")
     ? `<p><a class="btn btn-ink" href="/ism/?n=${encodeURIComponent(w.yangi)}">${str(til, "card")}</a></p>` : "";
   const near = related.map((x) => `<li><a href="/soz/${x.slug}/">${L(x.eski)} → ${L(x.yangi)}</a></li>`).join("");
-  return `<section class="soz-page">
-  <p class="soz-crumb"><a href="/soz/">${str(til, "crumb")}</a> · <a href="/soz/#harf-${LETTER_ID[initial(w)] ?? initial(w).toLowerCase()}" data-lotin>${initial(w)}</a></p>
-  <h1 class="soz-h1">${str(til, "h1", { eski: head, kir: head, yangi: L(w.yangi) })}</h1>
+  return `<div class="page-head">
+  <p class="page-crumbs"><a class="page-crumb" href="/soz/">← ${str(til, "crumb")}</a> · <a href="/soz/#harf-${LETTER_ID[initial(w)] ?? initial(w).toLowerCase()}" data-lotin>${initial(w)}</a></p>
+  <h1 class="page-title page-title--text">${str(til, "h1", { eski: head, kir: head, yangi: L(w.yangi) })}</h1>
+</div>
+<section class="soz-page">
   <dl class="soz-forms">
     <div><dt>${str(til, "eski")}</dt><dd data-lotin>${esc(w.eski)}</dd></div>
     <div class="soz-hot"><dt>${str(til, "yangi")}</dt><dd data-lotin>${esc(w.yangi)}</dd></div>
@@ -168,14 +170,16 @@ export function sozIndexPages(entries) {
       const left = til === "kr" || til === "ru" ? `<span lang="uz-Cyrl">${esc(w.kir)}</span>` : L(w.eski);
       return `<li><a href="/soz/${w.slug}/">${left} → ${L(w.yangi)}</a></li>`;
     };
-    const main = `<section class="soz-index">
-  <h1 class="sec-title">${str(til, "idxTitle")}</h1>
-  <p class="soz-lede">${str(til, "idxLede", { n: words.length })}</p>
+    const main = `<div class="page-head">
+  <h1 class="page-title">${str(til, "idxTitle")}</h1>
+  <p class="page-lede">${str(til, "idxLede", { n: words.length })}</p>
   <div class="check soz-qidir">
     <label class="check-label" for="soz-q">${str(til, "search")}</label>
     <input class="check-field" id="soz-q" type="search" placeholder="${str(til, "searchPh", { ex: til === "kr" ? "Шаҳзод" : "Shahzod" })}" autocomplete="off" autocapitalize="off" spellcheck="false">
     <div class="soz-natija" id="soz-natija" aria-live="polite"></div>
   </div>
+</div>
+<section class="soz-index">
   <nav class="harflar" aria-label="${str(til, "letters")}" data-lotin>${used.map(([l]) => `<a href="#${id(l)}">${l}</a>`).join("")}</nav>
   ${used.map(([l, list]) => `<section class="harf" id="${id(l)}"><h2 data-lotin>${l}</h2><ul class="soz-list">${list.map(item).join("")}</ul></section>`).join("\n  ")}
 </section>`;
