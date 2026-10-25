@@ -16,7 +16,10 @@ export function plain(fragment) {
 }
 
 export function visibleFaq(source) {
-  return [...source.matchAll(/<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(([, q, a]) => ({
+  // Navigatsiya va örnatiş detailsʼlari savol-javob emas; faqat FAQ bölimi bilan taqqoslaymiz.
+  const section = source.match(/<section\b[^>]*\bid="savollar"[^>]*>([\s\S]*?)<\/section>/);
+  assert.ok(section, "Savollar bölimi yöq");
+  return [...section[1].matchAll(/<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(([, q, a]) => ({
     q: plain(q),
     a: [...a.matchAll(/<p>([\s\S]*?)<\/p>/g)].map(([, p]) => plain(p)).join(" "),
   }));

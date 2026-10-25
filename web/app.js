@@ -14,6 +14,8 @@ const device = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && 
   ? "phone"
   : /Windows/i.test(ua) ? "windows" : "mac";
 document.documentElement.dataset.device = device;
+// Kompyuter yöriqnomasi telefondagi asosiy vazifani berkitmasin; JSʼsiz u oçiq qoladi.
+document.getElementById("install-details").open = device !== "phone";
 
 // Non markazi: çekiç halqalari va sedana (doimiy naqş, tasodifiy emas).
 const center = document.getElementById("non-center");

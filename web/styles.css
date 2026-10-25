@@ -46,21 +46,22 @@ kbd {
 }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip {
-  position: absolute; left: 16px; top: -60px; z-index: 10; padding: 10px 14px;
+  position: absolute; left: 16px; top: 0; translate: 0 -110%; z-index: 10; padding: 10px 14px;
+  max-width: calc(100% - 32px);
   background: var(--char); color: var(--flour); border-radius: var(--corner); font-weight: 700;
 }
-.skip:focus { top: 12px; }
+.skip:focus { top: 12px; translate: 0 0; }
 
 /* Yuqori qator */
 .bar {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
   max-width: var(--max); margin: 0 auto; padding: 18px var(--gutter);
 }
-.logo { display: inline-flex; align-items: center; gap: 10px; font: 900 26px/1 Doto, monospace; text-decoration: none; letter-spacing: .01em; }
+.logo { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; min-width: 0; max-width: 100%; font: 900 26px/1 Doto, monospace; text-decoration: none; letter-spacing: .01em; overflow-wrap: anywhere; }
 .logo-mark { width: 30px; height: 30px; flex: none; }
-.bar nav:not(.tillar) { display: flex; gap: 22px; font-weight: 500; margin-left: auto; }
-.bar nav:not(.tillar) a { text-decoration: none; }
-.bar nav:not(.tillar) a:hover { text-decoration: underline; }
+.bar > nav:not(.tillar) { display: flex; flex-wrap: wrap; gap: 4px 22px; font-weight: 500; margin-left: auto; }
+.bar > nav:not(.tillar) a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.bar > nav:not(.tillar) a:hover { text-decoration: underline; }
 /* Asosçi: menyuda yumaloq qora kapsula, rasm va ism; harakatsiz, sokin */
 .nav-founder {
   display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 4px 18px 4px 4px; margin-left: 8px;
@@ -69,20 +70,20 @@ kbd {
 }
 .nf-photo { flex: none; width: 36px; height: 36px; }
 .nf-photo img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.nf-text { display: grid; gap: 3px; font: 600 14px/1.1 Onest; white-space: nowrap; }
+.nf-text { display: grid; gap: 3px; min-width: 0; font: 600 14px/1.1 Onest; }
 .nf-text small { font: 600 10.5px/1 Onest; letter-spacing: .1em; text-transform: uppercase; color: var(--crust); }
 .nav-founder:hover { background: var(--slab-well); }
 /* Til tanlagiç: 4 versiya (yangi, eski, kirill, rus), joriysi töldirilgan */
 .tillar { display: flex; gap: 4px; margin-left: 12px; }
 .tillar a {
-  display: inline-flex; align-items: center; min-height: 36px; padding: 0 10px;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 10px;
   border: 2px solid var(--char); border-radius: var(--corner); color: var(--char);
   font: 700 13px/1 Onest, system-ui, sans-serif; text-decoration: none; transition: background-color .15s, color .15s;
 }
 .tillar a:hover, .tillar a[aria-current] { background: var(--char); color: var(--flour); }
 .tillar-m { display: none; position: relative; }
 .tillar-m summary {
-  display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 12px; list-style: none; cursor: pointer;
   border: 2px solid var(--char); border-radius: var(--corner); font: 700 14px/1 Onest, system-ui, sans-serif;
 }
 .tillar-m summary::-webkit-details-marker { display: none; }
@@ -99,6 +100,24 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 }
 .nav-founder:focus-visible { outline-color: var(--char); outline-offset: 3px; }
 
+/* Tor ekranda ham barcha vositalarga bitta joydan ötiladi. Native details JSʼsiz ham işlaydi. */
+.site-menu { display: none; min-width: 0; }
+.site-menu > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 44px; padding: 10px 14px; list-style: none; cursor: pointer;
+  border: 2px solid var(--char); border-radius: var(--corner); font: 700 15px/1.3 Onest;
+}
+.site-menu > summary::-webkit-details-marker { display: none; }
+.site-menu > nav {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 8px;
+  padding: 8px; margin-top: 8px; border: 2px solid var(--char); border-radius: var(--corner); background: var(--flour);
+}
+.site-menu nav a { display: flex; align-items: center; min-height: 44px; min-width: 0; padding: 10px 12px; font-size: 15px; line-height: 1.4; text-decoration: none; overflow-wrap: anywhere; }
+.site-menu nav a:hover { background: var(--dough); }
+.site-menu nav a:last-child { grid-column: 1 / -1; }
+.disclosure-mark { width: 15px; height: 15px; flex: none; color: inherit; }
+[open] > summary .disclosure-mark .vertical { display: none; }
+
 /* Birinçi ekran */
 .hero {
   max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 72px;
@@ -111,7 +130,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
     "try  try";
   align-items: start;
 }
-.hero-head { grid-area: head; font: 900 clamp(30px, 2.9vw, 42px)/1.08 Doto, monospace; letter-spacing: -.01em; margin: 20px 0 14px; text-wrap: balance; }
+.hero-head { grid-area: head; min-width: 0; overflow-wrap: anywhere; font: 900 clamp(30px, 2.9vw, 42px)/1.08 Doto, monospace; letter-spacing: -.01em; margin: 20px 0 14px; text-wrap: balance; }
 .hero-lede { grid-area: lede; font-size: 18px; max-width: 46ch; margin: 0 0 22px; color: var(--char-soft); }
 .hero-lede b { color: var(--char); }
 .dl { grid-area: dl; }
@@ -140,6 +159,16 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 
 /* Yuklab oliş paneli */
 .dl { background: var(--char); color: var(--flour); border-radius: var(--corner); max-width: 600px; }
+.install-details { min-width: 0; }
+.install-summary { display: none; }
+[data-device="phone"] .install-summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 52px; padding: 14px 18px; cursor: pointer; list-style: none;
+  font: 700 16px/1.4 Onest; color: var(--flour);
+}
+.install-summary::-webkit-details-marker { display: none; }
+.install-summary:focus-visible { outline-color: var(--crust); outline-offset: -4px; }
+[data-device="phone"] .install-details[open] > .install-summary { background: var(--dot-row-light); background-position: left bottom; }
 .dl a { color: var(--flour); }
 .dl kbd { color: var(--flour); }
 .dl code { color: var(--flour); }
@@ -151,8 +180,8 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 6px; gap: 6px; }
 .tab {
   min-height: 46px; border: 0; border-radius: var(--corner); cursor: pointer;
-  font: 700 16px/1 Onest; color: var(--slab-ink); background: transparent;
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-width: 0; padding: 10px 12px; font: 700 16px/1.3 Onest; color: var(--slab-ink); background: transparent;
+  display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
   transition: background-color .2s var(--ease), color .2s var(--ease);
 }
 .tab:hover { background: var(--slab-well); color: var(--flour); }
@@ -171,8 +200,8 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   width: 30px; height: 30px; display: grid; place-items: center; border-radius: var(--corner);
   background: var(--crust); color: var(--char); font: 900 18px/1 Doto, monospace;
 }
-.step-t { font: 700 17px/1.3 Onest; margin: 4px 0 6px; color: var(--flour); }
-.steps p { margin: 0; color: var(--slab-ink); font-size: 15px; }
+.step-t { font: 700 17px/1.3 Onest; margin: 4px 0 6px; color: var(--flour); overflow-wrap: anywhere; }
+.steps p { margin: 0; color: var(--slab-ink); font-size: 15px; overflow-wrap: anywhere; }
 .steps b { color: var(--flour); }
 .steps .step-hint { margin-top: 8px; font-size: 14px; }
 .sinov { margin: 6px 0 14px; padding: 14px; border-radius: var(--corner); background: var(--slab-well); }
@@ -181,13 +210,13 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   width: 100%; padding: 11px 13px; border: 0; border-radius: var(--corner);
   background: var(--flour); color: var(--char); font: 500 18px/1.3 Onest;
 }
-.sinov-field::placeholder { color: var(--char-soft); opacity: .6; }
+.sinov-field::placeholder { color: var(--char-soft); opacity: .75; }
 .sinov-field:focus-visible { outline: 3px solid var(--crust); outline-offset: 2px; }
 .sinov-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
 .lamps { display: flex; gap: 5px; flex: none; }
 .lamps i {
   width: 30px; height: 30px; display: grid; place-items: center; border-radius: var(--corner);
-  border: 1.5px solid rgb(233 214 180 / .3); color: rgb(233 214 180 / .45);
+  border: 1.5px solid rgb(233 214 180 / .45); color: var(--slab-ink);
   font: 700 17px/1 Onest; font-style: normal;
   transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
 }
@@ -214,9 +243,9 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 
 /* Tugmalar */
 .btn {
-  font: 700 15px/1 Onest; border: 0; border-radius: var(--corner); padding: 0 18px; min-height: 44px; cursor: pointer;
+  font: 700 15px/1.3 Onest; border: 0; border-radius: var(--corner); padding: 10px 18px; min-height: 44px; max-width: 100%; cursor: pointer;
   background: var(--crust); color: var(--char); text-decoration: none;
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-align: center;
   transition: background-color .15s, transform .15s var(--ease);
 }
 .os-icon { width: 18px; height: 18px; flex: none; }
@@ -236,14 +265,15 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   margin-top: 56px; background: var(--flour); color: var(--char); border-radius: var(--corner); padding: 28px;
 }
 .try-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 32px; }
-.try-title { font: 900 32px/1 Doto, monospace; margin: 0; }
+.try-title { font: 900 clamp(26px, 2.3vw, 32px)/1 Doto, monospace; margin: 0; overflow-wrap: anywhere; }
 .try-sub { margin: 0; max-width: 56ch; color: var(--char-soft); font-size: 16px; }
+.try-sub-phone { display: none; margin: 0; color: var(--char-soft); font-size: 14px; line-height: 1.45; }
 .try-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 20px 0 16px; }
 .tools-label { font-size: 14px; font-weight: 700; color: var(--char-soft); }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  min-height: 40px; padding: 0 14px; border: 2px solid var(--char); border-radius: var(--corner); cursor: pointer;
-  background: transparent; color: var(--char); font: 600 15px/1 Onest;
+  min-height: 44px; padding: 10px 14px; border: 2px solid var(--char); border-radius: var(--corner); cursor: pointer;
+  background: transparent; color: var(--char); font: 600 15px/1.3 Onest;
   transition: background-color .15s, color .15s;
 }
 .chip:hover, .chip[aria-pressed="true"] { background: var(--char); color: var(--flour); }
@@ -256,13 +286,13 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .pane-in:focus-within { outline: 3px solid var(--char); outline-offset: 3px; }
 .pane-out { background: var(--dough); }
 .pane-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px;
   padding: 10px 14px; background: var(--dot-row); background-position-x: 0;
 }
 .pane-label { font-weight: 700; font-size: 15px; }
-.pane-bar-end { display: inline-flex; align-items: center; gap: 4px; }
-.pane-bar .link-btn { min-height: 32px; padding: 0 4px 0 8px; font-size: 14px; }
-.tag { font: 600 13px/1 Onest; padding: 5px 8px; border-radius: var(--corner); background: rgb(23 17 13 / .08); color: var(--char); white-space: nowrap; }
+.pane-bar-end { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.pane-bar .link-btn { min-height: 44px; padding: 8px 4px 8px 8px; font-size: 14px; }
+.tag { font: 600 13px/1.3 Onest; max-width: 100%; overflow-wrap: anywhere; padding: 5px 8px; border-radius: var(--corner); background: rgb(23 17 13 / .08); color: var(--char); }
 .tag-hot { background: var(--char); color: var(--flour); }
 .pane textarea {
   flex: 1; width: 100%; min-height: 170px; resize: vertical; border: 0; outline: none; background: transparent;
@@ -284,7 +314,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .pane-arrow svg { width: 30px; height: 22px; }
 
 /* Bölimlar */
-.sec-title { font: 900 clamp(28px, 2.6vw, 36px)/1 Doto, monospace; margin: 0 0 24px; }
+.sec-title { font: 900 clamp(28px, 2.6vw, 36px)/1 Doto, monospace; margin: 0 0 24px; overflow-wrap: anywhere; }
 .rules, .faq { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
 /* Bölimlar orasidagi yirik nuqta çiziq: har bölim alohida blok bölib körinadi. */
 .sec-rule {
@@ -324,7 +354,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .look th { text-align: left; font: 500 13.5px/1.2 Onest; color: var(--slab-ink); padding: 0 18px 10px 0; }
 .look td { padding: 6px 18px 6px 4px; }
 .look td:last-child span { margin-right: 6px; }
-.guide-h { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 14px 0 4px; font: 700 18px/1.3 Onest; color: var(--flour); }
+.guide-h { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 14px 0 4px; font: 700 18px/1.3 Onest; color: var(--flour); overflow-wrap: anywhere; }
 .guide-h .tag-hot { background: var(--crust); color: var(--char); }
 .guide-h2 { margin-top: 26px; padding-top: 22px; background: var(--dot-row-light); }
 .guide .steps { margin-top: 6px; }
@@ -342,7 +372,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 /* Test: flour işçi panel, savollar bittadan, 10 nuqtali progress */
 .quiz-sec { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
 .quiz { max-width: 640px; background: var(--flour); border-radius: var(--corner); padding: 24px 24px 26px; }
-.quiz-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.quiz-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
 .quiz-title { font: 900 32px/1 Doto, monospace; margin: 0; }
 .prog { display: flex; gap: 6px; }
 .prog i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--char); }
@@ -401,7 +431,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .check-field::placeholder { color: var(--char-soft); opacity: .75; }
 .check-field:focus-visible { outline: 3px solid var(--char); outline-offset: 3px; }
 .check-out { margin-top: 12px; background: var(--dough); border: 2px solid var(--char); border-radius: var(--corner); padding: 14px; }
-.check-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.check-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
 .check-word { min-width: 0; font: 700 32px/1.15 Onest; overflow-wrap: anywhere; }
 .check-word mark { background: none; color: var(--clay); text-decoration: underline dotted 3px; text-underline-offset: 6px; }
 .check-top .btn { flex: none; }
@@ -417,7 +447,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .rule-table tr { transition: background-color .25s var(--ease), color .25s var(--ease); }
 
 .rule-table { width: 100%; border-collapse: collapse; font-size: 18px; }
-.rule-table th { text-align: left; font-size: 14px; font-weight: 500; color: var(--char-soft); padding: 0 0 12px; }
+.rule-table th { text-align: left; font-size: 14px; font-weight: 500; color: var(--char-soft); padding: 0 0 12px; overflow-wrap: anywhere; }
 .rule-table tr { background: var(--dot-row); background-position-x: var(--phase, 0px); }
 .rule-table td { padding: 0; height: 72px; vertical-align: middle; }
 .rule-table td:nth-child(1) { font-family: ui-monospace, Menlo, monospace; }
@@ -480,7 +510,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 /* Yakun */
 .close { background: var(--flour); color: var(--char); padding: 56px var(--gutter) 64px; }
 .close > * { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
-.close-big { font: 900 clamp(40px, 6vw, 72px)/1 Doto, monospace; margin-top: 0; margin-bottom: 20px; }
+.close-big { font: 900 clamp(40px, 6vw, 72px)/1 Doto, monospace; margin-top: 0; margin-bottom: 20px; overflow-wrap: anywhere; }
 .close a { color: var(--clay); font-weight: 700; }
 .close-links { margin-top: 0; margin-bottom: 0; }
 .close-alt { margin-top: 32px; font-size: 14px; line-height: 1.5; color: var(--char-soft); }
@@ -491,8 +521,9 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 
 /* Menyu tor oynada sığmaydi: 1140px gaça (kirill va rus sözlari uzunroq) faqat logo, til tanlagiç va asosçi */
 @media (max-width: 1140px) {
-  .bar nav:not(.tillar) { display: none; }
+  .bar > nav:not(.tillar) { display: none; }
   .tillar { margin-left: auto; }
+  .site-menu { display: block; order: 4; flex-basis: 100%; }
 }
 
 /* Planşet va telefon */
@@ -501,7 +532,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   .non { max-width: 380px; }
 }
 @media (max-width: 860px) {
-  .bar nav:not(.tillar) { display: none; }
+  .bar > nav:not(.tillar) { display: none; }
   .tillar { margin-left: auto; }
   .hero {
     grid-template-columns: minmax(0, 1fr);
@@ -511,7 +542,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   [data-device="phone"] .hero { grid-template-areas: "head" "try" "non" "lede" "dl"; }
   [data-device="phone"] .try { margin: 4px 0 28px; }
   [data-device="phone"] .non { max-width: 240px; }
-  .hero-head { font-size: clamp(30px, 8.6vw, 42px); margin-top: 6px; }
+  .hero-head { font-size: clamp(28px, 7.5vw, 36px); margin-top: 6px; }
   .hero-lede { font-size: 17px; margin-top: 18px; }
   .non { max-width: 320px; margin: 28px 0 4px; }
   .dl { max-width: none; }
@@ -520,15 +551,20 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
   .try-title { font-size: 26px; }
   .br-wide { display: none; }
   [data-device="phone"] .try-sub, [data-device="phone"] #count { display: none; }
-  [data-device="phone"] .try-tools { margin: 14px 0 12px; flex-wrap: nowrap; }
+  [data-device="phone"] .try-sub-phone { display: block; }
+  [data-device="phone"] .try { padding: 16px; }
+  [data-device="phone"] .try-tools { margin: 10px 0; flex-wrap: nowrap; }
   [data-device="phone"] .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-right: 28px;
     -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
   [data-device="phone"] .pane-foot-in { display: none; }
-  [data-device="phone"] .pane textarea { height: 96px; }
+  [data-device="phone"] .pane-bar { padding: 6px 12px; }
+  [data-device="phone"] .pane-foot { padding: 6px 8px 6px 12px; min-height: 56px; }
+  [data-device="phone"] .panes { grid-template-rows: auto 20px auto; }
+  [data-device="phone"] .pane textarea { height: 88px; }
   [data-device="phone"] .chip { flex: none; }
-  .panes { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 36px auto; }
+  .panes { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 24px auto; }
   .pane { min-height: 0; }
-  .pane textarea, .out { min-height: 96px; }
+  .pane textarea, .out { min-height: 88px; }
   .pane-arrow svg { rotate: 90deg; }
   .pane-foot .btn { flex: 1; max-width: 200px; }
   .rules { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "count" "check" "table" "notes"; }

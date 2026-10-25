@@ -33,7 +33,7 @@ typography:
     lineHeight: 1
   headline-sm:
     fontFamily: "Doto, monospace"
-    fontSize: "32px"
+    fontSize: "clamp(26px, 2.3vw, 32px)"
     fontWeight: 900
     lineHeight: 1
   numeral:
@@ -71,12 +71,12 @@ typography:
     fontFamily: "Onest, system-ui, sans-serif"
     fontSize: "15px"
     fontWeight: 700
-    lineHeight: 1
+    lineHeight: 1.3
   tag:
     fontFamily: "Onest, system-ui, sans-serif"
     fontSize: "13px"
     fontWeight: 600
-    lineHeight: 1
+    lineHeight: 1.3
   caption:
     fontFamily: "Onest, system-ui, sans-serif"
     fontSize: "14px"
@@ -100,8 +100,7 @@ components:
     textColor: "{colors.char}"
     typography: "{typography.label}"
     rounded: "{rounded.corner}"
-    padding: "0 18px"
-    height: "44px"
+    padding: "10px 18px"
   button-primary-hover:
     backgroundColor: "{colors.crust-hi}"
     textColor: "{colors.char}"
@@ -113,14 +112,12 @@ components:
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
     padding: "0 22px"
-    height: "48px"
   button-ink:
     backgroundColor: "{colors.char}"
     textColor: "{colors.flour}"
     typography: "{typography.label}"
     rounded: "{rounded.corner}"
-    padding: "0 18px"
-    height: "44px"
+    padding: "10px 18px"
   button-ink-hover:
     backgroundColor: "{colors.slab-well}"
     textColor: "{colors.flour}"
@@ -128,13 +125,11 @@ components:
     backgroundColor: "transparent"
     textColor: "{colors.char}"
     padding: "0 10px"
-    height: "44px"
   chip:
     backgroundColor: "transparent"
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
-    padding: "0 14px"
-    height: "40px"
+    padding: "10px 14px"
   chip-pressed:
     backgroundColor: "{colors.char}"
     textColor: "{colors.flour}"
@@ -160,7 +155,7 @@ components:
     backgroundColor: "transparent"
     textColor: "{colors.slab-ink}"
     rounded: "{rounded.corner}"
-    height: "46px"
+    padding: "10px 12px"
   tab-hover:
     backgroundColor: "{colors.slab-well}"
     textColor: "{colors.flour}"
@@ -187,13 +182,11 @@ components:
     backgroundColor: "{colors.flour}"
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
-    height: "260px"
   pane-out:
     backgroundColor: "{colors.dough}"
     textColor: "{colors.char}"
     typography: "{typography.output}"
     rounded: "{rounded.corner}"
-    height: "260px"
   key-cap:
     textColor: "{colors.char}"
     rounded: "{rounded.corner}"
@@ -266,18 +259,18 @@ Both families are self-hosted (OFL) from `web/fonts/`, `font-display: swap`. Dot
 **Character:** A dot-matrix display that looks punched by the çekiç, paired with a plain, open grotesque that reads well on a low-end phone. Doto names things; Onest explains them.
 
 ### Hierarchy
-- **Display** (900, clamp(30px, 2.9vw, 42px), 1.08, balanced wrap): the hero headline. Phone: clamp(30px, 8.6vw, 42px).
+- **Display** (900, clamp(30px, 2.9vw, 42px), 1.08, balanced wrap): the hero headline. At 860px and below: clamp(28px, 7.5vw, 36px).
 - **Display Close** (900, clamp(40px, 6vw, 72px), 1): the closing band's statement in the footer.
 - **Headline** (900, clamp(28px, 2.6vw, 36px), 1): section titles.
-- **Headline Small** (900, 32px, 1; 26px on phone): the converter title.
+- **Headline Small** (900, clamp(26px, 2.3vw, 32px), 1; 26px at 860px and below): the converter title.
 - **Numeral** (900, 18px): Doto step numbers on crust squares.
 - **Logo** (900, 26px, lowercase): the wordmark in the top bar.
 - **Lede** (400, 18px; 17px on phone, max 46ch, char-soft with char bold): the explanation under the headline.
 - **Title** (700, 17px, 1.3): download step titles.
 - **Output** (600, 18px, 1.6): the converter's live result, matched to the input field's size.
 - **Body** (400, 17px, 1.55; paragraphs 60–68ch): everything else. FAQ questions at 700, 19px. Rule table at 18px. Converter field 500 18px/1.6.
-- **Label** (700, 15px, 1): buttons and the non's pair label; 16px on the big button and the download tabs. Chips and link buttons at 600 15px.
-- **Tag** (600, 13px): script and changed-count tags in the pane bars.
+- **Label** (700, 15px): buttons use 1.3 line-height and the non's pair label uses 1; 16px on the big button and the download tabs. Chips use 600 15px/1.3; link buttons use 600 15px/1.
+- **Tag** (600, 13px, 1.3): script and changed-count tags in the pane bars.
 - **Caption** (400–500, 13.5–15px): table headers, slab body (15px), step hints (14px), meta lines and counts (13.5px).
 
 ### Named Rules
@@ -297,11 +290,13 @@ A centred column capped at 1180px with a fluid gutter of clamp(16px, 4vw, 40px).
 
 The hero is a two-column grid (1.12fr : 0.88fr, 56px gap; 32px below 980px): headline, lede and the download slab stack on the left, the non (up to 460px; 380px below 980px) sits centred on the right, and the converter panel spans the full width below, 56px down. The rules section pairs the dot-glyph table with notes (1.1fr : 1fr); the FAQ is a single column capped at 820px.
 
-Breakpoints: at 980px the hero gap and the non tighten; at 860px everything collapses to one column, the nav hides, the non shrinks to 320px, the converter panes stack with the arrow turned downward, and on phones the sample chips become one scrolling row that fades at its right edge; at 420px the command and its copy button stack, buttons go full width, and the output footer wraps.
+Breakpoints: at 1140px and below, the desktop section links give way to a full-width native section menu; at 980px the hero gap and the non tighten; at 860px the hero and rules collapse to one column, the non shrinks to 320px, the converter panes stack with the arrow turned downward, and on phones the sample chips become one scrolling row that fades at its right edge; at 640px the language links become a separate native disclosure; at 420px the command and its copy button stack, command buttons go full width, and the output footer wraps.
+
+The header, desktop links, tabs, converter bars and toolbars allow wrapping so enlarged text can grow vertically. Display headings, help text and rule-table headings use emergency wrapping for long words. Buttons retain minimum targets without fixed heights; their labels may wrap.
 
 The direction contract's first viewport named a ~64px headline and a ~520px non; the build landed at 42px and 460px so the hero leads without crowding the slab. The build is the system.
 
-**The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Desktop: one download slab whose macOS | Windows tab is pre-selected for the device (macOS is the default and the no-JS state). Phone: headline, then the converter, then the non (max 240px), the lede, and the slab last, opening with a share-the-link notice above the tabs. Never show an install command as the first action on a phone.
+**The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Desktop: one download slab whose macOS | Windows tab is pre-selected for the device (macOS is the default and the no-JS state). Phone: headline, then the converter, then the non (max 240px), the lede, and the slab last, with a share-the-link notice above a native computer-install disclosure. The markup leaves installation details open for desktop and without JavaScript; the app closes them on a detected phone, where the summary expands them natively. Never show an install command as the first action on a phone.
 
 **The Çekiç Grid Rule.** The body carries a 12px dot grid (1.4px dots at 15% char). Every dot row on crust (rule-table rows, FAQ items) is painted once per row as a 12px-period strip of 1.6px dots at 55% char along the row's bottom edge, and its phase is shifted in script so the dots land on the body's 12px grid. Rows inside a surface that covers the ground (pane bars on flour and dough, the slab's light rows) keep the 12px period and start at the surface's edge. Never draw dot rows per cell, and never let a row on crust drift off the ground grid.
 
@@ -326,11 +321,12 @@ Short, firm, and flat.
 - **Shape:** gently cornered (3px), minimum 44px tall (48px for the big variant).
 - **Primary:** crust with char label text, on the black slab. Hover steps to crust-hi; active nudges down 1px; focus ring uses crust so it shows on black.
 - **Ink:** char with flour text, on flour (the converter's copy button). Hover steps to slab-well; focus ring in char.
-- **Link button:** underlined char text with no fill, for quiet actions such as Tozalaş in the input bar (32px tall inside a pane bar, 44px elsewhere).
+- **Link button:** underlined char text with no fill, for quiet actions such as Tozalaş in the input bar; minimum 44px tall, including the pane bar (8px 4px 8px 8px padding there).
+- **Text growth:** ordinary buttons use 10px 18px padding and 1.3 line-height; the big variant keeps 0 22px padding and a 48px minimum. Labels may wrap and increase the height.
 - **Copy feedback:** the label swaps to "Nusxa olindi" and the button inverts to char with crust text for 1.8s, or shows a device-specific manual-copy hint if the clipboard is refused.
 
 ### Chips
-- **Style:** transparent with a 2px char stroke, 3px corners, 40px tall, Onest 600 15px; used for the converter's sample texts.
+- **Style:** transparent with a 2px char stroke, 3px corners, minimum 44px tall, 10px 14px padding, Onest 600 15px/1.3; used for the converter's sample texts.
 - **State:** hover and pressed (aria-pressed) fill char with flour text. On phones they scroll as a single row.
 
 ### Tags
@@ -338,21 +334,28 @@ Short, firm, and flat.
 - **Hot tag:** char fill with flour text; carries the live changed-letter count.
 - **Beta tag:** 11px uppercase with a 1.5px currentColor stroke, inside the Windows tab only; it marks release status and is not a general label style.
 
+### Navigation
+The top bar wraps with enlarged text. The logo and desktop section links have minimum 44px targets.
+- **Responsive menu:** at 1140px and below, a full-width native disclosure replaces the desktop section links. Its two-column flour list has 44px minimum targets for all seven destinations: converter, file converter, typing practice, words, name card, articles and widget. The final link spans both columns. The dot-built plus becomes a minus when open.
+- **Keyboard:** native summary activation works without JavaScript. Shared page script adds Escape to close and return focus to the summary, and closes the menu after choosing a link. Language selection stays separate.
+
 ### Download Slab
 The black plate that holds the one action for this device.
 - **Style:** char background, max 600px (full width on phone), 3px corners, panel padding 8px 22px 20px (6px 16px 18px on phone).
-- **Tabs:** an ARIA tablist (macOS | Windows), two equal 46px tabs in a 6px inset; unselected slab-ink, hover slab-well, selected crust with char text. Arrow keys, Home and End move between tabs.
+- **Tabs:** an ARIA tablist (macOS | Windows), two equal tabs with a 46px minimum height, 10px 12px padding and wrapping labels in a 6px inset; unselected slab-ink, hover slab-well, selected crust with char text. Arrow keys, Home and End move between tabs.
 - **Steps:** an ordered list of three, each a 30px crust square with a Doto numeral beside a 17px step title, 15px slab-ink body and an optional 14px hint; steps are separated by light dot rows.
 - **Command well:** the install line in a slab-well field, monospace 14px, wrapping anywhere, with the copy button beside it.
 - **Meta line:** 13.5px slab-ink requirements and links under a light dot row.
-- **Phone notice:** a share-the-link paragraph and button above the tabs, closed by a light dot row; shown only on phones.
+- **Phone notice:** a share-the-link paragraph and button with a direct phone-guide link, closed by a light dot row; shown only on phones.
+- **Install disclosure:** open in markup and on desktop; the app closes it on phones. Its native phone summary has a 52px minimum height and 14px 18px padding. Without JavaScript the installation text remains visible; expanding the disclosure does not change the command text or copy target.
+- **Keyboard check:** the test-field placeholder is char-soft at .75 opacity. Inactive letter lamps use full slab-ink text with a 1.5px slab-ink border at .45 opacity; active lamps use crust with char text.
 
 ### Converter
-- **Panel:** flour, 28px padding (18px on phone), 3px corners; Headline Small title with a char-soft subline, then a sample-chip row.
-- **Panes:** input on flour, output on dough, each with a 2px char stroke and a 260px minimum height, joined by a dot-built arrow (turned down when stacked). The input pane's focus ring wraps the whole pane.
-- **Pane bar:** label at 700 15px, a tag at the end, a dot-row bottom edge.
+- **Panel:** flour, 28px padding (18px at 860px and below, 16px on detected phones in that range), 3px corners; Headline Small title with a char-soft subline, then a sample-chip row. Phones show a short 14px/1.45 explanation that conversion runs in the browser, and the footer links directly to the phone guide.
+- **Panes:** input on flour, output on dough, each with a 2px char stroke and a 260px minimum height on desktop, joined by a dot-built arrow (turned down when stacked). At 860px and below, the pane minimum resets to zero and the text areas/output use an 88px minimum; detected phones set the textarea height to 88px. The stacked arrow row is 24px, or 20px on a detected phone. The input pane's focus ring wraps the whole pane.
+- **Pane bar:** label at 700 15px, a tag at the end, a dot-row bottom edge; controls wrap and the clear action keeps a 44px minimum target. Padding is 10px 14px, reduced to 6px 12px on detected phones at 860px and below.
 - **Output:** Output type; changed letters in clay at 700 with a 2px dotted underline; an empty pane reads "Natija şu yerda çiqadi" in char-soft.
-- **Footer:** a character count under the input; under the output, a tutuq checkbox switch (20px box, 44px hit area, char accent) and the ink copy button.
+- **Footer:** a character count under the input; under the output, a tutuq checkbox switch (20px box, 44px hit area, char accent) and the ink copy button. Phone output footers use 6px 8px 6px 12px padding and a 56px minimum height; the input footer is hidden there.
 
 ### Key Caps
 Inline keys drawn with a 1.5px currentColor stroke, 3px corners, Onest 500; they inherit flour on the slab and char on crust.
@@ -400,7 +403,7 @@ A flour panel (max 640px): Doto title, ten 10px progress dots (char = right, cla
 Canvas 1080×1920, drawn in the browser: crust ground with a 36px dot grid, the logo, "Yangi alifbo testi" in Doto, the non (rim bands, two pip rings) with the score stamped in Doto (scaled to fit the dough), "töğri javob" in Onest 700, and the domain in Onest 800. Never set the domain in Doto: its full stop draws as a plus.
 
 ### Language Switcher (Til tanlagiç)
-Four 36px chips with a 2px char stroke in the top bar, Onest 700 13px: "Yangi · Eski · Кирилл · Рус", each in its own script (the nav carries `data-lotin`); the current version is filled char with flour text (`aria-current="page"`). At 640px and below it collapses to a `<details>` chip showing the current name; the list opens as a flour panel with a 2px char stroke. Links go to the same page in the other version and keep the `#hash`. The footer repeats the four versions as a text line. Under 420px the bar gap drops to 10px and the founder chip keeps only photo and "Asosçi".
+Four chips with a 44px minimum height and 8px 10px padding, with a 2px char stroke in the top bar, Onest 700 13px: "Yangi · Eski · Кирилл · Рус", each in its own script (the nav carries `data-lotin`); the current version is filled char with flour text (`aria-current="page"`). At 640px and below it collapses to a separate `<details>` chip showing the current name, with a 44px minimum summary and 8px 12px padding; the list opens as a flour panel with a 2px char stroke. Links go to the same page in the other version and keep the `#hash`. The footer repeats the four versions as a text line. Under 420px the bar gap drops to 10px and the founder chip keeps only photo and "Asosçi".
 
 ### Word Page (Söz sahifa)
 Breadcrumb, an Onest 800 heading ("{old} yangi alifboda: {new}", Cyrillic lead word on /kr/ and /ru/), three form cards (old Latin, new Latin on dough, Cyrillic) with a 2px char stroke, the rules that fired, a name-card button for names, and related words as flour chips. The /soz/ index has a search field, square 40px letter chips and the word chips grouped by letter.
