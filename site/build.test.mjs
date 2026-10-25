@@ -335,3 +335,16 @@ test("word index, word pages and articles open with the page head", async () => 
   assert.match(art, /class="maqola-meta"/);
   assert.match(pageHeadFull(site.get("ru/soz/index.html")) ?? "", /<h1 class="page-title">Слова и имена на новом алфавите<\/h1>/);
 });
+
+test("file page: main column with the drop zone, side card with the Word notes", async () => {
+  const site = await real;
+  for (const p of ["fayl/index.html", "ru/fayl/index.html"]) {
+    const m = mainOf(site.get(p));
+    const main = m.match(/<div class="fayl-main">[\s\S]*?<\/ul>/)?.[0] ?? "";
+    for (const id of ["fayl-drop", "fayl-tutuq", "fayl-list"]) assert.match(main, new RegExp(`id="${id}"`), `${p} ${id}`);
+    const side = m.match(/<aside class="fayl-side">[\s\S]*?<\/aside>/)?.[0] ?? "";
+    assert.match(side, /<h2/, p);
+    assert.match(side, /href="\/(ru\/)?#konverter"/, p);
+    assert.equal(m.match(/class="fayl-fmt"/g)?.length, 6, p);
+  }
+});

@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#cf8a33">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23cf8a33'/%3E%3Cg fill='%2317110d'%3E%3Ccircle cx='12' cy='7' r='2'/%3E%3Ccircle cx='20' cy='7' r='2'/%3E%3Ccircle cx='12' cy='13' r='2'/%3E%3Ccircle cx='16' cy='13' r='2'/%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='9' cy='17.5' r='2'/%3E%3Ccircle cx='23' cy='17.5' r='2'/%3E%3Ccircle cx='9' cy='22' r='2'/%3E%3Ccircle cx='23' cy='22' r='2'/%3E%3Ccircle cx='12' cy='26' r='2'/%3E%3Ccircle cx='16' cy='26' r='2'/%3E%3Ccircle cx='20' cy='26' r='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="/fonts/fonts.css?v=10">
-<link rel="stylesheet" href="/styles.css?v=42">
+<link rel="stylesheet" href="/styles.css?v=43">
 
 <script>
 // Statistika: Yandex Metrika va Google Analytics faqat yozgich.uz'da yuklanadi.
@@ -104,20 +104,33 @@
   <p class="page-lede">Word hujjat, subtitr yoki matn faylini taşlang: u brauzeringiz içida yangi alifboga ögiriladi. Fayl heç qayerga yuborilmaydi.</p>
 </div>
 <section class="fayl">
-  <label class="fayl-drop" id="fayl-drop" for="fayl-in">
-    <span class="fayl-drop-t">Faylni şu yerga taşlang</span>
-    <span class="fayl-drop-s">yoki bosib tanlang · <span data-lotin>.docx .txt .md .csv .srt .vtt</span> · 20 MB gaça</span>
-    <input id="fayl-in" class="sr-only" type="file" multiple accept=".txt,.md,.csv,.srt,.vtt,.docx">
-  </label>
-  <label class="switch fayl-switch">
+<div class="fayl-grid">
+  <div class="fayl-main">
+    <label class="fayl-drop" id="fayl-drop" for="fayl-in">
+      <svg class="fayl-ico" viewBox="0 0 44 52" aria-hidden="true"><path d="M4 3h24l12 12v34H4z" fill="#fbf6ec" stroke="#17110d" stroke-width="2.5" stroke-linejoin="round"/><path d="M28 3v12h12" fill="none" stroke="#17110d" stroke-width="2.5" stroke-linejoin="round"/><g fill="#cf8a33"><circle cx="16" cy="30" r="3"/><circle cx="28" cy="30" r="3"/><circle cx="22" cy="40" r="3"/></g></svg>
+      <span class="fayl-drop-t">Faylni şu yerga taşlang</span>
+      <span class="fayl-drop-s">yoki bosib tanlang · 20 MB gaça</span>
+      <span class="fayl-fmts"><span class="fayl-fmt" data-lotin>.docx</span><span class="fayl-fmt" data-lotin>.txt</span><span class="fayl-fmt" data-lotin>.md</span><span class="fayl-fmt" data-lotin>.csv</span><span class="fayl-fmt" data-lotin>.srt</span><span class="fayl-fmt" data-lotin>.vtt</span></span>
+      <input id="fayl-in" class="sr-only" type="file" multiple accept=".txt,.md,.csv,.srt,.vtt,.docx">
+    </label>
+    <label class="switch fayl-switch">
     <input type="checkbox" id="fayl-tutuq" checked>
     <span>Tutuq belgisi <b data-lotin>ʼ</b></span>
   </label>
-  <ul class="fayl-list" id="fayl-list" aria-live="polite"></ul>
-  <h2 class="soz-h2">Word hujjat bilan nima böladi</h2>
-  <p class="fayl-p">Hujjat qaytadan yiğilmaydi, faqat matn özgaradi: uslublar, jadvallar, rasmlar, sarlavha va kolontitullar joyida qoladi. <span data-lotin>o</span> va <span data-lotin>'</span> boşqa-boşqa formatlangan bölsa ham <b data-lotin>ö</b> böladi.</p>
-  <p class="fayl-p">Subtitrlarda raqamlar va vaqt belgilari tegilmaydi. <span data-lotin>.doc</span>, <span data-lotin>.pdf</span> va <span data-lotin>.xlsx</span> qöllanmaydi: ularni Wordda <span data-lotin>.docx</span> yoki oddiy matn sifatida saqlab, qayta taşlang.</p>
-  <p class="soz-cta">Qisqa matn uçun: <a href="/#konverter">konverter</a></p>
+    <ul class="fayl-list" id="fayl-list" aria-live="polite"></ul>
+  </div>
+  <aside class="fayl-side">
+    <div class="fayl-note">
+      <h2>Word hujjat bilan nima böladi</h2>
+      <ul>
+      <li>Hujjat qaytadan yiğilmaydi, faqat matn özgaradi: uslublar, jadvallar, rasmlar, sarlavha va kolontitullar joyida qoladi. <span data-lotin>o</span> va <span data-lotin>'</span> boşqa-boşqa formatlangan bölsa ham <b data-lotin>ö</b> böladi.</li>
+      <li>Subtitrlarda raqamlar va vaqt belgilari tegilmaydi.</li>
+      <li><span data-lotin>.doc</span>, <span data-lotin>.pdf</span> va <span data-lotin>.xlsx</span> qöllanmaydi: ularni Wordda <span data-lotin>.docx</span> yoki oddiy matn sifatida saqlab, qayta taşlang.</li>
+      </ul>
+    </div>
+    <a class="fayl-short" href="/#konverter"><span class="fayl-short-b" aria-hidden="true" data-lotin>ö</span><span class="fayl-short-t"><b>Qisqa matnmi?</b><span>Konverterga joylang, şu zahoti ögiriladi</span></span><span aria-hidden="true">→</span></a>
+  </aside>
+</div>
 </section>
 </main>
 
@@ -163,6 +176,6 @@
 </footer>
 
 
-<script type="module" src="/fayl.js?v=42"></script>
+<script type="module" src="/fayl.js?v=43"></script>
 </body>
 </html>
