@@ -1,0 +1,57 @@
+<!--meta
+{"title": "Правила нового узбекского алфавита: ö ğ ş ç и тутук · Yozgiç", "description": "Что изменилось в новом узбекском алфавите: o' → ö, g' → ğ, sh → ş, ch → ç, sʼh и знак тутук. Проверьте слово и узнайте, сколько дней до вступления закона в силу.", "path": "/qoidalar/", "script": "qoidalar.js", "updated": "2026-10-25"}
+-->
+<section class="qoida-page">
+  <div class="qoida-head">
+    <h1 class="sec-title">Правила</h1>
+    <p class="soz-lede">Четыре буквы получили новые знаки, знак тутук стал определённым. Всё в одной таблице.</p>
+  </div>
+
+  <section class="qoida-sec qoida-jadval" aria-labelledby="h-jadval">
+    <div>
+      <h2 id="h-jadval" class="qoida-h">Что изменилось</h2>
+      <table class="rule-table">
+      <caption class="sr-only">Старое письмо и новый алфавит</caption>
+      <thead><tr><th scope="col">Набираете</th><th scope="col">Получается</th><th scope="col">Пример</th></tr></thead>
+      <tbody>
+        <tr data-rule="o"><td data-lotin>o'</td><td data-lotin><b data-lotin>ö</b></td><td data-lotin>o'zbek → özbek</td></tr>
+        <tr data-rule="g"><td data-lotin>g'</td><td data-lotin><b data-lotin>ğ</b></td><td data-lotin>tog' → toğ</td></tr>
+        <tr data-rule="sh"><td data-lotin>sh</td><td data-lotin><b data-lotin>ş</b></td><td data-lotin>shahar → şahar</td></tr>
+        <tr data-rule="ch"><td data-lotin>ch</td><td data-lotin><b data-lotin>ç</b></td><td data-lotin>choy → çoy</td></tr>
+        <tr data-rule="sh2"><td data-lotin>s'h</td><td data-lotin><b data-lotin>sʼh</b></td><td data-lotin>Is'hoq → Isʼhoq</td></tr>
+        <tr data-rule="tutuq"><td data-lotin>ma'no</td><td data-lotin><b data-lotin>maʼno</b></td><td>тутук ʼ</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="rule-notes">
+      <p><b>«<span data-lotin>sh</span>» — не всегда <span data-lotin>ş</span>.</b> В словах вроде <span data-lotin>Isʼhoq, asʼhob, musʼhaf</span> s и h читаются раздельно. Пишите их, как сейчас, с тутуком: <code>s'h</code>. Получится <b data-lotin>sʼh</b>.</p>
+      <p><b><span data-lotin>ng</span> не меняется:</b> <span data-lotin>tong, keng</span> пишутся как раньше.</p>
+      <p>Правила основаны на Законе ЎРҚ-1184 (21.10.2026, вступает в силу 22.04.2027). Официальные правила орфографии ещё не опубликованы; это не государственный проект.</p>
+    </div>
+  </section>
+
+  <section class="qoida-sec qoida-soz" aria-labelledby="h-soz">
+    <h2 id="h-soz" class="qoida-h">Проверьте слово</h2>
+    <div class="check" id="soz-tekshir" hidden>
+      <label class="check-label" for="soz">Напишите слово старой латиницей или кириллицей и посмотрите, какое правило сработает</label>
+      <input class="check-field" id="soz" type="text" placeholder="Например: Is'hoq" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="check-out" id="soz-natija" aria-live="polite" hidden>
+        <div class="check-top">
+          <div class="check-word" id="soz-word" data-lotin></div>
+          <button type="button" class="btn btn-ink" data-copy="soz-word">Копировать</button>
+        </div>
+        <ul class="check-why" id="soz-why"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="qoida-sec" aria-labelledby="h-qonun">
+    <h2 id="h-qonun" class="qoida-h">До вступления закона в силу</h2>
+    <div class="count" id="sanoq" hidden>
+      <p class="count-head"><span class="count-n" id="kun">181</span> <span class="count-u">дн.</span></p>
+      <p class="count-t" id="sanoq-matn">осталось до вступления в силу Закона <b>ЎРҚ-1184</b> (22.04.2027). Каждая точка — один день.</p>
+      <div class="days" id="kunlar" aria-hidden="true"></div>
+      <div class="days-cap" aria-hidden="true"><span>21.10.2026 подписан</span><span>22.04.2027</span></div>
+    </div>
+  </section>
+</section>

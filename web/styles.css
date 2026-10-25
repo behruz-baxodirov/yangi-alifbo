@@ -439,6 +439,22 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .tel-page .guide-warn { padding: 16px 18px; border-radius: var(--corner); background: var(--char); }
 @media (max-width: 640px) { .usul-body { padding: 4px 16px 16px; } }
 
+/* /qoidalar/: uçta alohida bölim, har birining öz sarlavhasi */
+.qoida-page { max-width: var(--max); margin: 0 auto; padding: 32px var(--gutter) 72px; display: grid; gap: 56px; }
+.qoida-head { display: grid; gap: 12px; }
+.qoida-head .sec-title, .qoida-head .soz-lede { margin: 0; }
+.qoida-h { margin: 0 0 14px; font: 800 20px/1.25 Onest, system-ui, sans-serif; }
+.qoida-jadval { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.qoida-jadval .rule-notes { display: grid; gap: 12px; padding-top: 38px; }
+.qoida-jadval .rule-notes p { margin: 0; padding: 16px 18px; border-radius: var(--corner); background: var(--flour-deep); }
+.qoida-jadval .rule-notes p:last-child { padding: 0; background: none; font-size: 13px; color: var(--char-soft); }
+.qoida-soz .check { margin: 0; }
+@media (max-width: 860px) {
+  .qoida-page { gap: 40px; }
+  .qoida-jadval { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .qoida-jadval .rule-notes { padding-top: 0; }
+}
+
 /* Test: flour işçi panel, savollar bittadan, 10 nuqtali progress */
 .quiz-sec { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 72px; }
 .quiz { max-width: 640px; background: var(--flour-deep); border-radius: var(--corner); padding: 24px 24px 26px; }

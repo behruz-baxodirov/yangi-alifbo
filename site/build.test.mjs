@@ -228,3 +228,13 @@ test("phone page: two tabs, three closed methods each, every version", async () 
   assert.match(site.get("kr/telefon/index.html"), /<h1[^>]*>Телефонда ёзиш<\/h1>/);
   assert.match(site.get("ru/telefon/index.html"), /<h1[^>]*>Как писать на телефоне<\/h1>/);
 });
+
+test("rules page: three headed sections, table, check and countdown", async () => {
+  const site = await real;
+  for (const { prefix } of TILLAR) assert.ok(site.has(`${prefix}qoidalar/index.html`), `${prefix}qoidalar`);
+  const main = site.get("qoidalar/index.html").match(/<main[\s\S]*<\/main>/)[0];
+  assert.deepEqual([...main.matchAll(/<h2 id="([^"]+)"/g)].map((m) => m[1]), ["h-jadval", "h-soz", "h-qonun"]);
+  assert.equal(main.match(/<tr data-rule=/g)?.length, 6);
+  for (const id of ["soz-tekshir", "soz", "soz-natija", "kunlar", "sanoq"]) assert.match(main, new RegExp(`id="${id}"`));
+  assert.match(site.get("ru/qoidalar/index.html"), /<h2 id="h-jadval"[^>]*>Что изменилось<\/h2>/);
+});
