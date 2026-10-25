@@ -203,3 +203,16 @@ test("kr switcher keeps names, converts labels", async () => {
   assert.match(h, /<small>o' g' sh ch<\/small>/);
   assert.match(h, /Сайт ёзуви: /);
 });
+
+const footer = (html) => html.match(/<footer class="close">[\s\S]*?<\/footer>/)[0];
+
+test("real footer: four columns, founder, versions, old-script text", async () => {
+  const site = await real;
+  const f = footer(site.get("index.html"));
+  assert.match(f, /class="close-cols"/);
+  assert.match(f, /<a class="close-founder" href="\/#asoschi">[\s\S]*?<img src="\/img\/asoschi\.webp"/);
+  for (const til of ["yangi", "eski", "kr", "ru"]) assert.match(f, new RegExp(`class="close-tillar"[\\s\\S]*data-til="${til}"`));
+  assert.match(f, /https:\/\/taps\.uz\/baxodirov_ai\/d/);
+  assert.match(f, /class="close-alt"/);
+  assert.match(footer(site.get("ru/index.html")), /Бесплатно,<br>для всех/);
+});

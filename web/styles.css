@@ -545,17 +545,34 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .socials b { color: var(--flour); font-size: 15px; }
 .founder a:focus-visible { outline-color: var(--crust); }
 
-/* Yakun */
-.close { background: var(--flour); color: var(--char); padding: 56px var(--gutter) 64px; }
+/* Yakun: qora blok, tört ustun, hammasi bir çegaradan boşlanadi */
+.close { background: var(--char); color: var(--slab-ink); padding: 0 var(--gutter); }
 .close > * { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
-.close-big { font: 900 clamp(40px, 6vw, 72px)/1 Doto, monospace; margin-top: 0; margin-bottom: 20px; overflow-wrap: anywhere; }
-.close a { color: var(--clay); font-weight: 700; }
-.close-links { margin-top: 0; margin-bottom: 0; }
-.close-alt { margin-top: 32px; font-size: 14px; line-height: 1.5; color: var(--char-soft); }
+.close a { color: var(--flour); text-decoration: none; }
+.close a:hover { text-decoration: underline; }
+.close :focus-visible { outline-color: var(--crust); }
+.close-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 40px; padding: 64px 0 40px; }
+.close-lead { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.close-big { font: 900 56px/1 Doto, monospace; color: var(--flour); margin: 0; overflow-wrap: anywhere; }
+.close-donate { margin: 0; max-width: 36ch; font-size: 15px; line-height: 1.55; }
+.close a.close-cta { background: var(--crust); color: var(--char); min-height: 48px; text-decoration: none; }
+.close a.close-cta:hover { background: var(--crust-hi); }
+.close-col { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; font-size: 15px; }
+.close-h { margin: 0 0 4px; font-size: 13px; font-weight: 700; color: var(--slab-ink); }
+.close-founder { display: flex; align-items: center; gap: 12px; }
+.close-founder img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
+.close-founder span { display: grid; gap: 2px; }
+.close-founder b { font-size: 15px; }
+.close-founder small { font-size: 13px; color: var(--slab-ink); }
+.close-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 18px 0; border-top: 1px solid rgb(233 214 180 / .2); font-size: 13px; }
+.close-base p { margin: 0; }
+.close-alt { padding: 0 0 28px; font-size: 13px; line-height: 1.5; color: rgb(233 214 180 / .7); }
 .close-alt p { margin: 0 0 6px; }
-.donate { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-bottom: 28px; }
-.donate p { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.45; }
-.close a.btn { color: var(--flour); margin-top: 0; }
+@media (max-width: 860px) {
+  .close-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; padding: 40px 0 28px; }
+  .close-lead, .close-col:last-child { grid-column: 1 / -1; }
+  .close-big { font-size: 40px; }
+}
 
 /* Menyu tor oynada sığmaydi: 1140px gaça (kirill va rus sözlari uzunroq) faqat logo, til tanlagiç va asosçi */
 
@@ -737,6 +754,3 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .vidjet-demo { padding: 18px 20px; margin: 0 0 8px; background: var(--flour); border: 2px solid var(--char); border-radius: var(--corner); }
 .vidjet-demo p { margin: 0; }
 .vidjet-kod { margin: 0 0 12px; padding: 14px 16px; overflow-x: auto; background: var(--slab-well); color: var(--slab-ink); border-radius: var(--corner); font-size: 14px; line-height: 1.5; }
-.close-nav { margin: 24px 0 8px; font-size: 16px; line-height: 1.8; }
-.close-nav a { font-weight: 600; }
-.close-tillar { margin: 0; font-size: 15px; }
