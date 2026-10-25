@@ -24,3 +24,16 @@ test("the first key of a pair shows on screen before the merge", () => {
   const steps = wordSteps(WORDS[1]);
   assert.deepEqual(steps.slice(0, 2), [{ type: "press", i: 0 }, { type: "screen", text: "c", mark: -1 }]);
 });
+
+test("a pause blocks stage stamps until it runs out, and a longer pause wins", async () => {
+  const { createPause } = await import("./sahna.js");
+  const p = createPause();
+  assert.equal(p.active(1000), false);
+  p.pause(6000, 1000);
+  assert.equal(p.active(1001), true);
+  assert.equal(p.active(6999), true);
+  assert.equal(p.active(7000), false);
+  p.pause(6000, 2000);
+  p.pause(1000, 3000);
+  assert.equal(p.active(7500), true);
+});

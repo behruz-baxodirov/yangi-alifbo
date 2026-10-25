@@ -30,13 +30,24 @@ export function wordSteps({ k, at, to }) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Konverterda yozilgan harf nonda tursin: pauza davomida sahna nonga tegmaydi. Uzunroq pauza ustun.
+export function createPause() {
+  let until = 0;
+  return {
+    pause: (ms, now = Date.now()) => { until = Math.max(until, now + ms); },
+    active: (now = Date.now()) => now < until,
+  };
+}
+
 // Sahnani aylantiradi. onPair(to, stamped): juftlik xira köringanda (false) va birlaşganda (true) — non şu harfni tamğalaydi.
 // pause(ms): konverterda yozilgan harf nonda tursin deb aylaniş vaqtinça töxtaydi.
 export function mountSahna(root, { onPair = () => {}, reduce = false } = {}) {
-  let pausedUntil = 0;
-  const api = { pause: (ms) => { pausedUntil = Date.now() + ms; } };
-  if (reduce) return api; // markupdagi yakuniy holat qoladi
+  const gate = createPause();
   const keys = root.querySelector("#keys"), typed = root.querySelector("#typed");
+  // Pauza: so'z yarmida bölsa ham nonga tamğalaş töxtaydi, tugmalar qatori körinib turadi.
+  const api = { pause: (ms) => { gate.pause(ms); keys.classList.remove("fade"); } };
+  if (reduce) return api; // markupdagi yakuniy holat qoladi
+  const stamp = (to, stamped) => { if (!gate.active()) onPair(to, stamped); };
   const shifts = [...root.querySelectorAll(".shift kbd")];
   const render = (text, mark) => {
     typed.replaceChildren();
@@ -49,7 +60,7 @@ export function mountSahna(root, { onPair = () => {}, reduce = false } = {}) {
     });
   };
   async function idle() {
-    while (document.hidden || Date.now() < pausedUntil) await sleep(400);
+    while (document.hidden || gate.active()) await sleep(400);
   }
   async function play(word) {
     keys.classList.remove("fade");
@@ -67,13 +78,13 @@ export function mountSahna(root, { onPair = () => {}, reduce = false } = {}) {
         await sleep(200);
       } else if (step.type === "old") {
         typed.replaceChildren(step.before, Object.assign(document.createElement("span"), { className: "old", textContent: step.text }));
-        onPair(word.to, false);
+        stamp(word.to, false);
         await sleep(320);
       } else if (step.type === "merge") {
         caps[step.i].textContent = step.to;
         caps[step.i].classList.add("merged");
         caps[step.i + 1].classList.add("gone");
-        onPair(step.to, true);
+        stamp(step.to, true);
       }
     }
     await sleep(1500);

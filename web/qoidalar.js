@@ -27,7 +27,10 @@ const track = (name, params) => window.track?.(name, params);
     if (!tracked) { track("soz_tekshirildi"); tracked = true; }
   };
   field.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(show, 150); });
-  document.getElementById("soz-tekshir").hidden = false;
+  const block = document.getElementById("soz-tekshir");
+  block.hidden = false;
+  // Blok yaşirin turganda brauzer #soz-tekshir ga aylantira olmaydi: oçilgandan keyin özimiz olib boramiz.
+  if (location.hash === "#soz-tekshir") block.scrollIntoView();
 }
 
 // Sanoq: qonun kuçga kirişiga qolgan kunlar va har kun uçun nuqta.

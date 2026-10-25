@@ -74,15 +74,16 @@ function showPair([from, to], stamped) {
   pairLabel.textContent = `${from.toLowerCase()} → ${to.toLowerCase()}`;
 }
 
+let lastStamped = "";
 // Sahna: tugmalar bosiladi, juftlik birlaşgan payt non şu harfni tamğalaydi (sahna.js).
 showPair(PAIR_OF["ö"], true);
 const sahna = mountSahna(document.querySelector(".stage"), {
-  onPair: (to, stamped) => showPair(PAIR_OF[to], stamped),
+  // Sahna tamğalagan harfdan keyin konverterdagi xuddi şu harf ham qayta tamğalansin.
+  onPair: (to, stamped) => { lastStamped = ""; showPair(PAIR_OF[to], stamped); },
   reduce: reduceMotion,
 });
 
 // Bosilgan oxirgi yangi harf nonga qayta tamğalanadi.
-let lastStamped = "";
 function restamp(text) {
   const letters = text.toLowerCase().match(/[öğşç]/g);
   const last = letters ? letters[letters.length - 1] : "";
