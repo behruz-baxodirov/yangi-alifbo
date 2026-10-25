@@ -281,15 +281,6 @@ share?.addEventListener("click", async () => {
   document.getElementById("sanoq").hidden = false;
 }
 
-// Nuqta çiziqlarini sahifaning 12px çekiç töriga tekislaymiz.
-function alignDotRows() {
-  document.querySelectorAll(".rule-table, .faq, .sec-rule").forEach((el) => {
-    const left = el.getBoundingClientRect().left + scrollX;
-    el.style.setProperty("--phase", `${(12 - (left % 12)) % 12}px`);
-  });
-}
-addEventListener("resize", alignDotRows);
-alignDotRows();
 
 // Statistika: nimani bosişdi, qaysi bölimgaça yetib borişdi (index.html'dagi track).
 const track = (name, params) => window.track?.(name, params);
