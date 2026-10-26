@@ -39,11 +39,8 @@ P0 ötsa — yanada yaxşi, lekin şart emas.
 | 1.2 | Tugmani bosing | `YangiAlifbo-windows-beta.exe` (~1,3 MB) yuklanadi. Brauzer ogohlantirsa — «Keep» / «Saqlab qoliş» |
 | 1.3 | Windows Defender yoki antivirus faylni öçirdimi, karantinga oldimi? | Yöq. **Öçirsa — P0 xato**: antivirus nomi va xabar matnini ekran rasmi bilan yozing |
 | 1.4 | Faylni işga tuşiring | SmartScreen «Windows protected your PC» çiqadi → **More info → Run anyway**. Boşqa oyna oçilmaydi |
-| 1.5 | Soat yonidagi tray ikonkalariga qarang (`^` strelka içida bölişi mumkin) | Yaşil «H» ikonka paydo böldi. Siçqonçani ustiga olib borsangiz: «Yangi alifbo — yoqilgan» |
+| 1.5 | Soat yonidagi tray ikonkalariga qarang (`^` strelka içida bölişi mumkin) | Non qobiği rangidagi «ö» ikonka paydo böldi (16 px da ham tiniq). Siçqonçani ustiga olib borsangiz: «Yangi alifbo — yoqilgan». Exe faylning öz ikonkasi ham «ö» |
 | 1.6 | Faylni yana bir marta işga tuşiring | Ikkinçi ikonka paydo bölmaydi (eski nusxa almaşadi) |
-
-> 1.5 dagi «H» — AutoHotkeyʼning standart ikonkasi, bizniki emas. Bu
-> xato emas, lekin foydalanuvçi tanimasligi mumkin: alohida qayd qiling.
 
 ## 2. Saytdagi sinov maydoni — P0
 
@@ -77,7 +74,7 @@ Notepadʼda körinadi.
 | # | Amal | Kutiladigan natija |
 |---|---|---|
 | 4.1 | Tray ikonkasini öng tugma bilan bosing | Menyu: «Yoqilgan (Ctrl+Alt+Space)» ✓, «Tutuq belgisi ʼ» ✓, «Çiqiş» |
-| 4.2 | «Yoqilgan» ni bosing, Notepadʼda `shahar o'zbek` | Matn özgarmaydi; ikonka ustida «öçirilgan» |
+| 4.2 | «Yoqilgan» ni bosing, Notepadʼda `shahar o'zbek` | Matn özgarmaydi; ikonka kulrang «A» ga almaşadi, ustida «öçirilgan» |
 | 4.3 | Ikonkani **çap** tugma bilan ikki marta bosing | Yana yoqiladi; `shahar` → `şahar` |
 | 4.4 | Notepadʼda `c` yozing, öçiring-yoqing (`Ctrl + Alt + Space` ikki marta), söng `h` | `ch` — eski harf bilan birikmaydi |
 | 4.5 | «Tutuq belgisi ʼ» ni öçiring, `ma'no o'zbek` | `ma'no özbek` (tutuq özgarmaydi, `ö` baribir çiqadi) |
@@ -131,7 +128,7 @@ Söng 5.1 (`c b ⌫ h`) ni takrorlang.
 |---|---|---|
 | 8.1 | `Win + R` → `shell:startup` → oçilgan papkaga exeʼning yorliğini qöying (exe ni sudrab, `Alt` bosib turib taşlang) | Papkada yorliq paydo böldi |
 | 8.2 | Kompyuterni qayta yoqing | Tray ikonkasi özi paydo böladi, `shahar` → `şahar` |
-| 8.3 | Qayta yoqişdan oldin tutuqni öçirib qöygan bölsangiz | **Hozirgi kod sozlamani saqlamaydi**: tutuq va yoqilgan holat yana yoqiq bölib qoladi. Kutilgan holat, lekin qayd qiling |
+| 8.3 | Qayta yoqişdan oldin tutuqni va klaviaturani öçirib qöying | Qayta yoqilgandan keyin ikkalasi ham öçiq qoladi (ikonka kulrang «A»). Söng ikkalasini yana yoqing |
 | 8.4 | Uyqu rejimidan (`Sleep`) çiqing | Ikonka joyida, ögiriş işlaydi |
 
 ## 9. Maʼlum çeklovlar — faqat qayd qiling
@@ -146,9 +143,10 @@ Söng 5.1 (`c b ⌫ h`) ni takrorlang.
 
 ## 10. Olib taşlaş
 
-«Çiqiş» → `shell:startup` dagi yorliqni öçiring → exe faylni öçiring.
-Kompyuterda boşqa iz qolmaydi (dastur registrga yoki boşqa papkaga
-yozmaydi). Qayta yoqib, ikonka yöqligini tekşiring.
+«Çiqiş» → `shell:startup` dagi yorliqni öçiring → exe faylni öçiring →
+`Win + R` → `%APPDATA%\YangiAlifbo` papkasini öçiring (unda faqat
+`sozlamalar.ini` bor). Dastur registrga yozmaydi. Qayta yoqib, ikonka
+yöqligini tekşiring.
 
 ## Natija jadvali
 

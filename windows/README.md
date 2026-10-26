@@ -30,6 +30,10 @@ Strelka, Enter, Tab, Ctrl+Backspace yoki siçqonça bosilsa, dastur kursor qayer
 - **Ctrl + Alt + Space**
 - yoki tray'dagi ikonkani bosib "Yoqilgan" bandini tanlang.
 
+Ikonka yoqilganda non qobiği rangidagi «ö», öçiqda kulrang «A». Yoqilgan/öçiq holat va «Tutuq belgisi ʼ» `%APPDATA%\YangiAlifbo\sozlamalar.ini` faylida saqlanadi, kompyuter qayta yoqilganda ham özgarmaydi.
+
+Ikonkalarni qayta yasaş (macOS'da): `swift windows/scripts/make-icons.swift windows/icons`.
+
 ## Örnatiş
 
 1. GitHub Releases'dan `YangiAlifbo.exe` ni yuklab oling.

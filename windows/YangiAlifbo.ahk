@@ -3,9 +3,13 @@
 ; Yoqiş/öçiriş: Ctrl + Alt + Space yoki tray ikonkasi.
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+;@Ahk2Exe-SetMainIcon icons\yoqilgan.ico
+;@Ahk2Exe-AddResource icons\ochiq.ico, 300
 
-global Enabled := true
-global Tutuq := true
+; Yoqilgan/öçiq holat va tutuq dastur qayta işga tuşganda ham saqlanadi.
+SETTINGS := A_AppData "\YangiAlifbo\sozlamalar.ini"
+global Enabled := IniRead(SETTINGS, "Sozlamalar", "Yoqilgan", "1") == "1"
+global Tutuq := IniRead(SETTINGS, "Sozlamalar", "Tutuq", "1") == "1"
 global Recent := ""          ; hujjatdagi oxirgi ikki belgi, biz bilgan qadar ("" — nomalum)
 
 APOS := "'``‘’ʻʼ´"
@@ -96,6 +100,7 @@ ToggleEnabled(*) {
     global
     Enabled := !Enabled
     ResetState()
+    SaveSettings()
     UpdateTray()
     TrayTip Enabled ? "Yangi alifbo yoqildi" : "Yangi alifbo öçirildi", "Yangi alifbo", "Mute"
 }
@@ -103,7 +108,17 @@ ToggleEnabled(*) {
 ToggleTutuq(*) {
     global
     Tutuq := !Tutuq
+    SaveSettings()
     UpdateTray()
+}
+
+SaveSettings() {
+    global
+    try {
+        DirCreate A_AppData "\YangiAlifbo"
+        IniWrite Enabled ? 1 : 0, SETTINGS, "Sozlamalar", "Yoqilgan"
+        IniWrite Tutuq ? 1 : 0, SETTINGS, "Sozlamalar", "Tutuq"
+    }
 }
 
 SetupTray() {
@@ -127,4 +142,9 @@ UpdateTray() {
     else
         A_TrayMenu.Uncheck("Tutuq belgisi ʼ")
     A_IconTip := "Yangi alifbo — " (Enabled ? "yoqilgan" : "öçirilgan")
+    ; Exe içida: 159 — asosiy ikonka (yoqilgan), 300 — öçiq.
+    if A_IsCompiled
+        TraySetIcon A_ScriptFullPath, Enabled ? -159 : -300
+    else
+        TraySetIcon A_ScriptDir "\icons\" (Enabled ? "yoqilgan" : "ochiq") ".ico"
 }

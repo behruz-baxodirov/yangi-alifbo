@@ -1,5 +1,5 @@
 ; CI sozlamalar testi: yoqilgan/öçiq holat va tutuq dastur qayta işga tuşganda saqlanadi,
-; exe içida o'z ikonkalarimiz (yoqilgan — 159, öçiq — 160, har biri 8 ölçam) bor.
+; exe içida o'z ikonkalarimiz (yoqilgan — 159, öçiq — 300) bor: rasmlar hajmi .ico fayllar bilan bir xil.
 ; Işlatiş: AutoHotkey64.exe settings.ahk <YangiAlifbo.exe yöli>
 #Requires AutoHotkey v2.0
 SendMode "Event"
@@ -20,12 +20,27 @@ Expect(label, got, want) {
     FileAppend ((got == want) ? "ok   " : "FAIL ") label " -> " got " (kutilgan " want ")`n", "*", "UTF-8"
 }
 
-IconCount(id) {
+; Exe içidagi ikonka guruhidagi har rasm hajmi, "16:1234 20:..." şaklida.
+GroupSizes(id) {
     lib := DllCall("LoadLibraryEx", "str", exe, "ptr", 0, "uint", 2, "ptr")   ; LOAD_LIBRARY_AS_DATAFILE
     res := DllCall("FindResource", "ptr", lib, "ptr", id, "ptr", 14, "ptr")   ; RT_GROUP_ICON
-    n := res ? NumGet(DllCall("LockResource", "ptr", DllCall("LoadResource", "ptr", lib, "ptr", res, "ptr"), "ptr"), 4, "ushort") : 0
+    out := ""
+    if res {
+        p := DllCall("LockResource", "ptr", DllCall("LoadResource", "ptr", lib, "ptr", res, "ptr"), "ptr")
+        Loop NumGet(p, 4, "ushort")
+            out .= NumGet(p, 6 + 14 * (A_Index - 1), "uchar") ":" NumGet(p, 6 + 14 * (A_Index - 1) + 8, "uint") " "
+    }
     DllCall("FreeLibrary", "ptr", lib)
-    return n
+    return out
+}
+
+; Xuddi şu ma'lumot .ico faylidan (yozuv 16 bayt, hajmi +8 da).
+FileSizes(path) {
+    buf := FileRead(path, "RAW")
+    out := ""
+    Loop NumGet(buf, 4, "ushort")
+        out .= NumGet(buf, 6 + 16 * (A_Index - 1), "uchar") ":" NumGet(buf, 6 + 16 * (A_Index - 1) + 8, "uint") " "
+    return out
 }
 
 Restart() {
@@ -50,8 +65,9 @@ Typed(text) {
     return A_Clipboard
 }
 
-Expect("ikonka 159 (yoqilgan)", IconCount(159), 8)
-Expect("ikonka 160 (öçiq)", IconCount(160), 8)
+Expect("ikonka 159 (yoqilgan)", GroupSizes(159), FileSizes(A_ScriptDir "\..\icons\yoqilgan.ico"))
+Expect("ikonka 300 (öçiq)", GroupSizes(300), FileSizes(A_ScriptDir "\..\icons\ochiq.ico"))
+DirCreate A_AppData "\YangiAlifbo"
 
 Run "notepad.exe"
 WinWaitActive "ahk_exe notepad.exe", , 10
