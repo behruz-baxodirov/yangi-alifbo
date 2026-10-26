@@ -1,6 +1,6 @@
 # Yangi alifbo — Windows (beta)
 
-> Beta: bu versiya hali haqiqiy Windows kompyuterda qöl bilan sinalmagan. Faqat GitHub Actions'dagi avtomatik test (Notepad'ga yozib tekşiradi) bor.
+> Beta: bu versiya hali haqiqiy Windows kompyuterda qöl bilan sinalmagan. Faqat GitHub Actions'dagi avtomatik test (Notepad'ga yozib tekşiradi) bor. Qöl bilan sinaş rejasi: [docs/windows-qolda-sinash.md](../docs/windows-qolda-sinash.md).
 
 ## Qanday işlaydi
 
