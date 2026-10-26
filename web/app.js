@@ -14,6 +14,10 @@ const device = DEVICE;
 document.documentElement.dataset.device = device;
 // Kompyuter yöriqnomasi telefondagi asosiy vazifani berkitmasin; JSʼsiz u oçiq qoladi.
 document.getElementById("install-details").open = device !== "phone";
+// Hero tugmasi qurilmaga mos: Windows yoki telefon (kompyuterga örnatiş bölimiga olib boradi).
+const heroDl = document.getElementById("hero-dl");
+if (device === "windows") heroDl.textContent = t("Windows uçun yuklab oliş");
+else if (device === "phone") heroDl.textContent = t("Kompyuterga örnatiş");
 
 // Non markazi: çekiç halqalari va sedana (doimiy naqş, tasodifiy emas).
 const center = document.getElementById("non-center");
@@ -213,8 +217,10 @@ const SINOV = {
     ? t("Harflar ögirilmadi. Menyu-barda {o} turibdimi? Yoqiş: {shift} ni ikki marta bosing. 3-qadamdagi ruxsatni ham tekşiring.", { o: "<b data-lotin>ö</b>", shift: "<kbd>⇧ Shift</kbd>" })
     : t("Harflar ögirilmadi. Soat yonida ikonka bormi? Yoqiş: {keys}.", { keys: "<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>" }),
 };
+// Sinab köring: bitta maydon, xabarlar qurilmaga qarab (Windowsʼda Ctrl+Alt+Space, qolganida Mac).
 document.querySelectorAll(".sinov").forEach((box) => {
-  const os = box.dataset.os;
+  const os = device === "windows" ? "win" : "mac";
+  box.dataset.os = os;
   const field = box.querySelector(".sinov-field");
   const lamps = [...box.querySelectorAll(".lamps i")];
   const status = box.querySelector(".sinov-status");

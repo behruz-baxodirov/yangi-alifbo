@@ -392,3 +392,23 @@ test("small stage 4 copy fixes: widget step titles, tutuq cell, practice-days fo
   assert.doesNotMatch(mainOf(site.get("kr/qoidalar/index.html")), /белгиси ъ/);
   assert.match(mainOf(site.get("mashq/index.html")), /<span class="sr-only" id="mashq-kunlar-sr"><\/span>/);
 });
+
+test("home: hero has two buttons, then converter, how-it-works, install with a separate try-it card, race", async () => {
+  const site = await real;
+  for (const pre of ["", "ru/"]) {
+    const main = mainOf(site.get(`${pre}index.html`));
+    const hero = main.match(/<section class="hero"[\s\S]*?<section class="try"/)?.[0] ?? "";
+    assert.match(hero, /<div class="hero-cta"><a class="btn btn-ink btn-big" id="hero-dl" href="#yuklab-olish">/, pre);
+    assert.match(hero, /href="#qanday"/, pre);
+    assert.doesNotMatch(hero, /id="yuklab-olish"/, pre);
+    const qanday = main.match(/<section class="qanday" id="qanday"[\s\S]*?<\/section>/)?.[0] ?? "";
+    assert.equal(qanday.match(/<li class="qanday-step">/g)?.length, 3, pre);
+    const slab = main.match(/<section class="dl" id="yuklab-olish"[\s\S]*?<\/section>/)?.[0] ?? "";
+    assert.ok(slab, pre);
+    assert.doesNotMatch(slab, /class="sinov/, pre);
+    const card = main.match(/<div class="sinov-card"[\s\S]*?<\/div>\s*<\/div>/)?.[0] ?? "";
+    assert.equal(card.match(/class="sinov-field"/g)?.length, 1, pre);
+    const at = (id) => main.indexOf(`id="${id}"`);
+    assert.ok(at("konverter") < at("qanday") && at("qanday") < at("yuklab-olish") && at("yuklab-olish") < at("vaqt") && at("vaqt") < at("yana"), `${pre} order`);
+  }
+});

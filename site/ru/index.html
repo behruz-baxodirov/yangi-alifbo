@@ -101,110 +101,7 @@
       <p class="shift">Включить и выключить: <kbd>⇧</kbd><kbd>⇧</kbd> дважды</p>
     </div>
 
-    <section class="dl" id="yuklab-olish" aria-labelledby="dl-title">
-      <h2 id="dl-title" class="sr-only">Скачать и установить</h2>
-
-      <div class="dl-phone">
-        <p><b>Клавиатура — для компьютера.</b> Сохраните ссылку и откройте её на Mac или Windows. На телефоне пользуйтесь конвертером выше или <a href="/telefon/">инструкцией для телефона</a>.</p>
-        <button type="button" class="btn" id="share">Поделиться ссылкой</button>
-      </div>
-
-      <details class="install-details" id="install-details" open>
-        <summary class="install-summary"><span>Установка на компьютер</span><svg class="disclosure-mark" viewBox="0 0 15 15" aria-hidden="true"><g fill="currentColor"><circle cx="2.5" cy="7.5" r="1.6"/><circle cx="7.5" cy="7.5" r="1.6"/><circle cx="12.5" cy="7.5" r="1.6"/><g class="vertical"><circle cx="7.5" cy="2.5" r="1.6"/><circle cx="7.5" cy="12.5" r="1.6"/></g></g></svg></summary>
-      <div class="tabs" role="tablist" aria-label="Ваш компьютер">
-        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">
-          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          macOS
-        </button>
-        <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">
-          <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
-          Windows <span class="beta">beta</span>
-        </button>
-      </div>
-
-      <div class="panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" tabindex="0">
-        <ol class="steps">
-          <li>
-            <span class="step-n" aria-hidden="true">1</span>
-            <div>
-              <h3 class="step-t">Скопируйте команду</h3>
-              <div class="cmd">
-                <code id="cmd">curl -fsSL https://yozgich.uz/install.sh | bash</code>
-                <button type="button" class="btn" data-copy="cmd">Копировать</button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <span class="step-n" aria-hidden="true">2</span>
-            <div>
-              <h3 class="step-t">Вставьте в Терминал</h3>
-              <p>Нажмите <kbd>⌘</kbd> + <kbd>Space</kbd>, введите «Terminal» и нажмите <kbd>Enter</kbd>. В открывшемся окне — <kbd>⌘</kbd> + <kbd>V</kbd>, затем <kbd>Enter</kbd>.</p>
-              <p class="step-hint">Программа сама скачается и запустится. Пароль не нужен.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-n" aria-hidden="true">3</span>
-            <div>
-              <h3 class="step-t">Дайте разрешение</h3>
-              <p>macOS спросит: <b>Open System Settings</b> → Accessibility → включите <b data-lotin>Yangi alifbo</b> (это программа Yozgiç). Готово: в строке меню появится <b data-lotin>ö</b>.</p>
-              <p class="step-hint">Пишите как обычно в любой программе — буква заменится сама. Включить и выключить: дважды нажмите <kbd>⇧ Shift</kbd>.</p>
-            </div>
-          </li>
-        </ol>
-        <div class="sinov" data-os="mac">
-          <label class="sinov-label" for="sinov-mac">Работает? Попробуйте набрать здесь</label>
-          <input class="sinov-field" id="sinov-mac" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
-          <div class="sinov-row">
-            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
-            <p class="sinov-status" aria-live="polite">Если Yozgiç включён, <b data-lotin>o'</b> само превратится в <b data-lotin>ö</b>.</p>
-          </div>
-        </div>
-        <p class="dl-thanks">Если Yozgiç пригодился, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">поддержите проект</a>.</p>
-        <p class="dl-meta">macOS 12 и новее · Apple Silicon и Intel · <a href="#mac-ochirish">Удаление</a></p>
-      </div>
-
-      <div class="panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" tabindex="0" hidden>
-        <ol class="steps">
-          <li>
-            <span class="step-n" aria-hidden="true">1</span>
-            <div>
-              <h3 class="step-t">Скачайте файл</h3>
-              <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe" download>
-                <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
-                Скачать для Windows
-              </a>
-              <p class="step-hint">YangiAlifbo-windows-beta.exe · 1,3 МБ. Если браузер предупредит, выберите «Keep» («Сохранить»).</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-n" aria-hidden="true">2</span>
-            <div>
-              <h3 class="step-t">Откройте файл</h3>
-              <p>Если появится синее окно (<span lang="en">«Windows protected your PC»</span>), нажмите <b>Подробнее</b> → <b>Выполнить в любом случае</b> (в английской Windows: <b>More info</b> → <b>Run anyway</b>).</p>
-              <p class="step-hint">Программа бесплатная, поэтому у неё нет платной подписи. Это не значит, что она опасна.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-n" aria-hidden="true">3</span>
-            <div>
-              <h3 class="step-t">Попробуйте</h3>
-              <p>Рядом с часами появится значок. Включить и выключить: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
-            </div>
-          </li>
-        </ol>
-        <div class="sinov" data-os="win">
-          <label class="sinov-label" for="sinov-win">Работает? Попробуйте набрать здесь</label>
-          <input class="sinov-field" id="sinov-win" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
-          <div class="sinov-row">
-            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
-            <p class="sinov-status" aria-live="polite">Если Yozgiç включён, <b data-lotin>o'</b> само превратится в <b data-lotin>ö</b>.</p>
-          </div>
-        </div>
-        <p class="dl-thanks">Если Yozgiç пригодился, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">поддержите проект</a>.</p>
-        <p class="dl-meta">64-битная Windows · Бета: автотест в Блокноте пройден · <a href="#windows">Удаление</a> · <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">Сообщить об ошибке</a></p>
-      </div>
-      </details>
-    </section>
+    <div class="hero-cta"><a class="btn btn-ink btn-big" id="hero-dl" href="#yuklab-olish">Скачать для macOS</a><a class="btn btn-line btn-big" href="#qanday">Как это работает</a></div>
 
     <section class="try" id="konverter" aria-labelledby="try-title">
       <div class="try-head">
@@ -259,6 +156,118 @@
       <p class="try-more"><a href="/fayl/">Перевести файл Word или субтитры</a> · <a href="/soz/">Список слов</a> · <a href="/telefon/">Как писать на телефоне</a></p>
     </section>
   </section>
+
+  <section class="qanday" id="qanday" aria-labelledby="qanday-sarlavha">
+    <h2 id="qanday-sarlavha" class="sec-title">Как это работает</h2>
+    <ol class="qanday-list">
+      <li class="qanday-step"><span class="step-n" aria-hidden="true">1</span><h3>Установите</h3><p>На Mac одна команда в Терминале, на Windows один файл. Минута.</p></li>
+      <li class="qanday-step"><span class="step-n" aria-hidden="true">2</span><h3>Пишите как привыкли</h3><p><b data-lotin>o'</b> → <b data-lotin>ö</b>, <b data-lotin>sh</b> → <b data-lotin>ş</b>, <b data-lotin>ch</b> → <b data-lotin>ç</b>. Новые клавиши учить не нужно.</p></li>
+      <li class="qanday-step"><span class="step-n" aria-hidden="true">3</span><h3>Включение и выключение</h3><p>На Mac дважды нажмите <kbd>⇧ Shift</kbd>, на Windows <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p></li>
+    </ol>
+  </section>
+
+  <div class="ornat">
+  <section class="dl" id="yuklab-olish" aria-labelledby="dl-title">
+    <h2 id="dl-title" class="sr-only">Скачать и установить</h2>
+
+    <div class="dl-phone">
+      <p><b>Клавиатура — для компьютера.</b> Сохраните ссылку и откройте её на Mac или Windows. На телефоне пользуйтесь конвертером выше или <a href="/telefon/">инструкцией для телефона</a>.</p>
+      <button type="button" class="btn" id="share">Поделиться ссылкой</button>
+    </div>
+
+    <details class="install-details" id="install-details" open>
+      <summary class="install-summary"><span>Установка на компьютер</span><svg class="disclosure-mark" viewBox="0 0 15 15" aria-hidden="true"><g fill="currentColor"><circle cx="2.5" cy="7.5" r="1.6"/><circle cx="7.5" cy="7.5" r="1.6"/><circle cx="12.5" cy="7.5" r="1.6"/><g class="vertical"><circle cx="7.5" cy="2.5" r="1.6"/><circle cx="7.5" cy="12.5" r="1.6"/></g></g></svg></summary>
+    <div class="tabs" role="tablist" aria-label="Ваш компьютер">
+      <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="true">
+        <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        macOS
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">
+        <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+        Windows <span class="beta">beta</span>
+      </button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" tabindex="0">
+      <ol class="steps">
+        <li>
+          <span class="step-n" aria-hidden="true">1</span>
+          <div>
+            <h3 class="step-t">Скопируйте команду</h3>
+            <div class="cmd">
+              <code id="cmd">curl -fsSL https://yozgich.uz/install.sh | bash</code>
+              <button type="button" class="btn" data-copy="cmd">Копировать</button>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">2</span>
+          <div>
+            <h3 class="step-t">Вставьте в Терминал</h3>
+            <p>Нажмите <kbd>⌘</kbd> + <kbd>Space</kbd>, введите «Terminal» и нажмите <kbd>Enter</kbd>. В открывшемся окне — <kbd>⌘</kbd> + <kbd>V</kbd>, затем <kbd>Enter</kbd>.</p>
+            <p class="step-hint">Программа сама скачается и запустится. Пароль не нужен.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">3</span>
+          <div>
+            <h3 class="step-t">Дайте разрешение</h3>
+            <p>macOS спросит: <b>Open System Settings</b> → Accessibility → включите <b data-lotin>Yangi alifbo</b> (это программа Yozgiç). Готово: в строке меню появится <b data-lotin>ö</b>.</p>
+            <p class="step-hint">Пишите как обычно в любой программе — буква заменится сама. Включить и выключить: дважды нажмите <kbd>⇧ Shift</kbd>.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="dl-thanks">Если Yozgiç пригодился, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">поддержите проект</a>.</p>
+      <p class="dl-meta">macOS 12 и новее · Apple Silicon и Intel · <a href="#mac-ochirish">Удаление</a></p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" tabindex="0" hidden>
+      <ol class="steps">
+        <li>
+          <span class="step-n" aria-hidden="true">1</span>
+          <div>
+            <h3 class="step-t">Скачайте файл</h3>
+            <a class="btn btn-big" href="https://github.com/behruz-baxodirov/yangi-alifbo/releases/latest/download/YangiAlifbo-windows-beta.exe" download>
+              <svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 1h10.4v10.4H1zM12.6 1H23v10.4H12.6zM1 12.6h10.4V23H1zM12.6 12.6H23V23H12.6z"/></svg>
+              Скачать для Windows
+            </a>
+            <p class="step-hint">YangiAlifbo-windows-beta.exe · 1,3 МБ. Если браузер предупредит, выберите «Keep» («Сохранить»).</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">2</span>
+          <div>
+            <h3 class="step-t">Откройте файл</h3>
+            <p>Если появится синее окно (<span lang="en">«Windows protected your PC»</span>), нажмите <b>Подробнее</b> → <b>Выполнить в любом случае</b> (в английской Windows: <b>More info</b> → <b>Run anyway</b>).</p>
+            <p class="step-hint">Программа бесплатная, поэтому у неё нет платной подписи. Это не значит, что она опасна.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">3</span>
+          <div>
+            <h3 class="step-t">Попробуйте</h3>
+            <p>Рядом с часами появится значок. Включить и выключить: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="dl-thanks">Если Yozgiç пригодился, <a href="https://taps.uz/baxodirov_ai/d" target="_blank" rel="noopener">поддержите проект</a>.</p>
+      <p class="dl-meta">64-битная Windows · Бета: автотест в Блокноте пройден · <a href="#windows">Удаление</a> · <a href="https://github.com/behruz-baxodirov/yangi-alifbo/issues">Сообщить об ошибке</a></p>
+    </div>
+    </details>
+  </section>
+    <div class="sinov-card">
+      <h2 class="sinov-card-h">Проверьте</h2>
+      <p class="sinov-card-p">После установки напишите здесь как обычно: новые буквы загорятся.</p>
+      <div class="sinov" data-os="mac">
+        <label class="sinov-label" for="sinov">Работает? Попробуйте набрать здесь</label>
+        <input class="sinov-field" id="sinov" type="text" placeholder="o'g'il, shahar, choy, ma'no" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lotin>
+        <div class="sinov-row">
+            <span class="lamps" aria-hidden="true" data-lotin><i>ö</i><i>ğ</i><i>ş</i><i>ç</i><i>ʼ</i></span>
+            <p class="sinov-status" aria-live="polite">Если Yozgiç включён, <b data-lotin>o'</b> само превратится в <b data-lotin>ö</b>.</p>
+          </div>
+      </div>
+    </div>
+  </div>
 
   <section class="vaqt" id="vaqt" aria-labelledby="vaqt-sarlavha">
     <h2 id="vaqt-sarlavha" class="vaqt-title">Вручную 6 секунд, с Yozgiç мгновенно</h2>

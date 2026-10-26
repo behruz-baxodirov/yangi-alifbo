@@ -290,7 +290,7 @@ Both families are self-hosted (OFL) from `web/fonts/`, `font-display: swap`. Dot
 
 A centred column capped at 1180px with a fluid gutter of clamp(16px, 4vw, 40px). Sections breathe on a 72px bottom rhythm (48px on phone); two-column groups use a 48px column gap.
 
-The hero is a two-column grid (1.12fr : 0.88fr, 56px gap; 32px below 980px): headline, lede and the download slab stack on the left, the non (up to 460px; 380px below 980px) sits centred on the right, and the converter panel spans the full width below, 56px down. The rules section pairs the dot-glyph table with notes (1.1fr : 1fr); the FAQ is a single column capped at 820px.
+The hero is a two-column grid (1.12fr : 0.88fr, 56px gap; 32px below 980px): headline, lede and two buttons («macOS uçun yuklab oliş», which jumps to the install section and reads «Windows uçun yuklab oliş» on Windows and «Kompyuterga örnatiş» on phones, and «Qanday işlaydi») sit vertically centred on the left; the hero stage (screen line, non, keycaps) sits on the right; the converter spans the full width below on flour. After the hero come «Qanday işlaydi» (three step cards), the install section (the download slab beside a separate char «Sinab köring» card with the test field), the time race, the link cards, the FAQ and the founder.
 
 Breakpoints: at 1140px and below, the desktop section links give way to a full-width native section menu; at 980px the hero gap and the non tighten; at 860px the hero and rules collapse to one column, the non shrinks to 320px, the converter panes stack with the arrow turned downward, and on phones the sample chips become one scrolling row that fades at its right edge; at 640px the language links become a separate native disclosure; at 420px the command and its copy button stack, command buttons go full width, and the output footer wraps.
 
@@ -298,7 +298,7 @@ The header, desktop links, tabs, converter bars and toolbars allow wrapping so e
 
 The direction contract's first viewport named a ~64px headline and a ~520px non; the build landed at 42px and 460px so the hero leads without crowding the slab. The build is the system.
 
-**The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Desktop: one download slab whose macOS | Windows tab is pre-selected for the device (macOS is the default and the no-JS state). Phone: headline, then the converter, then the non (max 240px), the lede, and the slab last, with a share-the-link notice above a native computer-install disclosure. The markup leaves installation details open for desktop and without JavaScript; the app closes them on a detected phone, where the summary expands them natively. Never show an install command as the first action on a phone.
+**The Device Order Rule.** The first screen is ordered by device, set on `<html data-device>` from the user agent. Desktop: the hero buttons lead to the install section, whose macOS | Windows tab is pre-selected for the device (macOS is the default and the no-JS state). Phone: headline, then the converter, then the stage, the lede and the buttons; in the install section a share-the-link notice sits above a native computer-install disclosure that the app closes on phones. Never show an install command as the first action on a phone.
 
 **The Dot Row Rule.** Every dot row (rule-table rows, FAQ items, section rules) is painted once per row as a 12px-period strip starting at its element's edge. Never draw dot rows per cell.
 
