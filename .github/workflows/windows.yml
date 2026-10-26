@@ -48,6 +48,15 @@ jobs:
           Get-Content speed.log -Encoding UTF8
           if ($p.ExitCode -ne 0) { throw "fast typing test failed" }
 
+      - name: Settings and icons test
+        shell: pwsh
+        run: |
+          $ahk = "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
+          $exe = (Resolve-Path dist\YangiAlifbo.exe).Path
+          $p = Start-Process -Wait -PassThru -FilePath $ahk -ArgumentList "/ErrorStdOut", "windows\test\settings.ahk", "`"$exe`"" -RedirectStandardOutput settings.log
+          Get-Content settings.log -Encoding UTF8
+          if ($p.ExitCode -ne 0) { throw "settings test failed" }
+
       - uses: actions/upload-artifact@v4
         with:
           name: YangiAlifbo-windows-beta
