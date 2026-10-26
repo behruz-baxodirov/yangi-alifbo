@@ -15,9 +15,20 @@ document.documentElement.dataset.device = device;
 // Kompyuter yöriqnomasi telefondagi asosiy vazifani berkitmasin; JSʼsiz u oçiq qoladi.
 document.getElementById("install-details").open = device !== "phone";
 // Hero tugmasi qurilmaga mos: Windows yoki telefon (kompyuterga örnatiş bölimiga olib boradi).
-const heroDl = document.getElementById("hero-dl");
-if (device === "windows") heroDl.textContent = t("Windows uçun yuklab oliş");
-else if (device === "phone") heroDl.textContent = t("Kompyuterga örnatiş");
+// Hero: ikki tugma, öz kompyuteringizniki birinçi va qora. Bosilganda örnatiş bölimida şu tab oçiladi.
+const heroMac = document.getElementById("hero-mac");
+const heroWin = document.getElementById("hero-win");
+if (device === "windows") {
+  heroWin.classList.replace("btn-line", "btn-ink");
+  heroMac.classList.replace("btn-ink", "btn-line");
+  heroWin.after(heroMac);
+}
+for (const btn of [heroMac, heroWin]) {
+  btn.addEventListener("click", () => {
+    document.getElementById("install-details").open = true;
+    document.getElementById(btn.dataset.tab).click();
+  });
+}
 
 // Non markazi: çekiç halqalari va sedana (doimiy naqş, tasodifiy emas).
 const center = document.getElementById("non-center");

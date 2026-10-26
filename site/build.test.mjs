@@ -393,13 +393,19 @@ test("small stage 4 copy fixes: widget step titles, tutuq cell, practice-days fo
   assert.match(mainOf(site.get("mashq/index.html")), /<span class="sr-only" id="mashq-kunlar-sr"><\/span>/);
 });
 
-test("home: hero has two buttons, then converter, how-it-works, install with a separate try-it card, race", async () => {
+test("home: hero has macOS and Windows buttons with logos, then converter, how-it-works, install with a separate try-it card, race", async () => {
   const site = await real;
   for (const pre of ["", "ru/"]) {
     const main = mainOf(site.get(`${pre}index.html`));
     const hero = main.match(/<section class="hero"[\s\S]*?<section class="try"/)?.[0] ?? "";
-    assert.match(hero, /<div class="hero-cta"><a class="btn btn-ink btn-big" id="hero-dl" href="#yuklab-olish">/, pre);
-    assert.match(hero, /href="#qanday"/, pre);
+    const cta = hero.match(/<div class="hero-cta">[\s\S]*?<\/div>/)?.[0] ?? "";
+    for (const [os, tab] of [["mac", "tab-mac"], ["win", "tab-win"]]) {
+      const btn = cta.match(new RegExp(`<a class="btn [^"]*btn-big" id="hero-${os}" href="#yuklab-olish" data-tab="${tab}">([\\s\\S]*?)</a>`))?.[1] ?? "";
+      assert.match(btn, /<svg class="os-icon"[^>]*aria-hidden="true">/, `${pre} ${os} logo`);
+      assert.match(btn, os === "mac" ? /macOS/ : /Windows/, `${pre} ${os} label`);
+    }
+    assert.match(hero, /<a class="hero-more" href="#qanday">/, pre);
+    assert.doesNotMatch(hero, /id="hero-dl"/, pre);
     assert.doesNotMatch(hero, /id="yuklab-olish"/, pre);
     const qanday = main.match(/<section class="qanday" id="qanday"[\s\S]*?<\/section>/)?.[0] ?? "";
     assert.equal(qanday.match(/<li class="qanday-step">/g)?.length, 3, pre);
