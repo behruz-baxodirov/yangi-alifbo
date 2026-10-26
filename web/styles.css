@@ -518,7 +518,7 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 }
 
 /* Qanday işlaydi: uç qadam kartasi */
-.qanday { max-width: var(--max); margin: 0 auto; padding: 72px var(--gutter) 0; }
+.qanday { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 0; }
 .qanday-list { margin: 28px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .qanday-step { display: grid; gap: 12px; align-content: start; padding: 24px; border-radius: var(--corner); background: var(--flour-deep); }
 .qanday-step .step-n { width: 34px; height: 34px; font-size: 20px; }
@@ -526,14 +526,15 @@ html:is([lang="uz-Cyrl"], [lang="ru"]) :is(.hero-head, .sec-title, .try-title, .
 .qanday-step p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--char-soft); }
 .qanday-step b { color: var(--char); }
 /* Örnatiş bloki va alohida «Sinab köring» kartasi yonma-yon */
-.ornat { max-width: var(--max); margin: 0 auto; padding: 56px var(--gutter) 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; align-items: start; scroll-margin-top: 16px; }
+.ornat { max-width: var(--max); margin: 0 auto; padding: 56px var(--gutter) 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; align-items: start; }
 .ornat .dl { max-width: none; }
 .sinov-card { padding: 22px; border-radius: var(--corner); background: var(--char); color: var(--slab-ink); }
 .sinov-card-h { margin: 0 0 6px; font: 900 28px/1 Doto, monospace; color: var(--flour); }
 .sinov-card-p { margin: 0 0 14px; font-size: 15px; }
 .sinov-card .sinov { margin: 0; }
+/* Telefonda kompyuter klaviaturasini sinaş maʼnosiz (xabarlar Mac/Windows uçun): karta yaşiriladi. */
+[data-device="phone"] .sinov-card { display: none; }
 @media (max-width: 860px) {
-  .qanday { padding-top: 48px; }
   .qanday-list { grid-template-columns: minmax(0, 1fr); }
   .ornat { grid-template-columns: minmax(0, 1fr); padding-top: 40px; }
 }

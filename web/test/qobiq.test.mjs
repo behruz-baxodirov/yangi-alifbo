@@ -69,3 +69,7 @@ test("leftover rules from the old page tops are gone and cards react to hover", 
   assert.doesNotMatch(css, /\.maqola-meta \{ margin: -12px/);
   assert.match(css, /\.maqola-card:hover/);
 });
+
+test("the computer keyboard test card is hidden on phones", () => {
+  assert.match(css, /\[data-device="phone"\] \.sinov-card \{ display: none; \}/);
+});

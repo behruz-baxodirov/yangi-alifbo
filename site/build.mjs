@@ -11,7 +11,7 @@ import { parseSozlar, sozIndexPages, sozJson, sozPages } from "./lib/sozlar.mjs"
 import { bundleVidjet } from "./lib/bundle.mjs";
 
 export const SITE = "https://yozgich.uz";
-export const ASSET_V = "49";
+export const ASSET_V = "50";
 export const TILLAR = [
   { til: "yangi", prefix: "", lang: "uz", hreflang: "uz" },
   { til: "eski", prefix: "eski/", lang: "uz", hreflang: null },
