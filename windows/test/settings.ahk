@@ -6,6 +6,9 @@ SendMode "Event"
 SetKeyDelay 30, 10
 SendLevel 1   ; ^!Space va InputHook bu tugmalarni körişi uçun
 
+; CIʼda xato oynasi hech kim bosmaydigan dialog bölib qotib qoladi: xatoni yozib çiqamiz.
+OnError (e, *) => (FileAppend("ERROR " e.Message " (" e.What ", " e.Line ")`n", "*", "UTF-8"), ExitApp(2))
+
 exe := A_Args[1]
 ini := A_AppData "\YangiAlifbo\sozlamalar.ini"
 failed := 0

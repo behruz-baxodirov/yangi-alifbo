@@ -50,11 +50,14 @@ jobs:
 
       - name: Settings and icons test
         shell: pwsh
+        timeout-minutes: 5
         run: |
           $ahk = "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
           $exe = (Resolve-Path dist\YangiAlifbo.exe).Path
-          $p = Start-Process -Wait -PassThru -FilePath $ahk -ArgumentList "/ErrorStdOut", "windows\test\settings.ahk", "`"$exe`"" -RedirectStandardOutput settings.log
+          $p = Start-Process -PassThru -FilePath $ahk -ArgumentList "/ErrorStdOut", "windows\test\settings.ahk", "`"$exe`"" -RedirectStandardOutput settings.log
+          $done = $p.WaitForExit(120000)
           Get-Content settings.log -Encoding UTF8
+          if (-not $done) { $p.Kill(); throw "settings test hung (error dialog?)" }
           if ($p.ExitCode -ne 0) { throw "settings test failed" }
 
       - uses: actions/upload-artifact@v4
